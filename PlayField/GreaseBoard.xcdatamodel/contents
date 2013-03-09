@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="12C60" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="12C3103" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Play" representedClassName="Play" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
@@ -36,6 +36,25 @@
         <relationship name="play" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Play" inverseName="playSprite" inverseEntity="Play" syncable="YES"/>
         <relationship name="spritePoints" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="SpritePoint" inverseName="parentSprite" inverseEntity="SpritePoint" syncable="YES"/>
     </entity>
+    <entity name="Practice" representedClassName="Practice" syncable="YES">
+        <attribute name="practiceDuration" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="practiceName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="practiceColumns" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="PracticeColumn" inverseName="practice" inverseEntity="PracticeColumn" syncable="YES"/>
+    </entity>
+    <entity name="PracticeColumn" representedClassName="PracticeColumn" syncable="YES">
+        <attribute name="color" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="columnName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="practice" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Practice" inverseName="practiceColumns" inverseEntity="Practice" syncable="YES"/>
+        <relationship name="practiceItems" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="PracticeItem" inverseName="practiceColumn" inverseEntity="PracticeItem" syncable="YES"/>
+    </entity>
+    <entity name="PracticeItem" representedClassName="PracticeItem" syncable="YES">
+        <attribute name="backgroundColor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="columnNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="itemName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="itemType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="numberOfMinutes" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="practiceColumn" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PracticeColumn" syncable="YES"/>
+    </entity>
     <entity name="SpritePoint" representedClassName="SpritePoint" syncable="YES">
         <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="point" optional="YES" attributeType="String" syncable="YES"/>
@@ -44,9 +63,12 @@
     <elements>
         <element name="Play" positionX="-461" positionY="-45" width="128" height="120"/>
         <element name="Playbook" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="PlaybookPlay" positionX="-252" positionY="162" width="128" height="75"/>
         <element name="Player" positionX="-641" positionY="-45" width="128" height="240"/>
         <element name="PlaySprite" positionX="-200" positionY="-45" width="128" height="105"/>
         <element name="SpritePoint" positionX="7" positionY="-45" width="128" height="88"/>
-        <element name="PlaybookPlay" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="Practice" positionX="-162" positionY="324" width="128" height="88"/>
+        <element name="PracticeColumn" positionX="52" positionY="324" width="128" height="103"/>
+        <element name="PracticeItem" positionX="34" positionY="477" width="128" height="133"/>
     </elements>
 </model>

@@ -51,6 +51,16 @@
 		29E2FE4916D90980002270CF /* SpritePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2FE4816D9097F002270CF /* SpritePoint.m */; };
 		29E2FE4C16D90981002270CF /* PlaySprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2FE4B16D90981002270CF /* PlaySprite.m */; };
 		29E9361216E82F2400B439C1 /* PlayBookMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E9361116E82F2400B439C1 /* PlayBookMasterViewController.m */; };
+		392CD7F316EBA1B2008194B7 /* PracticeColumnEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CD7E216EBA1B2008194B7 /* PracticeColumnEditController.m */; };
+		392CD7F516EBA1B2008194B7 /* PracticeItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CD7E616EBA1B2008194B7 /* PracticeItemCell.m */; };
+		392CD7F616EBA1B2008194B7 /* PracticeItemEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CD7E816EBA1B2008194B7 /* PracticeItemEditController.m */; };
+		392CD7F716EBA1B2008194B7 /* PracticeOptionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CD7EA16EBA1B2008194B7 /* PracticeOptionsController.m */; };
+		392CD7F816EBA1B2008194B7 /* StackedGridLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CD7EC16EBA1B2008194B7 /* StackedGridLayout.m */; };
+		392CD7F916EBA1B2008194B7 /* StackedGridLayoutSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CD7EE16EBA1B2008194B7 /* StackedGridLayoutSection.m */; };
+		392CD7FA16EBA1B2008194B7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CD7F016EBA1B2008194B7 /* ViewController.m */; };
+		392CD80316EBABC3008194B7 /* PracticeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CD80216EBABC2008194B7 /* PracticeItem.m */; };
+		392CD80916EBBDF3008194B7 /* Practice.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CD80816EBBDF3008194B7 /* Practice.m */; };
+		392CD80C16EBBDF5008194B7 /* PracticeColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CD80B16EBBDF4008194B7 /* PracticeColumn.m */; };
 		6D0724AD16D6A74B00DDA641 /* PlayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0724AC16D6A74B00DDA641 /* PlayCell.m */; };
 		6D148F7816C988E70069CB76 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D148F7716C988E70069CB76 /* QuartzCore.framework */; };
 		6D148F7A16C988E70069CB76 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D148F7916C988E70069CB76 /* OpenGLES.framework */; };
@@ -255,6 +265,26 @@
 		29E2FE4B16D90981002270CF /* PlaySprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaySprite.m; sourceTree = "<group>"; };
 		29E9361016E82F2400B439C1 /* PlayBookMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayBookMasterViewController.h; sourceTree = "<group>"; };
 		29E9361116E82F2400B439C1 /* PlayBookMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayBookMasterViewController.m; sourceTree = "<group>"; };
+		392CD7E116EBA1B2008194B7 /* PracticeColumnEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeColumnEditController.h; sourceTree = "<group>"; };
+		392CD7E216EBA1B2008194B7 /* PracticeColumnEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeColumnEditController.m; sourceTree = "<group>"; };
+		392CD7E516EBA1B2008194B7 /* PracticeItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeItemCell.h; sourceTree = "<group>"; };
+		392CD7E616EBA1B2008194B7 /* PracticeItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeItemCell.m; sourceTree = "<group>"; };
+		392CD7E716EBA1B2008194B7 /* PracticeItemEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeItemEditController.h; sourceTree = "<group>"; };
+		392CD7E816EBA1B2008194B7 /* PracticeItemEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeItemEditController.m; sourceTree = "<group>"; };
+		392CD7E916EBA1B2008194B7 /* PracticeOptionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeOptionsController.h; sourceTree = "<group>"; };
+		392CD7EA16EBA1B2008194B7 /* PracticeOptionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeOptionsController.m; sourceTree = "<group>"; };
+		392CD7EB16EBA1B2008194B7 /* StackedGridLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StackedGridLayout.h; sourceTree = "<group>"; };
+		392CD7EC16EBA1B2008194B7 /* StackedGridLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StackedGridLayout.m; sourceTree = "<group>"; };
+		392CD7ED16EBA1B2008194B7 /* StackedGridLayoutSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StackedGridLayoutSection.h; sourceTree = "<group>"; };
+		392CD7EE16EBA1B2008194B7 /* StackedGridLayoutSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StackedGridLayoutSection.m; sourceTree = "<group>"; };
+		392CD7EF16EBA1B2008194B7 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		392CD7F016EBA1B2008194B7 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		392CD80116EBABC2008194B7 /* PracticeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeItem.h; sourceTree = "<group>"; };
+		392CD80216EBABC2008194B7 /* PracticeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeItem.m; sourceTree = "<group>"; };
+		392CD80716EBBDF2008194B7 /* Practice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Practice.h; sourceTree = "<group>"; };
+		392CD80816EBBDF3008194B7 /* Practice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Practice.m; sourceTree = "<group>"; };
+		392CD80A16EBBDF4008194B7 /* PracticeColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeColumn.h; sourceTree = "<group>"; };
+		392CD80B16EBBDF4008194B7 /* PracticeColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeColumn.m; sourceTree = "<group>"; };
 		6D0724AB16D6A74B00DDA641 /* PlayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayCell.h; sourceTree = "<group>"; };
 		6D0724AC16D6A74B00DDA641 /* PlayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayCell.m; sourceTree = "<group>"; };
 		6D148F7416C988E70069CB76 /* PlayField.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayField.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -644,6 +674,8 @@
 				29E2AABD16CFAF8C00005AAF /* PlayDrillItemCell.m */,
 				6D0724AB16D6A74B00DDA641 /* PlayCell.h */,
 				6D0724AC16D6A74B00DDA641 /* PlayCell.m */,
+				392CD7E516EBA1B2008194B7 /* PracticeItemCell.h */,
+				392CD7E616EBA1B2008194B7 /* PracticeItemCell.m */,
 			);
 			name = TableCell;
 			sourceTree = "<group>";
@@ -659,6 +691,12 @@
 				297EEAB716E8DDA600B425EE /* PlaybookPlay.m */,
 				29E2FE4A16D90981002270CF /* PlaySprite.h */,
 				29E2FE4B16D90981002270CF /* PlaySprite.m */,
+				392CD80A16EBBDF4008194B7 /* PracticeColumn.h */,
+				392CD80B16EBBDF4008194B7 /* PracticeColumn.m */,
+				392CD80716EBBDF2008194B7 /* Practice.h */,
+				392CD80816EBBDF3008194B7 /* Practice.m */,
+				392CD80116EBABC2008194B7 /* PracticeItem.h */,
+				392CD80216EBABC2008194B7 /* PracticeItem.m */,
 				29E2FE4716D9097F002270CF /* SpritePoint.h */,
 				29E2FE4816D9097F002270CF /* SpritePoint.m */,
 			);
@@ -674,6 +712,25 @@
 				297EEAC016E8E05400B425EE /* PlaybookDetailsViewController.m */,
 			);
 			name = Playbook;
+			sourceTree = "<group>";
+		};
+		392CD7DC16EBA18C008194B7 /* Practice */ = {
+			isa = PBXGroup;
+			children = (
+				392CD7E116EBA1B2008194B7 /* PracticeColumnEditController.h */,
+				392CD7E216EBA1B2008194B7 /* PracticeColumnEditController.m */,
+				392CD7E716EBA1B2008194B7 /* PracticeItemEditController.h */,
+				392CD7E816EBA1B2008194B7 /* PracticeItemEditController.m */,
+				392CD7E916EBA1B2008194B7 /* PracticeOptionsController.h */,
+				392CD7EA16EBA1B2008194B7 /* PracticeOptionsController.m */,
+				392CD7EB16EBA1B2008194B7 /* StackedGridLayout.h */,
+				392CD7EC16EBA1B2008194B7 /* StackedGridLayout.m */,
+				392CD7ED16EBA1B2008194B7 /* StackedGridLayoutSection.h */,
+				392CD7EE16EBA1B2008194B7 /* StackedGridLayoutSection.m */,
+				392CD7EF16EBA1B2008194B7 /* ViewController.h */,
+				392CD7F016EBA1B2008194B7 /* ViewController.m */,
+			);
+			name = Practice;
 			sourceTree = "<group>";
 		};
 		6D148F6B16C988E70069CB76 = {
@@ -714,6 +771,7 @@
 		6D148F8916C988E70069CB76 /* PlayField */ = {
 			isa = PBXGroup;
 			children = (
+				392CD7DC16EBA18C008194B7 /* Practice */,
 				29E2FE3D16D900E0002270CF /* Model */,
 				29E2AAA716CFAEB600005AAF /* TableCell */,
 				29E2AAA616CFAEB000005AAF /* Images */,
@@ -1350,6 +1408,16 @@
 				297EEAB816E8DDA600B425EE /* PlaybookPlay.m in Sources */,
 				297EEABE16E8DE3A00B425EE /* Playbook.m in Sources */,
 				297EEAC116E8E05400B425EE /* PlaybookDetailsViewController.m in Sources */,
+				392CD7F316EBA1B2008194B7 /* PracticeColumnEditController.m in Sources */,
+				392CD7F516EBA1B2008194B7 /* PracticeItemCell.m in Sources */,
+				392CD7F616EBA1B2008194B7 /* PracticeItemEditController.m in Sources */,
+				392CD7F716EBA1B2008194B7 /* PracticeOptionsController.m in Sources */,
+				392CD7F816EBA1B2008194B7 /* StackedGridLayout.m in Sources */,
+				392CD7F916EBA1B2008194B7 /* StackedGridLayoutSection.m in Sources */,
+				392CD7FA16EBA1B2008194B7 /* ViewController.m in Sources */,
+				392CD80316EBABC3008194B7 /* PracticeItem.m in Sources */,
+				392CD80916EBBDF3008194B7 /* Practice.m in Sources */,
+				392CD80C16EBBDF5008194B7 /* PracticeColumn.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
