@@ -36,6 +36,7 @@
 }
 
 - (IBAction)savePlay:(id)sender {
+    NSLog(@"Saving first");
     [self.cocosViewController savePlay:self];
 }
 

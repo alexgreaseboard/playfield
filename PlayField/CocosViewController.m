@@ -139,7 +139,7 @@
 
 - (IBAction)savePlay:(id)sender {
     [self configureView];
-    
+    NSLog(@"Saving");
     // Save each PlaySprite SpritePoints.
     CCScene *scene = [[CCDirector sharedDirector] runningScene];
     HelloWorldLayer *layer = [scene.children objectAtIndex:0];
