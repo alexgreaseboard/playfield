@@ -584,9 +584,7 @@
                             <constraint firstAttribute="trailing" secondItem="LfS-8z-paf" secondAttribute="trailing" constant="74" id="4je-15-96r"/>
                             <constraint firstItem="O3n-co-itd" firstAttribute="baseline" secondItem="hYX-z8-cnG" secondAttribute="baseline" type="default" id="4ul-qC-gne"/>
                             <constraint firstItem="hYX-z8-cnG" firstAttribute="baseline" secondItem="eAQ-dK-nAo" secondAttribute="baseline" type="default" id="7ZC-6I-hbw"/>
-                            <constraint firstAttribute="trailing" secondItem="O3n-co-itd" secondAttribute="trailing" constant="211" id="8oP-Qm-1bm"/>
-                            <constraint firstItem="LfS-8z-paf" firstAttribute="baseline" secondItem="O3n-co-itd" secondAttribute="baseline" type="default" id="BTg-Rn-xKL"/>
-                            <constraint firstItem="eAQ-dK-nAo" firstAttribute="leading" secondItem="rQA-KF-p8V" secondAttribute="leading" constant="166" id="CqJ-a9-LTW"/>
+                            <constraint firstItem="eAQ-dK-nAo" firstAttribute="leading" secondItem="rQA-KF-p8V" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="9Jx-vQ-GO9"/>
                             <constraint firstItem="Dkl-C7-9P4" firstAttribute="top" secondItem="rQA-KF-p8V" secondAttribute="top" constant="354" id="QWO-zI-WXx"/>
                             <constraint firstItem="hYX-z8-cnG" firstAttribute="leading" secondItem="rQA-KF-p8V" secondAttribute="leading" constant="291" id="RLw-xC-M4m"/>
                             <constraint firstItem="eAQ-dK-nAo" firstAttribute="top" secondItem="rQA-KF-p8V" secondAttribute="top" constant="453" id="RrT-CS-oM0"/>
