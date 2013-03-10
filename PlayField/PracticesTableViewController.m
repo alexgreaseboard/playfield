@@ -134,7 +134,7 @@
     // TODO segue to a form screen
     newPractice.practiceName = @"Practice";
     // random practice duration
-    newPractice.practiceDuration = [NSNumber numberWithInt:(random() % 100)];
+    newPractice.practiceDuration = [NSNumber numberWithInt:(random() % 50)];
     
     // Save the context.
     NSError *error = nil;
