@@ -101,7 +101,7 @@
     self.durationLabel = [self createStyledLabel:frame withOffset:20];
     self.durationLabel.tag=56;
     self.durationLabel.font = [UIFont boldSystemFontOfSize:13.0];
-    self.durationLabel.text = [NSString stringWithFormat:@"   %d minutes", practiceItem.numberOfMinutes];
+    self.durationLabel.text = [NSString stringWithFormat:@"   %@ minutes", practiceItem.numberOfMinutes];
     self.durationLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight;
     self.durationLabel.adjustsFontSizeToFitWidth = YES;
     [self.contentView addSubview:self.durationLabel];

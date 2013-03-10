@@ -6,7 +6,7 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
-#import "ViewController.h"
+#import "PracticeViewController.h"
 #import "PracticeItemCell.h"
 #import "StackedGridLayout.h"
 #import "PracticeColumn.h"
@@ -17,7 +17,7 @@
 #import "PracticeColumnEditController.h"
 #import "AppDelegate.h"
 
-@interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, PracticeOptionsDelegate>
+@interface PracticeViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, PracticeOptionsDelegate>
 @property(nonatomic, weak) IBOutlet UIToolbar *toolbar;
 @property(nonatomic, weak) IBOutlet UIBarButtonItem *menuButton;
 @property(nonatomic, weak) IBOutlet UITextField *textField;
@@ -27,12 +27,11 @@
 
 
 @property (nonatomic, strong) StackedGridLayout *stackedGridLayout;
-@property (nonatomic, strong) Practice *practice;
 @property (nonatomic) double pixelRatio;
 
 @end
 
-@implementation ViewController{
+@implementation PracticeViewController{
     __weak UIPopoverController *practiceOptionsPopover;
 	PracticeItemCell *draggingCell;
 	PracticeItem *draggingItem;
@@ -45,11 +44,27 @@
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
+
+    // stacked grid layout - the calendar portion
+    self.stackedGridLayout = [[StackedGridLayout alloc] init];
+    self.stackedGridLayout.headerHeight=0.0f;
+    self.collectionView.collectionViewLayout = self.stackedGridLayout;
+    self.collectionView.allowsSelection = YES;
+    self.collectionView.multipleTouchEnabled = YES;
     
-    // initialize variables
-    // TODO replace from DB
-    self.practice = [NSEntityDescription insertNewObjectForEntityForName:@"Practice" inManagedObjectContext:self.managedObjectContext];
-    self.practice.practiceName = @"Practice 1";
+    
+    //pinching cells
+    UIPinchGestureRecognizer *pinching = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handlePinching:)];
+    pinching.delegate = self;
+    [self.collectionView addGestureRecognizer:pinching];
+    
+}
+
+// set the practice
+
+-(void)resetViewWithPractice:(Practice*)practice{
+    self.practice = practice;
+    
     //calculate the pixel ratio based on the size of the frame and the duration of the practice
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     screenRect.origin.y += 15;
@@ -60,13 +75,6 @@
         self.pixelRatio = 8.0;
     }
     NSLog(@"Pixel Ratio: %f",self.pixelRatio);
-
-    // stacked grid layout - the calendar portion
-    self.stackedGridLayout = [[StackedGridLayout alloc] init];
-    self.stackedGridLayout.headerHeight=0.0f;
-    self.collectionView.collectionViewLayout = self.stackedGridLayout;
-    self.collectionView.allowsSelection = YES;
-    self.collectionView.multipleTouchEnabled = YES;
     
     // table - the times behind the calendar
     CGRect tableFrame = screenRect;
@@ -83,12 +91,6 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.view addSubview:self.tableView];
     [self.view sendSubviewToBack:self.tableView];
-    
-    //pinching cells
-    UIPinchGestureRecognizer *pinching = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handlePinching:)];
-    pinching.delegate = self;
-    [self.collectionView addGestureRecognizer:pinching];
-    
 }
 
 - (void)didReceiveMemoryWarning
