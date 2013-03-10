@@ -85,6 +85,13 @@
     self.window.rootViewController = controller;
 }
 
+- (void) switchToPractices
+{
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle: nil];
+    UIViewController *controller = (UIViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"PracticesStoryboard"];
+    self.window.rootViewController = controller;
+}
+
 
 #pragma mark - Core Data stack
 

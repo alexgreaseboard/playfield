@@ -16,5 +16,6 @@
 - (IBAction)showRoster:(id)sender;
 - (IBAction)showPlaysDrills:(id)sender;
 - (IBAction)showPlaybook:(id)sender;
+- (IBAction)showPractices:(id)sender;
 
 @end

@@ -52,6 +52,11 @@
     [appDelegate switchToPlaybook];
 }
 
+- (IBAction)showPractices:(id)sender {
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate switchToPractices];
+}
+
 #pragma mark GameKit delegate
 /** 
  Probably needs some code like this to remove the views from memory

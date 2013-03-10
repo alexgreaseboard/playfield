@@ -22,5 +22,6 @@
 - (void) switchToRoster;
 - (void) switchToPlaysDrills;
 - (void) switchToPlaybook;
+- (void) switchToPractices;
 
 @end

@@ -441,7 +441,7 @@
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-151" y="-1186"/>
+            <point key="canvasLocation" x="-991" y="-754"/>
         </scene>
         <!--Roster Master View Controller - Roster-->
         <scene sceneID="24">
@@ -1402,7 +1402,7 @@
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dvm-YR-aGP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-601" y="4103"/>
+            <point key="canvasLocation" x="-641" y="4067"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="lDc-gR-7ou">
@@ -1754,6 +1754,243 @@
             </objects>
             <point key="canvasLocation" x="3639" y="3769"/>
         </scene>
+        <!--Practice View Controller - Title-->
+        <scene sceneID="bWV-k7-9VB">
+            <objects>
+                <viewController id="9Cn-2R-N3K" customClass="PracticeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1AL-Mn-yWB">
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Title" id="SBh-oX-pTi"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fmi-FK-Rd7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1205" y="7067"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="jQn-rt-Xdf">
+            <objects>
+                <splitViewController storyboardIdentifier="PracticesStoryboard" id="Z04-Mx-pLo" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <connections>
+                        <segue destination="WXN-4S-ufC" kind="relationship" relationship="detailViewController" id="JAG-CS-yJZ"/>
+                        <segue destination="IS7-OP-caa" kind="relationship" relationship="masterViewController" id="ksE-hH-Tfi"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jiM-5e-YTP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-785" y="6515"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Giq-m5-M9a">
+            <objects>
+                <tabBarController id="IS7-OP-caa" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="6XR-W2-91i">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="R0c-RF-Fy8" kind="relationship" relationship="viewControllers" id="xdw-2C-MoQ"/>
+                        <segue destination="ow7-LE-85s" kind="relationship" relationship="viewControllers" id="Mus-b5-FUq"/>
+                        <segue destination="CuL-DS-hMG" kind="relationship" relationship="viewControllers" id="gyw-ju-xNc"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZV6-PX-DcA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="239" y="5997"/>
+        </scene>
+        <!--Practices Table View Controller - Offense-->
+        <scene sceneID="gw8-Nh-M6G">
+            <objects>
+                <tableViewController title="Offense" id="8Bt-Dh-S3G" customClass="PracticesTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="5aC-Ew-4C0">
+                        <rect key="frame" x="0.0" y="64" width="320" height="739"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PracticeCell" textLabel="zMH-Mr-PZX" style="IBUITableViewCellStyleDefault" id="va1-W1-OMi" customClass="PracticeCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zMH-Mr-PZX">
+                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <outlet property="practiceLabel" destination="zMH-Mr-PZX" id="3R7-4g-mhh"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Practices" id="bsr-j4-CGa"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YVz-R5-GH8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2165" y="6113"/>
+        </scene>
+        <!--Navigation Controller - Practices-->
+        <scene sceneID="OwM-fc-VPO">
+            <objects>
+                <navigationController id="R0c-RF-Fy8" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Practices" id="CWT-cF-JhU"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8o9-1F-Ins">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8Bt-Dh-S3G" kind="relationship" relationship="rootViewController" id="c1Q-Yb-3a8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wwr-d8-EfY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1739" y="6113"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="j1E-te-Ah5">
+            <objects>
+                <navigationController id="WXN-4S-ufC" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ibz-BV-gWz">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9Cn-2R-N3K" kind="relationship" relationship="rootViewController" id="Sv0-Dq-F3s"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r2Q-Qd-K6t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="239" y="7067"/>
+        </scene>
+        <!--Play Creation Plays Table View Controller - Defense-->
+        <scene sceneID="G4q-3f-dO0">
+            <objects>
+                <tableViewController title="Defense" id="Rkh-0b-1Q2" customClass="PlayCreationPlaysTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="93a-au-QzS">
+                        <rect key="frame" x="0.0" y="64" width="320" height="739"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CreationPlayCell" textLabel="xPV-Ys-qZS" style="IBUITableViewCellStyleDefault" id="rgO-5C-dME" customClass="PlayCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xPV-Ys-qZS">
+                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <outlet property="nameLabel" destination="xPV-Ys-qZS" id="d9b-bN-apY"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="sjb-dt-XNQ"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E06-oE-Z0a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3048" y="6021"/>
+        </scene>
+        <!--Navigation Controller - Defense-->
+        <scene sceneID="5by-Qy-j1B">
+            <objects>
+                <navigationController title="Defense" id="ow7-LE-85s" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Defense" id="Uux-jZ-iYw"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0MH-oe-jrg">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Rkh-0b-1Q2" kind="relationship" relationship="rootViewController" id="2Q5-9b-GU5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F2u-Vw-6cX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2615" y="6021"/>
+        </scene>
+        <!--Play Creation Plays Table View Controller - Drill-->
+        <scene sceneID="c0h-3v-fEg">
+            <objects>
+                <tableViewController title="Drill" id="lIv-3u-s4T" customClass="PlayCreationPlaysTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="4A3-TC-AC2">
+                        <rect key="frame" x="0.0" y="64" width="320" height="739"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CreationPlayCell" textLabel="Jb8-MS-Lag" style="IBUITableViewCellStyleDefault" id="UdG-E3-15e" customClass="PlayCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jb8-MS-Lag">
+                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <outlet property="nameLabel" destination="Jb8-MS-Lag" id="dfc-1D-HhI"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="CT2-gO-Gpg"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6tu-Cm-m9k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3961" y="6225"/>
+        </scene>
+        <!--Navigation Controller - Drill-->
+        <scene sceneID="RjS-bO-R40">
+            <objects>
+                <navigationController title="Drill" id="CuL-DS-hMG" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Drill" id="h32-vm-1Md"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WLx-Hk-3AS">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="lIv-3u-s4T" kind="relationship" relationship="rootViewController" id="59D-nX-QYO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iIa-cr-56U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3495" y="6217"/>
+        </scene>
     </scenes>
     <classes>
         <class className="CocosViewController" superclassName="UIViewController">
@@ -1804,6 +2041,9 @@
         </class>
         <class className="PlayCreationPlaysTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayCreationPlaysTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="returnToMenu:"/>
+            </relationships>
         </class>
         <class className="PlayDrillItemCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayDrillItemCell.h"/>
@@ -1817,6 +2057,27 @@
             <relationships>
                 <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="positionLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PracticeCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PracticeCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="practiceLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PracticeViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PracticeViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="menuButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="textField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
+        <class className="PracticesTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PracticesTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="returnToMenu:"/>
             </relationships>
         </class>
         <class className="RosterDetailEditViewController" superclassName="UITableViewController">
