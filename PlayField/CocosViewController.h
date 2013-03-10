@@ -22,10 +22,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *notes;
 
-- (IBAction)saveButtonPressed:(id)sender;
-- (IBAction)savePlay:(id)sender;
-- (IBAction)saveDuplicate:(id)sender;
-- (IBAction)saveReverse:(id)sender;
+- (void)savePlay:(id)sender;
+- (void)saveDuplicate:(id)sender;
+- (void)saveReverse:(id)sender;
 - (void)setCurrentPlay:(Play *)pPlay;
 - (void)addItemSprite:(NSString *)itemName;
 

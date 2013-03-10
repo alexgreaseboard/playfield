@@ -19,7 +19,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"field-lights"]];
     }
     return self;
 }

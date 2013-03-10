@@ -17,7 +17,19 @@
 		297EEAB816E8DDA600B425EE /* PlaybookPlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 297EEAB716E8DDA600B425EE /* PlaybookPlay.m */; };
 		297EEABE16E8DE3A00B425EE /* Playbook.m in Sources */ = {isa = PBXBuildFile; fileRef = 297EEABD16E8DE3A00B425EE /* Playbook.m */; };
 		297EEAC116E8E05400B425EE /* PlaybookDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297EEAC016E8E05400B425EE /* PlaybookDetailsViewController.m */; };
+		298017E016EB9EC500FF469E /* bttn-gametime.png in Resources */ = {isa = PBXBuildFile; fileRef = 298017D616EB9EC500FF469E /* bttn-gametime.png */; };
+		298017E116EB9EC500FF469E /* bttn-playbooks.png in Resources */ = {isa = PBXBuildFile; fileRef = 298017D716EB9EC500FF469E /* bttn-playbooks.png */; };
+		298017E216EB9EC500FF469E /* bttn-plays.png in Resources */ = {isa = PBXBuildFile; fileRef = 298017D816EB9EC500FF469E /* bttn-plays.png */; };
+		298017E316EB9EC500FF469E /* bttn-practice.png in Resources */ = {isa = PBXBuildFile; fileRef = 298017D916EB9EC500FF469E /* bttn-practice.png */; };
+		298017E416EB9EC500FF469E /* bttn-roster.png in Resources */ = {isa = PBXBuildFile; fileRef = 298017DA16EB9EC500FF469E /* bttn-roster.png */; };
+		298017E516EB9EC500FF469E /* bttn-share-disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 298017DB16EB9EC500FF469E /* bttn-share-disabled.png */; };
+		298017E616EB9EC500FF469E /* bttn-share.png in Resources */ = {isa = PBXBuildFile; fileRef = 298017DC16EB9EC500FF469E /* bttn-share.png */; };
+		298017E716EB9EC500FF469E /* field-lights.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 298017DD16EB9EC500FF469E /* field-lights.jpg */; };
+		298017E816EB9EC500FF469E /* greaseboard-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 298017DE16EB9EC500FF469E /* greaseboard-logo.png */; };
+		298017E916EB9EC500FF469E /* home-reference.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 298017DF16EB9EC500FF469E /* home-reference.jpg */; };
 		29C1C8AA16CBBD1A00573EED /* smallRedCircle.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 29C1C8A916CBBD1A00573EED /* smallRedCircle.jpeg */; };
+		29C26AE616EBBA1F00DFDF8A /* field-lights.png in Resources */ = {isa = PBXBuildFile; fileRef = 29C26AE516EBBA1F00DFDF8A /* field-lights.png */; };
+		29C26AE816EBBA4500DFDF8A /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 29C26AE716EBBA4500DFDF8A /* Default-Landscape~ipad.png */; };
 		29E2AA9B16CF04DB00005AAF /* playButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E2AA9A16CF04DB00005AAF /* playButton.png */; };
 		29E2AA9D16CF058D00005AAF /* resetButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E2AA9C16CF058D00005AAF /* resetButton.png */; };
 		29E2AA9F16CF05B900005AAF /* positionButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E2AA9E16CF05B900005AAF /* positionButton.png */; };
@@ -203,7 +215,19 @@
 		297EEABD16E8DE3A00B425EE /* Playbook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Playbook.m; sourceTree = "<group>"; };
 		297EEABF16E8E05400B425EE /* PlaybookDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybookDetailsViewController.h; sourceTree = "<group>"; };
 		297EEAC016E8E05400B425EE /* PlaybookDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybookDetailsViewController.m; sourceTree = "<group>"; };
+		298017D616EB9EC500FF469E /* bttn-gametime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bttn-gametime.png"; sourceTree = "<group>"; };
+		298017D716EB9EC500FF469E /* bttn-playbooks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bttn-playbooks.png"; sourceTree = "<group>"; };
+		298017D816EB9EC500FF469E /* bttn-plays.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bttn-plays.png"; sourceTree = "<group>"; };
+		298017D916EB9EC500FF469E /* bttn-practice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bttn-practice.png"; sourceTree = "<group>"; };
+		298017DA16EB9EC500FF469E /* bttn-roster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bttn-roster.png"; sourceTree = "<group>"; };
+		298017DB16EB9EC500FF469E /* bttn-share-disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bttn-share-disabled.png"; sourceTree = "<group>"; };
+		298017DC16EB9EC500FF469E /* bttn-share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bttn-share.png"; sourceTree = "<group>"; };
+		298017DD16EB9EC500FF469E /* field-lights.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "field-lights.jpg"; sourceTree = "<group>"; };
+		298017DE16EB9EC500FF469E /* greaseboard-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "greaseboard-logo.png"; sourceTree = "<group>"; };
+		298017DF16EB9EC500FF469E /* home-reference.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "home-reference.jpg"; sourceTree = "<group>"; };
 		29C1C8A916CBBD1A00573EED /* smallRedCircle.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = smallRedCircle.jpeg; sourceTree = "<group>"; };
+		29C26AE516EBBA1F00DFDF8A /* field-lights.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "field-lights.png"; sourceTree = "<group>"; };
+		29C26AE716EBBA4500DFDF8A /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		29E2AA9A16CF04DB00005AAF /* playButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playButton.png; sourceTree = "<group>"; };
 		29E2AA9C16CF058D00005AAF /* resetButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resetButton.png; sourceTree = "<group>"; };
 		29E2AA9E16CF05B900005AAF /* positionButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = positionButton.png; sourceTree = "<group>"; };
@@ -575,6 +599,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		298017D516EB9EC500FF469E /* greaseboard-homepage */ = {
+			isa = PBXGroup;
+			children = (
+				29C26AE516EBBA1F00DFDF8A /* field-lights.png */,
+				298017D616EB9EC500FF469E /* bttn-gametime.png */,
+				298017D716EB9EC500FF469E /* bttn-playbooks.png */,
+				298017D816EB9EC500FF469E /* bttn-plays.png */,
+				298017D916EB9EC500FF469E /* bttn-practice.png */,
+				298017DA16EB9EC500FF469E /* bttn-roster.png */,
+				298017DB16EB9EC500FF469E /* bttn-share-disabled.png */,
+				298017DC16EB9EC500FF469E /* bttn-share.png */,
+				298017DD16EB9EC500FF469E /* field-lights.jpg */,
+				298017DE16EB9EC500FF469E /* greaseboard-logo.png */,
+				298017DF16EB9EC500FF469E /* home-reference.jpg */,
+			);
+			path = "greaseboard-homepage";
+			sourceTree = "<group>";
+		};
 		29E2AAA416CFAEA200005AAF /* Roster */ = {
 			isa = PBXGroup;
 			children = (
@@ -612,6 +654,7 @@
 		29E2AAA616CFAEB000005AAF /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				298017D516EB9EC500FF469E /* greaseboard-homepage */,
 				29C1C8A916CBBD1A00573EED /* smallRedCircle.jpeg */,
 				6DEF320A16D154B200AD57A1 /* About.png */,
 				292C9FC016CFCA220065103D /* Sad.png */,
@@ -703,6 +746,7 @@
 		6D148F6B16C988E70069CB76 = {
 			isa = PBXGroup;
 			children = (
+				29C26AE716EBBA4500DFDF8A /* Default-Landscape~ipad.png */,
 				6D148F8916C988E70069CB76 /* PlayField */,
 				6D148F7616C988E70069CB76 /* Frameworks */,
 				6D148F7516C988E70069CB76 /* Products */,
@@ -1220,6 +1264,18 @@
 				292C9FC116CFCA220065103D /* Sad.png in Resources */,
 				6DEF320B16D154B200AD57A1 /* About.png in Resources */,
 				6DA4C1B016DD491D005AFE94 /* trashButton.png in Resources */,
+				298017E016EB9EC500FF469E /* bttn-gametime.png in Resources */,
+				298017E116EB9EC500FF469E /* bttn-playbooks.png in Resources */,
+				298017E216EB9EC500FF469E /* bttn-plays.png in Resources */,
+				298017E316EB9EC500FF469E /* bttn-practice.png in Resources */,
+				298017E416EB9EC500FF469E /* bttn-roster.png in Resources */,
+				298017E516EB9EC500FF469E /* bttn-share-disabled.png in Resources */,
+				298017E616EB9EC500FF469E /* bttn-share.png in Resources */,
+				298017E716EB9EC500FF469E /* field-lights.jpg in Resources */,
+				298017E816EB9EC500FF469E /* greaseboard-logo.png in Resources */,
+				298017E916EB9EC500FF469E /* home-reference.jpg in Resources */,
+				29C26AE616EBBA1F00DFDF8A /* field-lights.png in Resources */,
+				29C26AE816EBBA4500DFDF8A /* Default-Landscape~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
