@@ -581,15 +581,16 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="hYX-z8-cnG" firstAttribute="leading" secondItem="rQA-KF-p8V" secondAttribute="leading" constant="304" id="0WJ-VK-2r2"/>
-                            <constraint firstAttribute="trailing" secondItem="LfS-8z-paf" secondAttribute="trailing" constant="74" id="4je-15-96r"/>
+                            <constraint firstAttribute="trailing" secondItem="LfS-8z-paf" secondAttribute="trailing" constant="26" id="3US-70-nap"/>
                             <constraint firstItem="O3n-co-itd" firstAttribute="baseline" secondItem="hYX-z8-cnG" secondAttribute="baseline" type="default" id="4ul-qC-gne"/>
                             <constraint firstItem="hYX-z8-cnG" firstAttribute="baseline" secondItem="eAQ-dK-nAo" secondAttribute="baseline" type="default" id="7ZC-6I-hbw"/>
                             <constraint firstItem="eAQ-dK-nAo" firstAttribute="leading" secondItem="rQA-KF-p8V" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="9Jx-vQ-GO9"/>
+                            <constraint firstItem="LfS-8z-paf" firstAttribute="baseline" secondItem="O3n-co-itd" secondAttribute="baseline" type="default" id="P6p-ar-L1I"/>
                             <constraint firstItem="Dkl-C7-9P4" firstAttribute="top" secondItem="rQA-KF-p8V" secondAttribute="top" constant="354" id="QWO-zI-WXx"/>
-                            <constraint firstItem="hYX-z8-cnG" firstAttribute="leading" secondItem="rQA-KF-p8V" secondAttribute="leading" constant="291" id="RLw-xC-M4m"/>
                             <constraint firstItem="eAQ-dK-nAo" firstAttribute="top" secondItem="rQA-KF-p8V" secondAttribute="top" constant="453" id="RrT-CS-oM0"/>
                             <constraint firstItem="Dkl-C7-9P4" firstAttribute="leading" secondItem="rQA-KF-p8V" secondAttribute="leading" constant="346" id="Sbh-vs-3pJ"/>
                             <constraint firstItem="hYX-z8-cnG" firstAttribute="top" secondItem="rQA-KF-p8V" secondAttribute="top" constant="460" id="hPa-Ve-Cya"/>
+                            <constraint firstItem="LfS-8z-paf" firstAttribute="top" secondItem="O3n-co-itd" secondAttribute="top" type="default" id="vlS-q7-fSN"/>
                             <constraint firstAttribute="trailing" secondItem="O3n-co-itd" secondAttribute="trailing" constant="120" id="xvf-06-vNh"/>
                         </constraints>
                     </view>
@@ -597,7 +598,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0QD-Df-F41" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2052" y="689"/>
+            <point key="canvasLocation" x="-2042" y="713"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="50">
@@ -2083,9 +2084,6 @@
         </class>
         <class className="PracticesTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PracticesTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="returnToMenu:"/>
-            </relationships>
         </class>
         <class className="RosterDetailEditViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RosterDetailEditViewController.h"/>
