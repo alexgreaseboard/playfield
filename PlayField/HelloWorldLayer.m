@@ -142,13 +142,13 @@
         if (CGRectIntersectsRect(selPlayerSprite.sprite.boundingBox, trashMenuItem.boundingBox)) {
             [self removePlaySprite:selPlayerSprite];
         }
-        
     } else {
         // Move Sprint to beginning of line
         if( [selPlayerSprite.toucharray count] > 0 ) {
             CGPoint origPosition = CGPointFromString( [selPlayerSprite.toucharray objectAtIndex:0] );
             selPlayerSprite.sprite.position = origPosition;
             selPlayerSprite.maxIndex = [selPlayerSprite.toucharray count];
+            [selPlayerSprite saveSpritePoints];
         }
     }
 }

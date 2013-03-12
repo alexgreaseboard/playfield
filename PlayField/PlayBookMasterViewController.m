@@ -85,8 +85,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Playbook *playbook = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-    [self.detailViewController setCurrentPlaybook:playbook];
+    //Playbook *playbook = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+    //[self.detailViewController setCurrentPlaybook:playbook];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath

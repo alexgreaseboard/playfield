@@ -17,7 +17,8 @@
 
 @implementation CocosViewController
 {
-    SavePlayViewController *savePlayViewController;
+    UIPopoverController *savePlayViewController;
+    UIPopoverController *testPopoverController;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -121,16 +122,28 @@
         editController.delegate = self;
         editController.play = self.detailItem;
     } else if([segue.identifier isEqualToString:@"playSaveSegue"]) {
-        if( savePlayViewController == nil ) {
-            savePlayViewController = (SavePlayViewController *) segue.destinationViewController;
+        if (savePlayViewController != nil && savePlayViewController.popoverVisible)
+        {
+            [savePlayViewController dismissPopoverAnimated:NO];
         }
-        //SavePlayViewController *saveController =
-        //if( [savePlayViewController isViewLoaded] ) {
-        //    NSLog(@"Already visible");
-        //    [savePlayViewController dismissViewControllerAnimated:YES completion:nil];
-        //}
-        savePlayViewController.cocosViewController = self;
+        savePlayViewController = ((UIStoryboardPopoverSegue *) segue).popoverController;
+        savePlayViewController.delegate = self;
+    } if ([segue.identifier isEqualToString:@"testPopover"]) {
+        if (testPopoverController != nil && testPopoverController.popoverVisible)
+        {
+            [testPopoverController dismissPopoverAnimated:NO];
+        }
+        testPopoverController = ((UIStoryboardPopoverSegue *)segue).popoverController;
+        testPopoverController.delegate = self;
     }
+}
+
+#pragma mark - UIPopoverControllerDelegate
+- (void)popoverControllerDidDismissPopover: (UIPopoverController *)popoverController
+{
+    savePlayViewController.delegate = nil;
+    testPopoverController.delegate = nil;
+    testPopoverController = nil;
 }
 
 - (void)savePlay:(id)sender {
@@ -148,16 +161,6 @@
         [self fatalCoreDataError:error];
         return;
     }
-}
-
-- (void)saveDuplicate:(id)sender
-{
-    [self copyPlayInverted:false];
-}
-
-- (void)saveReverse:(id)sender
-{
-    [self copyPlayInverted:true];
 }
 
 - (void) copyPlayInverted:(bool) inverted
@@ -219,6 +222,25 @@
         newPoint = CGPointMake(center - (oldPoint.x - center), oldPoint.y);
     }
     return newPoint;
+}
+
+- (void)savePlayViewController:(SavePlayViewController *)controller
+{
+    [self savePlay:self];
+    if (savePlayViewController != nil && savePlayViewController.popoverVisible)
+    {
+        [savePlayViewController dismissPopoverAnimated:YES];
+        savePlayViewController = nil;
+    }
+
+}
+- (void)saveDuplicatePlayViewController:(SavePlayViewController *)controller
+{
+    [self copyPlayInverted:false];
+}
+- (void)saveReversePlayViewController:(SavePlayViewController *)controller
+{
+    [self copyPlayInverted:true];
 }
 
 - (NSFetchedResultsController *)fetchedResultsController

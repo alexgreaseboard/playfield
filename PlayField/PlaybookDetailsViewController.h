@@ -11,10 +11,10 @@
 
 @interface PlaybookDetailsViewController : UIViewController <UIAlertViewDelegate,NSFetchedResultsControllerDelegate>
 
-@property (strong, nonatomic) Playbook *playbook;
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property(nonatomic, weak) IBOutlet UICollectionView *collectionView;
 
-- (void)setCurrentPlaybook:(Playbook *)pPlaybook;
+- (IBAction)addPlaybook:(id)sender;
 
 @end

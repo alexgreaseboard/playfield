@@ -14,37 +14,17 @@
 
 @implementation SavePlayViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (IBAction)savePlay:(id)sender {
-    [self.cocosViewController savePlay:self];
+    NSLog(@"Popover save");
+    //[self.delegate savePlayViewController:self];
 }
 
 - (IBAction)saveDuplicate:(id)sender {
-    [self.cocosViewController saveDuplicate:self];
+    //[self.delegate saveDuplicatePlayViewController:self];
 }
 
 - (IBAction)saveReverse:(id)sender {
-    [self.cocosViewController saveReverse:self];
+    //[self.delegate saveReversePlayViewController:self];
 }
 
 @end

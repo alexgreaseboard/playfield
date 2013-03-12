@@ -62,28 +62,6 @@
     }
 }
 
-/*-(void) cocosViewController:(CocosViewController *)controller saveDetail:(id) detailItem
-{
-    // Save the context.
-    NSError *error = nil;
-    if (![self.managedObjectContext save:&error]) {
-        [self fatalCoreDataError:error];
-        return;
-    }
-}
-
--(void) cocosViewController:(CocosViewController *)controller deleteItem:(id)detailItem
-{
-    self.managedObjectContext = [self.fetchedResultsController managedObjectContext];
-    [self.managedObjectContext deleteObject:detailItem];
-    
-    NSError *error = nil;
-    if (![self.managedObjectContext save:&error]) {
-        [self fatalCoreDataError:error];
-        return;
-    }
-}*/
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

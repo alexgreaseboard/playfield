@@ -10,10 +10,11 @@
 #import "cocos2d.h"
 #import "PlayCreationDetailsViewController.h"
 #import "Play.h"
+#import "SavePlayViewController.h"
 
 @class CocosViewController;
 
-@interface CocosViewController : UIViewController <CCDirectorDelegate,PlayCreationDetailsViewControllerDelegate,UIAlertViewDelegate,NSFetchedResultsControllerDelegate>
+@interface CocosViewController : UIViewController <CCDirectorDelegate,PlayCreationDetailsViewControllerDelegate,UIAlertViewDelegate,NSFetchedResultsControllerDelegate,UIPopoverControllerDelegate>
 
 @property (strong, nonatomic) Play *detailItem;
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
