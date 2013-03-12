@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import <UIKit/UIKit.h>
 
 @class PracticeColumn;
 
@@ -20,4 +21,7 @@
 @property (nonatomic, retain) NSString * itemType;
 @property (nonatomic, retain) PracticeColumn *practiceColumn;
 
+- (void)createHeaderWithName:(NSString*)name;
+- (void)createTimeItemWithLabel:(NSString*)label;
+- (void)createTimeHeader;
 @end

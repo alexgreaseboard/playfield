@@ -21,7 +21,7 @@
 @property(nonatomic, weak) IBOutlet UIToolbar *toolbar;
 @property(nonatomic, weak) IBOutlet UIBarButtonItem *menuButton;
 @property(nonatomic, weak) IBOutlet UITextField *textField;
-@property(nonatomic, weak) IBOutlet UICollectionView *collectionView;
+@property(nonatomic, strong) IBOutlet UICollectionView *collectionView;
 @property(nonatomic, strong) UITableView *tableView;
 @property(nonatomic, strong) NSMutableArray *timePracticeItems;
 
@@ -44,20 +44,6 @@
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
-
-    // stacked grid layout - the calendar portion
-    self.stackedGridLayout = [[StackedGridLayout alloc] init];
-    self.stackedGridLayout.headerHeight=0.0f;
-    self.collectionView.collectionViewLayout = self.stackedGridLayout;
-    self.collectionView.allowsSelection = YES;
-    self.collectionView.multipleTouchEnabled = YES;
-    
-    
-    //pinching cells
-    UIPinchGestureRecognizer *pinching = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handlePinching:)];
-    pinching.delegate = self;
-    [self.collectionView addGestureRecognizer:pinching];
-    
 }
 
 // set the practice
@@ -65,8 +51,31 @@
 -(void)resetViewWithPractice:(Practice*)practice{
     self.practice = practice;
     
+    // reset first
+    //[self.collectionView removeFromSuperview];
+    [self.tableView removeFromSuperview];
+    
     //calculate the pixel ratio based on the size of the frame and the duration of the practice
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGRect screenRect = [self.view frame];
+    NSLog(@"Screen x %f", screenRect.origin.x);
+    
+    // stacked grid layout - the calendar portion
+    self.stackedGridLayout = [[StackedGridLayout alloc] init];
+    self.stackedGridLayout.headerHeight=0.0f;
+    self.collectionView = [[UICollectionView alloc] initWithFrame:screenRect collectionViewLayout:self.stackedGridLayout];
+    //self.collectionView.collectionViewLayout = self.stackedGridLayout;
+    self.collectionView.allowsSelection = YES;
+    self.collectionView.multipleTouchEnabled = YES;
+    self.collectionView.backgroundColor = [UIColor redColor];
+    //self.collectionView.frame = screenRect;
+    [self.view addSubview:self.collectionView];
+    
+    //pinching cells
+    UIPinchGestureRecognizer *pinching = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handlePinching:)];
+    pinching.delegate = self;
+    [self.collectionView addGestureRecognizer:pinching];
+    
+    
     screenRect.origin.y += 15;
     screenRect.size.height -=15;
     int headerHeight = HEADER_HEIGHT;
@@ -86,11 +95,14 @@
     self.tableView.delegate = self;
     self.tableView.allowsSelection = NO;
     self.tableView.rowHeight = 5 * self.pixelRatio; // 5 minute intervals
+    self.tableView.backgroundColor = [UIColor greenColor];
     
     self.tableView.separatorColor = [UIColor blackColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.view addSubview:self.tableView];
     [self.view sendSubviewToBack:self.tableView];
+    [self generateRandomData];
+    [self.view reloadInputViews];
 }
 
 - (void)didReceiveMemoryWarning
@@ -230,7 +242,8 @@
     
     
     if ([segue.identifier isEqualToString:@"showPracticeItemEdit"]) {
-        PracticeItemEditController *practiceItemController = segue.destinationViewController;
+        UINavigationController *navigationController = segue.destinationViewController;
+        PracticeItemEditController *practiceItemController = (PracticeItemEditController *)navigationController.topViewController;
         practiceItemController.delegate = self;
         practiceItemController.practiceItem = sender;
     } else if([segue.identifier isEqualToString:@"showPracticeOptionsPopover"]){
@@ -240,7 +253,6 @@
     } else if([segue.identifier isEqualToString:@"showPracticeColumnEdit"]){
         UINavigationController *navigationController = segue.destinationViewController;
         PracticeColumnEditController *practiceColumnController = (PracticeColumnEditController *)navigationController.topViewController;
-        NSLog(@"Found Column %@", sender);
         practiceColumnController.delegate = self;
         practiceColumnController.practiceColumn = sender;
     }
@@ -309,24 +321,11 @@
     [practiceOptionsPopover dismissPopoverAnimated:YES];
     int count = [self.collectionView numberOfItemsInSection:0 ];
     //add some test data
-    for(int i =1; i<3; i++){
+    for(int i =1; i<2; i++){
         // add the column header
         PracticeColumn *practiceColumn = [NSEntityDescription insertNewObjectForEntityForName:@"PracticeColumn" inManagedObjectContext:self.managedObjectContext];
         practiceColumn.columnName = @"Column";
-        //[[PracticeColumn alloc] initWithName:[NSString stringWithFormat:@"PracticeColumn %d",i]];
-        practiceColumn.practice = self.practice;
-        
-        // TODO save new column
-        //[self.practice.practiceColumns addObject:practiceColumn];
-
-        int prevCount = 0;
-        NSMutableArray *newIndexes = [[NSMutableArray alloc] initWithCapacity:self.timePracticeItems.count];
-        while ( prevCount < self.timePracticeItems.count + 1){
-            [newIndexes addObject:[NSIndexPath indexPathForItem:count inSection:0]];
-            count ++;
-            prevCount++;
-        }
-        [self.collectionView performBatchUpdates:^{ [self.collectionView insertItemsAtIndexPaths:newIndexes];} completion:nil];
+        [self practiceColumnEditController:nil didFinishAddingColumn:practiceColumn ];
 
         
         // practice items
@@ -416,8 +415,37 @@
 #pragma mark - PracticeColumnEditDelegate
 - (void)practiceColumnEditController:(PracticeColumnEditController *)controller didFinishAddingColumn:(PracticeColumn *)column{
     column.practice = self.practice;
-    // TODO add column
-    //[self.practice.practiceColumns addObject:column];
+    // add the time header
+    PracticeItem *item = [NSEntityDescription insertNewObjectForEntityForName:@"PracticeItem" inManagedObjectContext:self.managedObjectContext];
+    [item createTimeHeader];
+    int height = HEADER_HEIGHT;
+    item.numberOfMinutes = [NSNumber numberWithInt:height];
+    [column.timePracticeItems addObject:item];
+    
+    //generate the time items
+    int practiceDuration = self.practice.practiceDuration.integerValue;
+    for(int i=0; i<practiceDuration + 5; i+=5){
+        int hours = i / 60;
+        int minutes = i % 60;
+        PracticeItem *timeItem = [NSEntityDescription insertNewObjectForEntityForName:@"PracticeItem" inManagedObjectContext:self.managedObjectContext];
+        [timeItem createTimeItemWithLabel:[NSString stringWithFormat:@"%02d:%02d",hours, minutes] ];
+        timeItem.numberOfMinutes = [NSNumber numberWithInt:5];
+        [self.timePracticeItems addObject:timeItem];
+    }
+    column.practice = self.practice;
+    [self.practice addPracticeColumnsObject:column];
+    
+    // update the collection view
+/*    int prevCount = 0;
+    NSMutableArray *newIndexes = [[NSMutableArray alloc] initWithCapacity:column.timePracticeItems.count];
+    while ( prevCount < self.timePracticeItems.count + 1){
+        [newIndexes addObject:[NSIndexPath indexPathForItem:count inSection:0]];
+        count ++;
+        prevCount++;
+    }
+    [self.collectionView performBatchUpdates:^{ [self.collectionView insertItemsAtIndexPaths:newIndexes];} completion:nil];
+    */
+    // todo save
     [self.collectionView reloadData];
     [self dismissViewControllerAnimated:YES completion:nil];
 }

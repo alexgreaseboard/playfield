@@ -20,6 +20,11 @@
 
 @interface Practice (CoreDataGeneratedAccessors)
 
+- (id)initHeaderWithName:(NSString*)name;
+- (id)initTimeItemWithLabel:(NSString*)label;
+- (id)initTimeHeader;
+
+
 - (void)insertObject:(PracticeColumn *)value inPracticeColumnsAtIndex:(NSUInteger)idx;
 - (void)removeObjectFromPracticeColumnsAtIndex:(NSUInteger)idx;
 - (void)insertPracticeColumns:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
