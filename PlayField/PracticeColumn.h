@@ -17,9 +17,12 @@
 @property (nonatomic, retain) NSString * color;
 @property (nonatomic, retain) Practice *practice;
 @property (nonatomic, retain) NSOrderedSet *practiceItems;
+
 @end
 
 @interface PracticeColumn (CoreDataGeneratedAccessors)
+
+@property (nonatomic, strong) NSMutableArray *timePracticeItems; // not saved
 
 - (void)insertObject:(PracticeItem *)value inPracticeItemsAtIndex:(NSUInteger)idx;
 - (void)removeObjectFromPracticeItemsAtIndex:(NSUInteger)idx;

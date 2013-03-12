@@ -16,4 +16,10 @@
 @dynamic practiceDuration;
 @dynamic practiceColumns;
 
+// overwritten because of a bug that apple hasn't fixed
+- (void)addPracticeColumnsObject:(PracticeColumn *)value {
+    NSMutableOrderedSet* tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.practiceColumns];
+    [tempSet addObject:value];
+    self.practiceColumns = tempSet;
+}
 @end

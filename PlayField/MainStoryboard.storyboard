@@ -1766,32 +1766,6 @@
         <scene sceneID="bWV-k7-9VB">
             <objects>
                 <viewController id="9Cn-2R-N3K" customClass="PracticeViewController" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="qlT-AN-yLy">
-                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <collectionViewLayout key="collectionViewLayout" id="u0Y-eE-kYn" customClass="StackedGridLayout"/>
-                        <tableViewCell key="backgroundView" contentMode="scaleToFill" restorationIdentifier="TimeRow" selectionStyle="blue" indentationWidth="10" id="oqE-eE-9x9">
-                            <rect key="frame" x="0.0" y="0.0" width="768" height="960"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="959"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                        </tableViewCell>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="PracticeCell" reuseIdentifier="PracticeCell" id="oc3-tT-CiS" customClass="PracticeItemCell">
-                                <rect key="frame" x="0.0" y="0.0" width="317" height="282"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="317" height="282"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <size key="customSize" width="317" height="282"/>
-                            </collectionViewCell>
-                        </cells>
-                    </collectionView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Title" id="SBh-oX-pTi">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="wW2-R7-GWp">
@@ -1805,8 +1779,33 @@
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fmi-FK-Rd7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="PracticeCell" reuseIdentifier="PracticeCell" id="oc3-tT-CiS" customClass="PracticeItemCell">
+                    <rect key="frame" x="0.0" y="0.0" width="317" height="282"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                        <rect key="frame" x="0.0" y="0.0" width="317" height="282"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <size key="customSize" width="317" height="282"/>
+                    <connections>
+                        <segue destination="czw-dE-PMO" kind="modal" identifier="showPracticeItemEdit" id="BIf-w1-wEe"/>
+                    </connections>
+                </collectionViewCell>
+                <tableViewCell contentMode="scaleToFill" restorationIdentifier="TimeRow" selectionStyle="blue" indentationWidth="10" id="oqE-eE-9x9">
+                    <rect key="frame" x="0.0" y="0.0" width="768" height="960"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="959"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="1V4-ks-f6f" kind="modal" identifier="showPracticeColumnEdit" modalPresentationStyle="formSheet" id="nbM-Fu-hc8"/>
+                    </connections>
+                </tableViewCell>
             </objects>
-            <point key="canvasLocation" x="1205" y="7067"/>
+            <point key="canvasLocation" x="1556" y="7131"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="jQn-rt-Xdf">
@@ -2114,7 +2113,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AFF-Kk-2IN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2588" y="7075"/>
+            <point key="canvasLocation" x="2456" y="7093"/>
         </scene>
         <!--Practice Column Edit Controller - Column Add/Edit-->
         <scene sceneID="PJH-OW-N46">
@@ -2180,8 +2179,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <value key="contentSizeForViewInPopover" type="size" width="200" height="200"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="columnNameTextField" destination="G42-W1-G6t" id="i8Y-1y-xcT"/>
                         <outlet property="deleteButton" destination="w46-Yt-Jyx" id="c9M-6j-P0v"/>
@@ -2190,14 +2190,14 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GsL-0Q-L4m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3841" y="7900"/>
+            <point key="canvasLocation" x="4114" y="8256"/>
         </scene>
         <!--Practice Item Edit Controller - Practice Item Edit-->
         <scene sceneID="ePh-OD-nLs">
             <objects>
                 <tableViewController storyboardIdentifier="PracticeItemEdit" title="Practice Item Edit" modalPresentationStyle="formSheet" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2AZ-Kc-yGF" customClass="PracticeItemEditController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="mhY-RJ-1dU">
-                        <rect key="frame" x="0.0" y="20" width="540" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="540" height="556"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="5d2-vR-rgh">
@@ -2295,6 +2295,7 @@
                             <outlet property="delegate" destination="2AZ-Kc-yGF" id="qhf-dk-WJU"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="f0M-l0-UPO"/>
                     <value key="contentSizeForViewInPopover" type="size" width="540" height="300"/>
                     <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
@@ -2306,21 +2307,22 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gKD-Mg-Obh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3109" y="7241"/>
+            <point key="canvasLocation" x="4239" y="7289"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rMk-iY-g1z">
             <objects>
                 <navigationController toolbarHidden="NO" id="1V4-ks-f6f" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="200" height="100"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HuF-dy-yuT">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="iWY-e6-pLA">
-                        <rect key="frame" x="0.0" y="576" width="540" height="44"/>
+                        <rect key="frame" x="0.0" y="980" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
@@ -2330,6 +2332,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4M2-DW-1KF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3103" y="8112"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bdE-RR-3Uo">
+            <objects>
+                <navigationController id="czw-dE-PMO" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eaK-IJ-tJd">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="2AZ-Kc-yGF" kind="relationship" relationship="rootViewController" id="pz8-g9-Mgz"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aCa-4E-jXk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3225" y="7225"/>
         </scene>
     </scenes>
     <resources>
