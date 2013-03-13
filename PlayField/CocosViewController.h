@@ -14,7 +14,7 @@
 
 @class CocosViewController;
 
-@interface CocosViewController : UIViewController <CCDirectorDelegate,PlayCreationDetailsViewControllerDelegate,UIAlertViewDelegate,NSFetchedResultsControllerDelegate,UIPopoverControllerDelegate>
+@interface CocosViewController : UIViewController <CCDirectorDelegate,PlayCreationDetailsViewControllerDelegate,UIAlertViewDelegate,NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) Play *detailItem;
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;

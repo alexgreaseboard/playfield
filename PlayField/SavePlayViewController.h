@@ -16,7 +16,7 @@
 - (void)saveReversePlayViewController:(SavePlayViewController *)controller;
 @end
 
-@interface SavePlayViewController : UIPopoverController
+@interface SavePlayViewController : UIViewController
 
 //@property (nonatomic, weak) id <SavePlayViewControllerDelegate> delegate;
 

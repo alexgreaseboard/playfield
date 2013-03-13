@@ -17,8 +17,7 @@
 
 @implementation CocosViewController
 {
-    UIPopoverController *savePlayViewController;
-    UIPopoverController *testPopoverController;
+    UIPopoverController *savePlayPopover;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -122,28 +121,19 @@
         editController.delegate = self;
         editController.play = self.detailItem;
     } else if([segue.identifier isEqualToString:@"playSaveSegue"]) {
-        if (savePlayViewController != nil && savePlayViewController.popoverVisible)
+        UIBarButtonItem *anchor = sender;
+        UIViewController *viewControllerForPopover =
+        [self.storyboard instantiateViewControllerWithIdentifier:@"savePlayViewController"];
+        if (savePlayPopover != nil && savePlayPopover.popoverVisible)
         {
-            [savePlayViewController dismissPopoverAnimated:NO];
+            [savePlayPopover dismissPopoverAnimated:NO];
         }
-        savePlayViewController = ((UIStoryboardPopoverSegue *) segue).popoverController;
-        savePlayViewController.delegate = self;
-    } if ([segue.identifier isEqualToString:@"testPopover"]) {
-        if (testPopoverController != nil && testPopoverController.popoverVisible)
-        {
-            [testPopoverController dismissPopoverAnimated:NO];
-        }
-        testPopoverController = ((UIStoryboardPopoverSegue *)segue).popoverController;
-        testPopoverController.delegate = self;
+        //savePlayViewController = ((UIStoryboardPopoverSegue *) segue).popoverController;
+        //savePlayViewController.delegate = self;
+        savePlayPopover = [[UIPopoverController alloc] initWithContentViewController:viewControllerForPopover];
+        [savePlayPopover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        //[savePlayPopover presentPopoverFromBarButtonItem:anchor inView:anchor.superview permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     }
-}
-
-#pragma mark - UIPopoverControllerDelegate
-- (void)popoverControllerDidDismissPopover: (UIPopoverController *)popoverController
-{
-    savePlayViewController.delegate = nil;
-    testPopoverController.delegate = nil;
-    testPopoverController = nil;
 }
 
 - (void)savePlay:(id)sender {
@@ -227,10 +217,10 @@
 - (void)savePlayViewController:(SavePlayViewController *)controller
 {
     [self savePlay:self];
-    if (savePlayViewController != nil && savePlayViewController.popoverVisible)
+    if (savePlayPopover != nil && savePlayPopover.popoverVisible)
     {
-        [savePlayViewController dismissPopoverAnimated:YES];
-        savePlayViewController = nil;
+        [savePlayPopover dismissPopoverAnimated:YES];
+        savePlayPopover = nil;
     }
 
 }

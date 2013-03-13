@@ -196,7 +196,6 @@
 		6D14912616C98A110069CB76 /* footballField.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D14912516C98A110069CB76 /* footballField.jpg */; };
 		6D91974016EE333400BA1DF3 /* PlaybookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D91973F16EE333400BA1DF3 /* PlaybookCell.m */; };
 		6DA4C1B016DD491D005AFE94 /* trashButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA4C1AF16DD491D005AFE94 /* trashButton.png */; };
-		6DBECC4D16EE82600063FFD7 /* testPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBECC4C16EE82600063FFD7 /* testPopoverController.m */; };
 		6DEF320B16D154B200AD57A1 /* About.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DEF320A16D154B200AD57A1 /* About.png */; };
 		6DF5649116DE971800E17E82 /* SavePlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF5649016DE971800E17E82 /* SavePlayViewController.m */; };
 		6DF750F616D55F33008D32B0 /* PlayCreationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF750F516D55F33008D32B0 /* PlayCreationDetailsViewController.m */; };
@@ -575,8 +574,6 @@
 		6D91973E16EE333400BA1DF3 /* PlaybookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybookCell.h; sourceTree = "<group>"; };
 		6D91973F16EE333400BA1DF3 /* PlaybookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybookCell.m; sourceTree = "<group>"; };
 		6DA4C1AF16DD491D005AFE94 /* trashButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trashButton.png; sourceTree = "<group>"; };
-		6DBECC4B16EE82600063FFD7 /* testPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testPopoverController.h; sourceTree = "<group>"; };
-		6DBECC4C16EE82600063FFD7 /* testPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testPopoverController.m; sourceTree = "<group>"; };
 		6DEF320A16D154B200AD57A1 /* About.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = About.png; sourceTree = "<group>"; };
 		6DF5648F16DE971800E17E82 /* SavePlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavePlayViewController.h; sourceTree = "<group>"; };
 		6DF5649016DE971800E17E82 /* SavePlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavePlayViewController.m; sourceTree = "<group>"; };
@@ -653,8 +650,6 @@
 				6DF750F516D55F33008D32B0 /* PlayCreationDetailsViewController.m */,
 				6DF5648F16DE971800E17E82 /* SavePlayViewController.h */,
 				6DF5649016DE971800E17E82 /* SavePlayViewController.m */,
-				6DBECC4B16EE82600063FFD7 /* testPopoverController.h */,
-				6DBECC4C16EE82600063FFD7 /* testPopoverController.m */,
 			);
 			name = PlayCreation;
 			sourceTree = "<group>";
@@ -1441,7 +1436,6 @@
 				392CD80F16EBD9E5008194B7 /* PracticesTableViewController.m in Sources */,
 				392CD81216EBDA3C008194B7 /* PracticeCell.m in Sources */,
 				6D91974016EE333400BA1DF3 /* PlaybookCell.m in Sources */,
-				6DBECC4D16EE82600063FFD7 /* testPopoverController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
