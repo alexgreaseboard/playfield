@@ -18,7 +18,7 @@
 
 @interface SavePlayViewController : UIViewController
 
-//@property (nonatomic, weak) id <SavePlayViewControllerDelegate> delegate;
+@property (nonatomic, weak) id <SavePlayViewControllerDelegate> delegate;
 
 - (IBAction)savePlay:(id)sender;
 - (IBAction)saveDuplicate:(id)sender;

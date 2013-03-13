@@ -121,19 +121,20 @@
         editController.delegate = self;
         editController.play = self.detailItem;
     } else if([segue.identifier isEqualToString:@"playSaveSegue"]) {
-        UIBarButtonItem *anchor = sender;
-        UIViewController *viewControllerForPopover =
-        [self.storyboard instantiateViewControllerWithIdentifier:@"savePlayViewController"];
-        if (savePlayPopover != nil && savePlayPopover.popoverVisible)
-        {
-            [savePlayPopover dismissPopoverAnimated:NO];
-        }
-        //savePlayViewController = ((UIStoryboardPopoverSegue *) segue).popoverController;
-        //savePlayViewController.delegate = self;
-        savePlayPopover = [[UIPopoverController alloc] initWithContentViewController:viewControllerForPopover];
-        [savePlayPopover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-        //[savePlayPopover presentPopoverFromBarButtonItem:anchor inView:anchor.superview permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        //UIBarButtonItem *anchor = sender;
+        
     }
+}
+
+- (IBAction)saveButtonPressed:(id)sender {
+    SavePlayViewController *viewControllerForPopover = [self.storyboard instantiateViewControllerWithIdentifier:@"savePlayViewController"];
+    viewControllerForPopover.delegate = self;
+    if (savePlayPopover != nil && savePlayPopover.popoverVisible)
+    {
+        [savePlayPopover dismissPopoverAnimated:NO];
+    }
+    savePlayPopover = [[UIPopoverController alloc] initWithContentViewController:viewControllerForPopover];
+    [savePlayPopover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
 - (void)savePlay:(id)sender {
@@ -227,10 +228,20 @@
 - (void)saveDuplicatePlayViewController:(SavePlayViewController *)controller
 {
     [self copyPlayInverted:false];
+    if (savePlayPopover != nil && savePlayPopover.popoverVisible)
+    {
+        [savePlayPopover dismissPopoverAnimated:YES];
+        savePlayPopover = nil;
+    }
 }
 - (void)saveReversePlayViewController:(SavePlayViewController *)controller
 {
     [self copyPlayInverted:true];
+    if (savePlayPopover != nil && savePlayPopover.popoverVisible)
+    {
+        [savePlayPopover dismissPopoverAnimated:YES];
+        savePlayPopover = nil;
+    }
 }
 
 - (NSFetchedResultsController *)fetchedResultsController

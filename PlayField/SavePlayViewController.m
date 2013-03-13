@@ -16,15 +16,15 @@
 
 - (IBAction)savePlay:(id)sender {
     NSLog(@"Popover save");
-    //[self.delegate savePlayViewController:self];
+    [self.delegate savePlayViewController:self];
 }
 
 - (IBAction)saveDuplicate:(id)sender {
-    //[self.delegate saveDuplicatePlayViewController:self];
+    [self.delegate saveDuplicatePlayViewController:self];
 }
 
 - (IBAction)saveReverse:(id)sender {
-    //[self.delegate saveReversePlayViewController:self];
+    [self.delegate saveReversePlayViewController:self];
 }
 
 @end

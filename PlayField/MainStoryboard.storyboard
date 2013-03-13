@@ -644,9 +644,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="ai1-O9-QzE">
                             <connections>
-                                <segue destination="LmQ-Jc-Zx5" kind="popover" identifier="playSaveSegue" popoverAnchorBarButtonItem="ai1-O9-QzE" id="XAT-f6-pr9">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
+                                <action selector="saveButtonPressed:" destination="6sJ-CM-7Im" id="zVv-bF-wVM"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
