@@ -44,13 +44,22 @@
         self.name.text = [[[[self.detailItem valueForKey:@"firstName"] description] stringByAppendingString:@" "] stringByAppendingString:[[self.detailItem valueForKey:@"lastName"] description]];
         self.position.text = [[self.detailItem valueForKey:@"position"] description];
         self.backupPosition.text = [[self.detailItem valueForKey:@"backupPosition"] description];
-        NSString *address = [[self.detailItem valueForKey:@"street"] description];
-        address = [ address stringByAppendingString:@"\n" ];
-        address = [ address stringByAppendingString:[[self.detailItem valueForKey:@"city"] description] ];
-        address = [ address stringByAppendingString:@", " ];
-        address = [ address stringByAppendingString:[[self.detailItem valueForKey:@"state"] description] ];
-        address = [ address stringByAppendingString:@"  "];
-        address = [ address stringByAppendingString:[[self.detailItem valueForKey:@"zipcode"] description] ];
+        NSString *address = @"";
+        if( [self.detailItem valueForKey:@"street"] != nil ) {
+            address = [[self.detailItem valueForKey:@"street"] description];
+            address = [ address stringByAppendingString:@"\n" ];
+        }
+        if( [self.detailItem valueForKey:@"city"] != nil ) {
+            address = [ address stringByAppendingString:[[self.detailItem valueForKey:@"city"] description] ];
+            address = [ address stringByAppendingString:@", " ];
+        }
+        if( [self.detailItem valueForKey:@"state"] != nil ) {
+            address = [ address stringByAppendingString:[[self.detailItem valueForKey:@"state"] description] ];
+            address = [ address stringByAppendingString:@"  "];
+        }
+        if( [self.detailItem valueForKey:@"zipcode"] != nil ) {
+            address = [ address stringByAppendingString:[[self.detailItem valueForKey:@"zipcode"] description] ];
+        }
         self.address.text = address;
         self.email.text = [[self.detailItem valueForKey:@"email"] description];
         self.phone.text = [[self.detailItem valueForKey:@"phone"] description];

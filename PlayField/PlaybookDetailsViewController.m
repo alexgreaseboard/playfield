@@ -69,10 +69,10 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    PlaybookCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"PlaybookCell" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor orangeColor];
-    Playbook *playbook = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-    cell.name.text = @"Hello";
+    UICollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"PlaybookCell" forIndexPath:indexPath];
+    //cell.backgroundColor = [UIColor orangeColor];
+    //Playbook *playbook = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+    //cell.name.text = @"Hello";
     //cell.name.text = playbook.name;
     return cell;
 }

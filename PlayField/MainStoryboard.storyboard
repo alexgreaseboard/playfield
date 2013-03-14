@@ -806,7 +806,13 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Bqd-79-IPp"/>
+                    <navigationItem key="navigationItem" id="Bqd-79-IPp">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="bmI-VJ-Dda">
+                            <connections>
+                                <action selector="insertNewPlay:" destination="Cth-6O-gXE" id="pt4-tB-GYx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JCB-Wx-wPX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -842,7 +848,13 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" id="9FT-LG-yKs"/>
+                    <navigationItem key="navigationItem" id="9FT-LG-yKs">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="3gQ-8L-Na4">
+                            <connections>
+                                <action selector="insertNewPlay:" destination="m5Z-uI-8Vn" id="gFM-3c-AMg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="59P-Pk-jGL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -927,7 +939,7 @@
         <!--Play Creation Plays Table View Controller - Offense-->
         <scene sceneID="uZN-GI-kzM">
             <objects>
-                <viewController title="Offense" id="ifb-UQ-HTB" customClass="PlayCreationPlaysTableViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlayCreationOffense" title="Offense" id="ifb-UQ-HTB" customClass="PlayCreationPlaysTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="xcD-GL-Xxq">
                         <rect key="frame" x="0.0" y="64" width="320" height="739"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -954,7 +966,13 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" id="U9l-iZ-pKC"/>
+                    <navigationItem key="navigationItem" id="U9l-iZ-pKC">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="22m-E6-99K">
+                            <connections>
+                                <action selector="insertNewPlay:" destination="ifb-UQ-HTB" id="gPF-bV-9Oa"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zhI-SY-Ba4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1409,32 +1427,15 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="PlaybookCell" id="VWY-oK-XN9" customClass="PlaybookCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PlaybookCell" id="MQP-Gh-M0V">
                                         <rect key="frame" x="0.0" y="0.0" width="91" height="85"/>
-                                        <autoresizingMask key="autoresizingMask"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="91" height="85"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="here" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F58-GP-tYo">
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="61" id="TFc-Ru-mGL"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstItem="F58-GP-tYo" firstAttribute="leading" secondItem="VWY-oK-XN9" secondAttribute="leading" type="default" id="8gB-Yg-OBU"/>
-                                            <constraint firstItem="F58-GP-tYo" firstAttribute="top" secondItem="VWY-oK-XN9" secondAttribute="top" type="default" id="Bdh-2y-pvt"/>
-                                            <constraint firstItem="F58-GP-tYo" firstAttribute="trailing" secondItem="VWY-oK-XN9" secondAttribute="trailing" type="default" id="XSg-69-BOn"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="name" destination="F58-GP-tYo" id="0bT-CP-W1A"/>
-                                        </connections>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>

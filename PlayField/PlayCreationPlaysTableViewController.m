@@ -31,9 +31,7 @@
     
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self action:@selector(returnToMenu:) ];
     self.navigationItem.leftBarButtonItem = menuButton;
-    
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewPlay:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+
     self.detailViewController = (CocosViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
@@ -46,12 +44,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)insertNewPlay:(id)sender
+- (IBAction)insertNewPlay:(id)sender
 {
     Play *newPlay = [NSEntityDescription insertNewObjectForEntityForName:@"Play" inManagedObjectContext:self.managedObjectContext];
     
     NSString *tabTitle = self.tabBarItem.title;
-    newPlay.name = @"New Play";
+    newPlay.name = [@"New " stringByAppendingString:tabTitle];
     newPlay.type = tabTitle;
     
     // Save the context.
