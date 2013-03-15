@@ -81,26 +81,16 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-// TODO deletes
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+        id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][indexPath.section];
+        [[sectionInfo objects] objectAtIndex:indexPath.item];
+        NSManagedObject *selectedObject = [[sectionInfo objects] objectAtIndex:indexPath.item];
+        [self.managedObjectContext deleteObject:selectedObject];
+    }  
 }
 
 
@@ -167,7 +157,7 @@
 
 - (IBAction)returnToMenu:(id)sender
 {
-    NSLog(@"Returning to menu");
+    //NSLog(@"Returning to menu");
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate switchToMenu];
 }

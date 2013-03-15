@@ -10,7 +10,7 @@
 #import "PracticeViewController.h"
 #import "PracticeEditViewController.h"
 
-@interface PracticesTableViewController : UITableViewController <PracticeEditControllerDelegate>
+@interface PracticesTableViewController : UITableViewController <PracticeEditControllerDelegate, NSFetchedResultsControllerDelegate>
 
 
 @property (strong, nonatomic) PracticeViewController *practiceViewController;
