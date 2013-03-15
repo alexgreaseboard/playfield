@@ -8,8 +8,9 @@
 
 #import "PlaybookDetailsViewController.h"
 #import "AppDelegate.h"
+#import "PlaybookCell.h"
 
-@interface PlaybookDetailsViewController ()
+@interface PlaybookDetailsViewController () <UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @end
 
@@ -30,6 +31,8 @@
 
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
+    
+    [self.collectionView registerClass:[PlaybookCell class] forCellWithReuseIdentifier:@"PlaybookCell"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,10 +41,106 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setCurrentPlaybook:(Playbook *)pPlaybook
+- (IBAction)addPlaybook:(id)sender {
+    Playbook *newPlaybook = [NSEntityDescription insertNewObjectForEntityForName:@"Playbook" inManagedObjectContext:self.managedObjectContext];
+    newPlaybook.name = @"New Playbook";
+    
+    _fetchedResultsController = nil;
+    [self.collectionView reloadData];
+    
+    // Save the context.
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+}
+
+#pragma mark - UICollectionView Datasource
+
+- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+    return [sectionInfo numberOfObjects];
+}
+
+- (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
+    return [[self.fetchedResultsController sections] count];
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UICollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"PlaybookCell" forIndexPath:indexPath];
+    //cell.backgroundColor = [UIColor orangeColor];
+    //Playbook *playbook = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+    //cell.name.text = @"Hello";
+    //cell.name.text = playbook.name;
+    return cell;
+}
+
+// 4
+/*- (UICollectionReusableView *)collectionView:
+ (UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+ {
+ return [[UICollectionReusableView alloc] init];
+ }*/
+
+#pragma mark - UICollectionViewDelegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    // TODO: Select Item
+}
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    // TODO: Deselect item
+}
+
+#pragma mark – UICollectionViewDelegateFlowLayout
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.playbook = pPlaybook;
-    self.title = self.playbook.name;
+    CGSize retval = CGSizeMake(200, 200);
+    return retval;
+}
+
+- (UIEdgeInsets)collectionView:
+(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(10, 10, 10, 10);
+}
+
+- (NSFetchedResultsController *)fetchedResultsController
+{
+    if (_fetchedResultsController != nil) {
+        return _fetchedResultsController;
+    }
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Playbook" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    // Set the batch size to a suitable number.
+    [fetchRequest setFetchBatchSize:20];
+    
+    // Edit the sort key as appropriate.
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    NSArray *sortDescriptors = @[sortDescriptor];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    // Edit the section name key path and cache name if appropriate.
+    // nil for section name key path means "no sections".
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    aFetchedResultsController.delegate = self;
+    self.fetchedResultsController = aFetchedResultsController;
+    
+	NSError *error = nil;
+	if (![self.fetchedResultsController performFetch:&error]) {
+        // Replace this implementation with code to handle the error appropriately.
+        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+	    [self fatalCoreDataError:error];
+	}
+    
+    return _fetchedResultsController;
 }
 
 - (void) fatalCoreDataError:(NSError *)error

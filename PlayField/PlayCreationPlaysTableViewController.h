@@ -16,4 +16,6 @@
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
 
+- (IBAction)insertNewPlay:(id)sender;
+
 @end

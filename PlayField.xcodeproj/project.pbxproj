@@ -191,9 +191,9 @@
 		6D14910F16C988EC0069CB76 /* vec3.c in Sources */ = {isa = PBXBuildFile; fileRef = 6D14910E16C988EC0069CB76 /* vec3.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6D14911116C988EC0069CB76 /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = 6D14911016C988EC0069CB76 /* vec4.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6D14911616C988EC0069CB76 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D14911516C988EC0069CB76 /* main.m */; };
-		6D14911916C988EC0069CB76 /* AppDelegateC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D14911816C988EC0069CB76 /* AppDelegateC.m */; };
 		6D14911C16C988EC0069CB76 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D14911B16C988EC0069CB76 /* HelloWorldLayer.m */; };
 		6D14912616C98A110069CB76 /* footballField.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D14912516C98A110069CB76 /* footballField.jpg */; };
+		6D91974016EE333400BA1DF3 /* PlaybookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D91973F16EE333400BA1DF3 /* PlaybookCell.m */; };
 		6DA4C1B016DD491D005AFE94 /* trashButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA4C1AF16DD491D005AFE94 /* trashButton.png */; };
 		6DEF320B16D154B200AD57A1 /* About.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DEF320A16D154B200AD57A1 /* About.png */; };
 		6DF5649116DE971800E17E82 /* SavePlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF5649016DE971800E17E82 /* SavePlayViewController.m */; };
@@ -565,11 +565,11 @@
 		6D14911216C988EC0069CB76 /* LICENSE_Kazmath.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE_Kazmath.txt; path = libs/LICENSE_Kazmath.txt; sourceTree = "<group>"; };
 		6D14911416C988EC0069CB76 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		6D14911516C988EC0069CB76 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6D14911716C988EC0069CB76 /* AppDelegateC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegateC.h; sourceTree = "<group>"; };
-		6D14911816C988EC0069CB76 /* AppDelegateC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegateC.m; sourceTree = "<group>"; };
 		6D14911A16C988EC0069CB76 /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
 		6D14911B16C988EC0069CB76 /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		6D14912516C98A110069CB76 /* footballField.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = footballField.jpg; sourceTree = "<group>"; };
+		6D91973E16EE333400BA1DF3 /* PlaybookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybookCell.h; sourceTree = "<group>"; };
+		6D91973F16EE333400BA1DF3 /* PlaybookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybookCell.m; sourceTree = "<group>"; };
 		6DA4C1AF16DD491D005AFE94 /* trashButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trashButton.png; sourceTree = "<group>"; };
 		6DEF320A16D154B200AD57A1 /* About.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = About.png; sourceTree = "<group>"; };
 		6DF5648F16DE971800E17E82 /* SavePlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavePlayViewController.h; sourceTree = "<group>"; };
@@ -684,6 +684,8 @@
 				392CD7E616EBA1B2008194B7 /* PracticeItemCell.m */,
 				392CD81016EBDA3C008194B7 /* PracticeCell.h */,
 				392CD81116EBDA3C008194B7 /* PracticeCell.m */,
+				6D91973E16EE333400BA1DF3 /* PlaybookCell.h */,
+				6D91973F16EE333400BA1DF3 /* PlaybookCell.m */,
 			);
 			name = TableCell;
 			sourceTree = "<group>";
@@ -781,21 +783,19 @@
 		6D148F8916C988E70069CB76 /* PlayField */ = {
 			isa = PBXGroup;
 			children = (
-				392CD7DC16EBA18C008194B7 /* Practice */,
-				29E2FE3D16D900E0002270CF /* Model */,
-				29E2AAA716CFAEB600005AAF /* TableCell */,
-				29E2AAA616CFAEB000005AAF /* Images */,
-				29E2AAA516CFAEA700005AAF /* PlayCreation */,
 				29E2AAA416CFAEA200005AAF /* Roster */,
+				29E2AAA516CFAEA700005AAF /* PlayCreation */,
 				29E9360F16E82EBE00B439C1 /* Playbook */,
-				6D14911716C988EC0069CB76 /* AppDelegateC.h */,
-				6D14911816C988EC0069CB76 /* AppDelegateC.m */,
+				392CD7DC16EBA18C008194B7 /* Practice */,
+				29E2AAA716CFAEB600005AAF /* TableCell */,
+				29E2FE3D16D900E0002270CF /* Model */,
 				29E2AACC16CFB19700005AAF /* AppDelegate.h */,
 				29E2AACD16CFB19700005AAF /* AppDelegate.m */,
 				29E2AAC016CFAFBE00005AAF /* MainViewController.h */,
 				29E2AAC116CFAFBE00005AAF /* MainViewController.m */,
 				29E2AAC216CFAFBE00005AAF /* MainStoryboard.storyboard */,
 				29E2AAC316CFAFBE00005AAF /* GreaseBoard.xcdatamodel */,
+				29E2AAA616CFAEB000005AAF /* Images */,
 				6D148F8A16C988E70069CB76 /* Resources */,
 				6D148FA216C988E70069CB76 /* libs */,
 				6D14911316C988EC0069CB76 /* Supporting Files */,
@@ -1397,7 +1397,6 @@
 				6D14910F16C988EC0069CB76 /* vec3.c in Sources */,
 				6D14911116C988EC0069CB76 /* vec4.c in Sources */,
 				6D14911616C988EC0069CB76 /* main.m in Sources */,
-				6D14911916C988EC0069CB76 /* AppDelegateC.m in Sources */,
 				6D14911C16C988EC0069CB76 /* HelloWorldLayer.m in Sources */,
 				29E2AAAE16CFAEDD00005AAF /* RosterMasterViewController.m in Sources */,
 				29E2AAAF16CFAEDD00005AAF /* RosterDetailViewController.m in Sources */,
@@ -1430,6 +1429,7 @@
 				392CD80C16EBBDF5008194B7 /* PracticeColumn.m in Sources */,
 				392CD80F16EBD9E5008194B7 /* PracticesTableViewController.m in Sources */,
 				392CD81216EBDA3C008194B7 /* PracticeCell.m in Sources */,
+				6D91974016EE333400BA1DF3 /* PlaybookCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

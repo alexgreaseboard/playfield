@@ -31,9 +31,7 @@
     
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self action:@selector(returnToMenu:) ];
     self.navigationItem.leftBarButtonItem = menuButton;
-    
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewPlay:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+
     self.detailViewController = (CocosViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
@@ -46,12 +44,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)insertNewPlay:(id)sender
+- (IBAction)insertNewPlay:(id)sender
 {
     Play *newPlay = [NSEntityDescription insertNewObjectForEntityForName:@"Play" inManagedObjectContext:self.managedObjectContext];
     
     NSString *tabTitle = self.tabBarItem.title;
-    newPlay.name = @"New Play";
+    newPlay.name = [@"New " stringByAppendingString:tabTitle];
     newPlay.type = tabTitle;
     
     // Save the context.
@@ -61,28 +59,6 @@
         abort();
     }
 }
-
-/*-(void) cocosViewController:(CocosViewController *)controller saveDetail:(id) detailItem
-{
-    // Save the context.
-    NSError *error = nil;
-    if (![self.managedObjectContext save:&error]) {
-        [self fatalCoreDataError:error];
-        return;
-    }
-}
-
--(void) cocosViewController:(CocosViewController *)controller deleteItem:(id)detailItem
-{
-    self.managedObjectContext = [self.fetchedResultsController managedObjectContext];
-    [self.managedObjectContext deleteObject:detailItem];
-    
-    NSError *error = nil;
-    if (![self.managedObjectContext save:&error]) {
-        [self fatalCoreDataError:error];
-        return;
-    }
-}*/
 
 #pragma mark - Table view data source
 

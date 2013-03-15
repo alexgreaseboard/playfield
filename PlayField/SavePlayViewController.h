@@ -7,14 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CocosViewController.h"
+
+@class SavePlayViewController;
+
+@protocol SavePlayViewControllerDelegate <NSObject>
+- (void)savePlayViewController:(SavePlayViewController *)controller;
+- (void)saveDuplicatePlayViewController:(SavePlayViewController *)controller;
+- (void)saveReversePlayViewController:(SavePlayViewController *)controller;
+@end
 
 @interface SavePlayViewController : UIViewController
 
-@property (nonatomic, strong) CocosViewController *cocosViewController;
+@property (nonatomic, weak) id <SavePlayViewControllerDelegate> delegate;
 
 - (IBAction)savePlay:(id)sender;
 - (IBAction)saveDuplicate:(id)sender;
 - (IBAction)saveReverse:(id)sender;
-
 @end
