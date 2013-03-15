@@ -16,6 +16,7 @@
 @protocol PracticeEditControllerDelegate <NSObject>
 
 - (void)practiceEditController:(PracticeEditViewController *)controller didFinishAddingPractice:(Practice *)practice;
+- (void)practiceEditController:(PracticeEditViewController *)controller didCancelAddingPractice:(Practice *)practice;
 
 @end
 

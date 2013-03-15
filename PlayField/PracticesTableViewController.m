@@ -154,21 +154,15 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)insertNewPractice:(id)sender
-{
-    Practice *newPractice = [NSEntityDescription insertNewObjectForEntityForName:@"Practice" inManagedObjectContext:self.managedObjectContext];
-    
-    // TODO segue to a form screen
-    newPractice.practiceName = @"Practice";
-    // random practice duration
-    newPractice.practiceDuration = [NSNumber numberWithInt:(random() % 50)];
-    
+- (void)practiceEditController:(PracticeEditViewController *)controller didCancelAddingPractice:(Practice *)practice{
     // Save the context.
+    [self.managedObjectContext deleteObject:practice];
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)returnToMenu:(id)sender

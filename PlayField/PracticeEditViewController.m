@@ -28,7 +28,7 @@
 }
 
 -(IBAction)cancel:(id)sender{
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.delegate practiceEditController:self didCancelAddingPractice:self.practice];
 }
 
 // listen for characters changing in the text field and enable the button if it has characters
