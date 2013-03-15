@@ -17,9 +17,11 @@
 @property (nonatomic, retain) NSString * itemName;
 @property (nonatomic, retain) NSNumber * numberOfMinutes;
 @property (nonatomic, retain) NSNumber * columnNumber;
-@property (nonatomic, retain) NSString * backgroundColor;
 @property (nonatomic, retain) NSString * itemType;
 @property (nonatomic, retain) PracticeColumn *practiceColumn;
+
+
+@property (nonatomic, strong) UIColor * backgroundColor;
 
 - (void)createHeaderWithName:(NSString*)name;
 - (void)createTimeItemWithLabel:(NSString*)label;

@@ -27,6 +27,7 @@
 
 @property (nonatomic, strong) StackedGridLayout *stackedGridLayout;
 @property (nonatomic) double pixelRatio;
+@property (nonatomic, strong) NSMutableDictionary *colorItemMap;
 
 @end
 
@@ -43,6 +44,7 @@
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 // set the practice
@@ -326,7 +328,7 @@
 }
 -(void)generateRandomData{
     [practiceOptionsPopover dismissPopoverAnimated:YES];
-    int count = [self.collectionView numberOfItemsInSection:0];
+    
     //add some test data
     for(int i =1; i<2; i++){
         // add the column header
@@ -334,21 +336,21 @@
         practiceColumn.columnName = @"Column";
         [self practiceColumnEditController:nil didFinishAddingColumn:practiceColumn ];
 
-        /*
+        int count = [self.collectionView numberOfItemsInSection:0];
         // practice items
         for(int j=1; j<6;j++){
             PracticeItem *item = [NSEntityDescription insertNewObjectForEntityForName:@"PracticeItem" inManagedObjectContext:self.managedObjectContext];
             item.itemName = [NSString stringWithFormat:@"Item %d",j];
             item.numberOfMinutes = [NSNumber numberWithInt:(((j * i) + (random()%33)) * 3) % 30];
             // TODO add practice item
-            //[practiceColumn.practiceItems addObject:item];
+            [practiceColumn addPracticeItemsObject:item];
             
             [self.collectionView performBatchUpdates:^{ [self.collectionView insertItemsAtIndexPaths:@[
                                                          [NSIndexPath indexPathForItem:count inSection:0]]];
             } completion:nil];
             count ++;
         }
-         */
+         
     }
     
     [self.collectionView reloadData];

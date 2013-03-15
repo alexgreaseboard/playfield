@@ -23,6 +23,7 @@
     if([practiceItem.itemType isEqualToString:@"header"]){
         [self addHeaderCellLabel:practiceItem withFrame:frame];
         [self addRoundedCorners];
+        self.backgroundColor = [UIColor colorWithRed:20.0 green:100 blue:28.7 alpha:0];
     }
     //practice item
     else if([practiceItem.itemType isEqualToString:@"item"]){
