@@ -60,6 +60,7 @@
     self.practice = practice;
     
     // reset first
+    // TODO really clean the collection view
     [self.collectionView removeFromSuperview];
     [self.tableView removeFromSuperview];
     
@@ -148,7 +149,7 @@
     PracticeItem *practiceItem = [self findItemAtIndex:indexPath.item];
     PracticeItemCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"PracticeCell" forIndexPath:indexPath];
     cell.hidden = NO;
-    NSLog(@"Configuring cell for item %@ and cell %@", practiceItem, cell);
+    //NSLog(@"Configuring cell for item %@ and cell %@", practiceItem, cell);
     if([practiceItem.itemType isEqualToString:@"item"] && practiceItem.backgroundColor == nil){
         [self setColorForItem:practiceItem];
     }

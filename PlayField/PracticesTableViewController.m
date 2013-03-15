@@ -10,6 +10,7 @@
 #import "Practice.h"
 #import "AppDelegate.h"
 #import "PracticeCell.h"
+#import "PracticeEditViewController.h"
 
 @interface PracticesTableViewController ()
 
@@ -34,7 +35,7 @@
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self action:@selector(returnToMenu:) ];
     self.navigationItem.leftBarButtonItem = menuButton;
     
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewPractice:)];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showPracticeScreen:)];
     self.navigationItem.rightBarButtonItem = addButton;
     
     // get the app context
@@ -125,6 +126,32 @@
 {
     Practice *practice = [self.fetchedResultsController objectAtIndexPath:indexPath];
     [self.practiceViewController resetViewWithPractice:practice];
+}
+
+-(void)showPracticeScreen:(id)sender{
+    [self performSegueWithIdentifier:@"showPracticeEdit" sender:sender];
+}
+
+#pragma mark - Segue
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"showPracticeEdit"]) {
+        UINavigationController *navigationController = segue.destinationViewController;
+        PracticeEditViewController *practiceEdit = (PracticeEditViewController *)navigationController.topViewController;
+        practiceEdit.delegate = self;
+        practiceEdit.practice = [NSEntityDescription insertNewObjectForEntityForName:@"Practice" inManagedObjectContext:self.managedObjectContext];
+        
+    }
+}
+
+#pragma mark - PracticeEditController
+- (void)practiceEditController:(PracticeEditViewController *)controller didFinishAddingPractice:(Practice *)practice{
+    // Save the context.
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)insertNewPractice:(id)sender

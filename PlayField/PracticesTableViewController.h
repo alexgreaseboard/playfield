@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "PracticeViewController.h"
+#import "PracticeEditViewController.h"
 
-@interface PracticesTableViewController : UITableViewController  <NSFetchedResultsControllerDelegate>
+@interface PracticesTableViewController : UITableViewController <PracticeEditControllerDelegate>
 
 
 @property (strong, nonatomic) PracticeViewController *practiceViewController;
