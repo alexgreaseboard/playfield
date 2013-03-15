@@ -43,7 +43,8 @@
     }
     
     // background color
-    self.backgroundColor = practiceItem.backgroundColor;
+    // TODO background color
+    //self.backgroundColor = practiceItem.backgroundColor;
 }
 
 -(void)addRoundedCorners{
