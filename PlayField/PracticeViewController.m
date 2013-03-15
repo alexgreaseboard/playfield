@@ -28,6 +28,8 @@
 @property (nonatomic, strong) StackedGridLayout *stackedGridLayout;
 @property (nonatomic) double pixelRatio;
 @property (nonatomic, strong) NSMutableDictionary *colorItemMap;
+@property (nonatomic, strong) NSMutableArray *availableColors;
+@property (nonatomic) int colorIndex;
 
 @end
 
@@ -45,6 +47,11 @@
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.availableColors = [[NSMutableArray alloc] initWithCapacity:20];
+    [self.availableColors addObject:[UIColor colorWithRed:.20 green:.15 blue:.33 alpha:0.95]];
+    [self.availableColors addObject:[UIColor colorWithRed:.66 green:.15 blue:.18 alpha:0.95]];
+    self.colorItemMap = [[NSMutableDictionary alloc] initWithCapacity:20];
 }
 
 // set the practice
@@ -58,7 +65,6 @@
     
     //calculate the pixel ratio based on the size of the frame and the duration of the practice
     CGRect screenRect = [self.view frame];
-    NSLog(@"Screen x %f", screenRect.origin.x);
     
     // stacked grid layout - the calendar portion
     self.stackedGridLayout = [[StackedGridLayout alloc] init];
@@ -142,9 +148,26 @@
     PracticeItem *practiceItem = [self findItemAtIndex:indexPath.item];
     PracticeItemCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"PracticeCell" forIndexPath:indexPath];
     cell.hidden = NO;
-    //NSLog(@"Configuring cell for item %@ and cell %@", practiceItem, cell);
+    NSLog(@"Configuring cell for item %@ and cell %@", practiceItem, cell);
+    if([practiceItem.itemType isEqualToString:@"item"] && practiceItem.backgroundColor == nil){
+        [self setColorForItem:practiceItem];
+    }
     [cell configureCellForPracticeItem:practiceItem withframe:cell.frame];
     return cell;
+}
+
+-(void) setColorForItem:(PracticeItem*)practiceItem{
+    if([self.colorItemMap valueForKey:practiceItem.itemName] == nil){
+        UIColor *newColor = self.availableColors[self.colorIndex];
+        self.colorIndex ++;
+        if(self.colorIndex >= self.availableColors.count){
+            self.colorIndex = 0;
+        }
+        practiceItem.backgroundColor = newColor;
+        [self.colorItemMap setObject:newColor forKey:practiceItem.itemName];
+    } else{
+        practiceItem.backgroundColor = (UIColor*)[self.colorItemMap valueForKey:practiceItem.itemName];
+    }
 }
 // 4
 /*- (UICollectionReusableView *)collectionView:
@@ -197,7 +220,7 @@
     }
 }
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    // TODO: Deselect item
+    // Deselect item
 }
 
 #pragma mark – UICollectionViewDelegateFlowLayout
@@ -236,7 +259,7 @@
     CGSize retval = CGSizeMake(width, [item.numberOfMinutes integerValue]);
     if([item.itemType rangeOfString:@"header"].location == NSNotFound ){
         retval.height = [item.numberOfMinutes integerValue] * self.pixelRatio;
-        //NSLog(@"Minutes %d height %f",item.numberOfMinutes, retval.height);
+        NSLog(@"Minutes %d height %f",[item.numberOfMinutes integerValue], retval.height);
     }
     return retval;
 }
@@ -340,9 +363,9 @@
         // practice items
         for(int j=1; j<6;j++){
             PracticeItem *item = [NSEntityDescription insertNewObjectForEntityForName:@"PracticeItem" inManagedObjectContext:self.managedObjectContext];
+            item.itemType=@"item";
             item.itemName = [NSString stringWithFormat:@"Item %d",j];
             item.numberOfMinutes = [NSNumber numberWithInt:(((j * i) + (random()%33)) * 3) % 30];
-            // TODO add practice item
             [practiceColumn addPracticeItemsObject:item];
             
             [self.collectionView performBatchUpdates:^{ [self.collectionView insertItemsAtIndexPaths:@[
@@ -368,6 +391,7 @@
 	
 	// add the cell to the view
 	draggingItem = item;
+    [self setColorForItem:draggingItem];
 	draggingCell = [[PracticeItemCell alloc] initWithFrame:initialDraggingFrame];
 	[draggingCell configureCellForPracticeItem:draggingItem withframe:initialDraggingFrame];
 	
