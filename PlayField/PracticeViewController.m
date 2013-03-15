@@ -49,8 +49,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.availableColors = [[NSMutableArray alloc] initWithCapacity:20];
-    [self.availableColors addObject:[UIColor colorWithRed:.20 green:.15 blue:.33 alpha:0.95]];
-    [self.availableColors addObject:[UIColor colorWithRed:.66 green:.15 blue:.18 alpha:0.95]];
+    [self.availableColors addObject:[UIColor colorWithRed:.20 green:.15 blue:.33 alpha:0.75]];
+    [self.availableColors addObject:[UIColor colorWithRed:.66 green:.15 blue:.18 alpha:0.75]];
     self.colorItemMap = [[NSMutableDictionary alloc] initWithCapacity:20];
 }
 
@@ -92,7 +92,7 @@
     screenRect.origin.y += 15;
     screenRect.size.height -=15;
     int headerHeight = HEADER_HEIGHT;
-    self.pixelRatio = ((screenRect.size.height - 350 - headerHeight) / ([self.practice.practiceDuration floatValue]));
+    self.pixelRatio = ((screenRect.size.height - 25 - headerHeight) / ([self.practice.practiceDuration integerValue]));
     if(self.pixelRatio < 8.0){
         self.pixelRatio = 8.0;
     }
@@ -260,7 +260,7 @@
     CGSize retval = CGSizeMake(width, [item.numberOfMinutes integerValue]);
     if([item.itemType rangeOfString:@"header"].location == NSNotFound ){
         retval.height = [item.numberOfMinutes integerValue] * self.pixelRatio;
-        NSLog(@"Minutes %d height %f",[item.numberOfMinutes integerValue], retval.height);
+        //NSLog(@"Minutes %d height %f",[item.numberOfMinutes integerValue], retval.height);
     }
     return retval;
 }
@@ -354,7 +354,7 @@
     [practiceOptionsPopover dismissPopoverAnimated:YES];
     
     //add some test data
-    for(int i =1; i<2; i++){
+    for(int i =1; i<4; i++){
         // add the column header
         PracticeColumn *practiceColumn = [NSEntityDescription insertNewObjectForEntityForName:@"PracticeColumn" inManagedObjectContext:self.managedObjectContext];
         practiceColumn.columnName = @"Column";

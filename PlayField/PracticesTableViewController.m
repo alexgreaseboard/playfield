@@ -90,6 +90,11 @@
         [[sectionInfo objects] objectAtIndex:indexPath.item];
         NSManagedObject *selectedObject = [[sectionInfo objects] objectAtIndex:indexPath.item];
         [self.managedObjectContext deleteObject:selectedObject];
+        NSError *error = nil;
+        if (![self.managedObjectContext save:&error]) {
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
     }  
 }
 
@@ -141,6 +146,12 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
+    // select the practice that was just added
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][0];
+    int index = [[sectionInfo objects] indexOfObject:practice];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
+    NSLog(@"Index: %@", indexPath);
+    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
