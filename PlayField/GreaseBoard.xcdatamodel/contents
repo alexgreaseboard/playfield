@@ -48,12 +48,11 @@
         <relationship name="practiceItems" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="PracticeItem" inverseName="practiceColumn" inverseEntity="PracticeItem" syncable="YES"/>
     </entity>
     <entity name="PracticeItem" representedClassName="PracticeItem" syncable="YES">
-        <attribute name="backgroundColor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="columnNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="itemName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="itemType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="numberOfMinutes" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="practiceColumn" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PracticeColumn" syncable="YES"/>
+        <relationship name="practiceColumn" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PracticeColumn" inverseName="practiceItems" inverseEntity="PracticeColumn" syncable="YES"/>
     </entity>
     <entity name="SpritePoint" representedClassName="SpritePoint" syncable="YES">
         <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -66,9 +65,9 @@
         <element name="PlaybookPlay" positionX="-252" positionY="162" width="128" height="75"/>
         <element name="Player" positionX="-641" positionY="-45" width="128" height="240"/>
         <element name="PlaySprite" positionX="-200" positionY="-45" width="128" height="105"/>
-        <element name="SpritePoint" positionX="7" positionY="-45" width="128" height="88"/>
         <element name="Practice" positionX="-162" positionY="324" width="128" height="88"/>
-        <element name="PracticeColumn" positionX="52" positionY="324" width="128" height="103"/>
-        <element name="PracticeItem" positionX="34" positionY="477" width="128" height="133"/>
+        <element name="PracticeColumn" positionX="52" positionY="324" width="128" height="105"/>
+        <element name="PracticeItem" positionX="34" positionY="477" width="128" height="120"/>
+        <element name="SpritePoint" positionX="7" positionY="-45" width="128" height="88"/>
     </elements>
 </model>

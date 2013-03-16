@@ -23,12 +23,15 @@
     if([practiceItem.itemType isEqualToString:@"header"]){
         [self addHeaderCellLabel:practiceItem withFrame:frame];
         [self addRoundedCorners];
+        self.backgroundColor = [UIColor colorWithRed:.92 green:.92 blue:.92 alpha:0.95]; // light gray
     }
     //practice item
     else if([practiceItem.itemType isEqualToString:@"item"]){
         [self addItemCellLabel:practiceItem withFrame:frame];
         [self addDurationLabel:practiceItem withFrame:frame];
-        [self addRoundedCorners];        
+        [self addRoundedCorners];
+        // background color
+        self.backgroundColor = practiceItem.backgroundColor;
     } else if([practiceItem.itemType isEqualToString:@"time"]){
         //time
         CALayer *layer = [self layer];
@@ -41,16 +44,13 @@
         CALayer *layer = [self layer];
         layer.borderWidth = 0;
     }
-    
-    // background color
-    self.backgroundColor = practiceItem.backgroundColor;
 }
 
 -(void)addRoundedCorners{
     // rounded corners, shadow
     CALayer *layer = [self layer];
     [layer setCornerRadius:5.0f];
-    [layer setBorderColor:[UIColor blackColor].CGColor];
+    [layer setBorderColor:[UIColor colorWithRed:.20 green:.15 blue:.33 alpha:0.99].CGColor]; // purple
     [layer setBorderWidth:1.0f];
 }
 
@@ -59,7 +59,7 @@
     self.label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, frame.size.width, frame.size.height)];
     self.label.tag=55;
     self.label.textAlignment = NSTextAlignmentCenter;
-    self.label.textColor = [UIColor blackColor];
+    self.label.textColor = [UIColor colorWithRed:.20 green:.15 blue:.33 alpha:0.95]; // purple
     self.label.font = [UIFont boldSystemFontOfSize:16.0];
     self.label.backgroundColor = [UIColor clearColor];
     self.label.text = practiceItem.itemName;

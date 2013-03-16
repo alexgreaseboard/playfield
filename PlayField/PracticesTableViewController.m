@@ -10,6 +10,7 @@
 #import "Practice.h"
 #import "AppDelegate.h"
 #import "PracticeCell.h"
+#import "PracticeEditViewController.h"
 
 @interface PracticesTableViewController ()
 
@@ -34,7 +35,7 @@
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self action:@selector(returnToMenu:) ];
     self.navigationItem.leftBarButtonItem = menuButton;
     
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewPractice:)];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showPracticeScreen:)];
     self.navigationItem.rightBarButtonItem = addButton;
     
     // get the app context
@@ -80,26 +81,21 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-// TODO deletes
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+        id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][indexPath.section];
+        [[sectionInfo objects] objectAtIndex:indexPath.item];
+        NSManagedObject *selectedObject = [[sectionInfo objects] objectAtIndex:indexPath.item];
+        [self.managedObjectContext deleteObject:selectedObject];
+        NSError *error = nil;
+        if (![self.managedObjectContext save:&error]) {
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }  
 }
 
 
@@ -127,26 +123,52 @@
     [self.practiceViewController resetViewWithPractice:practice];
 }
 
-- (void)insertNewPractice:(id)sender
-{
-    Practice *newPractice = [NSEntityDescription insertNewObjectForEntityForName:@"Practice" inManagedObjectContext:self.managedObjectContext];
-    
-    // TODO segue to a form screen
-    newPractice.practiceName = @"Practice";
-    // random practice duration
-    newPractice.practiceDuration = [NSNumber numberWithInt:(random() % 50)];
-    
+-(void)showPracticeScreen:(id)sender{
+    [self performSegueWithIdentifier:@"showPracticeEdit" sender:sender];
+}
+
+#pragma mark - Segue
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"showPracticeEdit"]) {
+        UINavigationController *navigationController = segue.destinationViewController;
+        PracticeEditViewController *practiceEdit = (PracticeEditViewController *)navigationController.topViewController;
+        practiceEdit.delegate = self;
+        practiceEdit.practice = [NSEntityDescription insertNewObjectForEntityForName:@"Practice" inManagedObjectContext:self.managedObjectContext];
+        
+    }
+}
+
+#pragma mark - PracticeEditController
+- (void)practiceEditController:(PracticeEditViewController *)controller didFinishAddingPractice:(Practice *)practice{
     // Save the context.
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
+    // select the practice that was just added
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][0];
+    int index = [[sectionInfo objects] indexOfObject:practice];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
+    NSLog(@"Index: %@", indexPath);
+    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)practiceEditController:(PracticeEditViewController *)controller didCancelAddingPractice:(Practice *)practice{
+    // Save the context.
+    [self.managedObjectContext deleteObject:practice];
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)returnToMenu:(id)sender
 {
-    NSLog(@"Returning to menu");
+    //NSLog(@"Returning to menu");
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate switchToMenu];
 }

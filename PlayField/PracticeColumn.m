@@ -17,5 +17,13 @@
 @dynamic color;
 @dynamic practice;
 @dynamic practiceItems;
+@synthesize timePracticeItems;
+
+// overwritten because of a bug that apple hasn't fixed
+- (void)addPracticeItemsObject:(PracticeItem *)value {
+    NSMutableOrderedSet* tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.practiceItems];
+    [tempSet addObject:value];
+    self.practiceItems = tempSet;
+}
 
 @end

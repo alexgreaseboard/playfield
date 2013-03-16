@@ -23,11 +23,13 @@
 @property(nonatomic, weak) IBOutlet UITextField *textField;
 @property(nonatomic, strong) IBOutlet UICollectionView *collectionView;
 @property(nonatomic, strong) UITableView *tableView;
-@property(nonatomic, strong) NSMutableArray *timePracticeItems;
 
 
 @property (nonatomic, strong) StackedGridLayout *stackedGridLayout;
 @property (nonatomic) double pixelRatio;
+@property (nonatomic, strong) NSMutableDictionary *colorItemMap;
+@property (nonatomic, strong) NSMutableArray *availableColors;
+@property (nonatomic) int colorIndex;
 
 @end
 
@@ -44,6 +46,12 @@
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.availableColors = [[NSMutableArray alloc] initWithCapacity:20];
+    [self.availableColors addObject:[UIColor colorWithRed:.20 green:.15 blue:.33 alpha:0.75]];
+    [self.availableColors addObject:[UIColor colorWithRed:.66 green:.15 blue:.18 alpha:0.75]];
+    self.colorItemMap = [[NSMutableDictionary alloc] initWithCapacity:20];
 }
 
 // set the practice
@@ -52,21 +60,26 @@
     self.practice = practice;
     
     // reset first
-    //[self.collectionView removeFromSuperview];
+    // TODO really clean the collection view
+    [self.collectionView removeFromSuperview];
     [self.tableView removeFromSuperview];
     
     //calculate the pixel ratio based on the size of the frame and the duration of the practice
     CGRect screenRect = [self.view frame];
-    NSLog(@"Screen x %f", screenRect.origin.x);
     
     // stacked grid layout - the calendar portion
     self.stackedGridLayout = [[StackedGridLayout alloc] init];
     self.stackedGridLayout.headerHeight=0.0f;
+    
     self.collectionView = [[UICollectionView alloc] initWithFrame:screenRect collectionViewLayout:self.stackedGridLayout];
-    //self.collectionView.collectionViewLayout = self.stackedGridLayout;
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    self.collectionView.collectionViewLayout = self.stackedGridLayout;
     self.collectionView.allowsSelection = YES;
     self.collectionView.multipleTouchEnabled = YES;
-    self.collectionView.backgroundColor = [UIColor redColor];
+    self.collectionView.backgroundColor = [UIColor clearColor];
+    [self.collectionView registerClass:[PracticeItemCell class] forCellWithReuseIdentifier:@"PracticeCell"];
+
     //self.collectionView.frame = screenRect;
     [self.view addSubview:self.collectionView];
     
@@ -79,7 +92,7 @@
     screenRect.origin.y += 15;
     screenRect.size.height -=15;
     int headerHeight = HEADER_HEIGHT;
-    self.pixelRatio = ((screenRect.size.height - 350 - headerHeight) / ([self.practice.practiceDuration floatValue]));
+    self.pixelRatio = ((screenRect.size.height - 25 - headerHeight) / ([self.practice.practiceDuration integerValue]));
     if(self.pixelRatio < 8.0){
         self.pixelRatio = 8.0;
     }
@@ -95,7 +108,7 @@
     self.tableView.delegate = self;
     self.tableView.allowsSelection = NO;
     self.tableView.rowHeight = 5 * self.pixelRatio; // 5 minute intervals
-    self.tableView.backgroundColor = [UIColor greenColor];
+    
     
     self.tableView.separatorColor = [UIColor blackColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
@@ -123,9 +136,8 @@
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
     NSInteger size = 0;
     for(PracticeColumn *practiceColumn in self.practice.practiceColumns){
-        size += [practiceColumn.practiceItems count] + [self.timePracticeItems count];
+        size += [practiceColumn.practiceItems count] + [practiceColumn.timePracticeItems count];
     }
-    //NSLog(@"numberOfItemsInSection %d",size);
     return size;
 }
 // 2
@@ -136,8 +148,27 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     PracticeItem *practiceItem = [self findItemAtIndex:indexPath.item];
     PracticeItemCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"PracticeCell" forIndexPath:indexPath];
+    cell.hidden = NO;
+    //NSLog(@"Configuring cell for item %@ and cell %@", practiceItem, cell);
+    if([practiceItem.itemType isEqualToString:@"item"] && practiceItem.backgroundColor == nil){
+        [self setColorForItem:practiceItem];
+    }
     [cell configureCellForPracticeItem:practiceItem withframe:cell.frame];
     return cell;
+}
+
+-(void) setColorForItem:(PracticeItem*)practiceItem{
+    if([self.colorItemMap valueForKey:practiceItem.itemName] == nil){
+        UIColor *newColor = self.availableColors[self.colorIndex];
+        self.colorIndex ++;
+        if(self.colorIndex >= self.availableColors.count){
+            self.colorIndex = 0;
+        }
+        practiceItem.backgroundColor = newColor;
+        [self.colorItemMap setObject:newColor forKey:practiceItem.itemName];
+    } else{
+        practiceItem.backgroundColor = (UIColor*)[self.colorItemMap valueForKey:practiceItem.itemName];
+    }
 }
 // 4
 /*- (UICollectionReusableView *)collectionView:
@@ -151,11 +182,13 @@
     NSInteger count = 0;
     NSInteger columnNumber = 0;
     for(PracticeColumn *practiceColumn in self.practice.practiceColumns){
+        
         NSInteger initialCount = count;
-        count += self.timePracticeItems.count;
+        count += practiceColumn.timePracticeItems.count;
         if(index < count){
-            item = self.timePracticeItems[count - initialCount - self.timePracticeItems.count + (index - initialCount)];
+            item = practiceColumn.timePracticeItems[count - initialCount - practiceColumn.timePracticeItems.count + (index - initialCount)];
             item.columnNumber = [NSNumber numberWithInt:columnNumber];
+            //NSLog(@"Found Item %@", item);
             break;
         }
         columnNumber ++;
@@ -188,7 +221,7 @@
     }
 }
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    // TODO: Deselect item
+    // Deselect item
 }
 
 #pragma mark – UICollectionViewDelegateFlowLayout
@@ -227,14 +260,14 @@
     CGSize retval = CGSizeMake(width, [item.numberOfMinutes integerValue]);
     if([item.itemType rangeOfString:@"header"].location == NSNotFound ){
         retval.height = [item.numberOfMinutes integerValue] * self.pixelRatio;
-        //NSLog(@"Minutes %d height %f",item.numberOfMinutes, retval.height);
+        //NSLog(@"Minutes %d height %f",[item.numberOfMinutes integerValue], retval.height);
     }
     return retval;
 }
 
 - (NSInteger)findColumnForIndex:(NSInteger) index{
     PracticeItem *item = [self findItemAtIndex:index];
-    return item.columnNumber;
+    return item.columnNumber.integerValue;
 }
 
 #pragma mark - Segue
@@ -287,7 +320,7 @@
     if([item.itemType isEqualToString:@"item"]){
         for(int i=0; i< self.practice.practiceColumns.count; i++){
             if(([item.columnNumber integerValue] / 2) == i){
-                PracticeColumn *column = self.practice.practiceColumns[i];
+                //PracticeColumn *column = self.practice.practiceColumns[i];
                 // TODO delete item
                 //[column.practiceItems removeObject:item];
                 
@@ -299,7 +332,7 @@
     } else{ // delete the entire column
         for(int i=0; i< self.practice.practiceColumns.count; i++){
             if(([item.columnNumber integerValue] / 2) == i){
-                PracticeColumn *column = self.practice.practiceColumns[i];
+                //PracticeColumn *column = self.practice.practiceColumns[i];
                 // TODO delet column
                 //[self.practice.practiceColumns removeObject:column];
             }
@@ -319,28 +352,29 @@
 }
 -(void)generateRandomData{
     [practiceOptionsPopover dismissPopoverAnimated:YES];
-    int count = [self.collectionView numberOfItemsInSection:0 ];
+    
     //add some test data
-    for(int i =1; i<2; i++){
+    for(int i =1; i<4; i++){
         // add the column header
         PracticeColumn *practiceColumn = [NSEntityDescription insertNewObjectForEntityForName:@"PracticeColumn" inManagedObjectContext:self.managedObjectContext];
         practiceColumn.columnName = @"Column";
         [self practiceColumnEditController:nil didFinishAddingColumn:practiceColumn ];
 
-        
+        int count = [self.collectionView numberOfItemsInSection:0];
         // practice items
         for(int j=1; j<6;j++){
             PracticeItem *item = [NSEntityDescription insertNewObjectForEntityForName:@"PracticeItem" inManagedObjectContext:self.managedObjectContext];
+            item.itemType=@"item";
             item.itemName = [NSString stringWithFormat:@"Item %d",j];
             item.numberOfMinutes = [NSNumber numberWithInt:(((j * i) + (random()%33)) * 3) % 30];
-            // TODO add practice item
-            //[practiceColumn.practiceItems addObject:item];
+            [practiceColumn addPracticeItemsObject:item];
             
             [self.collectionView performBatchUpdates:^{ [self.collectionView insertItemsAtIndexPaths:@[
                                                          [NSIndexPath indexPathForItem:count inSection:0]]];
             } completion:nil];
             count ++;
         }
+         
     }
     
     [self.collectionView reloadData];
@@ -358,6 +392,7 @@
 	
 	// add the cell to the view
 	draggingItem = item;
+    [self setColorForItem:draggingItem];
 	draggingCell = [[PracticeItemCell alloc] initWithFrame:initialDraggingFrame];
 	[draggingCell configureCellForPracticeItem:draggingItem withframe:initialDraggingFrame];
 	
@@ -415,13 +450,27 @@
 #pragma mark - PracticeColumnEditDelegate
 - (void)practiceColumnEditController:(PracticeColumnEditController *)controller didFinishAddingColumn:(PracticeColumn *)column{
     column.practice = self.practice;
+    [self.practice addPracticeColumnsObject:column];
+    int previousItemCount = [self.collectionView numberOfItemsInSection:0 ];
+    int newItemCount = 1;
+    
+    // add the column header
+    PracticeItem *columnHeader = [NSEntityDescription insertNewObjectForEntityForName:@"PracticeItem" inManagedObjectContext:self.managedObjectContext];
+    [columnHeader createHeaderWithName:column.columnName];
+    int height = HEADER_HEIGHT;
+    columnHeader.numberOfMinutes = [NSNumber numberWithInt:height];
+    [column addPracticeItemsObject:columnHeader];
+    
+
     // add the time header
     PracticeItem *item = [NSEntityDescription insertNewObjectForEntityForName:@"PracticeItem" inManagedObjectContext:self.managedObjectContext];
     [item createTimeHeader];
-    int height = HEADER_HEIGHT;
     item.numberOfMinutes = [NSNumber numberWithInt:height];
+    item.columnNumber = [NSNumber numberWithInt:([self.practice.practiceColumns count] - 2)];
+    column.timePracticeItems = [[NSMutableArray alloc] initWithCapacity:20];
+    newItemCount ++;
     [column.timePracticeItems addObject:item];
-    
+
     //generate the time items
     int practiceDuration = self.practice.practiceDuration.integerValue;
     for(int i=0; i<practiceDuration + 5; i+=5){
@@ -430,28 +479,23 @@
         PracticeItem *timeItem = [NSEntityDescription insertNewObjectForEntityForName:@"PracticeItem" inManagedObjectContext:self.managedObjectContext];
         [timeItem createTimeItemWithLabel:[NSString stringWithFormat:@"%02d:%02d",hours, minutes] ];
         timeItem.numberOfMinutes = [NSNumber numberWithInt:5];
-        [self.timePracticeItems addObject:timeItem];
+        [column.timePracticeItems addObject:timeItem];
+        newItemCount ++;
     }
-    column.practice = self.practice;
-    [self.practice addPracticeColumnsObject:column];
-    
+    //NSLog(@"Updating collection view");
     // update the collection view
-/*    int prevCount = 0;
-    NSMutableArray *newIndexes = [[NSMutableArray alloc] initWithCapacity:column.timePracticeItems.count];
-    while ( prevCount < self.timePracticeItems.count + 1){
-        [newIndexes addObject:[NSIndexPath indexPathForItem:count inSection:0]];
-        count ++;
-        prevCount++;
+    NSMutableArray *newIndexes = [[NSMutableArray alloc] initWithCapacity:newItemCount];
+    for ( int i=0; i<newItemCount; i++){
+        [newIndexes addObject:[NSIndexPath indexPathForItem:(previousItemCount + i) inSection:0]];
     }
     [self.collectionView performBatchUpdates:^{ [self.collectionView insertItemsAtIndexPaths:newIndexes];} completion:nil];
-    */
+    
     // todo save
     [self.collectionView reloadData];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)practiceColumnEditController:(PracticeColumnEditController *)controller didFinishEditingColumn:(PracticeColumn *)column{
     [self.collectionView reloadData];
-    NSLog(@"Done editing %@", column.columnName);
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)practiceItemController:(PracticeColumnEditController *)controller didDeleteColumn:(PracticeColumn *)column{

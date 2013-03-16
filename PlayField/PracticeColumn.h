@@ -18,11 +18,12 @@
 @property (nonatomic, retain) Practice *practice;
 @property (nonatomic, retain) NSOrderedSet *practiceItems;
 
+@property (nonatomic, strong) NSMutableArray *timePracticeItems; // not saved
+
 @end
 
 @interface PracticeColumn (CoreDataGeneratedAccessors)
 
-@property (nonatomic, strong) NSMutableArray *timePracticeItems; // not saved
 
 - (void)insertObject:(PracticeItem *)value inPracticeItemsAtIndex:(NSUInteger)idx;
 - (void)removeObjectFromPracticeItemsAtIndex:(NSUInteger)idx;

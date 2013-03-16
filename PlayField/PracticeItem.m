@@ -16,9 +16,10 @@
 @dynamic itemName;
 @dynamic numberOfMinutes;
 @dynamic columnNumber;
-@dynamic backgroundColor;
 @dynamic itemType;
 @dynamic practiceColumn;
+
+@synthesize backgroundColor;
 
 - (void)createHeaderWithName:(NSString*)name
 {
