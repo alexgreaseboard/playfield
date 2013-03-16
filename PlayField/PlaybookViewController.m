@@ -6,15 +6,14 @@
 //  Copyright (c) 2013 Jai. All rights reserved.
 //
 
-#import "PlaybookDetailsViewController.h"
+#import "PlaybookViewController.h"
 #import "AppDelegate.h"
 #import "PlaybookCell.h"
 
-@interface PlaybookDetailsViewController () <UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
-
+@interface PlaybookViewController () <UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @end
 
-@implementation PlaybookDetailsViewController
+@implementation PlaybookViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,7 +31,8 @@
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
     
-    [self.collectionView registerClass:[PlaybookCell class] forCellWithReuseIdentifier:@"PlaybookCell"];
+    //[self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"PlaybookCell"];
+    //[self.collectionView registerClass:[PlaybookCell class] forCellWithReuseIdentifier:@"PlaybookCell"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,12 +68,12 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
     UICollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"PlaybookCell" forIndexPath:indexPath];
-    //cell.backgroundColor = [UIColor orangeColor];
-    //Playbook *playbook = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-    //cell.name.text = @"Hello";
-    //cell.name.text = playbook.name;
+    
+    PlaybookCell *playbookCell = (PlaybookCell *) cell;
+    Playbook *playbook = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    playbookCell.name.text = playbook.name;
+    //cell.backgroundColor = [UIColor whiteColor];
     return cell;
 }
 
@@ -96,7 +96,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGSize retval = CGSizeMake(200, 200);
+    CGSize retval = CGSizeMake(150, 150);
     return retval;
 }
 
@@ -105,6 +105,8 @@
 {
     return UIEdgeInsetsMake(10, 10, 10, 10);
 }
+
+#pragma mark – Database
 
 - (NSFetchedResultsController *)fetchedResultsController
 {

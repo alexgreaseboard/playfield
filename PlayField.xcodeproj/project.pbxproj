@@ -16,7 +16,7 @@
 		292C9FC116CFCA220065103D /* Sad.png in Resources */ = {isa = PBXBuildFile; fileRef = 292C9FC016CFCA220065103D /* Sad.png */; };
 		297EEAB816E8DDA600B425EE /* PlaybookPlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 297EEAB716E8DDA600B425EE /* PlaybookPlay.m */; };
 		297EEABE16E8DE3A00B425EE /* Playbook.m in Sources */ = {isa = PBXBuildFile; fileRef = 297EEABD16E8DE3A00B425EE /* Playbook.m */; };
-		297EEAC116E8E05400B425EE /* PlaybookDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297EEAC016E8E05400B425EE /* PlaybookDetailsViewController.m */; };
+		297EEAC116E8E05400B425EE /* PlaybookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297EEAC016E8E05400B425EE /* PlaybookViewController.m */; };
 		298017E016EB9EC500FF469E /* bttn-gametime.png in Resources */ = {isa = PBXBuildFile; fileRef = 298017D616EB9EC500FF469E /* bttn-gametime.png */; };
 		298017E116EB9EC500FF469E /* bttn-playbooks.png in Resources */ = {isa = PBXBuildFile; fileRef = 298017D716EB9EC500FF469E /* bttn-playbooks.png */; };
 		298017E216EB9EC500FF469E /* bttn-plays.png in Resources */ = {isa = PBXBuildFile; fileRef = 298017D816EB9EC500FF469E /* bttn-plays.png */; };
@@ -50,7 +50,6 @@
 		29E2FE3C16D900D3002270CF /* Play.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2FE3B16D900D3002270CF /* Play.m */; };
 		29E2FE4916D90980002270CF /* SpritePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2FE4816D9097F002270CF /* SpritePoint.m */; };
 		29E2FE4C16D90981002270CF /* PlaySprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2FE4B16D90981002270CF /* PlaySprite.m */; };
-		29E9361216E82F2400B439C1 /* PlayBookMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E9361116E82F2400B439C1 /* PlayBookMasterViewController.m */; };
 		392CD7F316EBA1B2008194B7 /* PracticeColumnEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CD7E216EBA1B2008194B7 /* PracticeColumnEditController.m */; };
 		392CD7F516EBA1B2008194B7 /* PracticeItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CD7E616EBA1B2008194B7 /* PracticeItemCell.m */; };
 		392CD7F616EBA1B2008194B7 /* PracticeItemEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CD7E816EBA1B2008194B7 /* PracticeItemEditController.m */; };
@@ -195,6 +194,7 @@
 		6D14912616C98A110069CB76 /* footballField.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D14912516C98A110069CB76 /* footballField.jpg */; };
 		6D91974016EE333400BA1DF3 /* PlaybookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D91973F16EE333400BA1DF3 /* PlaybookCell.m */; };
 		6DA4C1B016DD491D005AFE94 /* trashButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA4C1AF16DD491D005AFE94 /* trashButton.png */; };
+		6DC9C0E216F2C5990001644A /* PlaybookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC9C0E116F2C5990001644A /* PlaybookDetailViewController.m */; };
 		6DEF320B16D154B200AD57A1 /* About.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DEF320A16D154B200AD57A1 /* About.png */; };
 		6DF5649116DE971800E17E82 /* SavePlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF5649016DE971800E17E82 /* SavePlayViewController.m */; };
 		6DF750F616D55F33008D32B0 /* PlayCreationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF750F516D55F33008D32B0 /* PlayCreationDetailsViewController.m */; };
@@ -213,8 +213,8 @@
 		297EEAB716E8DDA600B425EE /* PlaybookPlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybookPlay.m; sourceTree = "<group>"; };
 		297EEABC16E8DE3A00B425EE /* Playbook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playbook.h; sourceTree = "<group>"; };
 		297EEABD16E8DE3A00B425EE /* Playbook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Playbook.m; sourceTree = "<group>"; };
-		297EEABF16E8E05400B425EE /* PlaybookDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybookDetailsViewController.h; sourceTree = "<group>"; };
-		297EEAC016E8E05400B425EE /* PlaybookDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybookDetailsViewController.m; sourceTree = "<group>"; };
+		297EEABF16E8E05400B425EE /* PlaybookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybookViewController.h; sourceTree = "<group>"; };
+		297EEAC016E8E05400B425EE /* PlaybookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybookViewController.m; sourceTree = "<group>"; };
 		298017D616EB9EC500FF469E /* bttn-gametime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bttn-gametime.png"; sourceTree = "<group>"; };
 		298017D716EB9EC500FF469E /* bttn-playbooks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bttn-playbooks.png"; sourceTree = "<group>"; };
 		298017D816EB9EC500FF469E /* bttn-plays.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bttn-plays.png"; sourceTree = "<group>"; };
@@ -265,8 +265,6 @@
 		29E2FE4816D9097F002270CF /* SpritePoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpritePoint.m; sourceTree = "<group>"; };
 		29E2FE4A16D90981002270CF /* PlaySprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaySprite.h; sourceTree = "<group>"; };
 		29E2FE4B16D90981002270CF /* PlaySprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaySprite.m; sourceTree = "<group>"; };
-		29E9361016E82F2400B439C1 /* PlayBookMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayBookMasterViewController.h; sourceTree = "<group>"; };
-		29E9361116E82F2400B439C1 /* PlayBookMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayBookMasterViewController.m; sourceTree = "<group>"; };
 		392CD7E116EBA1B2008194B7 /* PracticeColumnEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeColumnEditController.h; sourceTree = "<group>"; };
 		392CD7E216EBA1B2008194B7 /* PracticeColumnEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeColumnEditController.m; sourceTree = "<group>"; };
 		392CD7E516EBA1B2008194B7 /* PracticeItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeItemCell.h; sourceTree = "<group>"; };
@@ -571,6 +569,8 @@
 		6D91973E16EE333400BA1DF3 /* PlaybookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybookCell.h; sourceTree = "<group>"; };
 		6D91973F16EE333400BA1DF3 /* PlaybookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybookCell.m; sourceTree = "<group>"; };
 		6DA4C1AF16DD491D005AFE94 /* trashButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trashButton.png; sourceTree = "<group>"; };
+		6DC9C0E016F2C5990001644A /* PlaybookDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybookDetailViewController.h; sourceTree = "<group>"; };
+		6DC9C0E116F2C5990001644A /* PlaybookDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybookDetailViewController.m; sourceTree = "<group>"; };
 		6DEF320A16D154B200AD57A1 /* About.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = About.png; sourceTree = "<group>"; };
 		6DF5648F16DE971800E17E82 /* SavePlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavePlayViewController.h; sourceTree = "<group>"; };
 		6DF5649016DE971800E17E82 /* SavePlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavePlayViewController.m; sourceTree = "<group>"; };
@@ -716,10 +716,10 @@
 		29E9360F16E82EBE00B439C1 /* Playbook */ = {
 			isa = PBXGroup;
 			children = (
-				29E9361016E82F2400B439C1 /* PlayBookMasterViewController.h */,
-				29E9361116E82F2400B439C1 /* PlayBookMasterViewController.m */,
-				297EEABF16E8E05400B425EE /* PlaybookDetailsViewController.h */,
-				297EEAC016E8E05400B425EE /* PlaybookDetailsViewController.m */,
+				297EEABF16E8E05400B425EE /* PlaybookViewController.h */,
+				297EEAC016E8E05400B425EE /* PlaybookViewController.m */,
+				6DC9C0E016F2C5990001644A /* PlaybookDetailViewController.h */,
+				6DC9C0E116F2C5990001644A /* PlaybookDetailViewController.m */,
 			);
 			name = Playbook;
 			sourceTree = "<group>";
@@ -1413,10 +1413,9 @@
 				29E2FE4916D90980002270CF /* SpritePoint.m in Sources */,
 				29E2FE4C16D90981002270CF /* PlaySprite.m in Sources */,
 				6DF5649116DE971800E17E82 /* SavePlayViewController.m in Sources */,
-				29E9361216E82F2400B439C1 /* PlayBookMasterViewController.m in Sources */,
 				297EEAB816E8DDA600B425EE /* PlaybookPlay.m in Sources */,
 				297EEABE16E8DE3A00B425EE /* Playbook.m in Sources */,
-				297EEAC116E8E05400B425EE /* PlaybookDetailsViewController.m in Sources */,
+				297EEAC116E8E05400B425EE /* PlaybookViewController.m in Sources */,
 				392CD7F316EBA1B2008194B7 /* PracticeColumnEditController.m in Sources */,
 				392CD7F516EBA1B2008194B7 /* PracticeItemCell.m in Sources */,
 				392CD7F616EBA1B2008194B7 /* PracticeItemEditController.m in Sources */,
@@ -1430,6 +1429,7 @@
 				392CD80F16EBD9E5008194B7 /* PracticesTableViewController.m in Sources */,
 				392CD81216EBDA3C008194B7 /* PracticeCell.m in Sources */,
 				6D91974016EE333400BA1DF3 /* PlaybookCell.m in Sources */,
+				6DC9C0E216F2C5990001644A /* PlaybookDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -277,7 +277,6 @@
 
 - (IBAction)returnToMenu:(id)sender
 {
-    NSLog(@"Returning to menu");
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate switchToMenu];
 }

@@ -9,6 +9,7 @@
 #import "PlayCreationItemsTableViewController.h"
 #import "PlayDrillItem.h"
 #import "PlayDrillItemCell.h"
+#import "AppDelegate.h"
 
 @interface PlayCreationItemsTableViewController ()
 
@@ -30,17 +31,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self action:@selector(returnToMenu:) ];
+    self.navigationItem.leftBarButtonItem = menuButton;
+    
     _items = [[NSMutableArray alloc] init];
     [_items addObject:[PlayDrillItem itemWithText:@"Offense" andWithImage:@"Smile.png"]];
     [_items addObject:[PlayDrillItem itemWithText:@"Defense" andWithImage:@"Sad.png"]];
     [_items addObject:[PlayDrillItem itemWithText:@"Cone" andWithImage:@"cone.jpeg"]];
     
-    //[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-    
     self.detailViewController = (CocosViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-    //self.detailViewController.delegate = self;
-    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor blackColor];
 }
@@ -104,4 +104,11 @@
     
     [self.detailViewController addItemSprite:imageName];
 }
+
+- (IBAction)returnToMenu:(id)sender
+{
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate switchToMenu];
+}
+
 @end

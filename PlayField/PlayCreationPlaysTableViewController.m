@@ -204,6 +204,11 @@
 {
     NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.nameLabel.text = [[object valueForKey:@"name"] description];
+    
+    //cell.nameLabel.textColor = [UIColor greenColor];
+    //cell.nameLabel.backgroundColor = [UIColor yellowColor];
+    //cell.nameLabel.opaque = NO;
+    //cell.backgroundColor = [UIColor blackColor];
 }
 
 - (void) fatalCoreDataError:(NSError *)error
@@ -221,7 +226,6 @@
 
 - (IBAction)returnToMenu:(id)sender
 {
-    NSLog(@"Returning to menu");
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate switchToMenu];
 }

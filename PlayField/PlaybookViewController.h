@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "Playbook.h"
 
-@interface PlaybookDetailsViewController : UIViewController <UIAlertViewDelegate,NSFetchedResultsControllerDelegate>
+@interface PlaybookViewController : UIViewController <UIAlertViewDelegate,NSFetchedResultsControllerDelegate>
 
+@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
-@property(nonatomic, weak) IBOutlet UICollectionView *collectionView;
 
 - (IBAction)addPlaybook:(id)sender;
 
