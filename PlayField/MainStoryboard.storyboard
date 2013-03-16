@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C3103" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="n7z-tV-jrc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="n7z-tV-jrc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -1417,7 +1417,7 @@
                     <toolbarItems/>
                     <connections>
                         <segue destination="sU9-PR-FTV" kind="relationship" relationship="masterViewController" id="JAX-KB-lBh"/>
-                        <segue destination="Gl4-Dq-byn" kind="relationship" relationship="detailViewController" id="ICh-H0-PjP"/>
+                        <segue destination="DQv-wx-gd3" kind="relationship" relationship="detailViewController" id="hnu-hu-fBM"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dvm-YR-aGP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1594,7 +1594,7 @@
             <objects>
                 <viewController id="DQv-wx-gd3" customClass="PlaybookViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xBC-9T-X4D">
-                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PW9-t2-Slb">
@@ -1628,7 +1628,7 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="name" destination="Y8A-Le-Yf9" id="YMC-IN-BUC"/>
-                                            <segue destination="b4a-gG-564" kind="replace" splitViewControllerTargetIndex="1" id="npq-Mx-zUV"/>
+                                            <segue destination="6Tj-h9-XQb" kind="modal" id="8LW-R2-5Y9"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -1650,7 +1650,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SIn-ns-kpW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1441" y="4606"/>
+            <point key="canvasLocation" x="377" y="4606"/>
         </scene>
         <!--Play Creation Plays Table View Controller - Offense-->
         <scene sceneID="0Cd-DT-Gxb">
@@ -1825,7 +1825,7 @@
             <objects>
                 <viewController id="6Tj-h9-XQb" customClass="PlaybookDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jZ1-Ll-aX5">
-                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xcU-IY-50a">
@@ -1875,7 +1875,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oEU-wy-T7D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3669" y="4622"/>
+            <point key="canvasLocation" x="1429" y="4622"/>
         </scene>
         <!--Practice View Controller - Title-->
         <scene sceneID="bWV-k7-9VB">
@@ -2490,41 +2490,116 @@
             <point key="canvasLocation" x="4224" y="719"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="MsS-b8-J5s">
+        <scene sceneID="QLt-ez-bAM">
             <objects>
-                <navigationController id="Gl4-Dq-byn" sceneMemberID="viewController">
+                <navigationController id="trB-pc-MpL" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UMa-tW-ffN">
+                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kua-vK-UZO">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="DQv-wx-gd3" kind="relationship" relationship="rootViewController" id="2Vh-Ma-h8D"/>
+                        <segue destination="61T-Vn-Rac" kind="relationship" relationship="rootViewController" id="6Tf-cN-avi"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3s0-Z9-EEQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2sm-4R-2Xm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="467" y="4606"/>
+            <point key="canvasLocation" x="2743" y="5182"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Kbb-Vv-N6u">
+        <!--Practice Edit View Controller - New Practice-->
+        <scene sceneID="hlT-vc-lfL">
             <objects>
-                <navigationController storyboardIdentifier="PlaybookDetail" id="b4a-gG-564" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="yc5-b7-14P"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bYC-GL-igx">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
+                <tableViewController id="61T-Vn-Rac" customClass="PracticeEditViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="vYf-Ed-vEE">
+                        <rect key="frame" x="0.0" y="64" width="540" height="556"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection id="Mmt-Ol-Zhf">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="0FP-95-qS5">
+                                        <rect key="frame" x="0.0" y="0.0" width="540" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Practice Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RAp-tN-5Gt">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="493" id="ejJ-ev-EW4"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="61T-Vn-Rac" id="e0Z-dE-QZt"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="RAp-tN-5Gt" firstAttribute="centerY" secondItem="0FP-95-qS5" secondAttribute="centerY" type="default" id="IbR-VX-3xT"/>
+                                            <constraint firstItem="RAp-tN-5Gt" firstAttribute="leading" secondItem="0FP-95-qS5" secondAttribute="leading" constant="20" type="default" id="je8-kQ-Mg9"/>
+                                        </constraints>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="xjI-gt-YLV">
+                                        <rect key="frame" x="0.0" y="44" width="540" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="practiceDurationText" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Practice Duration (in minutes)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RLk-Tn-EKw">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="491" id="CGj-iB-eRB"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="61T-Vn-Rac" id="py0-ZZ-7hw"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="RLk-Tn-EKw" firstAttribute="centerY" secondItem="xjI-gt-YLV" secondAttribute="centerY" type="default" id="EXy-ka-qlk"/>
+                                            <constraint firstItem="RLk-Tn-EKw" firstAttribute="leading" secondItem="xjI-gt-YLV" secondAttribute="leading" constant="20" type="default" id="mlN-T9-hN2"/>
+                                        </constraints>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="61T-Vn-Rac" id="hXq-1Y-sEv"/>
+                            <outlet property="delegate" destination="61T-Vn-Rac" id="TZ3-HA-W6p"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="New Practice" id="yPU-cM-wwj">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="XNp-Z2-AaF">
+                            <connections>
+                                <action selector="cancel:" destination="61T-Vn-Rac" id="nDI-ab-CK3"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="cIL-Ef-PwI">
+                            <connections>
+                                <action selector="done:" destination="61T-Vn-Rac" id="5Xo-rq-rZG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <segue destination="6Tj-h9-XQb" kind="relationship" relationship="rootViewController" id="LxP-NW-bWQ"/>
+                        <outlet property="doneButton" destination="cIL-Ef-PwI" id="upm-78-ZBH"/>
+                        <outlet property="practiceDuration" destination="RLk-Tn-EKw" id="cs2-l1-fX5"/>
+                        <outlet property="practiceName" destination="RAp-tN-5Gt" id="dee-WO-cm7"/>
                     </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="B5t-21-Fmg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8sz-Eg-626" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2695" y="4622"/>
+            <point key="canvasLocation" x="3419" y="5170"/>
         </scene>
     </scenes>
     <resources>
@@ -2629,6 +2704,16 @@
                 <relationship kind="outlet" name="columnNameTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="deleteButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="doneButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="PracticeEditViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PracticeEditViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel:"/>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="outlet" name="doneButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="practiceDuration" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="practiceName" candidateClass="UITextField"/>
             </relationships>
         </class>
         <class className="PracticeItemCell" superclassName="UICollectionViewCell">
