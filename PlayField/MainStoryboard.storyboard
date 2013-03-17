@@ -1893,7 +1893,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="czw-dE-PMO" kind="modal" id="uKn-JZ-C6u"/>
+                        <segue destination="czw-dE-PMO" kind="modal" identifier="showPracticeItemEdit" modalPresentationStyle="formSheet" id="uKn-JZ-C6u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fmi-FK-Rd7" userLabel="First Responder" sceneMemberID="firstResponder"/>
