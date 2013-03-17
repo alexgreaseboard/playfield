@@ -10,5 +10,6 @@
 
 @interface PracticeCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *practiceLabel;
+@property (strong, nonatomic) IBOutlet UILabel *durationLabel;
 
 @end

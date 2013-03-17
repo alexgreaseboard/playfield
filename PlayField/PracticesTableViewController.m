@@ -78,6 +78,7 @@
     // get the practice
     Practice *practice = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.practiceLabel.text = practice.practiceName;
+    cell.durationLabel.text = [NSString stringWithFormat:@"%@ minutes", practice.practiceDuration];
     return cell;
 }
 
@@ -147,12 +148,14 @@
         abort();
     }
     // select the practice that was just added
+    /*
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][0];
     int index = [[sectionInfo objects] indexOfObject:practice];
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
     NSLog(@"Index: %@", indexPath);
     [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
+     */
 }
 
 - (void)practiceEditController:(PracticeEditViewController *)controller didCancelAddingPractice:(Practice *)practice{
