@@ -114,7 +114,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.view addSubview:self.tableView];
     [self.view sendSubviewToBack:self.tableView];
-    [self generateRandomData];
+    //[self generateRandomData];
     [self.view reloadInputViews];
 }
 

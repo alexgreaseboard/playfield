@@ -62,7 +62,7 @@
 		392CD80C16EBBDF5008194B7 /* PracticeColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CD80B16EBBDF4008194B7 /* PracticeColumn.m */; };
 		392CD80F16EBD9E5008194B7 /* PracticesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CD80E16EBD9E5008194B7 /* PracticesTableViewController.m */; };
 		392CD81216EBDA3C008194B7 /* PracticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CD81116EBDA3C008194B7 /* PracticeCell.m */; };
-		394DEEC016F395C20047A3B7 /* PracticeEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 394DEEBF16F395C20047A3B7 /* PracticeEditViewController.m */; };
+		394DEEC116F55C5A0047A3B7 /* PracticeEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 394DEEBF16F395C20047A3B7 /* PracticeEditViewController.m */; };
 		6D0724AD16D6A74B00DDA641 /* PlayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0724AC16D6A74B00DDA641 /* PlayCell.m */; };
 		6D148F7816C988E70069CB76 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D148F7716C988E70069CB76 /* QuartzCore.framework */; };
 		6D148F7A16C988E70069CB76 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D148F7916C988E70069CB76 /* OpenGLES.framework */; };
@@ -1435,6 +1435,7 @@
 				392CD81216EBDA3C008194B7 /* PracticeCell.m in Sources */,
 				6D91974016EE333400BA1DF3 /* PlaybookCell.m in Sources */,
 				6DC9C0E216F2C5990001644A /* PlaybookDetailViewController.m in Sources */,
+				394DEEC116F55C5A0047A3B7 /* PracticeEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
