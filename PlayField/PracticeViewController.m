@@ -454,6 +454,12 @@
     int previousItemCount = [self.collectionView numberOfItemsInSection:0 ];
     int newItemCount = 1;
     
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    
     // add the column header
     PracticeItem *columnHeader = [NSEntityDescription insertNewObjectForEntityForName:@"PracticeItem" inManagedObjectContext:self.managedObjectContext];
     [columnHeader createHeaderWithName:column.columnName];
@@ -469,7 +475,7 @@
     item.columnNumber = [NSNumber numberWithInt:([self.practice.practiceColumns count] - 2)];
     column.timePracticeItems = [[NSMutableArray alloc] initWithCapacity:20];
     newItemCount ++;
-    [column.timePracticeItems addObject:item];
+    item.practiceColumn = column;
 
     //generate the time items
     int practiceDuration = self.practice.practiceDuration.integerValue;
@@ -479,7 +485,7 @@
         PracticeItem *timeItem = [NSEntityDescription insertNewObjectForEntityForName:@"PracticeItem" inManagedObjectContext:self.managedObjectContext];
         [timeItem createTimeItemWithLabel:[NSString stringWithFormat:@"%02d:%02d",hours, minutes] ];
         timeItem.numberOfMinutes = [NSNumber numberWithInt:5];
-        [column.timePracticeItems addObject:timeItem];
+        timeItem.practiceColumn = column;
         newItemCount ++;
     }
     //NSLog(@"Updating collection view");
@@ -490,7 +496,11 @@
     }
     [self.collectionView performBatchUpdates:^{ [self.collectionView insertItemsAtIndexPaths:newIndexes];} completion:nil];
     
-    // todo save
+    // save & reload
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
     [self.collectionView reloadData];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -499,7 +509,13 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)practiceItemController:(PracticeColumnEditController *)controller didDeleteColumn:(PracticeColumn *)column{
-    // TODO remove column
+    // delete remove column
+    [self.managedObjectContext deleteObject:column];
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
     //[self.practice.practiceColumns removeObject:column];
     [self.collectionView reloadData];
     [self dismissViewControllerAnimated:YES completion:nil];

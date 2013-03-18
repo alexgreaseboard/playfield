@@ -154,8 +154,9 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
     NSLog(@"Index: %@", indexPath);
     [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:nil];
-    [self dismissViewControllerAnimated:YES completion:nil];
-     */
+    */
+     [self dismissViewControllerAnimated:YES completion:nil];
+     
 }
 
 - (void)practiceEditController:(PracticeEditViewController *)controller didCancelAddingPractice:(Practice *)practice{
