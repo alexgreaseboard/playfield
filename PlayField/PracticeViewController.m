@@ -37,6 +37,7 @@
     __weak UIPopoverController *practiceOptionsPopover;
 	PracticeItemCell *draggingCell;
 	PracticeItem *draggingItem;
+    PracticeItem *placeholderItem; // a placeholder to expand the column when dragging
     CGRect initialDraggingFrame;
 }
 
@@ -61,6 +62,7 @@
 
 -(void)resetViewWithPractice:(Practice*)practice{
     self.practice = practice;
+    self.title = practice.practiceName;
     //calculate the pixel ratio based on the size of the frame and the duration of the practice
     CGRect screenRect = [self.view frame];
     screenRect.origin.y += 15;
@@ -76,7 +78,6 @@
     }
     
     // reset first
-    // TODO really clean the collection view
     [self.collectionView removeFromSuperview];
     [self.tableView removeFromSuperview];
     
@@ -115,12 +116,10 @@
     self.tableView.allowsSelection = NO;
     self.tableView.rowHeight = 5 * self.pixelRatio; // 5 minute intervals
     
-    
     self.tableView.separatorColor = [UIColor blackColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.view addSubview:self.tableView];
     [self.view sendSubviewToBack:self.tableView];
-    //[self generateRandomData];
     [self.view reloadInputViews];
 }
 
@@ -166,7 +165,7 @@
 
 -(void) setColorForItem:(PracticeItem*)practiceItem{
     if(practiceItem.itemName == nil){
-        practiceItem.backgroundColor = [UIColor whiteColor];
+        practiceItem.backgroundColor = [UIColor clearColor];
     } else if([self.colorItemMap valueForKey:practiceItem.itemName] == nil){
         UIColor *newColor = self.availableColors[self.colorIndex];
         self.colorIndex ++;
@@ -174,7 +173,6 @@
             self.colorIndex = 0;
         }
         practiceItem.backgroundColor = newColor;
-        NSLog(@"Setting object %@ for key %@", newColor, practiceItem.itemName);
         [self.colorItemMap setObject:newColor forKey:practiceItem.itemName];
     } else{
         practiceItem.backgroundColor = (UIColor*)[self.colorItemMap valueForKey:practiceItem.itemName];
@@ -326,7 +324,7 @@
 }
 - (void)practiceItemController:(PracticeItemEditController *)controller didDeleteItem:(PracticeItem *)item{
     // delete an item, not column
-    if([item.itemType isEqualToString:@"item"]){
+    if([item.itemType isEqualToString:@"item"] || [item.itemType isEqualToString:@"placeholder"]){
         for(int i=0; i< self.practice.practiceColumns.count; i++){
             if(([item.columnNumber integerValue] / 2) == i){
                 PracticeColumn *column = self.practice.practiceColumns[i];
@@ -397,7 +395,7 @@
 }
 
 - (void)draggingStarted:(UIPanGestureRecognizer *)sender forItem:(PracticeItem *)item{
-	NSLog(@"Dragging started");
+	//NSLog(@"Dragging started");
 	CGPoint touchPoint = [sender locationOfTouch:0 inView:self.collectionView];
 	initialDraggingFrame.origin = touchPoint;
 	initialDraggingFrame.size.height = ([item.numberOfMinutes integerValue] * self.pixelRatio);
@@ -413,30 +411,38 @@
 	draggingCell = [[PracticeItemCell alloc] initWithFrame:initialDraggingFrame];
 	[draggingCell configureCellForPracticeItem:draggingItem withframe:initialDraggingFrame];
 	
+    placeholderItem = [NSEntityDescription insertNewObjectForEntityForName:@"PracticeItem" inManagedObjectContext:self.managedObjectContext];
+    placeholderItem.itemType = @"placeholder";
+    placeholderItem.numberOfMinutes = draggingItem.numberOfMinutes;
 	[self.view addSubview:draggingCell];
 }
 
 - (void)draggingChanged:(UIPanGestureRecognizer *)sender{
-	NSLog(@"Dragging changed");
+	//NSLog(@"Dragging changed");
 	// move the cell around
 	CGPoint translation = [sender translationInView:self.collectionView];
 	CGRect newFrame = initialDraggingFrame;
 	newFrame.origin.x += translation.x;
 	newFrame.origin.y += translation.y;
 	draggingCell.frame = newFrame;
+    //move the placeholder
+    [self addDraggedCell:sender forItem:placeholderItem];
 }
-- (void)draggingEnded:(UIPanGestureRecognizer *)sender{
-	NSLog(@"dragging ended");
+
+- (void)addDraggedCell:(UIPanGestureRecognizer*)sender forItem:(PracticeItem*)item{
     // add the cell to the appropriate place
 	CGPoint translation = [sender translationInView:self.collectionView];
 	CGRect newFrame = initialDraggingFrame;
-	newFrame.origin.x += translation.x;
+	newFrame.origin.x += (translation.x + self.collectionView.contentOffset.x);
 	newFrame.origin.y += (translation.y + self.collectionView.contentOffset.y);
 	
 	// find the column it was placed on
 	if(self.practice.practiceColumns.count > 0){
 		NSIndexPath *landingPoint = [self.collectionView indexPathForItemAtPoint:newFrame.origin];
 		PracticeItem *landingItem = [self findItemAtIndex:landingPoint.item];
+        if([landingItem.itemType isEqualToString:@"placeholder"]){
+            landingItem = [self findItemAtIndex:(landingPoint.item + 1)];
+        }
 		if(landingPoint.item == 0){
 			newFrame.origin.y = 15;
 			landingPoint = [self.collectionView indexPathForItemAtPoint:newFrame.origin];
@@ -446,25 +452,36 @@
 				landingItem = column.practiceItems[column.practiceItems.count - 1];
 			}
 		}
-		NSInteger column = [landingItem.columnNumber integerValue] / 2;
-
+		int column = [landingItem.columnNumber integerValue] / 2;
+        
         // find where the item goes and add it
 		PracticeColumn *landingColumn = self.practice.practiceColumns[column];
 		for(int i=0; i<landingColumn.practiceItems.count; i++){
 			PracticeItem *item = landingColumn.practiceItems[i];
-			if(landingItem == item){
-                [landingColumn insertObject:draggingItem inPracticeItemsAtIndex:i+1];
-                NSError *error = nil;
-                if (![self.managedObjectContext save:&error]) {
-                    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-                    abort();
+            
+			if([landingItem isEqual:item]){
+                [landingColumn removePracticeItemsObject:draggingItem];
+                if([landingColumn.practiceItems count] == i){
+                    i--;
                 }
+                [landingColumn insertObject:draggingItem inPracticeItemsAtIndex:i+1];
 				break;
 			}
 		}
 	}
+    [self.collectionView reloadData];
+}
+- (void)draggingEnded:(UIPanGestureRecognizer *)sender{
+	NSLog(@"dragging ended");
+    // add the cell to the appropriate place
+	[self addDraggedCell:sender forItem:draggingItem];
+    NSError *error = nil;
+    [self.managedObjectContext deleteObject:placeholderItem];
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
 
-	[self.collectionView reloadData];
 	[draggingCell removeFromSuperview];
 	draggingCell = nil;
 	draggingItem = nil;
@@ -598,6 +615,11 @@
         if(newMinutes > 0 && newMinutesInt % 5 == 0){
             item1.numberOfMinutes = [NSNumber numberWithInt:newMinutesInt];
             sender.scale = 1; // reset the scale
+            NSError *error = nil;
+            if (![self.managedObjectContext save:&error]) {
+                NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+                abort();
+            }
         }
         //disable animations to prevent delays
         BOOL animationsEnabled = [UIView areAnimationsEnabled];
