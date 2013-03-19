@@ -49,8 +49,11 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.availableColors = [[NSMutableArray alloc] initWithCapacity:20];
-    [self.availableColors addObject:[UIColor colorWithRed:.20 green:.15 blue:.33 alpha:0.75]];
-    [self.availableColors addObject:[UIColor colorWithRed:.66 green:.15 blue:.18 alpha:0.75]];
+    [self.availableColors addObject:[UIColor colorWithRed:.17 green:.26 blue:.37 alpha:0.75]];// blue
+    [self.availableColors addObject:[UIColor colorWithRed:.66 green:.15 blue:.18 alpha:0.75]];// red
+    [self.availableColors addObject:[UIColor colorWithRed:.31 green:.41 blue:.18 alpha:0.85]];// green
+    [self.availableColors addObject:[UIColor colorWithRed:.20 green:.15 blue:.33 alpha:0.75]];// purple
+    
     self.colorItemMap = [[NSMutableDictionary alloc] initWithCapacity:20];
 }
 
@@ -162,13 +165,16 @@
 }
 
 -(void) setColorForItem:(PracticeItem*)practiceItem{
-    if([self.colorItemMap valueForKey:practiceItem.itemName] == nil){
+    if(practiceItem.itemName == nil){
+        practiceItem.backgroundColor = [UIColor whiteColor];
+    } else if([self.colorItemMap valueForKey:practiceItem.itemName] == nil){
         UIColor *newColor = self.availableColors[self.colorIndex];
         self.colorIndex ++;
         if(self.colorIndex >= self.availableColors.count){
             self.colorIndex = 0;
         }
         practiceItem.backgroundColor = newColor;
+        NSLog(@"Setting object %@ for key %@", newColor, practiceItem.itemName);
         [self.colorItemMap setObject:newColor forKey:practiceItem.itemName];
     } else{
         practiceItem.backgroundColor = (UIColor*)[self.colorItemMap valueForKey:practiceItem.itemName];
@@ -396,6 +402,7 @@
 	// add the cell to the view
 	draggingItem = item;
     [self setColorForItem:draggingItem];
+    NSLog(@"Set %@ color to %@", draggingItem.itemType, draggingItem.backgroundColor);
 	draggingCell = [[PracticeItemCell alloc] initWithFrame:initialDraggingFrame];
 	[draggingCell configureCellForPracticeItem:draggingItem withframe:initialDraggingFrame];
 	
@@ -412,7 +419,7 @@
 	draggingCell.frame = newFrame;
 }
 - (void)draggingEnded:(UIPanGestureRecognizer *)sender{
-	NSLog(@"Dragging ended");
+	NSLog(@"dragging ended");
     // add the cell to the appropriate place
 	CGPoint translation = [sender translationInView:self.collectionView];
 	CGRect newFrame = initialDraggingFrame;
@@ -434,12 +441,17 @@
 		}
 		NSInteger column = [landingItem.columnNumber integerValue] / 2;
 
+        // find where the item goes and add it
 		PracticeColumn *landingColumn = self.practice.practiceColumns[column];
 		for(int i=0; i<landingColumn.practiceItems.count; i++){
 			PracticeItem *item = landingColumn.practiceItems[i];
 			if(landingItem == item){
-				// TODO save object
-                draggingItem.practiceColumn = landingColumn;
+                [landingColumn insertObject:draggingItem inPracticeItemsAtIndex:i+1];
+                NSError *error = nil;
+                if (![self.managedObjectContext save:&error]) {
+                    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+                    abort();
+                }
 				break;
 			}
 		}

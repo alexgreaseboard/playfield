@@ -24,7 +24,8 @@
     if([practiceItem.itemType isEqualToString:@"header"]){
         [self addHeaderCellLabel:practiceItem withFrame:frame];
         [self addRoundedCorners];
-        self.backgroundColor = [UIColor colorWithRed:.92 green:.92 blue:.92 alpha:0.95]; // light gray
+        //self.backgroundView = [UIImage]
+        self.backgroundColor = [UIColor colorWithRed:.85 green:.75 blue:.63 alpha:0.5]; // light gray/brown to match buttons
     }
     //practice item
     else if([practiceItem.itemType isEqualToString:@"item"]){

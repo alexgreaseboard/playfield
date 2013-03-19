@@ -19,10 +19,17 @@
 @dynamic practiceItems;
 @synthesize timePracticeItems;
 
-// overwritten because of a bug that apple hasn't fixed
+// overwritten because of a bug in default core data
 - (void)addPracticeItemsObject:(PracticeItem *)value {
     NSMutableOrderedSet* tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.practiceItems];
     [tempSet addObject:value];
+    self.practiceItems = tempSet;
+}
+
+// overwritten because of a bug in default core data
+- (void)insertObject:(PracticeItem *)value inPracticeItemsAtIndex:(NSUInteger)idx{
+    NSMutableOrderedSet* tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.practiceItems];
+    [tempSet insertObject:value atIndex:idx];
     self.practiceItems = tempSet;
 }
 
