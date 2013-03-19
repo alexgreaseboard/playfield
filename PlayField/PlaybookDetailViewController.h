@@ -10,4 +10,6 @@
 
 @interface PlaybookDetailViewController : UIViewController
 
+- (IBAction)returnToPlaybooks:(id)sender;
+
 @end

@@ -46,6 +46,7 @@
     newPlaybook.name = @"New Playbook";
     
     _fetchedResultsController = nil;
+    //self.fetchedResultsController = [self fetchedResultsController];
     [self.collectionView reloadData];
     
     // Save the context.
@@ -113,7 +114,6 @@
     if (_fetchedResultsController != nil) {
         return _fetchedResultsController;
     }
-    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
     // Edit the entity name as appropriate.
