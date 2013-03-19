@@ -22,4 +22,10 @@
     [tempSet addObject:value];
     self.practiceColumns = tempSet;
 }
+
+- (void)removePracticeColumnsObject:(PracticeColumn *)value{
+    NSMutableOrderedSet* tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.practiceColumns];
+    [tempSet removeObject:value];
+    self.practiceColumns = tempSet;
+}
 @end

@@ -329,9 +329,13 @@
     if([item.itemType isEqualToString:@"item"]){
         for(int i=0; i< self.practice.practiceColumns.count; i++){
             if(([item.columnNumber integerValue] / 2) == i){
-                //PracticeColumn *column = self.practice.practiceColumns[i];
-                // TODO delete item
-                //[column.practiceItems removeObject:item];
+                PracticeColumn *column = self.practice.practiceColumns[i];
+                [column removePracticeItemsObject:item];
+                NSError *error = nil;
+                if (![self.managedObjectContext save:&error]) {
+                    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+                    abort();
+                }
                 
             }
         }
@@ -341,9 +345,13 @@
     } else{ // delete the entire column
         for(int i=0; i< self.practice.practiceColumns.count; i++){
             if(([item.columnNumber integerValue] / 2) == i){
-                //PracticeColumn *column = self.practice.practiceColumns[i];
-                // TODO delet column
-                //[self.practice.practiceColumns removeObject:column];
+                PracticeColumn *column = self.practice.practiceColumns[i];
+                [self.practice removePracticeColumnsObject:column];
+                NSError *error = nil;
+                if (![self.managedObjectContext save:&error]) {
+                    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+                    abort();
+                }
             }
         }
         [self.collectionView reloadInputViews];
@@ -385,7 +393,6 @@
         }
          
     }
-    
     [self.collectionView reloadData];
 }
 

@@ -33,4 +33,9 @@
     self.practiceItems = tempSet;
 }
 
+- (void)removePracticeItemsObject:(PracticeItem *)value{
+    NSMutableOrderedSet* tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.practiceItems];
+    [tempSet removeObject:value];
+    self.practiceItems = tempSet;
+}
 @end
