@@ -384,7 +384,7 @@
 }
 
 - (void)draggingStarted:(UIPanGestureRecognizer *)sender forItem:(PracticeItem *)item{
-	//NSLog(@"Dragging started");
+	NSLog(@"Dragging started");
 	CGPoint touchPoint = [sender locationOfTouch:0 inView:self.collectionView];
 	initialDraggingFrame.origin = touchPoint;
 	initialDraggingFrame.size.height = ([item.numberOfMinutes integerValue] * self.pixelRatio);
@@ -403,7 +403,7 @@
 }
 
 - (void)draggingChanged:(UIPanGestureRecognizer *)sender{
-	//NSLog(@"Dragging changed");
+	NSLog(@"Dragging changed");
 	// move the cell around
 	CGPoint translation = [sender translationInView:self.collectionView];
 	CGRect newFrame = initialDraggingFrame;
@@ -412,7 +412,8 @@
 	draggingCell.frame = newFrame;
 }
 - (void)draggingEnded:(UIPanGestureRecognizer *)sender{
-	// add the cell to the appropriate place
+	NSLog(@"Dragging ended");
+    // add the cell to the appropriate place
 	CGPoint translation = [sender translationInView:self.collectionView];
 	CGRect newFrame = initialDraggingFrame;
 	newFrame.origin.x += translation.x;
@@ -438,7 +439,7 @@
 			PracticeItem *item = landingColumn.practiceItems[i];
 			if(landingItem == item){
 				// TODO save object
-                //[landingColumn.practiceItems insertObject:draggingItem atIndex:i+1];
+                draggingItem.practiceColumn = landingColumn;
 				break;
 			}
 		}

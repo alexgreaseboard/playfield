@@ -72,6 +72,7 @@
         UITableViewCell *cell = [self.dragOptionsTable cellForRowAtIndexPath:newPinchedIndexPath1];
         UILabel *label = (UILabel *)[cell viewWithTag:88];
         PracticeItem *item = [NSEntityDescription insertNewObjectForEntityForName:@"PracticeItem" inManagedObjectContext:self.managedObjectContext];
+        item.itemType = @"item";
         item.itemName = label.text;
         if(newPinchedIndexPath1.item == 0){
             item.numberOfMinutes = [NSNumber numberWithInt:10];

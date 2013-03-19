@@ -147,7 +147,7 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-    // select the practice that was just added
+    // TODO select the practice that was just added
     /*
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][0];
     int index = [[sectionInfo objects] indexOfObject:practice];
