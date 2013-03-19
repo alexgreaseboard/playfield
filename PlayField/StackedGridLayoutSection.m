@@ -65,7 +65,7 @@
     // 3
     CGRect frame;
     //CGFloat _columnWidth = [self widthForItemAtColumnIndex:columnIndex];
-//     NSLog(@"Adding item to column %d width: %f", columnIndex, _columnWidth);
+     //NSLog(@"Adding item to column %d width: %f", columnIndex, _evenColumnWidth);
     
     if(columnIndex % 2 == 0){
         frame.origin.y = _frame.origin.y + columnHeight + _itemInsets.top - 5;

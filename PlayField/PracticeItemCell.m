@@ -18,6 +18,7 @@
     if (foundLabel) [foundLabel removeFromSuperview];
     foundLabel = [self viewWithTag:56];
     if (foundLabel) [foundLabel removeFromSuperview];
+    self.backgroundColor = [UIColor whiteColor]; // reset the background color
     
     //header
     if([practiceItem.itemType isEqualToString:@"header"]){
@@ -35,7 +36,6 @@
     } else if([practiceItem.itemType isEqualToString:@"time"]){
         //time
         CALayer *layer = [self layer];
-
         [self addTimeCellLabel:practiceItem withFrame:frame];
         layer.borderWidth = 0;
     } else {
@@ -44,6 +44,8 @@
         CALayer *layer = [self layer];
         layer.borderWidth = 0;
     }
+    
+    //[self addRoundedCorners];
 }
 
 -(void)addRoundedCorners{

@@ -58,14 +58,24 @@
 
 -(void)resetViewWithPractice:(Practice*)practice{
     self.practice = practice;
+    //calculate the pixel ratio based on the size of the frame and the duration of the practice
+    CGRect screenRect = [self.view frame];
+    screenRect.origin.y += 15;
+    screenRect.size.height -=15;
+    int headerHeight = HEADER_HEIGHT;
+    self.pixelRatio = ((screenRect.size.height - 25 - headerHeight) / ([self.practice.practiceDuration integerValue]));
+    if(self.pixelRatio < 8.0){
+        self.pixelRatio = 8.0;
+    }
+    // generate the time labels
+    for(PracticeColumn* column in practice.practiceColumns){
+        [self generateTimeItemsForColumn:column];
+    }
     
     // reset first
     // TODO really clean the collection view
     [self.collectionView removeFromSuperview];
     [self.tableView removeFromSuperview];
-    
-    //calculate the pixel ratio based on the size of the frame and the duration of the practice
-    CGRect screenRect = [self.view frame];
     
     // stacked grid layout - the calendar portion
     self.stackedGridLayout = [[StackedGridLayout alloc] init];
@@ -88,14 +98,6 @@
     pinching.delegate = self;
     [self.collectionView addGestureRecognizer:pinching];
     
-    
-    screenRect.origin.y += 15;
-    screenRect.size.height -=15;
-    int headerHeight = HEADER_HEIGHT;
-    self.pixelRatio = ((screenRect.size.height - 25 - headerHeight) / ([self.practice.practiceDuration integerValue]));
-    if(self.pixelRatio < 8.0){
-        self.pixelRatio = 8.0;
-    }
     NSLog(@"Pixel Ratio: %f",self.pixelRatio);
     
     // table - the times behind the calendar
@@ -103,6 +105,7 @@
     tableFrame.origin.y = tableFrame.origin.y + headerHeight - (5*self.pixelRatio);
     tableFrame.origin.x = 20;
     tableFrame.size.width = tableFrame.size.width + 200;
+    
     self.tableView = [[UITableView alloc] initWithFrame:tableFrame];
     self.tableView.dataSource = self,
     self.tableView.delegate = self;
@@ -153,6 +156,7 @@
     if([practiceItem.itemType isEqualToString:@"item"] && practiceItem.backgroundColor == nil){
         [self setColorForItem:practiceItem];
     }
+    //NSLog(@"Drawing %d - %@", indexPath.item, practiceItem.backgroundColor);
     [cell configureCellForPracticeItem:practiceItem withframe:cell.frame];
     return cell;
 }
@@ -180,7 +184,7 @@
 -(PracticeItem *) findItemAtIndex:(NSInteger)index{
     PracticeItem *item = nil;
     NSInteger count = 0;
-    NSInteger columnNumber = 0;
+    int columnNumber = 0;
     for(PracticeColumn *practiceColumn in self.practice.practiceColumns){
         
         NSInteger initialCount = count;
@@ -188,7 +192,6 @@
         if(index < count){
             item = practiceColumn.timePracticeItems[count - initialCount - practiceColumn.timePracticeItems.count + (index - initialCount)];
             item.columnNumber = [NSNumber numberWithInt:columnNumber];
-            //NSLog(@"Found Item %@", item);
             break;
         }
         columnNumber ++;
@@ -467,27 +470,8 @@
     columnHeader.numberOfMinutes = [NSNumber numberWithInt:height];
     [column addPracticeItemsObject:columnHeader];
     
-
-    // add the time header
-    PracticeItem *item = [NSEntityDescription insertNewObjectForEntityForName:@"PracticeItem" inManagedObjectContext:self.managedObjectContext];
-    [item createTimeHeader];
-    item.numberOfMinutes = [NSNumber numberWithInt:height];
-    item.columnNumber = [NSNumber numberWithInt:([self.practice.practiceColumns count] - 2)];
-    column.timePracticeItems = [[NSMutableArray alloc] initWithCapacity:20];
-    newItemCount ++;
-    item.practiceColumn = column;
-
-    //generate the time items
-    int practiceDuration = self.practice.practiceDuration.integerValue;
-    for(int i=0; i<practiceDuration + 5; i+=5){
-        int hours = i / 60;
-        int minutes = i % 60;
-        PracticeItem *timeItem = [NSEntityDescription insertNewObjectForEntityForName:@"PracticeItem" inManagedObjectContext:self.managedObjectContext];
-        [timeItem createTimeItemWithLabel:[NSString stringWithFormat:@"%02d:%02d",hours, minutes] ];
-        timeItem.numberOfMinutes = [NSNumber numberWithInt:5];
-        timeItem.practiceColumn = column;
-        newItemCount ++;
-    }
+    // add the time labels
+    newItemCount += [self generateTimeItemsForColumn:column];
     //NSLog(@"Updating collection view");
     // update the collection view
     NSMutableArray *newIndexes = [[NSMutableArray alloc] initWithCapacity:newItemCount];
@@ -503,6 +487,28 @@
     }
     [self.collectionView reloadData];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (int)generateTimeItemsForColumn:(PracticeColumn*)column{
+    // add the time header
+    PracticeItem *item = [NSEntityDescription insertNewObjectForEntityForName:@"PracticeItem" inManagedObjectContext:self.managedObjectContext];
+    [item createTimeHeader];
+    column.timePracticeItems = [[NSMutableArray alloc] initWithCapacity:20];
+    [column.timePracticeItems addObject:item];
+    int newItemCount = 1;
+    
+    
+    //generate the time items
+    int practiceDuration = self.practice.practiceDuration.integerValue;
+    for(int i=0; i<practiceDuration + 5; i+=5){
+        int hours = i / 60;
+        int minutes = i % 60;
+        PracticeItem *timeItem = [NSEntityDescription insertNewObjectForEntityForName:@"PracticeItem" inManagedObjectContext:self.managedObjectContext];
+        [timeItem createTimeItemWithLabel:[NSString stringWithFormat:@"%02d:%02d",hours, minutes] ];
+        [column.timePracticeItems addObject:timeItem];
+        newItemCount ++;
+    }
+    return newItemCount;
 }
 - (void)practiceColumnEditController:(PracticeColumnEditController *)controller didFinishEditingColumn:(PracticeColumn *)column{
     [self.collectionView reloadData];
