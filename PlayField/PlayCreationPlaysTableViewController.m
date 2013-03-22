@@ -47,6 +47,13 @@
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
+    
+    // gesture recognizer for drag & drop
+    UIPanGestureRecognizer *panning = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePanning:)];
+    panning.minimumNumberOfTouches = 1;
+    panning.maximumNumberOfTouches = 1;
+    panning.delegate = self;
+    [self.tableView addGestureRecognizer:panning];
 }
 
 - (void)didReceiveMemoryWarning
