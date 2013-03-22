@@ -49,6 +49,8 @@
     self.managedObjectContext = appDelegate.managedObjectContext;
     self.view.backgroundColor = [UIColor whiteColor];
     
+    //self.splitViewController.tabBarController.
+    
     self.availableColors = [[NSMutableArray alloc] initWithCapacity:20];
     [self.availableColors addObject:[UIColor colorWithRed:.17 green:.26 blue:.37 alpha:0.75]];// blue
     [self.availableColors addObject:[UIColor colorWithRed:.66 green:.15 blue:.18 alpha:0.75]];// red
@@ -394,18 +396,24 @@
     [self.collectionView reloadData];
 }
 
-- (void)draggingStarted:(UIPanGestureRecognizer *)sender forItem:(PracticeItem *)item{
+- (void)draggingStarted:(UIPanGestureRecognizer *)sender forPlayWithName:(NSString *)name{
 	//NSLog(@"Dragging started");
+    if(self.practice == nil){
+        return;
+    }
 	CGPoint touchPoint = [sender locationOfTouch:0 inView:self.collectionView];
 	initialDraggingFrame.origin = touchPoint;
-	initialDraggingFrame.size.height = ([item.numberOfMinutes integerValue] * self.pixelRatio);
+	initialDraggingFrame.size.height = (10 * self.pixelRatio);
 	initialDraggingFrame.size.width = 200;
 	// center the cell
 	initialDraggingFrame.origin.x -= (initialDraggingFrame.size.width / 2);
 	initialDraggingFrame.origin.y -= (8 + self.collectionView.contentOffset.y);
-	
+    
 	// add the cell to the view
-	draggingItem = item;
+	draggingItem = [NSEntityDescription insertNewObjectForEntityForName:@"PracticeItem" inManagedObjectContext:self.managedObjectContext];
+    draggingItem.itemType = @"item";
+    draggingItem.numberOfMinutes = [NSNumber numberWithInt:10];
+    draggingItem.itemName = name;
     [self setColorForItem:draggingItem];
     NSLog(@"Set %@ color to %@", draggingItem.itemType, draggingItem.backgroundColor);
 	draggingCell = [[PracticeItemCell alloc] initWithFrame:initialDraggingFrame];
@@ -413,11 +421,15 @@
 	
     placeholderItem = [NSEntityDescription insertNewObjectForEntityForName:@"PracticeItem" inManagedObjectContext:self.managedObjectContext];
     placeholderItem.itemType = @"placeholder";
-    placeholderItem.numberOfMinutes = draggingItem.numberOfMinutes;
+    placeholderItem.numberOfMinutes = [NSNumber numberWithInt:10];
+    placeholderItem.itemName = name;
 	[self.view addSubview:draggingCell];
 }
 
 - (void)draggingChanged:(UIPanGestureRecognizer *)sender{
+    if(self.practice == nil){
+        return;
+    }
 	//NSLog(@"Dragging changed");
 	// move the cell around
 	CGPoint translation = [sender translationInView:self.collectionView];
@@ -472,6 +484,9 @@
     [self.collectionView reloadData];
 }
 - (void)draggingEnded:(UIPanGestureRecognizer *)sender{
+    if(self.practice == nil){
+        return;
+    }
 	NSLog(@"dragging ended");
     // add the cell to the appropriate place
 	[self addDraggedCell:sender forItem:draggingItem];
