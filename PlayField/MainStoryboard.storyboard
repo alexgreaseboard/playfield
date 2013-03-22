@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C3103" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="n7z-tV-jrc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="n7z-tV-jrc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -1646,7 +1646,13 @@
                             <constraint firstItem="PW9-t2-Slb" firstAttribute="leading" secondItem="xBC-9T-X4D" secondAttribute="leading" type="default" id="eBf-46-ngN"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Playbooks" id="YUO-1H-1Dh"/>
+                    <navigationItem key="navigationItem" title="Playbooks" id="YUO-1H-1Dh">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="W91-jC-2hO">
+                            <connections>
+                                <action selector="addPlaybook:" destination="DQv-wx-gd3" id="3QF-dt-Hj3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SIn-ns-kpW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1870,7 +1876,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="4p1-zO-d8O">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="DaT-UT-lW2"/>
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="DaT-UT-lW2">
+                            <connections>
+                                <action selector="returnToPlaybooks:" destination="6Tj-h9-XQb" id="wow-7d-ztl"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="ZCP-bt-L4J"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oEU-wy-T7D" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2731,6 +2742,9 @@
         </class>
         <class className="PlaybookDetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaybookDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="returnToPlaybooks:"/>
+            </relationships>
         </class>
         <class className="PlaybookViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaybookViewController.h"/>
