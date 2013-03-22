@@ -44,6 +44,7 @@
     <entity name="PracticeColumn" representedClassName="PracticeColumn" syncable="YES">
         <attribute name="color" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="columnName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="practice" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Practice" inverseName="practiceColumns" inverseEntity="Practice" syncable="YES"/>
         <relationship name="practiceItems" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="PracticeItem" inverseName="practiceColumn" inverseEntity="PracticeItem" syncable="YES"/>
     </entity>
@@ -66,7 +67,7 @@
         <element name="Player" positionX="-641" positionY="-45" width="128" height="240"/>
         <element name="PlaySprite" positionX="-200" positionY="-45" width="128" height="105"/>
         <element name="Practice" positionX="-162" positionY="324" width="128" height="88"/>
-        <element name="PracticeColumn" positionX="52" positionY="324" width="128" height="105"/>
+        <element name="PracticeColumn" positionX="52" positionY="324" width="128" height="120"/>
         <element name="PracticeItem" positionX="34" positionY="477" width="128" height="120"/>
         <element name="SpritePoint" positionX="7" positionY="-45" width="128" height="88"/>
     </elements>

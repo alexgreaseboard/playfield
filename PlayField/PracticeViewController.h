@@ -11,11 +11,13 @@
 #import "PracticeColumnEditController.h"
 #import "Practice.h"
 #import "PlayCreationPlaysTableViewController.h"
+#import "PracticeEditViewController.h"
 
-@interface PracticeViewController : UIViewController<PracticeItemControllerDelegate, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, PlayCreationPlaysDelegate, PracticeColumnEditControllerDelegate>
+@interface PracticeViewController : UIViewController<PracticeItemControllerDelegate, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, PlayCreationPlaysDelegate, PracticeColumnEditControllerDelegate, PracticeEditControllerDelegate>
 
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) Practice *practice;
 
+- (IBAction)editPractice:(id)sender;
 -(void)resetViewWithPractice:(Practice*)practice;
 @end

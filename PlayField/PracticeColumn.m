@@ -14,7 +14,7 @@
 @implementation PracticeColumn
 
 @dynamic columnName;
-@dynamic color;
+@dynamic notes;
 @dynamic practice;
 @dynamic practiceItems;
 @synthesize timePracticeItems;

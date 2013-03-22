@@ -16,8 +16,9 @@
 #import "PracticeOptionsController.h"
 #import "PracticeColumnEditController.h"
 #import "AppDelegate.h"
+#import "PracticeOtherItemsTableViewController.h"
 
-@interface PracticeViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, PracticeOptionsDelegate>
+@interface PracticeViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, PracticeOptionsDelegate, PracticeOtherItemsDelegate>
 @property(nonatomic, weak) IBOutlet UIToolbar *toolbar;
 @property(nonatomic, weak) IBOutlet UIBarButtonItem *menuButton;
 @property(nonatomic, weak) IBOutlet UITextField *textField;
@@ -61,6 +62,9 @@
 }
 
 // set the practice
+
+- (IBAction)EditPractice:(id)sender {
+}
 
 -(void)resetViewWithPractice:(Practice*)practice{
     self.practice = practice;
@@ -288,15 +292,20 @@
         PracticeItemEditController *practiceItemController = (PracticeItemEditController *)navigationController.topViewController;
         practiceItemController.delegate = self;
         practiceItemController.practiceItem = sender;
-    } else if([segue.identifier isEqualToString:@"showPracticeOptionsPopover"]){
+    } /*else if([segue.identifier isEqualToString:@"showPracticeOptionsPopover"]){
         PracticeOptionsController *controller = segue.destinationViewController;
         controller.delegate = self;
         practiceOptionsPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
-    } else if([segue.identifier isEqualToString:@"showPracticeColumnEdit"]){
+    } */else if([segue.identifier isEqualToString:@"showPracticeColumnEdit"] || [segue.identifier isEqualToString:@"showPracticeOptionsPopover"]){
         UINavigationController *navigationController = segue.destinationViewController;
         PracticeColumnEditController *practiceColumnController = (PracticeColumnEditController *)navigationController.topViewController;
         practiceColumnController.delegate = self;
         practiceColumnController.practiceColumn = sender;
+    } else if([segue.identifier isEqualToString:@"showPracticeEdit"]){
+        UINavigationController *navigationController = segue.destinationViewController;
+        PracticeEditViewController *practiceController = (PracticeEditViewController *)navigationController.topViewController;
+        practiceController.delegate = self;
+        practiceController.practice = self.practice;
     }
 }
 
@@ -315,7 +324,27 @@
 }
 
 -(IBAction)actionButtonTapped:(id)sender{
-    [self performSegueWithIdentifier:@"showPracticeOptionsPopover" sender:sender];
+    //[self performSegueWithIdentifier:@"showPracticeOptionsPopover" sender:sender];
+    [self performSegueWithIdentifier:@"showPracticeColumnEdit" sender:nil];
+}
+
+- (IBAction)editPractice:(id)sender{
+    [self performSegueWithIdentifier:@"showPracticeEdit" sender:sender];
+}
+
+#pragma mark -PracticeEditViewController
+- (void)practiceEditController:(PracticeEditViewController *)controller didFinishAddingPractice:(Practice *)practice{
+    [self resetViewWithPractice:practice];
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+- (void)practiceEditController:(PracticeEditViewController *)controller didCancelAddingPractice:(Practice *)practice{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - PracticeItemController
@@ -398,7 +427,7 @@
 
 - (void)draggingStarted:(UIPanGestureRecognizer *)sender forPlayWithName:(NSString *)name{
 	//NSLog(@"Dragging started");
-    if(self.practice == nil){
+    if(self.practice == nil || name == nil  || [self.practice.practiceColumns count] == 0){
         return;
     }
 	CGPoint touchPoint = [sender locationOfTouch:0 inView:self.collectionView];
@@ -427,7 +456,7 @@
 }
 
 - (void)draggingChanged:(UIPanGestureRecognizer *)sender{
-    if(self.practice == nil){
+    if(self.practice == nil || draggingCell == nil || [self.practice.practiceColumns count] == 0){
         return;
     }
 	//NSLog(@"Dragging changed");
@@ -484,7 +513,7 @@
     [self.collectionView reloadData];
 }
 - (void)draggingEnded:(UIPanGestureRecognizer *)sender{
-    if(self.practice == nil){
+    if(self.practice == nil || draggingCell == nil || [self.practice.practiceColumns count] == 0){
         return;
     }
 	NSLog(@"dragging ended");

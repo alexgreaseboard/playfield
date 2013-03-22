@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PracticeOtherItemsTableViewController : UITableViewController
+// Drag & drop
+@protocol PracticeOtherItemsDelegate
+- (void)draggingStarted:(UIPanGestureRecognizer *)sender forPlayWithName:(NSString *)name;
+- (void)draggingChanged:(UIPanGestureRecognizer *)sender;
+- (void)draggingEnded:(UIPanGestureRecognizer *)sender;
+@end
 
+@interface PracticeOtherItemsTableViewController : UITableViewController<UIGestureRecognizerDelegate>
+@property (nonatomic, strong) id<PracticeOtherItemsDelegate> delegate;
 @end

@@ -41,6 +41,8 @@
     } else {
         isReadOnly = YES;
         self.tableView.allowsSelection = NO;
+        self.editing = NO;
+        self.tableView.editing = NO;
         // For Jai - move this out of the else if you implement the PlayCreationPlayDelegate
         self.delegate = (id<PlayCreationPlaysDelegate>)[[self.splitViewController.viewControllers lastObject] topViewController];
     }
@@ -107,6 +109,10 @@
     [self.detailViewController setCurrentPlay:play];
 }
 
+- (BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return(!isReadOnly);
+}
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
