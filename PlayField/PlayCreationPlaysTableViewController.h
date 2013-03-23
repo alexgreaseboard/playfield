@@ -10,11 +10,19 @@
 #import <CoreData/CoreData.h>
 #import "CocosViewController.h"
 
-@interface PlayCreationPlaysTableViewController : UITableViewController <NSFetchedResultsControllerDelegate,UIAlertViewDelegate>
+// Drag & drop
+@protocol PlayCreationPlaysDelegate
+- (void)draggingStarted:(UIPanGestureRecognizer *)sender forPlayWithName:(NSString *)name;
+- (void)draggingChanged:(UIPanGestureRecognizer *)sender;
+- (void)draggingEnded:(UIPanGestureRecognizer *)sender;
+@end
+
+@interface PlayCreationPlaysTableViewController : UITableViewController <NSFetchedResultsControllerDelegate,UIAlertViewDelegate,UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) CocosViewController *detailViewController;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) id<PlayCreationPlaysDelegate> delegate;
 
 - (IBAction)insertNewPlay:(id)sender;
 

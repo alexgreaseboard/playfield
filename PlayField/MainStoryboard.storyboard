@@ -1894,12 +1894,15 @@
                 <viewController id="9Cn-2R-N3K" customClass="PracticeViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Title" id="SBh-oX-pTi">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="wW2-R7-GWp">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="bqj-h2-PNX">
+                            <connections>
+                                <action selector="EditPractice:" destination="9Cn-2R-N3K" id="1qH-b0-Qd3"/>
+                                <segue destination="trB-pc-MpL" kind="modal" identifier="showPracticeEdit" modalPresentationStyle="formSheet" id="Tn5-6h-NGe"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="wW2-R7-GWp">
                             <connections>
                                 <action selector="actionButtonTapped:" destination="9Cn-2R-N3K" id="g2v-mp-eBi"/>
-                                <segue destination="tlV-fw-ucE" kind="popover" identifier="showPracticeOptionsPopover" popoverAnchorBarButtonItem="wW2-R7-GWp" id="RWz-AG-JTX">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1959,8 +1962,10 @@
                     </tabBar>
                     <connections>
                         <segue destination="R0c-RF-Fy8" kind="relationship" relationship="viewControllers" id="xdw-2C-MoQ"/>
+                        <segue destination="ezh-EN-rKe" kind="relationship" relationship="viewControllers" id="cUa-Av-ZWM"/>
                         <segue destination="ow7-LE-85s" kind="relationship" relationship="viewControllers" id="Mus-b5-FUq"/>
                         <segue destination="CuL-DS-hMG" kind="relationship" relationship="viewControllers" id="gyw-ju-xNc"/>
+                        <segue destination="ohG-RH-FgK" kind="relationship" relationship="viewControllers" id="i6J-e3-naX"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZV6-PX-DcA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2014,7 +2019,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YVz-R5-GH8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2165" y="6113"/>
+            <point key="canvasLocation" x="1279" y="6047"/>
         </scene>
         <!--Navigation Controller - Practices-->
         <scene sceneID="OwM-fc-VPO">
@@ -2033,7 +2038,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wwr-d8-EfY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1739" y="6113"/>
+            <point key="canvasLocation" x="893" y="6037"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="j1E-te-Ah5">
@@ -2199,54 +2204,19 @@
                                     <action selector="generateRandomData:" destination="tlV-fw-ucE" eventType="touchUpInside" id="Ogw-fy-FHn"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="QOI-LY-yWn">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="244" id="Gv0-xc-c82"/>
-                                    <constraint firstAttribute="width" constant="210" id="aAk-uI-lVo"/>
-                                </constraints>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DragCell" textLabel="o1J-LZ-EIZ" style="IBUITableViewCellStyleDefault" id="O1a-VQ-Gzl">
-                                        <rect key="frame" x="0.0" y="22" width="210" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="210" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="88" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="o1J-LZ-EIZ">
-                                                    <rect key="frame" x="10" y="0.0" width="190" height="43"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="delegate" destination="tlV-fw-ucE" id="puK-jK-YkS"/>
-                                </connections>
-                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="sJ0-HI-GXL" firstAttribute="top" secondItem="E58-Wn-D1e" secondAttribute="top" constant="7" id="1Dv-vY-LDR"/>
                             <constraint firstItem="cBb-98-iU8" firstAttribute="top" secondItem="sJ0-HI-GXL" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="2dR-IF-Lam"/>
-                            <constraint firstItem="QOI-LY-yWn" firstAttribute="top" secondItem="cBb-98-iU8" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="94a-sF-FKj"/>
                             <constraint firstItem="cBb-98-iU8" firstAttribute="trailing" secondItem="sJ0-HI-GXL" secondAttribute="trailing" type="default" id="eeC-Df-lfZ"/>
-                            <constraint firstItem="QOI-LY-yWn" firstAttribute="centerX" secondItem="cBb-98-iU8" secondAttribute="centerX" type="default" id="eoF-cg-Qyg"/>
                             <constraint firstItem="sJ0-HI-GXL" firstAttribute="leading" secondItem="E58-Wn-D1e" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="mWX-s0-bzj"/>
                             <constraint firstItem="cBb-98-iU8" firstAttribute="leading" secondItem="E58-Wn-D1e" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="oJO-R5-jAJ"/>
                         </constraints>
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="120" height="200"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <connections>
-                        <outlet property="dragOptionsTable" destination="QOI-LY-yWn" id="Tql-QS-ocB"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AFF-Kk-2IN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2256,23 +2226,23 @@
         <scene sceneID="PJH-OW-N46">
             <objects>
                 <tableViewController autoresizesArchivedViewToFullSize="NO" title="Column Add/Edit" modalPresentationStyle="formSheet" id="ps3-ND-3lb" customClass="PracticeColumnEditController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Lgc-LT-vvf">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Lgc-LT-vvf">
                         <rect key="frame" x="0.0" y="64" width="540" height="512"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection id="6xD-w5-FB6">
+                            <tableViewSection headerTitle="Column Name" id="6xD-w5-FB6">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="4MX-Br-0HI">
-                                        <rect key="frame" x="0.0" y="0.0" width="540" height="44"/>
+                                        <rect key="frame" x="0.0" y="54" width="540" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
+                                            <rect key="frame" x="31" y="1" width="478" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Column Name" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="G42-W1-G6t">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="495" id="Cfy-gg-UTM"/>
+                                                        <constraint firstAttribute="width" constant="454" id="bBs-xz-xIo"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -2285,7 +2255,35 @@
                                         </view>
                                         <constraints>
                                             <constraint firstItem="G42-W1-G6t" firstAttribute="centerY" secondItem="4MX-Br-0HI" secondAttribute="centerY" type="default" id="MTB-pZ-mrh"/>
-                                            <constraint firstItem="G42-W1-G6t" firstAttribute="leading" secondItem="4MX-Br-0HI" secondAttribute="leading" constant="15" id="Rb9-Ex-Ny2"/>
+                                            <constraint firstItem="G42-W1-G6t" firstAttribute="centerX" secondItem="4MX-Br-0HI" secondAttribute="centerX" type="default" id="Ptg-zQ-Uv8"/>
+                                        </constraints>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Notes" id="u0y-ec-Wny">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="250" id="A5f-Uc-Y8l">
+                                        <rect key="frame" x="0.0" y="144" width="540" height="252"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="31" y="1" width="478" height="249"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvv-lt-JB3">
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="466" id="QdZ-kP-ezK"/>
+                                                        <constraint firstAttribute="height" constant="242" id="dgh-6u-4Hy"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="fvv-lt-JB3" firstAttribute="centerX" secondItem="A5f-Uc-Y8l" secondAttribute="centerX" type="default" id="FAl-nr-Frf"/>
+                                            <constraint firstItem="fvv-lt-JB3" firstAttribute="top" secondItem="A5f-Uc-Y8l" secondAttribute="top" constant="3" id="gsj-2u-vjU"/>
                                         </constraints>
                                     </tableViewCell>
                                 </cells>
@@ -2323,6 +2321,7 @@
                         <outlet property="columnNameTextField" destination="G42-W1-G6t" id="i8Y-1y-xcT"/>
                         <outlet property="deleteButton" destination="w46-Yt-Jyx" id="c9M-6j-P0v"/>
                         <outlet property="doneButton" destination="6BQ-AR-TlX" id="req-J5-yCd"/>
+                        <outlet property="notesField" destination="fvv-lt-JB3" id="e7h-M7-i5T"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GsL-0Q-L4m" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2517,7 +2516,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2sm-4R-2Xm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4691" y="5182"/>
+            <point key="canvasLocation" x="4509" y="5430"/>
         </scene>
         <!--Practice Edit View Controller - New Practice-->
         <scene sceneID="hlT-vc-lfL">
@@ -2631,7 +2630,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8sz-Eg-626" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5367" y="5182"/>
+            <point key="canvasLocation" x="5177" y="5430"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UR6-OD-GfJ">
@@ -2669,6 +2668,119 @@
             </objects>
             <point key="canvasLocation" x="2403" y="4622"/>
         </scene>
+        <!--Play Creation Plays Table View Controller - Offense-->
+        <scene sceneID="BRT-bg-JbW">
+            <objects>
+                <tableViewController title="Offense" id="CiA-Or-d88" customClass="PlayCreationPlaysTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Upd-X0-R0q">
+                        <rect key="frame" x="0.0" y="64" width="320" height="739"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CreationPlayCell" textLabel="w8t-NS-uVE" style="IBUITableViewCellStyleDefault" id="Vf7-z9-IAC" customClass="PlayCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="w8t-NS-uVE">
+                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <outlet property="nameLabel" destination="w8t-NS-uVE" id="CFU-DJ-7mn"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Wjn-lV-PDs"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k39-Ld-Z9E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2137" y="6037"/>
+        </scene>
+        <!--Navigation Controller - Offense-->
+        <scene sceneID="1hg-zn-QrQ">
+            <objects>
+                <navigationController id="ezh-EN-rKe" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Offense" id="SdW-b3-Muh"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pd6-yM-w5p">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="CiA-Or-d88" kind="relationship" relationship="rootViewController" id="l0M-6s-SYc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iJ1-Ne-zCX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1729" y="6047"/>
+        </scene>
+        <!--Practice Other Items Table View Controller - Drill-->
+        <scene sceneID="BPm-w5-bmc">
+            <objects>
+                <tableViewController title="Drill" id="EUn-Jg-HId" customClass="PracticeOtherItemsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="hdL-94-gol">
+                        <rect key="frame" x="0.0" y="64" width="320" height="739"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PracticeOtherItem" textLabel="2Ac-IV-o41" style="IBUITableViewCellStyleDefault" id="cSl-qt-tCO" customClass="PlayCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="43" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2Ac-IV-o41">
+                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <outlet property="nameLabel" destination="2Ac-IV-o41" id="PZB-Ng-WeJ"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="EUF-xb-h7o"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zzH-3G-nC6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4873" y="6143"/>
+        </scene>
+        <!--Navigation Controller - Other-->
+        <scene sceneID="XVH-SP-JNb">
+            <objects>
+                <navigationController title="Other" id="ohG-RH-FgK" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Other" id="9l4-lf-GCG"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bQH-kt-le5">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="EUn-Jg-HId" kind="relationship" relationship="rootViewController" id="Dqv-dm-uAK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dFL-jE-Xg3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4407" y="6135"/>
+        </scene>
     </scenes>
     <resources>
         <image name="bttn-playbooks.png" width="482" height="117"/>
@@ -2677,213 +2789,12 @@
         <image name="bttn-roster.png" width="482" height="117"/>
         <image name="greaseboard-logo.png" width="1042" height="424"/>
     </resources>
-    <classes>
-        <class className="CocosViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CocosViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="saveButtonPressed:"/>
-                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="notes" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="MainViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="showPlaybook:"/>
-                <relationship kind="action" name="showPlaysDrills:"/>
-                <relationship kind="action" name="showPractices:"/>
-                <relationship kind="action" name="showRoster:"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="PlayCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="PlayCreationDetailsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayCreationDetailsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelPlayDetails:"/>
-                <relationship kind="action" name="savePlayDetails:"/>
-                <relationship kind="outlet" name="playName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="playNotes" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="playType" candidateClass="UIPickerView"/>
-            </relationships>
-        </class>
-        <class className="PlayCreationItemsTableViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayCreationItemsTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addSprite:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="PlayCreationPlaysTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayCreationPlaysTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="insertNewPlay:"/>
-            </relationships>
-        </class>
-        <class className="PlayDrillItemCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayDrillItemCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="image" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="itemName" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="PlaybookCell" superclassName="UICollectionViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaybookCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="PlaybookDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaybookDetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="returnToPlaybooks:"/>
-            </relationships>
-        </class>
-        <class className="PlaybookViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaybookViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addPlaybook:"/>
-                <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
-            </relationships>
-        </class>
-        <class className="PlayerCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayerCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="positionLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="PracticeCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PracticeCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="durationLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="practiceLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="PracticeColumnEditController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PracticeColumnEditController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancel:"/>
-                <relationship kind="action" name="deleteColumn:"/>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="outlet" name="columnNameTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="deleteButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="doneButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="PracticeEditViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PracticeEditViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancel:"/>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="outlet" name="doneButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="practiceDuration" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="practiceName" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="PracticeItemCell" superclassName="UICollectionViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PracticeItemCell.h"/>
-        </class>
-        <class className="PracticeItemEditController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PracticeItemEditController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancel:"/>
-                <relationship kind="action" name="deleteItem:"/>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="outlet" name="deleteButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="doneButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="numberOfMinutes" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="practiceItemName" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="PracticeOptionsController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PracticeOptionsController.h"/>
-            <relationships>
-                <relationship kind="action" name="addColumn:"/>
-                <relationship kind="action" name="generateRandomData:"/>
-                <relationship kind="outlet" name="dragOptionsTable" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="PracticeViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PracticeViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
-                <relationship kind="outlet" name="menuButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="textField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
-            </relationships>
-        </class>
-        <class className="PracticesTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PracticesTableViewController.h"/>
-        </class>
-        <class className="RosterDetailEditViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RosterDetailEditViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancel"/>
-                <relationship kind="action" name="done"/>
-                <relationship kind="outlet" name="backupPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="city" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="email" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="firstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="height" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="lastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="phone" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="position" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="state" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="street" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="time40" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="weight" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="zipcode" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="RosterDetailViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RosterDetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="address" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="backupPosition" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="email" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="height" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="phone" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="position" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="time40" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="weight" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="RosterMasterViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RosterMasterViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="returnToMenu:"/>
-            </relationships>
-        </class>
-        <class className="SavePlayViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SavePlayViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="saveDuplicate:"/>
-                <relationship kind="action" name="savePlay:"/>
-                <relationship kind="action" name="saveReverse:"/>
-            </relationships>
-        </class>
-        <class className="UICollectionReusableView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
-        </class>
-        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
-        </class>
-        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="Tn5-6h-NGe"/>
+    </inferredMetricsTieBreakers>
 </document>

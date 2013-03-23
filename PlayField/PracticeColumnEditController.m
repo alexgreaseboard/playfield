@@ -16,19 +16,26 @@
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
     
+    self.title = @"New Column";
     if(self.practiceColumn != nil){
         self.columnNameTextField.text = self.practiceColumn.columnName;
-    } 
+        self.notesField.text = self.practiceColumn.notes;
+        self.title = @"Edit Column";
+    } else {
+        [self.deleteButton setEnabled:NO];
+    }
 }
 
 - (IBAction)done:(id)sender {
     if(self.practiceColumn != nil){
         self.practiceColumn.columnName = self.columnNameTextField.text;
+        self.practiceColumn.notes = self.notesField.text;
         [self.delegate practiceColumnEditController:self
                          didFinishEditingColumn:self.practiceColumn];
     } else {
         self.practiceColumn = [NSEntityDescription insertNewObjectForEntityForName:@"PracticeColumn" inManagedObjectContext:self.managedObjectContext];
         self.practiceColumn.columnName = self.columnNameTextField.text;
+        self.practiceColumn.notes = self.notesField.text;
         [self.delegate practiceColumnEditController:self didFinishAddingColumn:self.practiceColumn];
     }
 }

@@ -13,8 +13,8 @@
 
 @interface PracticeColumn : NSManagedObject
 
-@property (nonatomic, retain) NSString * columnName;
-@property (nonatomic, retain) NSString * color;
+@property (nonatomic, retain) NSString *columnName;
+@property (nonatomic, retain) NSString *notes;
 @property (nonatomic, retain) Practice *practice;
 @property (nonatomic, retain) NSOrderedSet *practiceItems;
 

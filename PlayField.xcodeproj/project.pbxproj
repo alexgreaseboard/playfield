@@ -62,6 +62,7 @@
 		392CD80C16EBBDF5008194B7 /* PracticeColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CD80B16EBBDF4008194B7 /* PracticeColumn.m */; };
 		392CD80F16EBD9E5008194B7 /* PracticesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CD80E16EBD9E5008194B7 /* PracticesTableViewController.m */; };
 		392CD81216EBDA3C008194B7 /* PracticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CD81116EBDA3C008194B7 /* PracticeCell.m */; };
+		394AEDBB16FBEF030043D6E8 /* PracticeOtherItemsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 394AEDBA16FBEF030043D6E8 /* PracticeOtherItemsTableViewController.m */; };
 		394DEEC116F55C5A0047A3B7 /* PracticeEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 394DEEBF16F395C20047A3B7 /* PracticeEditViewController.m */; };
 		6D0724AD16D6A74B00DDA641 /* PlayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0724AC16D6A74B00DDA641 /* PlayCell.m */; };
 		6D148F7816C988E70069CB76 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D148F7716C988E70069CB76 /* QuartzCore.framework */; };
@@ -290,6 +291,8 @@
 		392CD80E16EBD9E5008194B7 /* PracticesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticesTableViewController.m; sourceTree = "<group>"; };
 		392CD81016EBDA3C008194B7 /* PracticeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeCell.h; sourceTree = "<group>"; };
 		392CD81116EBDA3C008194B7 /* PracticeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeCell.m; sourceTree = "<group>"; };
+		394AEDB916FBEF030043D6E8 /* PracticeOtherItemsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeOtherItemsTableViewController.h; sourceTree = "<group>"; };
+		394AEDBA16FBEF030043D6E8 /* PracticeOtherItemsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeOtherItemsTableViewController.m; sourceTree = "<group>"; };
 		394DEEBE16F395C20047A3B7 /* PracticeEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeEditViewController.h; sourceTree = "<group>"; };
 		394DEEBF16F395C20047A3B7 /* PracticeEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeEditViewController.m; sourceTree = "<group>"; };
 		6D0724AB16D6A74B00DDA641 /* PlayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayCell.h; sourceTree = "<group>"; };
@@ -746,6 +749,8 @@
 				392CD7F016EBA1B2008194B7 /* PracticeViewController.m */,
 				392CD80D16EBD9E5008194B7 /* PracticesTableViewController.h */,
 				392CD80E16EBD9E5008194B7 /* PracticesTableViewController.m */,
+				394AEDB916FBEF030043D6E8 /* PracticeOtherItemsTableViewController.h */,
+				394AEDBA16FBEF030043D6E8 /* PracticeOtherItemsTableViewController.m */,
 			);
 			name = Practice;
 			sourceTree = "<group>";
@@ -1436,6 +1441,7 @@
 				6D91974016EE333400BA1DF3 /* PlaybookCell.m in Sources */,
 				6DC9C0E216F2C5990001644A /* PlaybookDetailViewController.m in Sources */,
 				394DEEC116F55C5A0047A3B7 /* PracticeEditViewController.m in Sources */,
+				394AEDBB16FBEF030043D6E8 /* PracticeOtherItemsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

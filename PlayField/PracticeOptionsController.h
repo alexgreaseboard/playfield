@@ -12,17 +12,13 @@
 @protocol PracticeOptionsDelegate
 - (void)addColumn;
 - (void)generateRandomData;
-- (void)draggingStarted:(UIPanGestureRecognizer *)sender forItem:(PracticeItem *)item;
-- (void)draggingChanged:(UIPanGestureRecognizer *)sender;
-- (void)draggingEnded:(UIPanGestureRecognizer *)sender;
 @end
 
 
-@interface PracticeOptionsController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>
+@interface PracticeOptionsController : UIViewController
 - (IBAction)addColumn:(id)sender;
 - (IBAction)generateRandomData:(id)sender;
 
-@property (strong, nonatomic) IBOutlet UITableView *dragOptionsTable;
 @property (nonatomic, strong) id<PracticeOptionsDelegate> delegate;
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
 

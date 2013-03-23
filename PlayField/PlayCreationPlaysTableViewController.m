@@ -14,7 +14,9 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end
 
-@implementation PlayCreationPlaysTableViewController
+@implementation PlayCreationPlaysTableViewController{
+    bool isReadOnly;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -32,10 +34,28 @@
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self action:@selector(returnToMenu:) ];
     self.navigationItem.leftBarButtonItem = menuButton;
 
-    self.detailViewController = (CocosViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    NSObject* o = [[self.splitViewController.viewControllers lastObject] topViewController];
+    if([o isKindOfClass:[CocosViewController class]]){
+        self.detailViewController = (CocosViewController *)o;
+        isReadOnly = NO;
+    } else {
+        isReadOnly = YES;
+        self.tableView.allowsSelection = NO;
+        self.editing = NO;
+        self.tableView.editing = NO;
+        // For Jai - move this out of the else if you implement the PlayCreationPlayDelegate
+        self.delegate = (id<PlayCreationPlaysDelegate>)[[self.splitViewController.viewControllers lastObject] topViewController];
+    }
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
+    
+    // gesture recognizer for drag & drop
+    UIPanGestureRecognizer *panning = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePanning:)];
+    panning.minimumNumberOfTouches = 1;
+    panning.maximumNumberOfTouches = 1;
+    panning.delegate = self;
+    [self.tableView addGestureRecognizer:panning];
 }
 
 - (void)didReceiveMemoryWarning
@@ -89,6 +109,10 @@
     [self.detailViewController setCurrentPlay:play];
 }
 
+- (BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return(!isReadOnly);
+}
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
@@ -228,6 +252,31 @@
 {
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate switchToMenu];
+}
+
+
+#pragma UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
+
+- (void)handlePanning:(UIPanGestureRecognizer *)sender {
+    
+    if(sender.state == UIGestureRecognizerStateBegan){
+        //NSLog(@"Dragging started");
+        CGPoint p1 = [sender locationOfTouch:0 inView:self.tableView];
+        NSIndexPath *newPinchedIndexPath1 = [self.tableView indexPathForRowAtPoint:p1];
+        //get the label
+        PlayCell *cell = (PlayCell*)[self.tableView cellForRowAtIndexPath:newPinchedIndexPath1];
+        [self.delegate draggingStarted:sender forPlayWithName:cell.nameLabel.text];
+    } else if(sender.state == UIGestureRecognizerStateChanged){
+        [self.delegate draggingChanged:sender];
+        //NSLog(@"Dragging..");
+    } else if(sender.state == UIGestureRecognizerStateEnded){
+        [self.delegate draggingEnded:sender];
+        //NSLog(@"Dragging stopped");
+    }
+    
 }
 
 @end

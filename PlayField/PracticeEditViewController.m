@@ -18,7 +18,13 @@
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     self.doneButton.enabled = NO;
-    self.title = @"New Practice";
+    if(self.practice.practiceName == nil){
+        self.title = @"New Practice";
+    } else {
+        self.title = @"Edit Practice";
+        self.practiceDuration.text = [self.practice.practiceDuration stringValue];
+        self.practiceName.text = self.practice.practiceName;
+    }
 }
 
 -(IBAction)done:(id)sender{

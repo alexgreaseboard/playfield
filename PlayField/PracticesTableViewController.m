@@ -44,11 +44,11 @@
     
     
     self.practiceViewController = (PracticeViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    if([self tableView:self.tableView numberOfRowsInSection:0]> 0){
+        NSIndexPath *index = [NSIndexPath indexPathForItem:0 inSection:0];
+        [self tableView:self.tableView didSelectRowAtIndexPath:index];
+        [self.tableView selectRowAtIndexPath:index animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -99,23 +99,6 @@
     }  
 }
 
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -147,14 +130,15 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-    // TODO select the practice that was just added
-    /*
+    // select the practice that was just added
+    
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][0];
     int index = [[sectionInfo objects] indexOfObject:practice];
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
     NSLog(@"Index: %@", indexPath);
-    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:nil];
-    */
+    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+    
      [self dismissViewControllerAnimated:YES completion:nil];
      
 }

@@ -30,6 +30,7 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *deleteButton;
 @property (strong, nonatomic) IBOutlet UITextField *columnNameTextField;
+@property (strong, nonatomic) IBOutlet UITextView *notesField;
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 - (IBAction)done:(id)sender;
