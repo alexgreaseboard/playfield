@@ -24,6 +24,8 @@
 @property(nonatomic, weak) IBOutlet UITextField *textField;
 @property(nonatomic, strong) IBOutlet UICollectionView *collectionView;
 @property(nonatomic, strong) UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *columnAddBtn;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *editPracticeBtn;
 
 
 @property (nonatomic, strong) StackedGridLayout *stackedGridLayout;
@@ -50,8 +52,6 @@
     self.managedObjectContext = appDelegate.managedObjectContext;
     self.view.backgroundColor = [UIColor whiteColor];
     
-    //self.splitViewController.tabBarController.
-    
     self.availableColors = [[NSMutableArray alloc] initWithCapacity:20];
     [self.availableColors addObject:[UIColor colorWithRed:.17 green:.26 blue:.37 alpha:0.75]];// blue
     [self.availableColors addObject:[UIColor colorWithRed:.66 green:.15 blue:.18 alpha:0.75]];// red
@@ -59,14 +59,22 @@
     [self.availableColors addObject:[UIColor colorWithRed:.20 green:.15 blue:.33 alpha:0.75]];// purple
     
     self.colorItemMap = [[NSMutableDictionary alloc] initWithCapacity:20];
+    
 }
 
-// set the practice
-
-- (IBAction)EditPractice:(id)sender {
+- (void) viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self resetViewWithPractice:self.practice];
 }
 
 -(void)resetViewWithPractice:(Practice*)practice{
+    if(practice == nil){
+        self.columnAddBtn.enabled =NO;
+        self.editPracticeBtn.enabled = NO;
+    } else {
+        self.columnAddBtn.enabled = YES;
+        self.editPracticeBtn.enabled = YES;
+    }
     self.practice = practice;
     self.title = practice.practiceName;
     //calculate the pixel ratio based on the size of the frame and the duration of the practice
@@ -108,7 +116,7 @@
     pinching.delegate = self;
     [self.collectionView addGestureRecognizer:pinching];
     
-    NSLog(@"Pixel Ratio: %f",self.pixelRatio);
+    //NSLog(@"Pixel Ratio: %f",self.pixelRatio);
     
     // table - the times behind the calendar
     CGRect tableFrame = screenRect;
@@ -297,10 +305,10 @@
         controller.delegate = self;
         practiceOptionsPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
     } */else if([segue.identifier isEqualToString:@"showPracticeColumnEdit"] || [segue.identifier isEqualToString:@"showPracticeOptionsPopover"]){
-        UINavigationController *navigationController = segue.destinationViewController;
-        PracticeColumnEditController *practiceColumnController = (PracticeColumnEditController *)navigationController.topViewController;
-        practiceColumnController.delegate = self;
-        practiceColumnController.practiceColumn = sender;
+            UINavigationController *navigationController = segue.destinationViewController;
+            PracticeColumnEditController *practiceColumnController = (PracticeColumnEditController *)navigationController.topViewController;
+            practiceColumnController.delegate = self;
+            practiceColumnController.practiceColumn = sender;
     } else if([segue.identifier isEqualToString:@"showPracticeEdit"]){
         UINavigationController *navigationController = segue.destinationViewController;
         PracticeEditViewController *practiceController = (PracticeEditViewController *)navigationController.topViewController;
@@ -340,6 +348,7 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
+    [self resetViewWithPractice:practice];
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
@@ -393,8 +402,10 @@
 
 #pragma mark - PracticeOptionsDelegate
 - (void)addColumn{
-    [practiceOptionsPopover dismissPopoverAnimated:YES];
-    [self performSegueWithIdentifier:@"showPracticeColumnEdit" sender:nil];
+    if(self.practice != nil){
+        [practiceOptionsPopover dismissPopoverAnimated:YES];
+        [self performSegueWithIdentifier:@"showPracticeColumnEdit" sender:nil];
+    }
 }
 -(void)generateRandomData{
     [practiceOptionsPopover dismissPopoverAnimated:YES];
@@ -444,7 +455,7 @@
     draggingItem.numberOfMinutes = [NSNumber numberWithInt:10];
     draggingItem.itemName = name;
     [self setColorForItem:draggingItem];
-    NSLog(@"Set %@ color to %@", draggingItem.itemType, draggingItem.backgroundColor);
+    //NSLog(@"Set %@ color to %@", draggingItem.itemType, draggingItem.backgroundColor);
 	draggingCell = [[PracticeItemCell alloc] initWithFrame:initialDraggingFrame];
 	[draggingCell configureCellForPracticeItem:draggingItem withframe:initialDraggingFrame];
 	
@@ -516,7 +527,7 @@
     if(self.practice == nil || draggingCell == nil || [self.practice.practiceColumns count] == 0){
         return;
     }
-	NSLog(@"dragging ended");
+	//NSLog(@"dragging ended");
     // add the cell to the appropriate place
 	[self addDraggedCell:sender forItem:draggingItem];
     NSError *error = nil;
