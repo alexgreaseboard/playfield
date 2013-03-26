@@ -41,10 +41,12 @@
     // get the app context
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
-    
-    
+}
+
+- (void) viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     self.practiceViewController = (PracticeViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-    if([self tableView:self.tableView numberOfRowsInSection:0]> 0){
+    if([self tableView:self.tableView numberOfRowsInSection:0]> 0 && self.practiceViewController.practice == nil){
         NSIndexPath *index = [NSIndexPath indexPathForItem:0 inSection:0];
         [self tableView:self.tableView didSelectRowAtIndexPath:index];
         [self.tableView selectRowAtIndexPath:index animated:YES scrollPosition:UITableViewScrollPositionMiddle];
@@ -96,6 +98,7 @@
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
+        [self.practiceViewController resetViewWithPractice:nil];
     }  
 }
 
@@ -132,10 +135,11 @@
     }
     // select the practice that was just added
     
+    [self.tableView reloadData];
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][0];
     int index = [[sectionInfo objects] indexOfObject:practice];
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
-    NSLog(@"Index: %@", indexPath);
+    //NSLog(@"Index: %@", indexPath);
     [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
     [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
     

@@ -44,9 +44,9 @@
 - (IBAction)addPlaybook:(id)sender {
     Playbook *newPlaybook = [NSEntityDescription insertNewObjectForEntityForName:@"Playbook" inManagedObjectContext:self.managedObjectContext];
     newPlaybook.name = @"New Playbook";
-    
+
     _fetchedResultsController = nil;
-    //self.fetchedResultsController = [self fetchedResultsController];
+    self.fetchedResultsController = [self fetchedResultsController];
     [self.collectionView reloadData];
     
     // Save the context.
@@ -111,6 +111,7 @@
 
 - (NSFetchedResultsController *)fetchedResultsController
 {
+    NSLog(@"Here");
     if (_fetchedResultsController != nil) {
         return _fetchedResultsController;
     }

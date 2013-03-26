@@ -153,6 +153,18 @@
     }
 }
 
+- (void)draggingStarted:(UIPanGestureRecognizer *)sender forItemWithName:(NSString *)name{
+	NSLog(@"Dragging started3");
+}
+
+- (void)draggingChanged:(UIPanGestureRecognizer *)sender{
+    NSLog(@"Dragging changed3");
+}
+
+- (void)draggingEnded:(UIPanGestureRecognizer *)sender{
+    NSLog(@"Dragging ended3");
+}
+
 - (void)panForTranslation:(CGPoint)translation {
     if (selPlayerSprite) {
         CGPoint newPos = ccpAdd(selPlayerSprite.sprite.position, translation);

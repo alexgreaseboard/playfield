@@ -7,12 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CocosViewController.h"
 
-@interface PlayCreationItemsTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@protocol PlayCreationItemsDelegate
+- (void)draggingStarted:(UIPanGestureRecognizer *)sender forItemWithName:(NSString *)name;
+- (void)draggingChanged:(UIPanGestureRecognizer *)sender;
+- (void)draggingEnded:(UIPanGestureRecognizer *)sender;
+@end
+
+@interface PlayCreationItemsTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate,UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) CocosViewController *detailViewController;
+@property (nonatomic, strong) id<PlayCreationItemsDelegate> delegate;
 
 - (IBAction)addSprite:(UIButton *)sender;
 

@@ -9,6 +9,7 @@
 #import "PlayCreationPlaysTableViewController.h"
 #import "AppDelegate.h"
 #import "PlayCell.h"
+#import "CocosViewController.h"
 
 @interface PlayCreationPlaysTableViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -16,6 +17,7 @@
 
 @implementation PlayCreationPlaysTableViewController{
     bool isReadOnly;
+    CocosViewController *detailViewController;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -36,15 +38,14 @@
 
     NSObject* o = [[self.splitViewController.viewControllers lastObject] topViewController];
     if([o isKindOfClass:[CocosViewController class]]){
-        self.detailViewController = (CocosViewController *)o;
+        detailViewController = (CocosViewController *)o;
         isReadOnly = NO;
     } else {
         isReadOnly = YES;
         self.tableView.allowsSelection = NO;
         self.editing = NO;
         self.tableView.editing = NO;
-        // For Jai - move this out of the else if you implement the PlayCreationPlayDelegate
-        self.delegate = (id<PlayCreationPlaysDelegate>)[[self.splitViewController.viewControllers lastObject] topViewController];
+        self.delegate = (id<PlayCreationPlaysDelegate>)o;
     }
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
@@ -106,7 +107,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Play *play = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-    [self.detailViewController setCurrentPlay:play];
+    [detailViewController setCurrentPlay:play];
 }
 
 - (BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
