@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "CocosViewController.h"
 
 // Drag & drop
 @protocol PlayCreationPlaysDelegate
@@ -19,7 +18,6 @@
 
 @interface PlayCreationPlaysTableViewController : UITableViewController <NSFetchedResultsControllerDelegate,UIAlertViewDelegate,UIGestureRecognizerDelegate>
 
-@property (strong, nonatomic) CocosViewController *detailViewController;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) id<PlayCreationPlaysDelegate> delegate;

@@ -10,6 +10,7 @@
 #import "PlayDrillItem.h"
 #import "PlayDrillItemCell.h"
 #import "AppDelegate.h"
+#import "CocosViewController.h"
 
 @interface PlayCreationItemsTableViewController ()
 
@@ -17,6 +18,7 @@
 
 @implementation PlayCreationItemsTableViewController {
     NSMutableArray *_items;
+    CocosViewController *detailViewController;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -40,7 +42,15 @@
     [_items addObject:[PlayDrillItem itemWithText:@"Defense" andWithImage:@"Sad.png"]];
     [_items addObject:[PlayDrillItem itemWithText:@"Cone" andWithImage:@"cone.jpeg"]];
     
-    self.detailViewController = (CocosViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    self.delegate = (id<PlayCreationItemsDelegate>)[[self.splitViewController.viewControllers lastObject] topViewController];
+    // gesture recognizer for drag & drop
+    UIPanGestureRecognizer *panning = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePanning:)];
+    panning.minimumNumberOfTouches = 1;
+    panning.maximumNumberOfTouches = 1;
+    panning.delegate = self;
+    [self.tableView addGestureRecognizer:panning];
+    
+    detailViewController = (CocosViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor blackColor];
 }
@@ -102,13 +112,37 @@
         imageName = @"cone.jpeg";
     }
     
-    [self.detailViewController addItemSprite:imageName];
+    [detailViewController addItemSprite:imageName];
 }
 
 - (IBAction)returnToMenu:(id)sender
 {
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate switchToMenu];
+}
+
+#pragma UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
+
+- (void)handlePanning:(UIPanGestureRecognizer *)sender {
+    
+    if(sender.state == UIGestureRecognizerStateBegan){
+        //NSLog(@"Dragging started");
+        CGPoint p1 = [sender locationOfTouch:0 inView:self.tableView];
+        NSIndexPath *newPinchedIndexPath1 = [self.tableView indexPathForRowAtPoint:p1];
+        //get the label
+        PlayDrillItemCell *cell = (PlayDrillItemCell*)[self.tableView cellForRowAtIndexPath:newPinchedIndexPath1];
+        [self.delegate draggingStarted:sender forItemWithName:cell.itemName.text];
+    } else if(sender.state == UIGestureRecognizerStateChanged){
+        [self.delegate draggingChanged:sender];
+        //NSLog(@"Dragging..");
+    } else if(sender.state == UIGestureRecognizerStateEnded){
+        [self.delegate draggingEnded:sender];
+        //NSLog(@"Dragging stopped");
+    }
+    
 }
 
 @end

@@ -11,10 +11,12 @@
 #import "PlayCreationDetailsViewController.h"
 #import "Play.h"
 #import "SavePlayViewController.h"
+#import "PlayCreationPlaysTableViewController.h"
+#import "PlayCreationItemsTableViewController.h"
 
 @class CocosViewController;
 
-@interface CocosViewController : UIViewController <CCDirectorDelegate,PlayCreationDetailsViewControllerDelegate,UIAlertViewDelegate,NSFetchedResultsControllerDelegate,SavePlayViewControllerDelegate>
+@interface CocosViewController : UIViewController <CCDirectorDelegate,PlayCreationDetailsViewControllerDelegate,UIAlertViewDelegate,NSFetchedResultsControllerDelegate,SavePlayViewControllerDelegate,PlayCreationItemsDelegate>
 
 @property (strong, nonatomic) Play *detailItem;
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -26,8 +28,6 @@
 - (IBAction)saveButtonPressed:(id)sender;
 
 - (void)savePlay:(id)sender;
-- (void)saveDuplicate:(id)sender;
-- (void)saveReverse:(id)sender;
 - (void)setCurrentPlay:(Play *)pPlay;
 - (void)addItemSprite:(NSString *)itemName;
 
