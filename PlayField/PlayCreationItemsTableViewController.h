@@ -19,6 +19,4 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) id<PlayCreationItemsDelegate> delegate;
 
-- (IBAction)addSprite:(UIButton *)sender;
-
 @end

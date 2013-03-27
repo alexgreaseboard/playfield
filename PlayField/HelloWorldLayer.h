@@ -10,17 +10,17 @@
 #import <GameKit/GameKit.h>
 #import "cocos2d.h"
 #import "PlaySprite.h"
-#import "CocosViewController.h"
 #import "Play.h"
+#import "PlayCreationItemsTableViewController.h"
 
-@interface HelloWorldLayer : CCLayer
+@interface HelloWorldLayer : CCLayer <PlayCreationItemsDelegate>
 
 @property (strong, nonatomic) Play *play;
 @property (nonatomic, strong) NSMutableOrderedSet *movableSprites;
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
 
-+(CCScene *) sceneWithCocosViewController:(CocosViewController *)pCocosViewController;
-- (id) initWithCocosViewController:(CocosViewController *)pCocosViewController;
++(CCScene *) scene;
+- (id) init;
 - (void) setCurrentPlay:(Play *)pPlay;
 - (void) addItemSprite:(NSString *)itemName;
 

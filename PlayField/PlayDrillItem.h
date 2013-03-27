@@ -12,6 +12,7 @@
 
 // A text description of this item.
 @property (nonatomic, copy) NSString *text;
+@property (nonatomic, copy) NSString *imageName;
 @property (nonatomic, copy) UIImage *image;
 
 // Returns an SHCToDoItem item initialized with the given text.

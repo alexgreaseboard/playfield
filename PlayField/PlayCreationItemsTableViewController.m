@@ -42,7 +42,10 @@
     [_items addObject:[PlayDrillItem itemWithText:@"Defense" andWithImage:@"Sad.png"]];
     [_items addObject:[PlayDrillItem itemWithText:@"Cone" andWithImage:@"cone.jpeg"]];
     
-    self.delegate = (id<PlayCreationItemsDelegate>)[[self.splitViewController.viewControllers lastObject] topViewController];
+    detailViewController = (CocosViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    
+    self.delegate = (id<PlayCreationItemsDelegate>)detailViewController.helloWorldLayer;
+    
     // gesture recognizer for drag & drop
     UIPanGestureRecognizer *panning = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePanning:)];
     panning.minimumNumberOfTouches = 1;
@@ -50,7 +53,6 @@
     panning.delegate = self;
     [self.tableView addGestureRecognizer:panning];
     
-    detailViewController = (CocosViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor blackColor];
 }
@@ -92,27 +94,6 @@
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     cell.backgroundColor = [self colorForIndex:indexPath.row];
-}
-
-- (IBAction)addSprite:(UIButton *)sender {
-    
-    CGPoint hitPoint = [sender convertPoint:CGPointZero toView:self.tableView];
-    NSIndexPath *hitIndex = [self.tableView indexPathForRowAtPoint:hitPoint];
-
-    int index = [hitIndex row];
-    PlayDrillItem *item = _items[index];
-    
-    NSString *itemLabel = item.text;
-    NSString *imageName;
-    if([itemLabel isEqualToString:@"Offense"]) {
-        imageName = @"Smile.png";
-    } else if([itemLabel isEqualToString:@"Defense"]) {
-        imageName = @"Sad.png";
-    } else if([itemLabel isEqualToString:@"Cone"]) {
-        imageName = @"cone.jpeg";
-    }
-    
-    [detailViewController addItemSprite:imageName];
 }
 
 - (IBAction)returnToMenu:(id)sender

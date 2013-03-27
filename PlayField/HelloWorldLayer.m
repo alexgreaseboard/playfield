@@ -18,19 +18,17 @@
 {
     bool positioning;
     PlaySprite *selPlayerSprite;
-    CocosViewController *cocosViewController;
     CCMenuItem *trashMenuItem;
     //CCSprite *background;
 }
 
-// Helper class method that creates a Scene with the HelloWorldLayer as the only child.
-+(CCScene *) sceneWithCocosViewController:(CocosViewController *)pCocosViewController
++(CCScene *) scene
 {
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
 	
 	// 'layer' is an autorelease object.
-	HelloWorldLayer *layer = [[HelloWorldLayer alloc] initWithCocosViewController:pCocosViewController];
+	HelloWorldLayer *layer = [[HelloWorldLayer alloc] init];
 	
 	// add layer as a child to scene
 	[scene addChild: layer];
@@ -40,7 +38,7 @@
 }
 
 // on "init" you need to initialize your instance
--(id) initWithCocosViewController:(CocosViewController *)pCocosViewController
+-(id) init
 {
 	if( (self=[super init] )) {
         //CGSize winSize = [CCDirector sharedDirector].winSize;
@@ -67,7 +65,6 @@
         [self addChild:starMenu];
         
         self.movableSprites = [[NSMutableOrderedSet alloc] init];
-        cocosViewController = pCocosViewController;
         positioning = false;
     }
     
@@ -153,16 +150,43 @@
     }
 }
 
-- (void)draggingStarted:(UIPanGestureRecognizer *)sender forItemWithName:(NSString *)name{
-	NSLog(@"Dragging started3");
+- (void)draggingStarted:(UIPanGestureRecognizer *)recognizer forItemWithName:(NSString *)name
+{
+    NSString *imageName;
+    if([name isEqualToString:@"Offense"]) {
+        imageName = @"Smile.png";
+    } else if([name isEqualToString:@"Defense"]) {
+        imageName = @"Sad.png";
+    } else if([name isEqualToString:@"Cone"]) {
+        imageName = @"cone.jpeg";
+    }
+
+    CGPoint touchLocation = [recognizer locationInView:recognizer.view];
+    touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
+    touchLocation = [self convertToNodeSpace:touchLocation];
+    
+    [self addPlayerSpriteWithImage:imageName andPosition:touchLocation];
+    selPlayerSprite = [self.movableSprites lastObject];
 }
 
-- (void)draggingChanged:(UIPanGestureRecognizer *)sender{
-    NSLog(@"Dragging changed3");
+- (void)draggingChanged:(UIPanGestureRecognizer *)recognizer{
+    CGPoint touchLocation = [recognizer translationInView:recognizer.view];
+    touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
+    touchLocation = [self convertToNodeSpace:touchLocation];
+    touchLocation = ccp(touchLocation.x, touchLocation.y);
+    [self panForTranslation:touchLocation];
+    [recognizer setTranslation:CGPointZero inView:recognizer.view];
 }
 
-- (void)draggingEnded:(UIPanGestureRecognizer *)sender{
-    NSLog(@"Dragging ended3");
+- (void)draggingEnded:(UIPanGestureRecognizer *)recognizer{
+    CGPoint newPosition = [recognizer translationInView:recognizer.view];
+    newPosition = [[CCDirector sharedDirector] convertToGL:newPosition];
+    newPosition = [self convertToNodeSpace:newPosition];
+    [selPlayerSprite repositionSpriteWithPosition:newPosition ];
+    
+    if (CGRectIntersectsRect(selPlayerSprite.sprite.boundingBox, trashMenuItem.boundingBox)) {
+        [self removePlaySprite:selPlayerSprite];
+    }
 }
 
 - (void)panForTranslation:(CGPoint)translation {
@@ -304,7 +328,6 @@
 }
 
 - (void) setCurrentPlay:(Play *)pPlay {
-
     for(PlaySprite *ps in self.movableSprites) {
         [self removeChild:ps.sprite];
     }
