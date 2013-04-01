@@ -13,6 +13,7 @@
 -(id)initWithText:(NSString*)text andWithImage:(NSString *)imageName {
     if (self = [super init]) {
         self.text = text;
+        self.imageName = imageName;
         self.image = [UIImage imageNamed:imageName];
     }
     return self;

@@ -13,14 +13,16 @@
 #import "SavePlayViewController.h"
 #import "PlayCreationPlaysTableViewController.h"
 #import "PlayCreationItemsTableViewController.h"
+#import "HelloWorldLayer.h"
 
 @class CocosViewController;
 
-@interface CocosViewController : UIViewController <CCDirectorDelegate,PlayCreationDetailsViewControllerDelegate,UIAlertViewDelegate,NSFetchedResultsControllerDelegate,SavePlayViewControllerDelegate,PlayCreationItemsDelegate>
+@interface CocosViewController : UIViewController <CCDirectorDelegate,PlayCreationDetailsViewControllerDelegate,UIAlertViewDelegate,NSFetchedResultsControllerDelegate,SavePlayViewControllerDelegate>
 
 @property (strong, nonatomic) Play *detailItem;
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (retain, nonatomic) HelloWorldLayer *helloWorldLayer;
 
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *notes;

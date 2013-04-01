@@ -64,6 +64,8 @@
 		392CD81216EBDA3C008194B7 /* PracticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CD81116EBDA3C008194B7 /* PracticeCell.m */; };
 		394AEDBB16FBEF030043D6E8 /* PracticeOtherItemsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 394AEDBA16FBEF030043D6E8 /* PracticeOtherItemsTableViewController.m */; };
 		394DEEC116F55C5A0047A3B7 /* PracticeEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 394DEEBF16F395C20047A3B7 /* PracticeEditViewController.m */; };
+		399B7F07170733980047244D /* TimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 399B7F06170733980047244D /* TimerView.m */; };
+		399B7F0B17073AE60047244D /* TimerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 399B7F0A17073AE60047244D /* TimerView.xib */; };
 		6D0724AD16D6A74B00DDA641 /* PlayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0724AC16D6A74B00DDA641 /* PlayCell.m */; };
 		6D148F7816C988E70069CB76 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D148F7716C988E70069CB76 /* QuartzCore.framework */; };
 		6D148F7A16C988E70069CB76 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D148F7916C988E70069CB76 /* OpenGLES.framework */; };
@@ -295,6 +297,9 @@
 		394AEDBA16FBEF030043D6E8 /* PracticeOtherItemsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeOtherItemsTableViewController.m; sourceTree = "<group>"; };
 		394DEEBE16F395C20047A3B7 /* PracticeEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeEditViewController.h; sourceTree = "<group>"; };
 		394DEEBF16F395C20047A3B7 /* PracticeEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeEditViewController.m; sourceTree = "<group>"; };
+		399B7F05170733980047244D /* TimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerView.h; sourceTree = "<group>"; };
+		399B7F06170733980047244D /* TimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerView.m; sourceTree = "<group>"; };
+		399B7F0A17073AE60047244D /* TimerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimerView.xib; sourceTree = "<group>"; };
 		6D0724AB16D6A74B00DDA641 /* PlayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayCell.h; sourceTree = "<group>"; };
 		6D0724AC16D6A74B00DDA641 /* PlayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayCell.m; sourceTree = "<group>"; };
 		6D148F7416C988E70069CB76 /* PlayField.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayField.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -755,6 +760,16 @@
 			name = Practice;
 			sourceTree = "<group>";
 		};
+		399B7F04170729700047244D /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				399B7F05170733980047244D /* TimerView.h */,
+				399B7F06170733980047244D /* TimerView.m */,
+				399B7F0A17073AE60047244D /* TimerView.xib */,
+			);
+			name = Timer;
+			sourceTree = "<group>";
+		};
 		6D148F6B16C988E70069CB76 = {
 			isa = PBXGroup;
 			children = (
@@ -798,6 +813,7 @@
 				29E9360F16E82EBE00B439C1 /* Playbook */,
 				392CD7DC16EBA18C008194B7 /* Practice */,
 				29E2AAA716CFAEB600005AAF /* TableCell */,
+				399B7F04170729700047244D /* Timer */,
 				29E2FE3D16D900E0002270CF /* Model */,
 				29E2AACC16CFB19700005AAF /* AppDelegate.h */,
 				29E2AACD16CFB19700005AAF /* AppDelegate.m */,
@@ -1286,6 +1302,7 @@
 				298017E916EB9EC500FF469E /* home-reference.jpg in Resources */,
 				29C26AE616EBBA1F00DFDF8A /* field-lights.png in Resources */,
 				29C26AE816EBBA4500DFDF8A /* Default-Landscape~ipad.png in Resources */,
+				399B7F0B17073AE60047244D /* TimerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1442,6 +1459,7 @@
 				6DC9C0E216F2C5990001644A /* PlaybookDetailViewController.m in Sources */,
 				394DEEC116F55C5A0047A3B7 /* PracticeEditViewController.m in Sources */,
 				394AEDBB16FBEF030043D6E8 /* PracticeOtherItemsTableViewController.m in Sources */,
+				399B7F07170733980047244D /* TimerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

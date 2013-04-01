@@ -70,18 +70,20 @@
     // Finish up our view controller containment responsibilities.
     [director didMoveToParentViewController:self];
     
+    CCScene *scene = [HelloWorldLayer scene];
+    
     // Run whatever scene we'd like to run here.
-    [director pushScene:[HelloWorldLayer sceneWithCocosViewController:self]];
+    [director pushScene:scene];
+    
+    _helloWorldLayer = [scene.children objectAtIndex:0];
 }
 
 - (void)setCurrentPlay:(Play *)pPlay
 {
     if (_detailItem != pPlay) {
         _detailItem = pPlay;
-        
-        CCScene *scene = [[CCDirector sharedDirector] runningScene];
-        HelloWorldLayer *layer = [scene.children objectAtIndex:0];
-        [layer setCurrentPlay:self.detailItem];
+
+        [_helloWorldLayer setCurrentPlay:self.detailItem];
         
         // Update the view.
         [self configureView];
@@ -90,9 +92,7 @@
 
 - (void)addItemSprite:(NSString *)itemName
 {
-    CCScene *scene = [[CCDirector sharedDirector] runningScene];
-    HelloWorldLayer *layer = [scene.children objectAtIndex:0];
-    [layer addItemSprite:itemName];
+    [_helloWorldLayer addItemSprite:itemName];
 }
 
 - (void)configureView
@@ -140,9 +140,7 @@
 - (void)savePlay:(id)sender {
     [self configureView];
     // Save each PlaySprite SpritePoints.
-    CCScene *scene = [[CCDirector sharedDirector] runningScene];
-    HelloWorldLayer *layer = [scene.children objectAtIndex:0];
-    for( PlaySprite *ps in layer.movableSprites ) {
+    for( PlaySprite *ps in _helloWorldLayer.movableSprites ) {
         [ps saveSpritePoints];
     }
 

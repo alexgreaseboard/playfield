@@ -17,6 +17,7 @@
 #import "PracticeColumnEditController.h"
 #import "AppDelegate.h"
 #import "PracticeOtherItemsTableViewController.h"
+#import "TimerView.h"
 
 @interface PracticeViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, PracticeOptionsDelegate, PracticeOtherItemsDelegate>
 @property(nonatomic, weak) IBOutlet UIToolbar *toolbar;
@@ -42,6 +43,7 @@
 	PracticeItem *draggingItem;
     PracticeItem *placeholderItem; // a placeholder to expand the column when dragging
     CGRect initialDraggingFrame;
+    UIView *timer;
 }
 
 - (void)viewDidLoad
@@ -52,6 +54,7 @@
     self.managedObjectContext = appDelegate.managedObjectContext;
     self.view.backgroundColor = [UIColor whiteColor];
     
+    // available colors for the items
     self.availableColors = [[NSMutableArray alloc] initWithCapacity:20];
     [self.availableColors addObject:[UIColor colorWithRed:.17 green:.26 blue:.37 alpha:0.75]];// blue
     [self.availableColors addObject:[UIColor colorWithRed:.66 green:.15 blue:.18 alpha:0.75]];// red
@@ -59,12 +62,12 @@
     [self.availableColors addObject:[UIColor colorWithRed:.20 green:.15 blue:.33 alpha:0.75]];// purple
     
     self.colorItemMap = [[NSMutableDictionary alloc] initWithCapacity:20];
-    
 }
 
 - (void) viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self resetViewWithPractice:self.practice];
+    
 }
 
 -(void)resetViewWithPractice:(Practice*)practice{
@@ -134,6 +137,13 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.view addSubview:self.tableView];
     [self.view sendSubviewToBack:self.tableView];
+    
+    // add the timer
+    [timer removeFromSuperview];
+    timer = [[TimerView alloc] init];
+    [self.view addSubview:timer];
+    [timer awakeFromNib];
+    
     [self.view reloadInputViews];
 }
 
