@@ -2932,12 +2932,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PracticeViewController.h"/>
             <relationships>
                 <relationship kind="action" name="editPractice:"/>
-                <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
-                <relationship kind="outlet" name="columnAddBtn" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="editPracticeBtn" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="menuButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="textField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
             </relationships>
         </class>
         <class className="PracticesTableViewController" superclassName="UITableViewController">
