@@ -1335,6 +1335,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="PW9-t2-Slb" id="JtI-Hq-aZT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SIn-ns-kpW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2646,7 +2649,6 @@
         <class className="PracticeViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PracticeViewController.h"/>
             <relationships>
-                <relationship kind="action" name="actionButtonTapped:"/>
                 <relationship kind="action" name="editPractice:"/>
                 <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="columnAddBtn" candidateClass="UIBarButtonItem"/>
@@ -2658,6 +2660,9 @@
         </class>
         <class className="PracticesTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PracticesTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="returnToMenu:"/>
+            </relationships>
         </class>
         <class className="RosterDetailEditViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RosterDetailEditViewController.h"/>
