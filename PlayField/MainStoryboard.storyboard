@@ -2695,6 +2695,9 @@
         </class>
         <class className="PracticesTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PracticesTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="returnToMenu:"/>
+            </relationships>
         </class>
         <class className="RosterDetailEditViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RosterDetailEditViewController.h"/>
