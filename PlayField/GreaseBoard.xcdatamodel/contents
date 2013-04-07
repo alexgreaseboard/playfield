@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="12C60" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Play" representedClassName="Play" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
@@ -10,6 +10,8 @@
     </entity>
     <entity name="Playbook" representedClassName="Playbook" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="playbookPlay" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PlaybookPlay" inverseName="playbook" inverseEntity="PlaybookPlay" syncable="YES"/>
     </entity>
     <entity name="PlaybookPlay" representedClassName="PlaybookPlay" syncable="YES">
@@ -63,7 +65,7 @@
     </entity>
     <elements>
         <element name="Play" positionX="-461" positionY="-45" width="128" height="135"/>
-        <element name="Playbook" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="Playbook" positionX="160" positionY="192" width="128" height="105"/>
         <element name="PlaybookPlay" positionX="-252" positionY="162" width="128" height="75"/>
         <element name="Player" positionX="-641" positionY="-45" width="128" height="240"/>
         <element name="PlaySprite" positionX="-200" positionY="-45" width="128" height="105"/>

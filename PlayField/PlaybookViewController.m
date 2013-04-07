@@ -9,11 +9,15 @@
 #import "PlaybookViewController.h"
 #import "AppDelegate.h"
 #import "PlaybookCell.h"
+#import "PlaybookDetailViewController.h"
+#import "Playbook.h"
 
 @interface PlaybookViewController () <UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @end
 
 @implementation PlaybookViewController
+
+Playbook *selectedPlaybook;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,9 +34,6 @@
 
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
-    
-    //[self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"PlaybookCell"];
-    //[self.collectionView registerClass:[PlaybookCell class] forCellWithReuseIdentifier:@"PlaybookCell"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -87,10 +88,19 @@
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    // TODO: Select Item
+    selectedPlaybook = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [self performSegueWithIdentifier:@"playbookDetailSegue" sender:selectedPlaybook];
 }
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    // TODO: Deselect item
+
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"playbookDetailSegue"]) {
+        UINavigationController *navigationController = segue.destinationViewController;
+        PlaybookDetailViewController *detailController = (PlaybookDetailViewController *) navigationController.topViewController;
+        detailController.playbook = selectedPlaybook;
+    }
 }
 
 #pragma mark – UICollectionViewDelegateFlowLayout
@@ -111,7 +121,6 @@
 
 - (NSFetchedResultsController *)fetchedResultsController
 {
-    NSLog(@"Here");
     if (_fetchedResultsController != nil) {
         return _fetchedResultsController;
     }

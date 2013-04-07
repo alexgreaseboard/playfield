@@ -13,7 +13,10 @@
 
 @interface Playbook : NSManagedObject
 
-@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSString *notes;
+@property (nonatomic, retain) NSString *type;
+
 @property (nonatomic, retain) PlaybookPlay *playbookPlay;
 
 @end

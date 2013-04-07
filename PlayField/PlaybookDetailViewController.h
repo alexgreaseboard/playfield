@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PlaybookEditViewController.h"
 
-@interface PlaybookDetailViewController : UIViewController
+@interface PlaybookDetailViewController : UIViewController <PlaybookEditDelegate,UIAlertViewDelegate>
+
+@property (nonatomic, strong) Playbook *playbook;
+@property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 - (IBAction)returnToPlaybooks:(id)sender;
 

@@ -13,6 +13,9 @@
 @implementation Playbook
 
 @dynamic name;
+@dynamic notes;
+@dynamic type;
+
 @dynamic playbookPlay;
 
 @end
