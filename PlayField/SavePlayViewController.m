@@ -15,7 +15,6 @@
 @implementation SavePlayViewController
 
 - (IBAction)savePlay:(id)sender {
-    NSLog(@"Popover save");
     [self.delegate savePlayViewController:self];
 }
 

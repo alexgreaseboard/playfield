@@ -14,6 +14,7 @@
 @dynamic name;
 @dynamic notes;
 @dynamic type;
+@dynamic runPass;
 @dynamic playSprite;
 
 @end

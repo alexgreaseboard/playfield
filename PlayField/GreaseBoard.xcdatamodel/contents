@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="12C3103" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="12C60" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Play" representedClassName="Play" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="runPass" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="playbookPlay" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PlaybookPlay" inverseName="play" inverseEntity="PlaybookPlay" syncable="YES"/>
         <relationship name="playSprite" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="PlaySprite" inverseName="play" inverseEntity="PlaySprite" syncable="YES"/>
@@ -61,7 +62,7 @@
         <relationship name="parentSprite" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PlaySprite" inverseName="spritePoints" inverseEntity="PlaySprite" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Play" positionX="-461" positionY="-45" width="128" height="120"/>
+        <element name="Play" positionX="-461" positionY="-45" width="128" height="135"/>
         <element name="Playbook" positionX="160" positionY="192" width="128" height="75"/>
         <element name="PlaybookPlay" positionX="-252" positionY="162" width="128" height="75"/>
         <element name="Player" positionX="-641" positionY="-45" width="128" height="240"/>

@@ -38,9 +38,27 @@
     self.navigationItem.leftBarButtonItem = menuButton;
     
     _items = [[NSMutableArray alloc] init];
-    [_items addObject:[PlayDrillItem itemWithText:@"Offense" andWithImage:@"Smile.png"]];
-    [_items addObject:[PlayDrillItem itemWithText:@"Defense" andWithImage:@"Sad.png"]];
-    [_items addObject:[PlayDrillItem itemWithText:@"Cone" andWithImage:@"cone.jpeg"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Defense - C" andWithImage:@"defense-C.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Defense - DE" andWithImage:@"defense-DE.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Defense - DL" andWithImage:@"defense-DL.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Defense - FS" andWithImage:@"defense-FS.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Defense - LB" andWithImage:@"defense-LB.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Defense - SS" andWithImage:@"defense-SS.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Defense" andWithImage:@"defense.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense - 1" andWithImage:@"offense-1.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense - 2" andWithImage:@"offense-2.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense - 3" andWithImage:@"offense-3.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense - 4" andWithImage:@"offense-4.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense - C" andWithImage:@"offense-C.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense - LG" andWithImage:@"offense-LG.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense - LT" andWithImage:@"offense-LT.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense - RG" andWithImage:@"offense-RG.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense - RT" andWithImage:@"offense-RT.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense - TE" andWithImage:@"offense-TE.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense - Y" andWithImage:@"offense-Y.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense - Z" andWithImage:@"offense-Z.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense" andWithImage:@"offense.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Cone" andWithImage:@"cone.png"]];
     
     detailViewController = (CocosViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     

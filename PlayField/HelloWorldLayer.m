@@ -19,7 +19,7 @@
     bool positioning;
     PlaySprite *selPlayerSprite;
     CCMenuItem *trashMenuItem;
-    //CCSprite *background;
+    CCSprite *background;
 }
 
 +(CCScene *) scene
@@ -42,19 +42,19 @@
 {
 	if( (self=[super init] )) {
         //CGSize winSize = [CCDirector sharedDirector].winSize;
-        glClearColor(0, 255, 0, 255);
+        //glClearColor(0, 255, 0, 255);
         // Set Background
-        //[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGB565];
-        //background = [CCSprite spriteWithFile:@"football-field.jpg"];
-        //background.anchorPoint = ccp(0,0);
-        //[self addChild:background z:-1];
-        //[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_Default];
+        [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGB565];
+        background = [CCSprite spriteWithFile:@"field.jpg"];
+        background.anchorPoint = ccp(0,0);
+        [self addChild:background z:-1];
+        [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_Default];
         
         // Standard method to create a button
-        CCMenuItem *playMenuItem = [CCMenuItemImage itemWithNormalImage:@"playButton.png" selectedImage:@"playButton.png" target:self selector:@selector(playButtonTapped:)];
-        CCMenuItem *resetMenuItem = [CCMenuItemImage itemWithNormalImage:@"resetButton.png" selectedImage:@"resetButton.png" target:self selector:@selector(resetButtonTapped:)];
-        CCMenuItem *positionMenuItem = [CCMenuItemImage itemWithNormalImage:@"positionButton.png" selectedImage:@"positionButton.png" target:self selector:@selector(positionButtonTapped:)];
-        trashMenuItem = [CCMenuItemImage itemWithNormalImage:@"trashButton.png" selectedImage:@"trashButton.png" target:self selector:@selector(trashButtonTapped:)];
+        CCMenuItem *playMenuItem = [CCMenuItemImage itemWithNormalImage:@"bttn-play.png" selectedImage:@"bttn-play.png" target:self selector:@selector(playButtonTapped:)];
+        CCMenuItem *resetMenuItem = [CCMenuItemImage itemWithNormalImage:@"bttn-replay.png" selectedImage:@"bttn-replay.png" target:self selector:@selector(resetButtonTapped:)];
+        CCMenuItem *positionMenuItem = [CCMenuItemImage itemWithNormalImage:@"bttn-move.png" selectedImage:@"bttn-move.png" target:self selector:@selector(positionButtonTapped:)];
+        trashMenuItem = [CCMenuItemImage itemWithNormalImage:@"trash.png" selectedImage:@"trash.png" target:self selector:@selector(trashButtonTapped:)];
         playMenuItem.position = ccp(60, 60);
         resetMenuItem.position = ccp(110,60);
         positionMenuItem.position = ccp(160,60);
@@ -154,11 +154,11 @@
 {
     NSString *imageName;
     if([name isEqualToString:@"Offense"]) {
-        imageName = @"Smile.png";
+        imageName = @"offense-1.png";
     } else if([name isEqualToString:@"Defense"]) {
-        imageName = @"Sad.png";
+        imageName = @"defense.png";
     } else if([name isEqualToString:@"Cone"]) {
-        imageName = @"cone.jpeg";
+        imageName = @"cone.png";
     }
 
     CGPoint touchLocation = [recognizer locationInView:recognizer.view];
@@ -260,32 +260,32 @@
     // Offense
     int centerH = 350;
     int centerV = 300;
-    [self addPlayerSpriteWithImage:@"Smile.png" andPosition:ccp(centerH,centerV)];    // Center
-    [self addPlayerSpriteWithImage:@"Smile.png" andPosition:ccp(centerH+50,centerV)];
-    [self addPlayerSpriteWithImage:@"Smile.png" andPosition:ccp(centerH+100,centerV)];
-    [self addPlayerSpriteWithImage:@"Smile.png" andPosition:ccp(centerH-50,centerV)];
-    [self addPlayerSpriteWithImage:@"Smile.png" andPosition:ccp(centerH-100,centerV)];
-    [self addPlayerSpriteWithImage:@"Smile.png" andPosition:ccp(centerH-150,centerV)];
-    [self addPlayerSpriteWithImage:@"Smile.png" andPosition:ccp(centerH,centerV-40)]; // Quarterback
-    [self addPlayerSpriteWithImage:@"Smile.png" andPosition:ccp(centerH,centerV-100)];
-    [self addPlayerSpriteWithImage:@"Smile.png" andPosition:ccp(centerH-50,centerV-100)];
-    [self addPlayerSpriteWithImage:@"Smile.png" andPosition:ccp(centerH+175,centerV-60)];
-    [self addPlayerSpriteWithImage:@"Smile.png" andPosition:ccp(centerH+250,centerV)];
+    [self addPlayerSpriteWithImage:@"offense-1.png" andPosition:ccp(centerH,centerV)];    // Center
+    [self addPlayerSpriteWithImage:@"offense-1.png" andPosition:ccp(centerH+50,centerV)];
+    [self addPlayerSpriteWithImage:@"offense-1.png" andPosition:ccp(centerH+100,centerV)];
+    [self addPlayerSpriteWithImage:@"offense-1.png" andPosition:ccp(centerH-50,centerV)];
+    [self addPlayerSpriteWithImage:@"offense-1.png" andPosition:ccp(centerH-100,centerV)];
+    [self addPlayerSpriteWithImage:@"offense-1.png" andPosition:ccp(centerH-150,centerV)];
+    [self addPlayerSpriteWithImage:@"offense-1.png" andPosition:ccp(centerH,centerV-40)]; // Quarterback
+    [self addPlayerSpriteWithImage:@"offense-1.png" andPosition:ccp(centerH,centerV-100)];
+    [self addPlayerSpriteWithImage:@"offense-1.png" andPosition:ccp(centerH-50,centerV-100)];
+    [self addPlayerSpriteWithImage:@"offense-1.png" andPosition:ccp(centerH+175,centerV-60)];
+    [self addPlayerSpriteWithImage:@"offense-1.png" andPosition:ccp(centerH+250,centerV)];
     
     // Defense
     centerH = 350;
     centerV = 350;
-    [self addPlayerSpriteWithImage:@"Sad.png" andPosition:ccp(centerH,centerV)];    
-    [self addPlayerSpriteWithImage:@"Sad.png" andPosition:ccp(centerH+100,centerV)];
-    [self addPlayerSpriteWithImage:@"Sad.png" andPosition:ccp(centerH+165,centerV)];
-    [self addPlayerSpriteWithImage:@"Sad.png" andPosition:ccp(centerH-100,centerV)];
-    [self addPlayerSpriteWithImage:@"Sad.png" andPosition:ccp(centerH-150,centerV)];
-    [self addPlayerSpriteWithImage:@"Sad.png" andPosition:ccp(centerH-50,centerV+50)];
-    [self addPlayerSpriteWithImage:@"Sad.png" andPosition:ccp(centerH+50,centerV+50)];
-    [self addPlayerSpriteWithImage:@"Sad.png" andPosition:ccp(centerH+200,centerV+50)];
-    [self addPlayerSpriteWithImage:@"Sad.png" andPosition:ccp(centerH+275,centerV+50)];
-    [self addPlayerSpriteWithImage:@"Sad.png" andPosition:ccp(centerH-200,centerV+75)];
-    [self addPlayerSpriteWithImage:@"Sad.png" andPosition:ccp(centerH,centerV+175)];
+    [self addPlayerSpriteWithImage:@"defense.png" andPosition:ccp(centerH,centerV)];    
+    [self addPlayerSpriteWithImage:@"defense.png" andPosition:ccp(centerH+100,centerV)];
+    [self addPlayerSpriteWithImage:@"defense.png" andPosition:ccp(centerH+165,centerV)];
+    [self addPlayerSpriteWithImage:@"defense.png" andPosition:ccp(centerH-100,centerV)];
+    [self addPlayerSpriteWithImage:@"defense.png" andPosition:ccp(centerH-150,centerV)];
+    [self addPlayerSpriteWithImage:@"defense.png" andPosition:ccp(centerH-50,centerV+50)];
+    [self addPlayerSpriteWithImage:@"defense.png" andPosition:ccp(centerH+50,centerV+50)];
+    [self addPlayerSpriteWithImage:@"defense.png" andPosition:ccp(centerH+200,centerV+50)];
+    [self addPlayerSpriteWithImage:@"defense.png" andPosition:ccp(centerH+275,centerV+50)];
+    [self addPlayerSpriteWithImage:@"defense.png" andPosition:ccp(centerH-200,centerV+75)];
+    [self addPlayerSpriteWithImage:@"defense.png" andPosition:ccp(centerH,centerV+175)];
 }
 
 - (void) addDefaultDrill
@@ -293,8 +293,8 @@
     // Offense
     int centerH = 350;
     int centerV = 300;
-    [self addPlayerSpriteWithImage:@"Smile.png" andPosition:ccp(centerH,centerV)];    // Player
-    [self addPlayerSpriteWithImage:@"cone.jpeg" andPosition:ccp(centerH,centerV + 100)];    // Cone
+    [self addPlayerSpriteWithImage:@"offense-1.png" andPosition:ccp(centerH,centerV)];    // Player
+    [self addPlayerSpriteWithImage:@"cone.png" andPosition:ccp(centerH,centerV + 100)];    // Cone
 }
 
 - (void) addPlayerSpriteWithImage:(NSString *)pImage andPosition:(CGPoint)pPosition {

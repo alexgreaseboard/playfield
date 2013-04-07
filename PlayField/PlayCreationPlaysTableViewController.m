@@ -72,6 +72,7 @@
     NSString *tabTitle = self.tabBarItem.title;
     newPlay.name = [@"New " stringByAppendingString:tabTitle];
     newPlay.type = tabTitle;
+    newPlay.runPass = @"Pass";
     
     // Save the context.
     NSError *error = nil;

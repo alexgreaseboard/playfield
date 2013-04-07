@@ -29,6 +29,7 @@
     [super viewDidLoad];
     
     playTypes = [[NSArray alloc] initWithObjects:@"Offense", @"Defense", @"Drill", nil];
+    playRunPasses = [[NSArray alloc] initWithObjects:@"Pass", @"Run", nil];
     
     [self configureView];
 }
@@ -51,6 +52,11 @@
         if( playTypeIndex != NSNotFound ) {
             [self.playType selectRow:playTypeIndex inComponent:0 animated:NO];
         }
+        
+        NSUInteger playRunPassIndex = [playRunPasses indexOfObject:self.play.runPass];
+        if( playTypeIndex != NSNotFound ) {
+            [self.playRunPass selectRow:playRunPassIndex inComponent:0 animated:NO];
+        }
     }
 }
 
@@ -60,6 +66,9 @@
     
     NSString *type = [playTypes objectAtIndex: [self.playType selectedRowInComponent:0]];
     self.play.type = type;
+    
+    NSString *runPass = [playRunPasses objectAtIndex: [self.playRunPass selectedRowInComponent:0]];
+    self.play.runPass = runPass;
     
     [self.delegate playCreationDetailsViewController:self saveEdit:self.play];
     [self.presentingViewController dismissViewControllerAnimated:YES completion: nil];
@@ -88,13 +97,25 @@
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
     //set number of rows
-    return playTypes.count;
+    if( pickerView.tag == 0 ) {
+        return playTypes.count;
+    } else if ( pickerView.tag == 1) {
+        return playRunPasses.count;
+    } else {
+        return 0;
+    }
 }
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     //set item per row
-    return [playTypes objectAtIndex:row];
+    if( pickerView.tag == 0 ) {
+        return [playTypes objectAtIndex:row];
+    } else if ( pickerView.tag == 1 ) {
+        return [playRunPasses objectAtIndex:row];
+    } else {
+        return nil;
+    }
 }
 
 @end
