@@ -16,8 +16,31 @@
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
+- (void)customizeAppearance {
+    [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:39/255.0 green:21/255.0 blue:57/255.0 alpha:1.0]];
+    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                                           [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0], UITextAttributeTextColor, [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8],
+                                                           UITextAttributeTextShadowColor,
+                                                           [NSValue valueWithUIOffset:UIOffsetMake(0, -1)], UITextAttributeTextShadowOffset,
+                                                           [UIFont fontWithName:@"Arial-Bold" size:0.0], UITextAttributeFont,
+                                                           nil]];
+    
+    [[UITableView appearance] setBackgroundColor:[UIColor colorWithRed:24/255.0 green:48/255.0 blue:33/255.0 alpha:1.0]];
+    [[UITableView appearance] setSeparatorColor:[UIColor colorWithRed:34/255.0 green:54/255.0 blue:41/255.0 alpha:1.0]];
+    [[UITableView appearance] setSeparatorColor:[UIColor grayColor]];
+    
+    [[UILabel appearance] setColor:[UIColor whiteColor]];
+    
+    [[UITableViewCell appearance] setBackgroundColor:[UIColor colorWithRed:24/255.0 green:48/255.0 blue:33/255.0 alpha:1.0]];
+    [[UITableViewCell appearance] setColor:[UIColor colorWithRed:24/255.0 green:48/255.0 blue:33/255.0 alpha:1.0]];
+    
+    //[[UITextField appearance] setColor:[UIColor whiteColor]];
+    [[UITextField appearance] setBackgroundColor:[UIColor colorWithRed:24/255.0 green:48/255.0 blue:33/255.0 alpha:1.0]];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{    
+{
+    [self customizeAppearance];
     // For Roster
     //UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
     //UINavigationController *masterNavigationController = [splitViewController.viewControllers objectAtIndex:0];

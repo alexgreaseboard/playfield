@@ -71,8 +71,8 @@
     panning.delegate = self;
     [self.tableView addGestureRecognizer:panning];
     
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.backgroundColor = [UIColor blackColor];
+    //self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    //self.tableView.backgroundColor = [UIColor blackColor];
 }
 
 - (void)didReceiveMemoryWarning
@@ -97,21 +97,6 @@
     [cell.image setImage:item.image];
     
     return cell;
-}
-
--(UIColor*)colorForIndex:(NSInteger) index {
-    NSUInteger itemCount = _items.count - 1;
-    float val = ((float)index / (float)itemCount) * 0.6;
-    return [UIColor colorWithRed: 1.0 green:val blue: 0.0 alpha:1.0];
-}
-
-#pragma mark - UITableViewDataDelegate protocol methods
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50.0f;
-}
-
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    cell.backgroundColor = [self colorForIndex:indexPath.row];
 }
 
 - (IBAction)returnToMenu:(id)sender
