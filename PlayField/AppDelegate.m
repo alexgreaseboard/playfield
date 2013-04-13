@@ -32,7 +32,7 @@
     [[UILabel appearance] setColor:[UIColor whiteColor]];
     
     [[UITableViewCell appearance] setBackgroundColor:[UIColor colorWithRed:24/255.0 green:48/255.0 blue:33/255.0 alpha:1.0]];
-    [[UITableViewCell appearance] setColor:[UIColor colorWithRed:24/255.0 green:48/255.0 blue:33/255.0 alpha:1.0]];
+    //[[UITableViewCell appearance] setColor:[UIColor colorWithRed:24/255.0 green:48/255.0 blue:33/255.0 alpha:1.0]];
     
     //[[UITextField appearance] setColor:[UIColor whiteColor]];
     [[UITextField appearance] setBackgroundColor:[UIColor colorWithRed:24/255.0 green:48/255.0 blue:33/255.0 alpha:1.0]];
