@@ -56,6 +56,8 @@
 		394DEEC116F55C5A0047A3B7 /* PracticeEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 394DEEBF16F395C20047A3B7 /* PracticeEditViewController.m */; };
 		399B7F07170733980047244D /* TimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 399B7F06170733980047244D /* TimerView.m */; };
 		399B7F0B17073AE60047244D /* TimerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 399B7F0A17073AE60047244D /* TimerView.xib */; };
+		39E2FFCA1731DD230062332C /* PlaybookDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E2FFC91731DD230062332C /* PlaybookDataSource.m */; };
+		39E2FFCD1731EBD50062332C /* GameTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E2FFCC1731EBD50062332C /* GameTimeViewController.m */; };
 		6D0724AD16D6A74B00DDA641 /* PlayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0724AC16D6A74B00DDA641 /* PlayCell.m */; };
 		6D148F7816C988E70069CB76 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D148F7716C988E70069CB76 /* QuartzCore.framework */; };
 		6D148F7A16C988E70069CB76 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D148F7916C988E70069CB76 /* OpenGLES.framework */; };
@@ -311,6 +313,10 @@
 		399B7F05170733980047244D /* TimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerView.h; sourceTree = "<group>"; };
 		399B7F06170733980047244D /* TimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerView.m; sourceTree = "<group>"; };
 		399B7F0A17073AE60047244D /* TimerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimerView.xib; sourceTree = "<group>"; };
+		39E2FFC81731DD230062332C /* PlaybookDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybookDataSource.h; sourceTree = "<group>"; };
+		39E2FFC91731DD230062332C /* PlaybookDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybookDataSource.m; sourceTree = "<group>"; };
+		39E2FFCB1731EBD50062332C /* GameTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTimeViewController.h; sourceTree = "<group>"; };
+		39E2FFCC1731EBD50062332C /* GameTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTimeViewController.m; sourceTree = "<group>"; };
 		6D0724AB16D6A74B00DDA641 /* PlayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayCell.h; sourceTree = "<group>"; };
 		6D0724AC16D6A74B00DDA641 /* PlayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayCell.m; sourceTree = "<group>"; };
 		6D148F7416C988E70069CB76 /* PlayField.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayField.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -767,6 +773,8 @@
 				6DC9C0E116F2C5990001644A /* PlaybookDetailViewController.m */,
 				6DCFB6091711DF420065700F /* PlaybookEditViewController.h */,
 				6DCFB60A1711DF420065700F /* PlaybookEditViewController.m */,
+				39E2FFC81731DD230062332C /* PlaybookDataSource.h */,
+				39E2FFC91731DD230062332C /* PlaybookDataSource.m */,
 			);
 			name = Playbook;
 			sourceTree = "<group>";
@@ -804,6 +812,15 @@
 				399B7F0A17073AE60047244D /* TimerView.xib */,
 			);
 			name = Timer;
+			sourceTree = "<group>";
+		};
+		39E2FFCE1731EBDA0062332C /* GameTime */ = {
+			isa = PBXGroup;
+			children = (
+				39E2FFCB1731EBD50062332C /* GameTimeViewController.h */,
+				39E2FFCC1731EBD50062332C /* GameTimeViewController.m */,
+			);
+			name = GameTime;
 			sourceTree = "<group>";
 		};
 		6D148F6B16C988E70069CB76 = {
@@ -844,6 +861,7 @@
 		6D148F8916C988E70069CB76 /* PlayField */ = {
 			isa = PBXGroup;
 			children = (
+				39E2FFCE1731EBDA0062332C /* GameTime */,
 				29E2AAA416CFAEA200005AAF /* Roster */,
 				29E2AAA516CFAEA700005AAF /* PlayCreation */,
 				29E9360F16E82EBE00B439C1 /* Playbook */,
@@ -1554,6 +1572,8 @@
 				394AEDBB16FBEF030043D6E8 /* PracticeOtherItemsTableViewController.m in Sources */,
 				399B7F07170733980047244D /* TimerView.m in Sources */,
 				6DCFB60B1711DF420065700F /* PlaybookEditViewController.m in Sources */,
+				39E2FFCA1731DD230062332C /* PlaybookDataSource.m in Sources */,
+				39E2FFCD1731EBD50062332C /* GameTimeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
