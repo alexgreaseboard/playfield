@@ -58,6 +58,8 @@
 		399B7F0B17073AE60047244D /* TimerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 399B7F0A17073AE60047244D /* TimerView.xib */; };
 		39E2FFCA1731DD230062332C /* PlaybookDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E2FFC91731DD230062332C /* PlaybookDataSource.m */; };
 		39E2FFCD1731EBD50062332C /* GameTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E2FFCC1731EBD50062332C /* GameTimeViewController.m */; };
+		39E2FFD1173322320062332C /* PinchLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E2FFD0173322320062332C /* PinchLayout.m */; };
+		39E2FFD41733256A0062332C /* PlaysDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E2FFD31733256A0062332C /* PlaysDataSource.m */; };
 		6D0724AD16D6A74B00DDA641 /* PlayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0724AC16D6A74B00DDA641 /* PlayCell.m */; };
 		6D148F7816C988E70069CB76 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D148F7716C988E70069CB76 /* QuartzCore.framework */; };
 		6D148F7A16C988E70069CB76 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D148F7916C988E70069CB76 /* OpenGLES.framework */; };
@@ -317,6 +319,10 @@
 		39E2FFC91731DD230062332C /* PlaybookDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybookDataSource.m; sourceTree = "<group>"; };
 		39E2FFCB1731EBD50062332C /* GameTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTimeViewController.h; sourceTree = "<group>"; };
 		39E2FFCC1731EBD50062332C /* GameTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTimeViewController.m; sourceTree = "<group>"; };
+		39E2FFCF173322320062332C /* PinchLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinchLayout.h; sourceTree = "<group>"; };
+		39E2FFD0173322320062332C /* PinchLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinchLayout.m; sourceTree = "<group>"; };
+		39E2FFD21733256A0062332C /* PlaysDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaysDataSource.h; sourceTree = "<group>"; };
+		39E2FFD31733256A0062332C /* PlaysDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaysDataSource.m; sourceTree = "<group>"; };
 		6D0724AB16D6A74B00DDA641 /* PlayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayCell.h; sourceTree = "<group>"; };
 		6D0724AC16D6A74B00DDA641 /* PlayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayCell.m; sourceTree = "<group>"; };
 		6D148F7416C988E70069CB76 /* PlayField.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayField.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -819,6 +825,10 @@
 			children = (
 				39E2FFCB1731EBD50062332C /* GameTimeViewController.h */,
 				39E2FFCC1731EBD50062332C /* GameTimeViewController.m */,
+				39E2FFCF173322320062332C /* PinchLayout.h */,
+				39E2FFD0173322320062332C /* PinchLayout.m */,
+				39E2FFD21733256A0062332C /* PlaysDataSource.h */,
+				39E2FFD31733256A0062332C /* PlaysDataSource.m */,
 			);
 			name = GameTime;
 			sourceTree = "<group>";
@@ -1574,6 +1584,8 @@
 				6DCFB60B1711DF420065700F /* PlaybookEditViewController.m in Sources */,
 				39E2FFCA1731DD230062332C /* PlaybookDataSource.m in Sources */,
 				39E2FFCD1731EBD50062332C /* GameTimeViewController.m in Sources */,
+				39E2FFD1173322320062332C /* PinchLayout.m in Sources */,
+				39E2FFD41733256A0062332C /* PlaysDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,13 +8,23 @@
 
 #import <UIKit/UIKit.h>
 #import "PlaybookDataSource.h"
+#import "PlaysDataSource.h"
 
 @interface GameTimeViewController : UIViewController
 - (IBAction)close:(id)sender;
 
+// collections
 @property (strong, nonatomic) IBOutlet UICollectionView *playbooksCollection;
+@property (strong, nonatomic) IBOutlet UICollectionView *playsCollection;
 @property (strong, nonatomic) IBOutlet UICollectionView *upcomingPlaysCollection;
-
-@property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) PlaybookDataSource *playBookDS;
+@property (strong, nonatomic) PlaysDataSource *playsDS;
+
+// pinching
+@property (nonatomic, strong) UIPinchGestureRecognizer *pinchOutGestureRecognizer;
+@property (nonatomic, strong) NSIndexPath *currentPinchedItem;
+
+// object context
+@property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
+
 @end
