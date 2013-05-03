@@ -20,9 +20,10 @@
 @property (strong, nonatomic) PlaybookDataSource *playBookDS;
 @property (strong, nonatomic) PlaysDataSource *playsDS;
 
-// pinching
+// gestures - pinching & panning
 @property (nonatomic, strong) UIPinchGestureRecognizer *pinchOutGestureRecognizer;
 @property (nonatomic, strong) NSIndexPath *currentPinchedItem;
+@property (nonatomic, strong) NSIndexPath *currentPannedItem;
 
 // object context
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
