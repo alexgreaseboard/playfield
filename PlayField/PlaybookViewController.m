@@ -36,6 +36,8 @@ Playbook *selectedPlaybook;
     self.managedObjectContext = appDelegate.managedObjectContext;
     self.playBookDS = [[PlaybookDataSource alloc] initWithManagedObjectContext:self.managedObjectContext];
     self.collectionView.dataSource = self.playBookDS;
+    
+    [self.collectionView registerClass:[PlaybookCell class] forCellWithReuseIdentifier:@"PlaybookCell"];
 }
 
 - (void)didReceiveMemoryWarning

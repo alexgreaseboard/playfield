@@ -10,6 +10,9 @@
 
 @interface PlaybookCell : UICollectionViewCell
 
-@property (strong, nonatomic) IBOutlet UILabel *name;
+
+- (id)initWithFrame:(CGRect)frame name:(NSString*)name;
+
+@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 
 @end

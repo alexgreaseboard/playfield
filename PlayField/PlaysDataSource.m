@@ -25,6 +25,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+    NSLog(@"Number of items in section %d", [sectionInfo numberOfObjects]);
     return [sectionInfo numberOfObjects];
 }
 
@@ -38,10 +39,8 @@
     
     PlaybookCell *playbookCell = (PlaybookCell *) cell;
     Play *play = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    playbookCell.name.text = play.name;
-    
-    //cell.backgroundColor = [UIColor whiteColor];
-    return cell;
+    playbookCell = [playbookCell initWithFrame:playbookCell.frame name:play.name];
+    return playbookCell;
 }
 
 #pragma mark – UICollectionViewDelegateFlowLayout

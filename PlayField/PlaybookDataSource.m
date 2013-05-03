@@ -40,10 +40,8 @@
     
     PlaybookCell *playbookCell = (PlaybookCell *) cell;
     Playbook *playbook = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    playbookCell.name.text = playbook.name;
-    
-    //cell.backgroundColor = [UIColor whiteColor];
-    return cell;
+    playbookCell = [playbookCell initWithFrame:playbookCell.frame name:playbook.name];
+    return playbookCell;
 }
 
 #pragma mark – UICollectionViewDelegateFlowLayout
