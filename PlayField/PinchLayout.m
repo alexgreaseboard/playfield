@@ -31,19 +31,25 @@
 - (void)applySettingsToAttributes: (UICollectionViewLayoutAttributes*)attributes
 {
     // 1
-    NSIndexPath *indexPath = attributes.indexPath; attributes.zIndex = -indexPath.item;
+    NSIndexPath *indexPath = attributes.indexPath;
+    attributes.zIndex = -indexPath.item;
     // 2
-    CGFloat deltaX = self.pinchCenter.x - attributes.center.x; CGFloat deltaY = self.pinchCenter.y - attributes.center.y; CGFloat scale = 1.0f - self.pinchScale;
+    CGFloat deltaX = self.pinchCenter.x - attributes.center.x;
+    CGFloat deltaY = self.pinchCenter.y - attributes.center.y;
+    CGFloat scale = 1.0f - self.pinchScale;
     // 3
     CATransform3D transform = CATransform3DMakeTranslation(deltaX * scale,
                                                            deltaY * scale,
-                                                           0.0f); attributes.transform3D = transform;
+                                                           0.0f);
+    attributes.transform3D = transform;
 }
 
-- (void)setPinchScale:(CGFloat)pinchScale { _pinchScale = pinchScale;
+- (void)setPinchScale:(CGFloat)pinchScale {
+    _pinchScale = pinchScale;
     [self invalidateLayout];
 }
-- (void)setPinchCenter:(CGPoint)pinchCenter { _pinchCenter = pinchCenter;
+- (void)setPinchCenter:(CGPoint)pinchCenter {
+    _pinchCenter = pinchCenter;
     [self invalidateLayout];
 }
 

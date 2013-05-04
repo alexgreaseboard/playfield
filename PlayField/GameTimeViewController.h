@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PlaybookDataSource.h"
 #import "PlaysDataSource.h"
+#import "UpcomingPlaysDataSource.h"
 
 @interface GameTimeViewController : UIViewController
 - (IBAction)close:(id)sender;
@@ -19,6 +20,7 @@
 @property (strong, nonatomic) IBOutlet UICollectionView *upcomingPlaysCollection;
 @property (strong, nonatomic) PlaybookDataSource *playBookDS;
 @property (strong, nonatomic) PlaysDataSource *playsDS;
+@property (strong, nonatomic) UpcomingPlaysDataSource *upcomingPlaysDS;
 
 // gestures - pinching & panning
 @property (nonatomic, strong) UIPinchGestureRecognizer *pinchOutGestureRecognizer;

@@ -25,7 +25,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-    NSLog(@"Number of items in section %d", [sectionInfo numberOfObjects]);
+    //NSLog(@"Number of items in section %d", [sectionInfo numberOfObjects]);
     return [sectionInfo numberOfObjects];
 }
 

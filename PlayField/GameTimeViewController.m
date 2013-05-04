@@ -42,11 +42,17 @@ static const CGFloat kMaxScale = 3.0f;
     self.managedObjectContext = appDelegate.managedObjectContext;
     self.playBookDS = [[PlaybookDataSource alloc] initWithManagedObjectContext:self.managedObjectContext];
     self.playsDS = [[PlaysDataSource alloc] initWithManagedObjectContext:self.managedObjectContext];
+    self.upcomingPlaysDS = [[UpcomingPlaysDataSource alloc] init];
+    
+    // set the datasources/delegates
     self.playbooksCollection.dataSource = self.playBookDS;
     self.playbooksCollection.delegate = self.playBookDS;
+    self.upcomingPlaysCollection.dataSource = self.upcomingPlaysDS;
+    self.upcomingPlaysCollection.delegate = self.upcomingPlaysDS;
     
     
     [self.playbooksCollection registerClass:[PlaybookCell class] forCellWithReuseIdentifier:@"PlaybookCell"];
+    [self.upcomingPlaysCollection registerClass:[PlaybookCell class] forCellWithReuseIdentifier:@"PlayCell"];
     
     // gestures - pinch
     self.pinchOutGestureRecognizer = [[UIPinchGestureRecognizer alloc]
@@ -147,11 +153,12 @@ static const CGFloat kMaxScale = 3.0f;
     }
 }
 
+// drag & drop for plays to upcoming plays
 - (void)handlePanning:(UIPanGestureRecognizer *)recognizer
 {
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         // get the pinch point in the play books collection
-        CGPoint pinchPoint = [recognizer locationInView:self.playbooksCollection];
+        CGPoint pinchPoint = [recognizer locationInView:self.playsCollection];
         NSIndexPath *pannedItem = [self.playsCollection indexPathForItemAtPoint:pinchPoint];
         if (pannedItem) {
             self.currentPannedItem = pannedItem;
@@ -161,7 +168,7 @@ static const CGFloat kMaxScale = 3.0f;
             initialDraggingFrame.size.width = 150;
             // center the cell
             initialDraggingFrame.origin.x -= (initialDraggingFrame.size.width / 2);
-            //initialDraggingFrame.origin.y -= (8 + self.playsCollection.contentOffset.y);
+            initialDraggingFrame.origin.y -= (8 + self.playsCollection.contentOffset.y);
             initialDraggingFrame.origin.y += (initialDraggingFrame.size.height);
             
             // add the cell to the view
@@ -170,7 +177,7 @@ static const CGFloat kMaxScale = 3.0f;
             [self.view addSubview:draggingCell];
         }
     } else if (recognizer.state == UIGestureRecognizerStateChanged) {
-        if(self.currentPannedItem == nil){
+        if(self.currentPannedItem == nil && draggingItem != nil){
             return;
         }
         //NSLog(@"Dragging changed");
@@ -183,14 +190,15 @@ static const CGFloat kMaxScale = 3.0f;
         //move the placeholder
         //[self addDraggedCell:recognizer];
     } else {
-        if(self.currentPannedItem == nil){
+        if(self.currentPannedItem == nil && draggingItem != nil){
             return;
         }
         //NSLog(@"dragging ended");
         // add the cell to the appropriate place
         // TODO add to some list
         //[self addDraggedCell:sender forItem:draggingItem];
-        
+        [self.upcomingPlaysDS.upcomingPlays addObject:draggingItem];
+        [self.upcomingPlaysCollection reloadData];
         [draggingCell removeFromSuperview];
         draggingCell = nil;
         draggingItem = nil;
@@ -206,4 +214,9 @@ static const CGFloat kMaxScale = 3.0f;
         
 }
 */
+
+#pragma UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
 @end
