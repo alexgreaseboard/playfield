@@ -12,7 +12,10 @@
 #import "UpcomingPlaysDataSource.h"
 
 @interface GameTimeViewController : UIViewController
+
+// outlets & actions
 - (IBAction)close:(id)sender;
+@property (strong, nonatomic) IBOutlet UILabel *collectionLabel;
 
 // collections
 @property (strong, nonatomic) IBOutlet UICollectionView *playbooksCollection;
