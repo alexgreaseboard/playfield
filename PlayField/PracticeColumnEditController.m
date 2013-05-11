@@ -52,11 +52,12 @@
 - (BOOL)textField:(UITextField *)theTextField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     NSString *newText = [theTextField.text stringByReplacingCharactersInRange:range withString:string];
-    
-    if(newText.length == 0){
-        self.doneButton.enabled = NO;
-    } else{
-        self.doneButton.enabled = YES;
+    if([theTextField.restorationIdentifier isEqualToString:@"praticeColumnText"]){
+        if(newText.length == 0){
+            self.doneButton.enabled = NO;
+        } else{
+            self.doneButton.enabled = YES;
+        }
     }
     return YES;
 }

@@ -613,7 +613,13 @@
     return newItemCount;
 }
 - (void)practiceColumnEditController:(PracticeColumnEditController *)controller didFinishEditingColumn:(PracticeColumn *)column{
-    [self.collectionView reloadData];
+    //NSLog(@"Column name %@", column.columnName);
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    [self resetViewWithPractice:self.practice];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)practiceItemController:(PracticeColumnEditController *)controller didDeleteColumn:(PracticeColumn *)column{

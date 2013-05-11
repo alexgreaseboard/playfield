@@ -2244,12 +2244,12 @@
                                             <rect key="frame" x="31" y="1" width="478" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Column Name" minimumFontSize="17" clearButtonMode="always" id="G42-W1-G6t">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="praticeColumnText" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Column Name" minimumFontSize="17" clearButtonMode="always" id="G42-W1-G6t">
                                                     <rect key="frame" x="12" y="7" width="454" height="30"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>
-                                                        <outlet property="delegate" destination="ps3-ND-3lb" id="R0T-Go-lOG"/>
+                                                        <outlet property="delegate" destination="ps3-ND-3lb" id="jIy-AB-Bga"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>

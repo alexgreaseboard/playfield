@@ -11,7 +11,7 @@
 #import "PlaysDataSource.h"
 #import "UpcomingPlaysDataSource.h"
 
-@interface GameTimeViewController : UIViewController
+@interface GameTimeViewController : UIViewController<UIGestureRecognizerDelegate>
 
 // outlets & actions
 - (IBAction)close:(id)sender;
