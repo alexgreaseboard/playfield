@@ -63,10 +63,12 @@
     if(!timerRunning){ // stop the timer
         [self.startButton setTitle:@"Start" forState:UIControlStateNormal];
         self.resetButton.enabled = YES;
+        self.resetButton.alpha = 1.0;
         pauseTime = [NSDate timeIntervalSinceReferenceDate];
     } else { // start the timer
         [self.startButton setTitle:@"Stop" forState:UIControlStateNormal];
         self.resetButton.enabled = NO;
+        self.resetButton.alpha = 0.8f;
         if(startTime == 0){
             startTime = [NSDate timeIntervalSinceReferenceDate];
         }
@@ -82,6 +84,7 @@
 
 - (IBAction)resetTimer:(id)sender {
     self.resetButton.enabled = NO;
+    self.resetButton.alpha = 0.8f;
     self.timerLabel.text = @"00:00:00.0";
     startTime = 0;
     pauseTime = 0;

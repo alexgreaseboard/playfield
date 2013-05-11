@@ -16,6 +16,11 @@
 // outlets & actions
 - (IBAction)close:(id)sender;
 @property (strong, nonatomic) IBOutlet UILabel *collectionLabel;
+@property (strong, nonatomic) IBOutlet UIView *currentPlayView;
+@property (strong, nonatomic) IBOutlet UIButton *nextPlayButton;
+@property (strong, nonatomic) IBOutlet UIButton *removeAllButton;
+- (IBAction)loadNextPlay:(id)sender;
+- (IBAction)removeAllPlays:(id)sender;
 
 // collections
 @property (strong, nonatomic) IBOutlet UICollectionView *playbooksCollection;

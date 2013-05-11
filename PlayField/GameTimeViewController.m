@@ -42,6 +42,9 @@ static const CGFloat kMaxScale = 3.0f;
     self.collectionLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"header-tile.jpg"]];
     self.collectionLabel.text = @" Playbooks";
     
+    //disable buttons
+    [self enableButtons];
+    
     // data
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
@@ -213,6 +216,7 @@ static const CGFloat kMaxScale = 3.0f;
         [draggingCell removeFromSuperview];
         draggingCell = nil;
         draggingPlay = nil;
+        [self enableButtons];
     }
 }
     
@@ -291,11 +295,48 @@ static const CGFloat kMaxScale = 3.0f;
         [draggingCell removeFromSuperview];
         draggingCell = nil;
         draggingPlay = nil;
+        [self enableButtons];
     }
 }
 
 #pragma UIGestureRecognizerDelegate
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     return YES;
+}
+
+
+#pragma GameTimeViewController 
+- (void) enableButtons{
+    if(self.upcomingPlaysDS.upcomingPlays.count > 0){
+        self.nextPlayButton.enabled = YES;
+        self.removeAllButton.enabled = YES;
+        self.nextPlayButton.alpha = 1.0;
+        self.removeAllButton.alpha = 1.0;
+    } else {
+        self.nextPlayButton.enabled = NO;
+        self.removeAllButton.enabled = NO;
+        self.nextPlayButton.alpha = 0.7f;
+        self.removeAllButton.alpha = 0.7f;
+    }
+}
+
+- (IBAction)loadNextPlay:(id)sender {
+    // get the first play from upcoming plays
+    if(self.upcomingPlaysDS.upcomingPlays.count > 0){
+        Play *firstPlay = self.upcomingPlaysDS.upcomingPlays[0];
+        
+        CGRect frame = CGRectMake(self.currentPlayView.frame.origin.x + 2, self.currentPlayView.frame.origin.y, 150, 150);
+        UICollectionViewCell *cell = [[PlaybookCell alloc] initWithFrame:frame name:firstPlay.name];
+        [self.currentPlayView addSubview:cell];
+        [self.upcomingPlaysDS.upcomingPlays removeObject:firstPlay];
+        [self.upcomingPlaysCollection reloadData];
+        [self enableButtons];
+    }
+}
+
+- (IBAction)removeAllPlays:(id)sender {
+    [self.upcomingPlaysDS.upcomingPlays removeAllObjects];
+    [self.upcomingPlaysCollection reloadData];
+    [self enableButtons];
 }
 @end
