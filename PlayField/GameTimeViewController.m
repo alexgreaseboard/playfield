@@ -12,9 +12,6 @@
 #import "PlaybookCell.h"
 #import "Playbook.h"
 
-static const CGFloat kMinScale = 1.0f;
-static const CGFloat kMaxScale = 3.0f;
-
 @interface GameTimeViewController ()
 
 @end
@@ -41,7 +38,8 @@ static const CGFloat kMaxScale = 3.0f;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.collectionLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"header-tile.jpg"]];
-    self.collectionLabel.text = @" Playbooks";
+    self.offenseOrDefense = @"Defense";
+    self.collectionLabel.text = @"Defense Playbooks";
     
     //disable buttons
     [self enableButtons];
@@ -52,6 +50,7 @@ static const CGFloat kMaxScale = 3.0f;
     self.playBookDS = [[PlaybookDataSource alloc] initWithManagedObjectContext:self.managedObjectContext];
     self.playsDS = [[PlaysDataSource alloc] initWithManagedObjectContext:self.managedObjectContext];
     self.upcomingPlaysDS = [[UpcomingPlaysDataSource alloc] init];
+    [self switchType:nil];
     
     // set the datasources/delegates
     self.playbooksCollection.dataSource = self.playBookDS;
@@ -87,95 +86,6 @@ static const CGFloat kMaxScale = 3.0f;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-// Pinch out - show the plays, hide the playbooks
-- (void)handlePinchOutGesture: (UIPinchGestureRecognizer*)recognizer
-{
-    // begin pinching
-   // NSLog(@"Pinching");
-    if (recognizer.state == UIGestureRecognizerStateBegan) {
-        //NSLog(@"Begin pinching");
-        // get the pinch point in the play books collection
-        CGPoint pinchPoint = [recognizer locationInView:self.playbooksCollection];
-        NSIndexPath *pinchedItem = [self.playbooksCollection indexPathForItemAtPoint:pinchPoint];
-        if (pinchedItem) {
-            self.currentPinchedItem = pinchedItem;
-            PinchLayout *layout = [[PinchLayout alloc] init];
-            layout.itemSize = CGSizeMake(200.0f, 200.0f);
-            layout.minimumInteritemSpacing = 20.0f;
-            layout.minimumLineSpacing = 20.0f;
-            layout.sectionInset = UIEdgeInsetsMake(20.0f, 20.0f, 20.0f, 20.0f);
-            layout.headerReferenceSize = CGSizeMake(0.0f, 90.0f);
-            layout.pinchScale = 0.0f;
-
-            self.playsCollection = [[UICollectionView alloc]
-                                               initWithFrame:self.playbooksCollection.frame collectionViewLayout:layout];
-            self.playsCollection.backgroundColor = [UIColor clearColor];
-            // todo pass in the selected playbook
-            self.playsCollection.delegate = self.playsDS;
-            self.playsCollection.dataSource = self.playsDS;
-            self.playsCollection.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-            self.playsCollection.backgroundColor = [UIColor darkGrayColor];
-            self.playsCollection.scrollEnabled = YES;
-            
-            [self.playsCollection registerClass:[PlaybookCell class] forCellWithReuseIdentifier:@"PlayCell"];
-            [self.view addSubview:self.playsCollection];
-            // gestures - pinch to close
-            UIPinchGestureRecognizer *recognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchInGesture:)];
-            recognizer.delegate = self;
-            [self.playsCollection addGestureRecognizer:recognizer];
-            // gestures - drag & drop
-            // gestures - drag
-            UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePlayPanning:)];
-            panRecognizer.delegate = self;
-            [self.playsCollection addGestureRecognizer:panRecognizer];
-        }
-    } else if (recognizer.state == UIGestureRecognizerStateChanged) {
-        if (self.currentPinchedItem) {
-            CGFloat theScale = recognizer.scale;
-            theScale = MIN(theScale, kMaxScale);
-            theScale = MAX(theScale, kMinScale);
-            CGFloat theScalePct = (theScale - kMinScale) / (kMaxScale - kMinScale);
-    
-            PinchLayout *layout = (PinchLayout*)_playsCollection.collectionViewLayout;
-            layout.pinchScale = theScalePct; layout.pinchCenter =
-            [recognizer locationInView:self.playsCollection];
-            // fade out the playbooks collection
-            self.playbooksCollection.alpha = 1.0f - theScalePct; }
-    } else {
-        //NSLog(@"Pinching ended");
-        if (self.currentPinchedItem) {
-            Playbook *playbook = [self.playBookDS.fetchedResultsController objectAtIndexPath:self.currentPinchedItem];
-            self.collectionLabel.text = [NSString stringWithFormat:@"Plays for %@",playbook.name];
-            // hide the old collection
-            PinchLayout *layout = (PinchLayout*)_playsCollection.collectionViewLayout;
-            layout.pinchScale = 1.0f;
-            self.playbooksCollection.alpha = 0.0f; }
-    }
-}
-
-// hide the plays, show the playbooks
-- (void)handlePinchInGesture: (UIPinchGestureRecognizer*)recognizer
-{
-    if (recognizer.state == UIGestureRecognizerStateBegan) {
-        self.playbooksCollection.alpha = 0.0f;
-    }
-    else if (recognizer.state == UIGestureRecognizerStateChanged) {
-        CGFloat theScale = 1.0f / recognizer.scale;
-        theScale = MIN(theScale, kMaxScale);
-        theScale = MAX(theScale, kMinScale);
-        CGFloat theScalePct = 1.0f - ((theScale - kMinScale) / (kMaxScale - kMinScale));
-        PinchLayout *layout = (PinchLayout*)self.playsCollection.collectionViewLayout ;
-        layout.pinchScale = theScalePct;
-        layout.pinchCenter = [recognizer locationInView:self.playbooksCollection];
-        self.playbooksCollection.alpha = 1.0f - theScalePct;
-    } else {
-        self.collectionLabel.text = @"Playbooks";
-        self.playbooksCollection.alpha = 1.0f;
-        [self.playsCollection removeFromSuperview];
-        self.playsCollection = nil;
-        self.currentPinchedItem = nil;
-    }
-}
 
 // drag & drop for plays to upcoming plays
 - (void)handlePlayPanning:(UIPanGestureRecognizer *)recognizer
@@ -415,5 +325,22 @@ static const CGFloat kMaxScale = 3.0f;
     [self.upcomingPlaysDS.upcomingPlays removeAllObjects];
     [self.upcomingPlaysCollection reloadData];
     [self enableButtons];
+}
+
+- (IBAction)switchType:(id)sender {
+    NSString *newLabel = [NSString stringWithFormat:@"Switch to %@", self.offenseOrDefense];
+    [self.switchTypeButton setTitle:newLabel forState:UIControlStateNormal];
+    if([self.offenseOrDefense isEqualToString:@"Offense"]){
+        self.offenseOrDefense = @"Defense";
+        newLabel = [self.collectionLabel.text stringByReplacingOccurrencesOfString:@"Offense" withString:@"Defense"];
+    } else {
+        self.offenseOrDefense = @"Offense";
+        newLabel = [self.collectionLabel.text stringByReplacingOccurrencesOfString:@"Defense" withString:@"Offense"];
+    }
+    [self.collectionLabel setText:newLabel];
+    self.playBookDS.offenseOrDefense = self.offenseOrDefense;
+    self.playsDS.offenseOrDefense = self.offenseOrDefense;
+    [self.playbooksCollection reloadData];
+    [self.playsCollection reloadData];
 }
 @end

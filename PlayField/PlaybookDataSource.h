@@ -12,6 +12,7 @@
 
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (weak, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) NSString *offenseOrDefense;
 
 -(id) initWithManagedObjectContext: (NSManagedObjectContext*) managedObjectContext;
 @end

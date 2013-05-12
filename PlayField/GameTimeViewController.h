@@ -10,29 +10,24 @@
 #import "PlaybookDataSource.h"
 #import "PlaysDataSource.h"
 #import "UpcomingPlaysDataSource.h"
+#import "PlaybookPinchGestureRecognizer.h"
 
-@interface GameTimeViewController : UIViewController<UIGestureRecognizerDelegate>
+@interface GameTimeViewController : PlaybookPinchGestureRecognizer<UIGestureRecognizerDelegate>
 
 // outlets & actions
-- (IBAction)close:(id)sender;
-@property (strong, nonatomic) IBOutlet UILabel *collectionLabel;
 @property (strong, nonatomic) IBOutlet UIView *currentPlayView;
 @property (strong, nonatomic) IBOutlet UIButton *nextPlayButton;
 @property (strong, nonatomic) IBOutlet UIButton *removeAllButton;
+@property (strong, nonatomic) IBOutlet UIButton *switchTypeButton;
+- (IBAction)close:(id)sender;
 - (IBAction)loadNextPlay:(id)sender;
 - (IBAction)removeAllPlays:(id)sender;
+- (IBAction)switchType:(id)sender;
 
-// collections
-@property (strong, nonatomic) IBOutlet UICollectionView *playbooksCollection;
-@property (strong, nonatomic) IBOutlet UICollectionView *playsCollection;
-@property (strong, nonatomic) IBOutlet UICollectionView *upcomingPlaysCollection;
-@property (strong, nonatomic) PlaybookDataSource *playBookDS;
-@property (strong, nonatomic) PlaysDataSource *playsDS;
+
 @property (strong, nonatomic) UpcomingPlaysDataSource *upcomingPlaysDS;
 
 // gestures - pinching & panning
-@property (nonatomic, strong) UIPinchGestureRecognizer *pinchOutGestureRecognizer;
-@property (nonatomic, strong) NSIndexPath *currentPinchedItem;
 @property (nonatomic, strong) NSIndexPath *currentPannedItem;
 
 // object context

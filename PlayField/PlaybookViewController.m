@@ -34,10 +34,22 @@ Playbook *selectedPlaybook;
 
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
+    // data
     self.playBookDS = [[PlaybookDataSource alloc] initWithManagedObjectContext:self.managedObjectContext];
-    self.collectionView.dataSource = self.playBookDS;
+    self.playsDS = [[PlaysDataSource alloc] initWithManagedObjectContext:self.managedObjectContext];
     
-    [self.collectionView registerClass:[PlaybookCell class] forCellWithReuseIdentifier:@"PlaybookCell"];
+    // set the datasources/delegates
+    self.playbooksCollection.dataSource = self.playBookDS;
+    self.playbooksCollection.delegate = self.playBookDS;
+    
+    
+    // gestures - pinch
+    self.pinchOutGestureRecognizer = [[UIPinchGestureRecognizer alloc]
+                                      initWithTarget:self action:@selector(handlePinchOutGesture:)];
+    self.pinchOutGestureRecognizer.delegate = self;
+    [self.playbooksCollection addGestureRecognizer:self.pinchOutGestureRecognizer];
+    
+    [self.playbooksCollection registerClass:[PlaybookCell class] forCellWithReuseIdentifier:@"PlaybookCell"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,7 +63,7 @@ Playbook *selectedPlaybook;
     newPlaybook.name = @"New Playbook";
 
     self.playBookDS.fetchedResultsController = nil;
-    [self.collectionView reloadData];
+    [self.playbooksCollection reloadData];
     
     // Save the context.
     NSError *error = nil;

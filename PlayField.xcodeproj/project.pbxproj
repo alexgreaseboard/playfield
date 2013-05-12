@@ -61,6 +61,7 @@
 		39E2FFD1173322320062332C /* PinchLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E2FFD0173322320062332C /* PinchLayout.m */; };
 		39E2FFD41733256A0062332C /* PlaysDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E2FFD31733256A0062332C /* PlaysDataSource.m */; };
 		39E2FFD7173588C40062332C /* UpcomingPlaysDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E2FFD6173588C40062332C /* UpcomingPlaysDataSource.m */; };
+		39E2FFDA173F2B960062332C /* PlaybookPinchGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E2FFD9173F2B960062332C /* PlaybookPinchGestureRecognizer.m */; };
 		6D0724AD16D6A74B00DDA641 /* PlayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0724AC16D6A74B00DDA641 /* PlayCell.m */; };
 		6D148F7816C988E70069CB76 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D148F7716C988E70069CB76 /* QuartzCore.framework */; };
 		6D148F7A16C988E70069CB76 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D148F7916C988E70069CB76 /* OpenGLES.framework */; };
@@ -326,6 +327,8 @@
 		39E2FFD31733256A0062332C /* PlaysDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaysDataSource.m; sourceTree = "<group>"; };
 		39E2FFD5173588C40062332C /* UpcomingPlaysDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingPlaysDataSource.h; sourceTree = "<group>"; };
 		39E2FFD6173588C40062332C /* UpcomingPlaysDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingPlaysDataSource.m; sourceTree = "<group>"; };
+		39E2FFD8173F2B960062332C /* PlaybookPinchGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybookPinchGestureRecognizer.h; sourceTree = "<group>"; };
+		39E2FFD9173F2B960062332C /* PlaybookPinchGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybookPinchGestureRecognizer.m; sourceTree = "<group>"; };
 		6D0724AB16D6A74B00DDA641 /* PlayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayCell.h; sourceTree = "<group>"; };
 		6D0724AC16D6A74B00DDA641 /* PlayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayCell.m; sourceTree = "<group>"; };
 		6D148F7416C988E70069CB76 /* PlayField.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayField.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -784,6 +787,8 @@
 				6DCFB60A1711DF420065700F /* PlaybookEditViewController.m */,
 				39E2FFC81731DD230062332C /* PlaybookDataSource.h */,
 				39E2FFC91731DD230062332C /* PlaybookDataSource.m */,
+				39E2FFD8173F2B960062332C /* PlaybookPinchGestureRecognizer.h */,
+				39E2FFD9173F2B960062332C /* PlaybookPinchGestureRecognizer.m */,
 			);
 			name = Playbook;
 			sourceTree = "<group>";
@@ -1592,6 +1597,7 @@
 				39E2FFD1173322320062332C /* PinchLayout.m in Sources */,
 				39E2FFD41733256A0062332C /* PlaysDataSource.m in Sources */,
 				39E2FFD7173588C40062332C /* UpcomingPlaysDataSource.m in Sources */,
+				39E2FFDA173F2B960062332C /* PlaybookPinchGestureRecognizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

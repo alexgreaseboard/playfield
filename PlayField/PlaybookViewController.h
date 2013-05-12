@@ -9,12 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "Playbook.h"
 #import "PlaybookDataSource.h"
+#import "PlaybookPinchGestureRecognizer.h"
 
-@interface PlaybookViewController : UIViewController <UIAlertViewDelegate>
+@interface PlaybookViewController : PlaybookPinchGestureRecognizer <UIAlertViewDelegate>
 
-@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (strong, nonatomic) PlaybookDataSource *playBookDS;
 
 - (IBAction)addPlaybook:(id)sender;
 

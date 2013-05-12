@@ -73,6 +73,12 @@
     
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
+    // Offense or defense
+    if(self.offenseOrDefense){
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                                  @"(type == %@)", self.offenseOrDefense];
+        [fetchRequest setPredicate:predicate];
+    }
     
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];

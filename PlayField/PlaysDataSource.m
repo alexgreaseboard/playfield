@@ -77,6 +77,23 @@
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
+    // Predicates
+    if(self.offenseOrDefense && self.playbook){
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                                  @"(type == %@) && (playbookPlay == %@)", self.offenseOrDefense, self.playbook];
+        [fetchRequest setPredicate:predicate];
+    } else if(self.offenseOrDefense){
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                                  @"(type == %@)", self.offenseOrDefense];
+        [fetchRequest setPredicate:predicate];
+    } else if (self.playbook){
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                                  @"(playbookPlay == %@)", self.playbook];
+        [fetchRequest setPredicate:predicate];
+    }
+    
+    
+    
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
     NSArray *sortDescriptors = @[sortDescriptor];
