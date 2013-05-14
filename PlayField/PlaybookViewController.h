@@ -11,7 +11,7 @@
 #import "PlaybookDataSource.h"
 #import "PlaybookPinchGestureRecognizer.h"
 
-@interface PlaybookViewController : PlaybookPinchGestureRecognizer <UIAlertViewDelegate>
+@interface PlaybookViewController : PlaybookPinchGestureRecognizer <UIAlertViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
 

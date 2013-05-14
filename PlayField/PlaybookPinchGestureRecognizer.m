@@ -54,10 +54,11 @@ static const CGFloat kMaxScale = 3.0f;
             recognizer.delegate = self;
             [self.playsCollection addGestureRecognizer:recognizer];
             // gestures - drag & drop
-            // gestures - drag
-            UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePlayPanning:)];
-            panRecognizer.delegate = self;
-            [self.playsCollection addGestureRecognizer:panRecognizer];
+            if(self.collectionLabel){
+                UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePlayPanning:)];
+                panRecognizer.delegate = self;
+                [self.playsCollection addGestureRecognizer:panRecognizer];
+            }
         }
     } else if (recognizer.state == UIGestureRecognizerStateChanged) {
         if (self.currentPinchedItem) {
@@ -75,8 +76,9 @@ static const CGFloat kMaxScale = 3.0f;
         //NSLog(@"Pinching ended");
         if (self.currentPinchedItem) {
             Playbook *playbook = [self.playBookDS.fetchedResultsController objectAtIndexPath:self.currentPinchedItem];
-            // TODO Fix the label
-            //self.collectionLabel.text = [NSString stringWithFormat:@"%@ Plays for %@",self.offenseOrDefense, playbook.name];
+            if(self.collectionLabel){
+                self.collectionLabel.text = [NSString stringWithFormat:@"%@ Plays for %@",self.offenseOrDefense, playbook.name];
+            }
             // hide the old collection
             PinchLayout *layout = (PinchLayout*)_playsCollection.collectionViewLayout;
             layout.pinchScale = 1.0f;

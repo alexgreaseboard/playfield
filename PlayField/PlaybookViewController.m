@@ -40,8 +40,7 @@ Playbook *selectedPlaybook;
     
     // set the datasources/delegates
     self.playbooksCollection.dataSource = self.playBookDS;
-    self.playbooksCollection.delegate = self.playBookDS;
-    
+    self.playbooksCollection.delegate = self;
     
     // gestures - pinch
     self.pinchOutGestureRecognizer = [[UIPinchGestureRecognizer alloc]
@@ -76,6 +75,7 @@ Playbook *selectedPlaybook;
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     selectedPlaybook = [self.playBookDS.fetchedResultsController objectAtIndexPath:indexPath];
+    NSLog(@"Viewing playbook %@", selectedPlaybook);
     [self performSegueWithIdentifier:@"playbookDetailSegue" sender:selectedPlaybook];
 }
 
