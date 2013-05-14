@@ -16,5 +16,6 @@
 @dynamic type;
 @dynamic runPass;
 @dynamic playSprite;
+@dynamic order;
 
 @end

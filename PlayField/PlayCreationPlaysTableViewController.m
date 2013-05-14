@@ -17,6 +17,7 @@
 
 @implementation PlayCreationPlaysTableViewController{
     bool isReadOnly;
+    bool isReordering;
     CocosViewController *detailViewController;
 }
 
@@ -35,6 +36,11 @@
     
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self action:@selector(returnToMenu:) ];
     self.navigationItem.leftBarButtonItem = menuButton;
+    
+    NSMutableArray *allButtons = [[NSMutableArray alloc] initWithArray:self.navigationItem.rightBarButtonItems];
+    UIBarButtonItem *reorderButton = [[UIBarButtonItem alloc] initWithTitle:@"Reorder" style:UIBarButtonItemStylePlain target:self action:@selector(setEditing:animated:) ];
+    [allButtons addObject:reorderButton];
+    self.navigationItem.rightBarButtonItems = allButtons;
 
     NSObject* o = [[self.splitViewController.viewControllers lastObject] topViewController];
     if([o isKindOfClass:[CocosViewController class]]){
@@ -50,6 +56,7 @@
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
+    isReordering = NO;
     
     // gesture recognizer for drag & drop
     UIPanGestureRecognizer *panning = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePanning:)];
@@ -57,6 +64,7 @@
     panning.maximumNumberOfTouches = 1;
     panning.delegate = self;
     [self.tableView addGestureRecognizer:panning];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -131,8 +139,32 @@
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // The table view should not be re-orderable.
-    return NO;
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+{
+    NSLog(@"Move row at index path");
+    NSMutableArray *allPlays = [self.fetchedResultsController.fetchedObjects mutableCopy];
+    Play *playToMove = [self.fetchedResultsController objectAtIndexPath:fromIndexPath];
+    [allPlays removeObject:playToMove];
+    [allPlays insertObject:playToMove atIndex:toIndexPath.item];
+    for(int i=0; i<allPlays.count; i++){
+        Play *currentPlay = allPlays[i];
+        currentPlay.order = [[NSNumber alloc] initWithInt:i];
+        NSLog(@"Setting Order %@ for %@", currentPlay.order, currentPlay.name);
+    }
+    
+    // Save everything
+    isReordering = YES;
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    
+    // reload
+    [tableView reloadData];
 }
 
 - (NSFetchedResultsController *)fetchedResultsController
@@ -151,8 +183,9 @@
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-    NSArray *sortDescriptors = @[sortDescriptor];
+    NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"order" ascending:YES];
+    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    NSArray *sortDescriptors = @[sortDescriptor1, sortDescriptor2];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
@@ -178,12 +211,15 @@
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
-    [self.tableView beginUpdates];
+    if(isReordering != YES){
+        [self.tableView beginUpdates];
+    }
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
            atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
 {
+    if(isReordering != YES){
     switch(type) {
         case NSFetchedResultsChangeInsert:
             [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
@@ -193,12 +229,14 @@
             [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
+    }
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
        atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath
 {
+    if(isReordering != YES){
     UITableView *tableView = self.tableView;
     
     switch(type) {
@@ -219,11 +257,16 @@
             [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
+    }
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
+    if(isReordering != YES){
     [self.tableView endUpdates];
+    } else {
+        isReordering = NO;
+    }
 }
 
 - (void)configureCell:(PlayCell *)cell atIndexPath:(NSIndexPath *)indexPath

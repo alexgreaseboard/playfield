@@ -3,6 +3,7 @@
     <entity name="Play" representedClassName="Play" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="runPass" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="playbookPlay" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PlaybookPlay" inverseName="play" inverseEntity="PlaybookPlay" syncable="YES"/>
@@ -64,7 +65,7 @@
         <relationship name="parentSprite" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PlaySprite" inverseName="spritePoints" inverseEntity="PlaySprite" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Play" positionX="-461" positionY="-45" width="128" height="135"/>
+        <element name="Play" positionX="-461" positionY="-45" width="128" height="150"/>
         <element name="Playbook" positionX="160" positionY="192" width="128" height="105"/>
         <element name="PlaybookPlay" positionX="-252" positionY="162" width="128" height="75"/>
         <element name="Player" positionX="-641" positionY="-45" width="128" height="240"/>
