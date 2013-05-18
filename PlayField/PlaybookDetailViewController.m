@@ -9,7 +9,7 @@
 #import "PlaybookDetailViewController.h"
 #import "AppDelegate.h"
 #import "PlaysDataSource.h"
-#import "PlayCell.h"
+#import "PlaybookCell.h"
 #import "Play.h"
 
 @interface PlaybookDetailViewController ()
@@ -18,7 +18,7 @@
 @implementation PlaybookDetailViewController {
     CGRect initialDraggingFrame;
     PlaysDataSource *playsDS;
-    PlayCell *draggingItem;
+    PlaybookCell *draggingItem;
     Play *draggingPlay;
 }
 
@@ -34,6 +34,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.collectionView registerClass:[PlaybookCell class] forCellWithReuseIdentifier:@"PlayCell"];
 	
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
@@ -106,8 +108,7 @@
     
 	// add the cell to the view
 	draggingItem.nameLabel.text = pPlay.name;
-	draggingItem = [[PlayCell alloc] initWithFrame:initialDraggingFrame];
-	//[draggingItem configureCellForPracticeItem:draggingItem withframe:initialDraggingFrame];
+	draggingItem = [[PlaybookCell alloc] initWithFrame:initialDraggingFrame];
 	
     /*placeholderItem = [NSEntityDescription insertNewObjectForEntityForName:@"PracticeItem" inManagedObjectContext:self.managedObjectContext];
     placeholderItem.itemType = @"placeholder";
@@ -183,6 +184,7 @@
     
 	[draggingItem removeFromSuperview];
 	draggingItem = nil;
+    draggingPlay = nil;
 }
 
 
