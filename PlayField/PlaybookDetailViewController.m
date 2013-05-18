@@ -10,7 +10,6 @@
 #import "AppDelegate.h"
 
 @interface PlaybookDetailViewController ()
-
 @end
 
 @implementation PlaybookDetailViewController
