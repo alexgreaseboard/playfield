@@ -37,7 +37,7 @@ Playbook *selectedPlaybook;
     // data
     self.playBookDS = [[PlaybookDataSource alloc] initWithManagedObjectContext:self.managedObjectContext];
     self.playsDS = [[PlaysDataSource alloc] initWithManagedObjectContext:self.managedObjectContext];
-    
+
     // set the datasources/delegates
     self.playbooksCollection.dataSource = self.playBookDS;
     self.playbooksCollection.delegate = self;
@@ -60,6 +60,7 @@ Playbook *selectedPlaybook;
 - (IBAction)addPlaybook:(id)sender {
     Playbook *newPlaybook = [NSEntityDescription insertNewObjectForEntityForName:@"Playbook" inManagedObjectContext:self.managedObjectContext];
     newPlaybook.name = @"New Playbook";
+    newPlaybook.type = @"Offense";
 
     self.playBookDS.fetchedResultsController = nil;
     [self.playbooksCollection reloadData];

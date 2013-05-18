@@ -1357,9 +1357,6 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <connections>
-                                    <outlet property="delegate" destination="DQv-wx-gd3" id="b4e-lf-4P6"/>
-                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -1375,6 +1372,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="playbooksCollection" destination="PW9-t2-Slb" id="TjK-Do-HgE"/>
                         <segue destination="Jf2-M0-zBI" kind="modal" identifier="playbookDetailSegue" modalPresentationStyle="currentContext" modalTransitionStyle="coverVertical" id="VIp-x9-Q7e"/>
                     </connections>
                 </viewController>
