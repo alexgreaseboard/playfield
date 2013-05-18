@@ -36,6 +36,8 @@ Playbook *selectedPlaybook;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"field.jpg"]];
 
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
@@ -46,6 +48,7 @@ Playbook *selectedPlaybook;
     // set the datasources/delegates
     self.playbooksCollection.dataSource = self.playBookDS;
     self.playbooksCollection.delegate = self;
+    self.playbooksCollection.backgroundColor = [UIColor clearColor];
     
     // gestures - pinch
     self.pinchOutGestureRecognizer = [[UIPinchGestureRecognizer alloc]

@@ -35,6 +35,8 @@
 {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"field.jpg"]];
+    
     [self.collectionView registerClass:[PlaybookCell class] forCellWithReuseIdentifier:@"PlayCell"];
 	
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
@@ -47,6 +49,7 @@
     // set the datasources/delegates
     self.collectionView.dataSource = playsDS;
     self.collectionView.delegate = self;
+    self.collectionView.backgroundColor = [UIColor clearColor];
     
     [self configureView ];
 }
