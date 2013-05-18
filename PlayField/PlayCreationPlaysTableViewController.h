@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "Play.h"
 
 // Drag & drop
 @protocol PlayCreationPlaysDelegate
-- (void)draggingStarted:(UIPanGestureRecognizer *)sender forPlayWithName:(NSString *)name;
+- (void)draggingStarted:(UIPanGestureRecognizer *)sender forPlay:(Play *)play;
 - (void)draggingChanged:(UIPanGestureRecognizer *)sender;
 - (void)draggingEnded:(UIPanGestureRecognizer *)sender;
 @end
