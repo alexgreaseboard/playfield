@@ -311,9 +311,8 @@
         //NSLog(@"Dragging started");
         CGPoint p1 = [sender locationOfTouch:0 inView:self.tableView];
         NSIndexPath *newPinchedIndexPath1 = [self.tableView indexPathForRowAtPoint:p1];
-        //get the label
-        PlayCell *cell = (PlayCell*)[self.tableView cellForRowAtIndexPath:newPinchedIndexPath1];
-        [self.delegate draggingStarted:sender forPlayWithName:cell.nameLabel.text];
+        Play *selectedPlay = [self.fetchedResultsController objectAtIndexPath:newPinchedIndexPath1];
+        [self.delegate draggingStarted:sender forPlay:selectedPlay];
     } else if(sender.state == UIGestureRecognizerStateChanged){
         [self.delegate draggingChanged:sender];
         //NSLog(@"Dragging..");

@@ -446,6 +446,14 @@
     [self.collectionView reloadData];
 }
 
+- (void)draggingStarted:(UIPanGestureRecognizer *)sender forPlay:(Play *)play{
+	//NSLog(@"Dragging started");
+    if(self.practice == nil || play == nil  || [self.practice.practiceColumns count] == 0){
+        return;
+    }
+    [self draggingStarted:sender forPlayWithName:play.name];
+}
+
 - (void)draggingStarted:(UIPanGestureRecognizer *)sender forPlayWithName:(NSString *)name{
 	//NSLog(@"Dragging started");
     if(self.practice == nil || name == nil  || [self.practice.practiceColumns count] == 0){
