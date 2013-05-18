@@ -42,6 +42,7 @@
     
     // data
     playsDS = [[PlaysDataSource alloc] initWithManagedObjectContext:self.managedObjectContext];
+    playsDS.playbook = self.playbook;
     
     // set the datasources/delegates
     self.collectionView.dataSource = playsDS;

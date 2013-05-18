@@ -159,6 +159,7 @@ Playbook *selectedPlaybook;
     [self.playbooksCollection reloadData];
     
 }
+
 - (void)draggingEnded:(UIPanGestureRecognizer *)sender
 {
 	[self addPlayToPlaybook:sender];
