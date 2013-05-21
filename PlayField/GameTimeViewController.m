@@ -37,7 +37,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.collectionLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"header-tile.jpg"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"field.jpg"]];
+    
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = [self.view convertRect:self.collectionLabel.frame toView:self.view];
+    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];
+    //[self.view.layer insertSublayer:gradient below:self.collectionLabel.layer];
+    
+    self.collectionLabel.backgroundColor = [UIColor colorWithWhite:0.08 alpha:0.2];
     self.offenseOrDefense = @"Defense";
     self.collectionLabel.text = @"Defense Playbooks";
     
