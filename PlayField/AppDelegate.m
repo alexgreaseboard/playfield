@@ -9,6 +9,9 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
 #import "RosterMasterViewController.h"
+#import "PlayCell.h"
+#import "PlayDrillItemCell.h"
+#import "PlayerCell.h"
 
 @implementation AppDelegate
 
@@ -29,13 +32,18 @@
     [[UITableView appearance] setSeparatorColor:[UIColor colorWithRed:34/255.0 green:54/255.0 blue:41/255.0 alpha:1.0]];
     [[UITableView appearance] setSeparatorColor:[UIColor grayColor]];
     
-    [[UILabel appearance] setColor:[UIColor whiteColor]];
+    //[[UILabel appearance] setColor:[UIColor whiteColor]];
+    [[UILabel appearanceWhenContainedIn:[PlayCell class], nil] setTextColor:[UIColor whiteColor]];
+    [[UILabel appearanceWhenContainedIn:[PlayDrillItemCell class], nil] setTextColor:[UIColor whiteColor]];
+    [[UILabel appearanceWhenContainedIn:[PlayerCell class], nil] setTextColor:[UIColor whiteColor]];
     
     [[UITableViewCell appearance] setBackgroundColor:[UIColor colorWithRed:24/255.0 green:48/255.0 blue:33/255.0 alpha:1.0]];
     //[[UITableViewCell appearance] setColor:[UIColor colorWithRed:24/255.0 green:48/255.0 blue:33/255.0 alpha:1.0]];
     
     //[[UITextField appearance] setColor:[UIColor whiteColor]];
-    [[UITextField appearance] setBackgroundColor:[UIColor colorWithRed:24/255.0 green:48/255.0 blue:33/255.0 alpha:1.0]];
+    //[[UITextField appearance] setBackgroundColor:[UIColor colorWithRed:24/255.0 green:48/255.0 blue:33/255.0 alpha:1.0]];
+    
+    //[[UIView appearance] setBackgroundColor:[UIColor colorWithRed:24/255.0 green:48/255.0 blue:33/255.0 alpha:1.0]];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
