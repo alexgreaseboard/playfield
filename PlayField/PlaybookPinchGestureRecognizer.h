@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PlaybookDataSource.h"
-#import "PlaysDataSource.h"
+#import "PlaybookPlayDataSource.h"
 
 @interface PlaybookPinchGestureRecognizer : UIViewController<UIGestureRecognizerDelegate>
 
@@ -20,7 +20,7 @@
 @property (strong, nonatomic) IBOutlet UICollectionView *playsCollection;
 @property (strong, nonatomic) IBOutlet UICollectionView *upcomingPlaysCollection;
 @property (strong, nonatomic) PlaybookDataSource *playBookDS;
-@property (strong, nonatomic) PlaysDataSource *playsDS;
+@property (strong, nonatomic) PlaybookPlayDataSource *playbookPlayDS;
 
 // gestures - pinching & panning
 @property (nonatomic, strong) UIPinchGestureRecognizer *pinchOutGestureRecognizer;

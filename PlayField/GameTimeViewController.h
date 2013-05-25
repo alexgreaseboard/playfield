@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PlaybookDataSource.h"
-#import "PlaysDataSource.h"
+#import "PlaybookPlayDataSource.h"
 #import "UpcomingPlaysDataSource.h"
 #import "PlaybookPinchGestureRecognizer.h"
 

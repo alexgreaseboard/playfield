@@ -8,7 +8,7 @@
 
 #import "PlaybookPinchGestureRecognizer.h"
 #import "PinchLayout.h"
-#import "PlaybookCell.h"
+#import "PlaybookPlayCell.h"
 
 static const CGFloat kMinScale = 1.0f;
 static const CGFloat kMaxScale = 3.0f;
@@ -39,15 +39,15 @@ static const CGFloat kMaxScale = 3.0f;
                                     initWithFrame:self.playbooksCollection.frame collectionViewLayout:layout];
             self.playsCollection.backgroundColor = [UIColor clearColor];
             // todo pass in the selected playbook
-            self.playsCollection.delegate = self.playsDS;
-            self.playsCollection.dataSource = self.playsDS;
+            self.playsCollection.delegate = self.playbookPlayDS;
+            self.playsCollection.dataSource = self.playbookPlayDS;
             self.playsCollection.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
             self.playsCollection.backgroundColor = [UIColor clearColor];
             self.playsCollection.scrollEnabled = YES;
             Playbook *playbook = [self.playBookDS.fetchedResultsController objectAtIndexPath:self.currentPinchedItem];
-            self.playsDS.playbook = playbook;
+            self.playbookPlayDS.playbook = playbook;
             
-            [self.playsCollection registerClass:[PlaybookCell class] forCellWithReuseIdentifier:@"PlayCell"];
+            [self.playsCollection registerClass:[PlaybookPlayCell class] forCellWithReuseIdentifier:@"PlaybookPlayCell"];
             [self.view addSubview:self.playsCollection];
             // gestures - pinch to close
             UIPinchGestureRecognizer *recognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchInGesture:)];

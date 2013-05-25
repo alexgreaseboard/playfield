@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "PinchLayout.h"
 #import "PlaybookCell.h"
+#import "PlaybookPlayCell.h"
 #import "Playbook.h"
 
 @interface GameTimeViewController ()
@@ -17,8 +18,8 @@
 @end
 
 @implementation GameTimeViewController{
-    PlaybookCell *draggingCell;
-	Play *draggingPlay;
+    UICollectionViewCell *draggingCell;
+	PlaybookPlay *draggingPlaybookPlay;
     Playbook *draggingPlaybook;
     CGRect initialDraggingFrame;
     bool upcomingPlayRemoved;
@@ -55,7 +56,7 @@
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
     self.playBookDS = [[PlaybookDataSource alloc] initWithManagedObjectContext:self.managedObjectContext];
-    self.playsDS = [[PlaysDataSource alloc] initWithManagedObjectContext:self.managedObjectContext];
+    self.playbookPlayDS = [[PlaybookPlayDataSource alloc] initWithManagedObjectContext:self.managedObjectContext];
     self.upcomingPlaysDS = [[UpcomingPlaysDataSource alloc] init];
     [self switchType:nil];
     
@@ -66,7 +67,7 @@
     self.upcomingPlaysCollection.delegate = self.upcomingPlaysDS;
     
     [self.playbooksCollection registerClass:[PlaybookCell class] forCellWithReuseIdentifier:@"PlaybookCell"];
-    [self.upcomingPlaysCollection registerClass:[PlaybookCell class] forCellWithReuseIdentifier:@"PlayCell"];
+    [self.upcomingPlaysCollection registerClass:[PlaybookPlayCell class] forCellWithReuseIdentifier:@"PlaybookPlayCell"];
     
     // gestures - pinch
     self.pinchOutGestureRecognizer = [[UIPinchGestureRecognizer alloc]
@@ -115,12 +116,12 @@
             initialDraggingFrame.origin.y += (initialDraggingFrame.size.height);
             
             // add the cell to the view
-            draggingPlay = [self.playsDS.fetchedResultsController objectAtIndexPath:pannedItem];
-            draggingCell = [[PlaybookCell alloc] initWithFrame:initialDraggingFrame name:draggingPlay.name];
+            draggingPlaybookPlay = [self.playbookPlayDS.fetchedResultsController objectAtIndexPath:pannedItem];
+            draggingCell = [[PlaybookPlayCell alloc] initWithFrame:initialDraggingFrame playbookPlay:draggingPlaybookPlay];
             [self.view addSubview:draggingCell];
         }
     } else if (recognizer.state == UIGestureRecognizerStateChanged) {
-        if(self.currentPannedItem == nil || draggingPlay == nil){
+        if(self.currentPannedItem == nil || draggingPlaybookPlay == nil){
             return;
         }
         //NSLog(@"Dragging changed");
@@ -131,18 +132,18 @@
         newFrame.origin.y += translation.y;
         draggingCell.frame = newFrame;
         //move the placeholder
-        [self addDraggedCell:recognizer draggedItem:draggingPlay];
+        [self addDraggedCell:recognizer draggedItem:draggingPlaybookPlay];
     } else {
-        if(self.currentPannedItem == nil || draggingPlay == nil){
+        if(self.currentPannedItem == nil || draggingPlaybookPlay == nil){
             return;
         }
         //NSLog(@"dragging ended");
         // add the cell to the appropriate place
-        [self addDraggedCell:recognizer draggedItem:draggingPlay];
+        [self addDraggedCell:recognizer draggedItem:draggingPlaybookPlay];
         
         [draggingCell removeFromSuperview];
         draggingCell = nil;
-        draggingPlay = nil;
+        draggingPlaybookPlay = nil;
         [self enableButtons];
     }
 }
@@ -157,7 +158,7 @@
         NSIndexPath *landingPoint = [self.upcomingPlaysCollection indexPathForItemAtPoint:newFrame.origin];
     
         if(landingPoint){
-            [self.upcomingPlaysDS.upcomingPlays removeObject:draggingPlay];
+            [self.upcomingPlaysDS.upcomingPlays removeObject:draggingPlaybookPlay];
             //Play *landingItem = self.upcomingPlaysDS.upcomingPlays[landingPoint.item];
             int index = landingPoint.item;
             if(index > 0){
@@ -174,6 +175,7 @@
         
 }
 
+// drag & drop for playbooks to upcoming plays
 - (void)handlePlaybookPanning:(UIPanGestureRecognizer *)recognizer
 {
     if (recognizer.state == UIGestureRecognizerStateBegan) {
@@ -195,7 +197,7 @@
             
             // add the cell to the view
             draggingPlaybook = [self.playBookDS.fetchedResultsController objectAtIndexPath:pannedItem];
-            draggingCell = [[PlaybookCell alloc] initWithFrame:initialDraggingFrame name:draggingPlaybook.name];
+            draggingCell = [[PlaybookCell alloc] initWithFrame:initialDraggingFrame playbook:draggingPlaybook];
             [self.view addSubview:draggingCell];
         }
     } else if (recognizer.state == UIGestureRecognizerStateChanged) {
@@ -216,10 +218,10 @@
             return;
         }
         [self.upcomingPlaysDS.upcomingPlays removeObject:draggingPlaybook];
-        // TODO get all the plays associated with the current playbook and add them
-        id <NSFetchedResultsSectionInfo> section = self.playsDS.fetchedResultsController.sections[0];
-        for(Play *play in [section objects]){
-            [self addDraggedCell:recognizer draggedItem:play];
+        // get all the plays associated with the current playbook and add them
+        id <NSFetchedResultsSectionInfo> section = self.playbookPlayDS.fetchedResultsController.sections[0];
+        for(PlaybookPlay *playbookPlay in [section objects]){
+            [self addDraggedCell:recognizer draggedItem:playbookPlay];
         }
         
         [draggingCell removeFromSuperview];
@@ -250,14 +252,14 @@
             
             // add the cell to the view
             
-            draggingPlay = [self.upcomingPlaysDS.upcomingPlays objectAtIndex:pannedItem.item];
-            draggingCell = [[PlaybookCell alloc] initWithFrame:initialDraggingFrame name:draggingPlay.name];
+            draggingPlaybookPlay = [self.upcomingPlaysDS.upcomingPlays objectAtIndex:pannedItem.item];
+            draggingCell = [[PlaybookPlayCell alloc] initWithFrame:initialDraggingFrame playbookPlay:draggingPlaybookPlay];
             [self.view addSubview:draggingCell];
             upcomingPlayRemoved = NO;
             //NSLog(@"Finding dragging play at index %d %@", pannedItem.item, draggingPlay);
         }
     } else if (recognizer.state == UIGestureRecognizerStateChanged) {
-        if(self.currentPannedItem == nil || draggingPlay == nil){
+        if(self.currentPannedItem == nil || draggingPlaybookPlay == nil){
             return;
         }
         //NSLog(@"Dragging changed");
@@ -272,21 +274,21 @@
         CGPoint location = [recognizer locationInView:self.upcomingPlaysCollection];
         NSLog(@"Location: %f Height: %f", location.y, self.upcomingPlaysCollection.frame.size.height);
         if(upcomingPlayRemoved == NO && location.y > (self.upcomingPlaysCollection.frame.size.height)){
-            [self.upcomingPlaysDS.upcomingPlays removeObject:draggingPlay];
+            [self.upcomingPlaysDS.upcomingPlays removeObject:draggingPlaybookPlay];
             [self.upcomingPlaysCollection reloadData];
             upcomingPlayRemoved = YES;
         } else if(location.y <= (self.upcomingPlaysCollection.frame.size.height)){
             // add it back if needed
-            [self addDraggedCell:recognizer draggedItem:draggingPlay];
+            [self addDraggedCell:recognizer draggedItem:draggingPlaybookPlay];
             upcomingPlayRemoved = NO;
         }
     } else {
-        if(self.currentPannedItem == nil || draggingPlay == nil){
+        if(self.currentPannedItem == nil || draggingPlaybookPlay == nil){
             return;
         }
         [draggingCell removeFromSuperview];
         draggingCell = nil;
-        draggingPlay = nil;
+        draggingPlaybookPlay = nil;
         self.currentPannedItem = nil;
         [self enableButtons];
     }
@@ -317,12 +319,12 @@
 - (IBAction)loadNextPlay:(id)sender {
     // get the first play from upcoming plays
     if(self.upcomingPlaysDS.upcomingPlays.count > 0){
-        Play *firstPlay = self.upcomingPlaysDS.upcomingPlays[0];
+        PlaybookPlay *firstPlaybookPlay = self.upcomingPlaysDS.upcomingPlays[0];
         
         CGRect frame = CGRectMake(self.currentPlayView.frame.origin.x + 2, self.currentPlayView.frame.origin.y, 150, 150);
-        UICollectionViewCell *cell = [[PlaybookCell alloc] initWithFrame:frame name:firstPlay.name];
+        UICollectionViewCell *cell = [[PlaybookPlayCell alloc] initWithFrame:frame playbookPlay:firstPlaybookPlay];
         [self.currentPlayView addSubview:cell];
-        [self.upcomingPlaysDS.upcomingPlays removeObject:firstPlay];
+        [self.upcomingPlaysDS.upcomingPlays removeObject:firstPlaybookPlay];
         [self.upcomingPlaysCollection reloadData];
         [self enableButtons];
     }
@@ -346,7 +348,7 @@
     }
     [self.collectionLabel setText:newLabel];
     self.playBookDS.offenseOrDefense = self.offenseOrDefense;
-    self.playsDS.offenseOrDefense = self.offenseOrDefense;
+    self.playbookPlayDS.offenseOrDefense = self.offenseOrDefense;
     [self.playbooksCollection reloadData];
     [self.playsCollection reloadData];
 }

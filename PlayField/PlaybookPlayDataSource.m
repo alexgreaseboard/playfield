@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Jai. All rights reserved.
 //
 
-#import "PlaysDataSource.h"
-#import "PlaybookCell.h"
-#import "Play.h"
+#import "PlaybookPlayDataSource.h"
+#import "PlaybookPlayCell.h"
+#import "PlaybookPlay.h"
 
-@implementation PlaysDataSource
+@implementation PlaybookPlayDataSource
 
 
 -(id) initWithManagedObjectContext: (NSManagedObjectContext*) managedObjectContext{
@@ -38,12 +38,11 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    // TODO custom PlayCell
-    UICollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"PlayCell" forIndexPath:indexPath];
+    UICollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"PlaybookPlayCell" forIndexPath:indexPath];
     
-    PlaybookCell *playbookCell = (PlaybookCell *) cell;
-    Play *play = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    playbookCell = [playbookCell initWithFrame:playbookCell.frame name:play.name];
+    PlaybookPlayCell *playbookCell = (PlaybookPlayCell *) cell;
+    PlaybookPlay *playbookPlay = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    playbookCell = [playbookCell initWithFrame:playbookCell.frame playbookPlay:playbookPlay];
     return playbookCell;
 }
 
@@ -71,7 +70,7 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Play" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"PlaybookPlay" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
@@ -80,21 +79,21 @@
     // Predicates
     if(self.offenseOrDefense && self.playbook){
         NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                                  @"(type == %@) && (playbookplay.playbook == %@)", self.offenseOrDefense, self.playbook];
+                                  @"(play.type == %@) && (playbook == %@)", self.offenseOrDefense, self.playbook];
         [fetchRequest setPredicate:predicate];
     } else if(self.offenseOrDefense){
         NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                                  @"(type == %@)", self.offenseOrDefense];
+                                  @"(play.type == %@)", self.offenseOrDefense];
         [fetchRequest setPredicate:predicate];
     } else if (self.playbook){
         NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                                  @"(playbookplay.playbook == %@)", self.playbook];
+                                  @"(playbook == %@)", self.playbook];
         [fetchRequest setPredicate:predicate];
     }
      
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"displayOrder" ascending:YES];
-    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"play.name" ascending:YES];
     NSArray *sortDescriptors = @[sortDescriptor1, sortDescriptor2];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -137,8 +136,8 @@
     [mutableArray insertObject:object atIndex:toIndexPath.item];
     
     for(int i=0; i<mutableArray.count; i++){
-        Play *play = (Play*)mutableArray[i];
-        play.playbookplay.displayOrder = [NSNumber numberWithInt:i];
+        PlaybookPlay *playbookPlay = (PlaybookPlay*)mutableArray[i];
+        playbookPlay.displayOrder = [NSNumber numberWithInt:i];
     }
     // save the new order
     NSError *error = nil;

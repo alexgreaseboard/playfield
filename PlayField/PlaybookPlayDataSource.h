@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Playbook.h"
 
-@interface PlaysDataSource :  NSObject<NSFetchedResultsControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate>
+@interface PlaybookPlayDataSource :  NSObject<NSFetchedResultsControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate>
 
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (weak, nonatomic) NSFetchedResultsController *fetchedResultsController;

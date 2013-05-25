@@ -8,8 +8,8 @@
 
 #import "PlaybookDetailViewController.h"
 #import "AppDelegate.h"
-#import "PlaysDataSource.h"
-#import "PlaybookCell.h"
+#import "PlaybookPlayDataSource.h"
+#import "PlaybookPlayCell.h"
 #import "Play.h"
 #import "LXReorderableCollectionViewFlowLayout.h"
 
@@ -18,8 +18,8 @@
 
 @implementation PlaybookDetailViewController {
     CGRect initialDraggingFrame;
-    PlaysDataSource *playsDS;
-    PlaybookCell *draggingItem;
+    PlaybookPlayDataSource *playbookPlayDS;
+    PlaybookPlayCell *draggingItem;
     Play *draggingPlay;
 }
 
@@ -38,19 +38,19 @@
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"field.jpg"]];
     
-    [self.collectionView registerClass:[PlaybookCell class] forCellWithReuseIdentifier:@"PlayCell"];
+    [self.collectionView registerClass:[PlaybookPlayCell class] forCellWithReuseIdentifier:@"PlaybookPlayCell"];
 	
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
     
     // data
-    playsDS = [[PlaysDataSource alloc] initWithManagedObjectContext:self.managedObjectContext];
-    playsDS.playbook = self.playbook;
+    playbookPlayDS = [[PlaybookPlayDataSource alloc] initWithManagedObjectContext:self.managedObjectContext];
+    playbookPlayDS.playbook = self.playbook;
     
     // set the datasources/delegates
     LXReorderableCollectionViewFlowLayout *layout = [[LXReorderableCollectionViewFlowLayout alloc] init];
     self.collectionView.collectionViewLayout = layout;
-    self.collectionView.dataSource = playsDS;
+    self.collectionView.dataSource = playbookPlayDS;
     self.collectionView.delegate = self;
     self.collectionView.backgroundColor = [UIColor clearColor];
     
@@ -124,7 +124,7 @@
             
             // add the cell to the view
             //draggingPlay = [self.playsDS.fetchedResultsController objectAtIndexPath:pannedItem];
-            draggingItem = [[PlaybookCell alloc] initWithFrame:initialDraggingFrame name:draggingPlay.name];
+            draggingItem = [[PlaybookPlayCell alloc] initWithFrame:initialDraggingFrame name:draggingPlay.name];
             [self.view addSubview:draggingItem];
         }
                 

@@ -7,7 +7,9 @@
 //
 
 #import "UpcomingPlaysDataSource.h"
-#import "PlaybookCell.h"
+#import "PlaybookPlayCell.h"
+#import "PlaybookPlay.h"
+#import "Playbook.h"
 #import "Play.h"
 
 @implementation UpcomingPlaysDataSource
@@ -31,12 +33,18 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    // TODO custom PlayCell??
-    UICollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"PlayCell" forIndexPath:indexPath];
+    UICollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"PlaybookPlayCell" forIndexPath:indexPath];
     
-    PlaybookCell *playbookCell = (PlaybookCell *) cell;
-    Play *play = [self.upcomingPlays objectAtIndex:indexPath.item];
-    playbookCell = [playbookCell initWithFrame:playbookCell.frame name:play.name];
+    PlaybookPlayCell *playbookCell = (PlaybookPlayCell *) cell;
+    PlaybookPlay *playbookPlay = [self.upcomingPlays objectAtIndex:indexPath.item];
+    
+    if([playbookPlay isKindOfClass:[PlaybookPlay class]]){
+        Play *play = playbookPlay.play;
+        playbookCell = [playbookCell initWithFrame:playbookCell.frame name:play.name];
+    } else {
+        Playbook *playBook = (Playbook*)playbookPlay;
+        playbookCell = [playbookCell initWithFrame:playbookCell.frame name:playBook.name];
+    }
     return playbookCell;
 }
 
