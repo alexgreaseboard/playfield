@@ -61,7 +61,7 @@
     NSString *type = [playbookTypes objectAtIndex: [_type selectedRowInComponent:0]];
     _playbook.type = type;
     
-    [_delegate playbookEdit:self saveEdit:_playbook];
+    [self.delegate playbookEdit:self saveEdit:self.playbook];
     [self.presentingViewController dismissViewControllerAnimated:YES completion: nil];
 }
 

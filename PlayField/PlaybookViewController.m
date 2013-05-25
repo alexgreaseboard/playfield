@@ -19,6 +19,7 @@
 @implementation PlaybookViewController {
     CGRect initialDraggingFrame;
     PlaybookCell *draggingItem;
+    PlaybookCell *hoveringOverCell;
     Play *draggingPlay;
 }
 
@@ -84,7 +85,6 @@ Playbook *selectedPlaybook;
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     selectedPlaybook = [self.playBookDS.fetchedResultsController objectAtIndexPath:indexPath];
-    NSLog(@"Viewing playbook %@", selectedPlaybook);
     [self performSegueWithIdentifier:@"playbookDetailSegue" sender:selectedPlaybook];
 }
 
@@ -93,7 +93,12 @@ Playbook *selectedPlaybook;
         UINavigationController *navigationController = segue.destinationViewController;
         PlaybookDetailViewController *detailController = (PlaybookDetailViewController *) navigationController.topViewController;
         detailController.playbook = selectedPlaybook;
+        detailController.parent = self;
     }
+}
+
+- (void) reloadData {
+    [self.playbooksCollection reloadData];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -112,19 +117,15 @@ Playbook *selectedPlaybook;
     draggingPlay = pPlay;
 	CGPoint touchPoint = [sender locationOfTouch:0 inView:self.playbooksCollection];
 	initialDraggingFrame.origin = touchPoint;
-	initialDraggingFrame.size.width = 200;
+	initialDraggingFrame.size.width = 100;
     initialDraggingFrame.size.height = 50;
 	// center the cell
-	initialDraggingFrame.origin.x -= (initialDraggingFrame.size.width / 2);
-	initialDraggingFrame.origin.y -= (8 + self.playbooksCollection.contentOffset.y);
+	//initialDraggingFrame.origin.x -= (initialDraggingFrame.size.width / 2);
+	//initialDraggingFrame.origin.y -= (8 + self.playbooksCollection.contentOffset.y);
     
 	// add the cell to the view
 	draggingItem = [[PlaybookCell alloc] initWithFrame:initialDraggingFrame name:pPlay.name];
-	
-    /*placeholderItem = [NSEntityDescription insertNewObjectForEntityForName:@"PracticeItem" inManagedObjectContext:self.managedObjectContext];
-     placeholderItem.itemType = @"placeholder";
-     placeholderItem.numberOfMinutes = [NSNumber numberWithInt:10];
-     placeholderItem.itemName = name;*/
+
 	[self.view addSubview:draggingItem];
 }
 
@@ -134,8 +135,15 @@ Playbook *selectedPlaybook;
 	newFrame.origin.x += translation.x;
 	newFrame.origin.y += translation.y;
 	draggingItem.frame = newFrame;
-    //move the placeholder
-    //[self addDraggedCell:sender draggedItem:draggingPlay];
+    
+    NSIndexPath *landingPoint = [self.playbooksCollection indexPathForItemAtPoint:newFrame.origin];
+    if(landingPoint) {
+        hoveringOverCell = (PlaybookCell *)[self.playbooksCollection cellForItemAtIndexPath:landingPoint];
+        [hoveringOverCell highlightCell];
+    } else {
+        [hoveringOverCell unhighlightCell];
+        hoveringOverCell = nil;
+    }
 }
 
 - (void)addPlayToPlaybook:(UIPanGestureRecognizer*)sender {

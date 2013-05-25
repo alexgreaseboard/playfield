@@ -9,13 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "PlaybookEditViewController.h"
 #import "PlayCreationPlaysTableViewController.h"
+#import "PlaybookViewController.h"
 
 @interface PlaybookDetailViewController : UIViewController <PlaybookEditDelegate,UIAlertViewDelegate,PlayCreationPlaysDelegate,UICollectionViewDelegate>
 
 @property (nonatomic, strong) Playbook *playbook;
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
-
+@property (strong, nonatomic) PlaybookViewController *parent;
 
 - (IBAction)returnToPlaybooks:(id)sender;
 

@@ -16,5 +16,6 @@
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 - (IBAction)addPlaybook:(id)sender;
+- (void) reloadData;
 
 @end

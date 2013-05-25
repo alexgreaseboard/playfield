@@ -10,7 +10,9 @@
 #import <QuartzCore/QuartzCore.h>
 #import <UIKit/UIKit.h>
 
-@implementation PlaybookCell
+@implementation PlaybookCell {
+    Playbook *playbook;
+}
 
 - (id)initWithFrame:(CGRect)frame name:(NSString*)name {
     self = [super initWithFrame:frame];
@@ -42,25 +44,32 @@
         self.nameLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight;
         self.nameLabel.adjustsFontSizeToFitWidth = YES;
         [self.contentView addSubview:self.nameLabel];
+        
+        if(playbook != nil) {
+            [self addPlaysInformation];
+        }
     }
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame playbook:(Playbook*)playbook
+- (id)initWithFrame:(CGRect)frame playbook:(Playbook*)pPlaybook
 {
+    playbook = pPlaybook;
     self = [self initWithFrame:frame name:playbook.name];
     
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-    self.backgroundColor = [UIColor whiteColor];
+- (void) addPlaysInformation {
+    
 }
-*/
+
+- (void) highlightCell {
+    self.backgroundColor = [UIColor blueColor];
+}
+
+- (void) unhighlightCell {
+    self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"football-texture.jpg"]];
+}
 
 @end

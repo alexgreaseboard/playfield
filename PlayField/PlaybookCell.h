@@ -15,6 +15,9 @@
 - (id)initWithFrame:(CGRect)frame playbook:(Playbook*)playbook;
 - (id)initWithFrame:(CGRect)frame name:(NSString*)name;
 
+- (void) highlightCell;
+- (void) unhighlightCell;
+
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 
 @end
