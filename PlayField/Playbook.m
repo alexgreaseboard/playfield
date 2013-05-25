@@ -15,5 +15,6 @@
 @dynamic notes;
 @dynamic type;
 @dynamic playbookplay;
+@dynamic displayOrder;
 
 @end

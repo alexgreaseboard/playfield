@@ -81,8 +81,9 @@
     }
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-    NSArray *sortDescriptors = @[sortDescriptor];
+    NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"displayOrder" ascending:YES];
+    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    NSArray *sortDescriptors = @[sortDescriptor1, sortDescriptor2];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
@@ -110,5 +111,23 @@
     [alertView show];
 }
 
-
+// for re-ordering playbooks
+- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath willMoveToIndexPath:(NSIndexPath *)toIndexPath {
+    NSLog(@"Reordering playbooks...");
+    NSMutableArray *mutableArray = [[NSMutableArray alloc] initWithArray:self.fetchedResultsController.fetchedObjects];
+    id object = [mutableArray objectAtIndex:fromIndexPath.item];
+    [mutableArray removeObjectAtIndex:fromIndexPath.item];
+    [mutableArray insertObject:object atIndex:toIndexPath.item];
+    
+    for(int i=0; i<mutableArray.count; i++){
+        Playbook *playbook = (Playbook*)mutableArray[i];
+        playbook.displayOrder = [NSNumber numberWithInt:i];
+    }
+    // save the new order
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        [self fatalCoreDataError:error];
+        return;
+    }
+}
 @end

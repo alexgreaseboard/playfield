@@ -10,12 +10,14 @@
         <relationship name="playSprite" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="PlaySprite" inverseName="play" inverseEntity="PlaySprite" syncable="YES"/>
     </entity>
     <entity name="Playbook" representedClassName="Playbook" syncable="YES">
+        <attribute name="displayOrder" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="playbookplay" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PlaybookPlay" inverseName="playbook" inverseEntity="PlaybookPlay" syncable="YES"/>
     </entity>
     <entity name="PlaybookPlay" representedClassName="PlaybookPlay" syncable="YES">
+        <attribute name="displayOrder" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="play" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Play" inverseName="playbookplay" inverseEntity="Play" syncable="YES"/>
         <relationship name="playbook" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Playbook" inverseName="playbookplay" inverseEntity="Playbook" syncable="YES"/>
     </entity>
@@ -66,13 +68,13 @@
     </entity>
     <elements>
         <element name="Play" positionX="-461" positionY="-45" width="128" height="150"/>
-        <element name="Playbook" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="Playbook" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="PlaybookPlay" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Player" positionX="-641" positionY="-45" width="128" height="240"/>
         <element name="PlaySprite" positionX="-200" positionY="-45" width="128" height="105"/>
         <element name="Practice" positionX="-162" positionY="324" width="128" height="88"/>
         <element name="PracticeColumn" positionX="52" positionY="324" width="128" height="120"/>
         <element name="PracticeItem" positionX="34" positionY="477" width="128" height="120"/>
         <element name="SpritePoint" positionX="7" positionY="-45" width="128" height="88"/>
-        <element name="PlaybookPlay" positionX="160" positionY="192" width="128" height="75"/>
     </elements>
 </model>

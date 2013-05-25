@@ -25,6 +25,7 @@
 // gestures - pinching & panning
 @property (nonatomic, strong) UIPinchGestureRecognizer *pinchOutGestureRecognizer;
 @property (nonatomic, strong) NSIndexPath *currentPinchedItem;
+@property (nonatomic, strong) UIPanGestureRecognizer *reorderGestureRecognizer;
 
 - (void)handlePinchInGesture: (UIPinchGestureRecognizer*)recognizer;
 - (void)handlePinchOutGesture: (UIPinchGestureRecognizer*)recognizer;

@@ -11,6 +11,7 @@
 #import "PlaysDataSource.h"
 #import "PlaybookCell.h"
 #import "Play.h"
+#import "LXReorderableCollectionViewFlowLayout.h"
 
 @interface PlaybookDetailViewController ()
 @end
@@ -47,6 +48,8 @@
     playsDS.playbook = self.playbook;
     
     // set the datasources/delegates
+    LXReorderableCollectionViewFlowLayout *layout = [[LXReorderableCollectionViewFlowLayout alloc] init];
+    self.collectionView.collectionViewLayout = layout;
     self.collectionView.dataSource = playsDS;
     self.collectionView.delegate = self;
     self.collectionView.backgroundColor = [UIColor clearColor];

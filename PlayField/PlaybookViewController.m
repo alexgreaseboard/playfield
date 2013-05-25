@@ -12,6 +12,7 @@
 #import "PlaybookDetailViewController.h"
 #import "Playbook.h"
 #import "PlaybookPlay.h"
+#import "LXReorderableCollectionViewFlowLayout.h"
 
 @interface PlaybookViewController () <UITextFieldDelegate>
 @end
@@ -21,6 +22,7 @@
     PlaybookCell *draggingItem;
     PlaybookCell *hoveringOverCell;
     Play *draggingPlay;
+    Playbook *draggingPlaybook;
 }
 
 Playbook *selectedPlaybook;
@@ -46,6 +48,10 @@ Playbook *selectedPlaybook;
     self.playBookDS = [[PlaybookDataSource alloc] initWithManagedObjectContext:self.managedObjectContext];
     self.playsDS = [[PlaysDataSource alloc] initWithManagedObjectContext:self.managedObjectContext];
 
+    // allow the playbooks to be re-ordered
+    LXReorderableCollectionViewFlowLayout *layout = [[LXReorderableCollectionViewFlowLayout alloc] init];
+    self.playbooksCollection.collectionViewLayout = layout;
+    
     // set the datasources/delegates
     self.playbooksCollection.dataSource = self.playBookDS;
     self.playbooksCollection.delegate = self;

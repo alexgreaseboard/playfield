@@ -16,5 +16,6 @@
 @property (nonatomic, retain) NSString * notes;
 @property (nonatomic, retain) NSString * type;
 @property (nonatomic, retain) NSManagedObject *playbookplay;
+@property (nonatomic, retain) NSNumber *displayOrder;
 
 @end
