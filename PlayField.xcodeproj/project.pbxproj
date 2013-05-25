@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		292C9FBD16CFC3E30065103D /* CocosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 292C9FBC16CFC3E30065103D /* CocosViewController.m */; };
-		297EEAB816E8DDA600B425EE /* PlaybookPlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 297EEAB716E8DDA600B425EE /* PlaybookPlay.m */; };
-		297EEABE16E8DE3A00B425EE /* Playbook.m in Sources */ = {isa = PBXBuildFile; fileRef = 297EEABD16E8DE3A00B425EE /* Playbook.m */; };
 		297EEAC116E8E05400B425EE /* PlaybookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297EEAC016E8E05400B425EE /* PlaybookViewController.m */; };
 		298017E016EB9EC500FF469E /* bttn-gametime.png in Resources */ = {isa = PBXBuildFile; fileRef = 298017D616EB9EC500FF469E /* bttn-gametime.png */; };
 		298017E116EB9EC500FF469E /* bttn-playbooks.png in Resources */ = {isa = PBXBuildFile; fileRef = 298017D716EB9EC500FF469E /* bttn-playbooks.png */; };
@@ -21,6 +19,11 @@
 		298017E716EB9EC500FF469E /* field-lights.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 298017DD16EB9EC500FF469E /* field-lights.jpg */; };
 		298017E816EB9EC500FF469E /* greaseboard-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 298017DE16EB9EC500FF469E /* greaseboard-logo.png */; };
 		298017E916EB9EC500FF469E /* home-reference.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 298017DF16EB9EC500FF469E /* home-reference.jpg */; };
+		29939A951750E02A00448DAF /* football-texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29939A941750E02A00448DAF /* football-texture.jpg */; };
+		29939A9D1750E5C600448DAF /* GreaseBoard.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 29939A9C1750E5C600448DAF /* GreaseBoard.xcdatamodel */; };
+		29939AA31750E80100448DAF /* Playbook.m in Sources */ = {isa = PBXBuildFile; fileRef = 29939AA21750E80100448DAF /* Playbook.m */; };
+		29939AA61750E80100448DAF /* PlaybookPlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 29939AA51750E80100448DAF /* PlaybookPlay.m */; };
+		29939AA91750E80100448DAF /* Play.m in Sources */ = {isa = PBXBuildFile; fileRef = 29939AA81750E80100448DAF /* Play.m */; };
 		29C26AE616EBBA1F00DFDF8A /* field-lights.png in Resources */ = {isa = PBXBuildFile; fileRef = 29C26AE516EBBA1F00DFDF8A /* field-lights.png */; };
 		29C26AE816EBBA4500DFDF8A /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 29C26AE716EBBA4500DFDF8A /* Default-Landscape~ipad.png */; };
 		29E2AAAE16CFAEDD00005AAF /* RosterMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2AAA916CFAEDD00005AAF /* RosterMasterViewController.m */; };
@@ -33,11 +36,9 @@
 		29E2AABF16CFAF8C00005AAF /* PlayDrillItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2AABD16CFAF8C00005AAF /* PlayDrillItemCell.m */; };
 		29E2AACE16CFB2A200005AAF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2AACD16CFB19700005AAF /* AppDelegate.m */; };
 		29E2AACF16CFB2A200005AAF /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2AAC116CFAFBE00005AAF /* MainViewController.m */; };
-		29E2AAD016CFB2A200005AAF /* GreaseBoard.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 29E2AAC316CFAFBE00005AAF /* GreaseBoard.xcdatamodel */; };
 		29E2AAD116CFB32500005AAF /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29E2AAC216CFAFBE00005AAF /* MainStoryboard.storyboard */; };
 		29E2AAD216CFB32500005AAF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 29E2AAC516CFAFDD00005AAF /* InfoPlist.strings */; };
 		29E2AAD416CFBE1100005AAF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E2AAD316CFBE1100005AAF /* CoreData.framework */; };
-		29E2FE3C16D900D3002270CF /* Play.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2FE3B16D900D3002270CF /* Play.m */; };
 		29E2FE4916D90980002270CF /* SpritePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2FE4816D9097F002270CF /* SpritePoint.m */; };
 		29E2FE4C16D90981002270CF /* PlaySprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2FE4B16D90981002270CF /* PlaySprite.m */; };
 		392CD7F316EBA1B2008194B7 /* PracticeColumnEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CD7E216EBA1B2008194B7 /* PracticeColumnEditController.m */; };
@@ -234,10 +235,6 @@
 /* Begin PBXFileReference section */
 		292C9FBB16CFC3E30065103D /* CocosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosViewController.h; sourceTree = "<group>"; };
 		292C9FBC16CFC3E30065103D /* CocosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CocosViewController.m; sourceTree = "<group>"; };
-		297EEAB616E8DDA600B425EE /* PlaybookPlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybookPlay.h; sourceTree = "<group>"; };
-		297EEAB716E8DDA600B425EE /* PlaybookPlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybookPlay.m; sourceTree = "<group>"; };
-		297EEABC16E8DE3A00B425EE /* Playbook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playbook.h; sourceTree = "<group>"; };
-		297EEABD16E8DE3A00B425EE /* Playbook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Playbook.m; sourceTree = "<group>"; };
 		297EEABF16E8E05400B425EE /* PlaybookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybookViewController.h; sourceTree = "<group>"; };
 		297EEAC016E8E05400B425EE /* PlaybookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybookViewController.m; sourceTree = "<group>"; };
 		298017D616EB9EC500FF469E /* bttn-gametime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bttn-gametime.png"; sourceTree = "<group>"; };
@@ -250,6 +247,14 @@
 		298017DD16EB9EC500FF469E /* field-lights.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "field-lights.jpg"; sourceTree = "<group>"; };
 		298017DE16EB9EC500FF469E /* greaseboard-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "greaseboard-logo.png"; sourceTree = "<group>"; };
 		298017DF16EB9EC500FF469E /* home-reference.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "home-reference.jpg"; sourceTree = "<group>"; };
+		29939A941750E02A00448DAF /* football-texture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "football-texture.jpg"; sourceTree = "<group>"; };
+		29939A9C1750E5C600448DAF /* GreaseBoard.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GreaseBoard.xcdatamodel; sourceTree = "<group>"; };
+		29939AA11750E80100448DAF /* Playbook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playbook.h; sourceTree = "<group>"; };
+		29939AA21750E80100448DAF /* Playbook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Playbook.m; sourceTree = "<group>"; };
+		29939AA41750E80100448DAF /* PlaybookPlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybookPlay.h; sourceTree = "<group>"; };
+		29939AA51750E80100448DAF /* PlaybookPlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybookPlay.m; sourceTree = "<group>"; };
+		29939AA71750E80100448DAF /* Play.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Play.h; sourceTree = "<group>"; };
+		29939AA81750E80100448DAF /* Play.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Play.m; sourceTree = "<group>"; };
 		29C26AE516EBBA1F00DFDF8A /* field-lights.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "field-lights.png"; sourceTree = "<group>"; };
 		29C26AE716EBBA4500DFDF8A /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		29E2AAA816CFAEDD00005AAF /* RosterMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosterMasterViewController.h; sourceTree = "<group>"; };
@@ -271,7 +276,6 @@
 		29E2AAC016CFAFBE00005AAF /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		29E2AAC116CFAFBE00005AAF /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		29E2AAC216CFAFBE00005AAF /* MainStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
-		29E2AAC316CFAFBE00005AAF /* GreaseBoard.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GreaseBoard.xcdatamodel; sourceTree = "<group>"; };
 		29E2AAC416CFAFDD00005AAF /* PlayField-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlayField-Info.plist"; sourceTree = "<group>"; };
 		29E2AAC516CFAFDD00005AAF /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		29E2AAC716CFAFDD00005AAF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -280,8 +284,6 @@
 		29E2AACC16CFB19700005AAF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		29E2AACD16CFB19700005AAF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		29E2AAD316CFBE1100005AAF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		29E2FE3A16D900D3002270CF /* Play.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Play.h; sourceTree = "<group>"; };
-		29E2FE3B16D900D3002270CF /* Play.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Play.m; sourceTree = "<group>"; };
 		29E2FE4716D9097F002270CF /* SpritePoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpritePoint.h; sourceTree = "<group>"; };
 		29E2FE4816D9097F002270CF /* SpritePoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpritePoint.m; sourceTree = "<group>"; };
 		29E2FE4A16D90981002270CF /* PlaySprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaySprite.h; sourceTree = "<group>"; };
@@ -726,6 +728,7 @@
 		29E2AAA616CFAEB000005AAF /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				29939A941750E02A00448DAF /* football-texture.jpg */,
 				6DF6E930171081A300386229 /* field graphics */,
 				298017D516EB9EC500FF469E /* greaseboard-homepage */,
 				6DEF320A16D154B200AD57A1 /* About.png */,
@@ -756,12 +759,12 @@
 		29E2FE3D16D900E0002270CF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				29E2FE3A16D900D3002270CF /* Play.h */,
-				29E2FE3B16D900D3002270CF /* Play.m */,
-				297EEABC16E8DE3A00B425EE /* Playbook.h */,
-				297EEABD16E8DE3A00B425EE /* Playbook.m */,
-				297EEAB616E8DDA600B425EE /* PlaybookPlay.h */,
-				297EEAB716E8DDA600B425EE /* PlaybookPlay.m */,
+				29939AA71750E80100448DAF /* Play.h */,
+				29939AA81750E80100448DAF /* Play.m */,
+				29939AA41750E80100448DAF /* PlaybookPlay.h */,
+				29939AA51750E80100448DAF /* PlaybookPlay.m */,
+				29939AA11750E80100448DAF /* Playbook.h */,
+				29939AA21750E80100448DAF /* Playbook.m */,
 				29E2FE4A16D90981002270CF /* PlaySprite.h */,
 				29E2FE4B16D90981002270CF /* PlaySprite.m */,
 				392CD80A16EBBDF4008194B7 /* PracticeColumn.h */,
@@ -894,7 +897,7 @@
 				29E2AAC016CFAFBE00005AAF /* MainViewController.h */,
 				29E2AAC116CFAFBE00005AAF /* MainViewController.m */,
 				29E2AAC216CFAFBE00005AAF /* MainStoryboard.storyboard */,
-				29E2AAC316CFAFBE00005AAF /* GreaseBoard.xcdatamodel */,
+				29939A9C1750E5C600448DAF /* GreaseBoard.xcdatamodel */,
 				29E2AAA616CFAEB000005AAF /* Images */,
 				6D148F8A16C988E70069CB76 /* Resources */,
 				6D148FA216C988E70069CB76 /* libs */,
@@ -1434,6 +1437,7 @@
 				6DF6E96B171081A300386229 /* offense.png in Resources */,
 				6DF6E96C171081A300386229 /* trash.png in Resources */,
 				6DF6E96E171081CE00386229 /* field-reference.pdf in Resources */,
+				29939A951750E02A00448DAF /* football-texture.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1446,7 +1450,6 @@
 			files = (
 				29E2AACE16CFB2A200005AAF /* AppDelegate.m in Sources */,
 				29E2AACF16CFB2A200005AAF /* MainViewController.m in Sources */,
-				29E2AAD016CFB2A200005AAF /* GreaseBoard.xcdatamodel in Sources */,
 				6D148FA616C988E70069CB76 /* CCAction.m in Sources */,
 				6D148FA916C988E70069CB76 /* CCActionCamera.m in Sources */,
 				6D148FAC16C988E70069CB76 /* CCActionCatmullRom.m in Sources */,
@@ -1567,12 +1570,9 @@
 				292C9FBD16CFC3E30065103D /* CocosViewController.m in Sources */,
 				6DF750F616D55F33008D32B0 /* PlayCreationDetailsViewController.m in Sources */,
 				6D0724AD16D6A74B00DDA641 /* PlayCell.m in Sources */,
-				29E2FE3C16D900D3002270CF /* Play.m in Sources */,
 				29E2FE4916D90980002270CF /* SpritePoint.m in Sources */,
 				29E2FE4C16D90981002270CF /* PlaySprite.m in Sources */,
 				6DF5649116DE971800E17E82 /* SavePlayViewController.m in Sources */,
-				297EEAB816E8DDA600B425EE /* PlaybookPlay.m in Sources */,
-				297EEABE16E8DE3A00B425EE /* Playbook.m in Sources */,
 				297EEAC116E8E05400B425EE /* PlaybookViewController.m in Sources */,
 				392CD7F316EBA1B2008194B7 /* PracticeColumnEditController.m in Sources */,
 				392CD7F516EBA1B2008194B7 /* PracticeItemCell.m in Sources */,
@@ -1598,6 +1598,10 @@
 				39E2FFD41733256A0062332C /* PlaysDataSource.m in Sources */,
 				39E2FFD7173588C40062332C /* UpcomingPlaysDataSource.m in Sources */,
 				39E2FFDA173F2B960062332C /* PlaybookPinchGestureRecognizer.m in Sources */,
+				29939A9D1750E5C600448DAF /* GreaseBoard.xcdatamodel in Sources */,
+				29939AA31750E80100448DAF /* Playbook.m in Sources */,
+				29939AA61750E80100448DAF /* PlaybookPlay.m in Sources */,
+				29939AA91750E80100448DAF /* Play.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

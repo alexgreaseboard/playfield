@@ -80,7 +80,7 @@
     // Predicates
     if(self.offenseOrDefense && self.playbook){
         NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                                  @"(type == %@) && (playbookPlay.playbook == %@)", self.offenseOrDefense, self.playbook];
+                                  @"(type == %@) && (playbookplay.playbook == %@)", self.offenseOrDefense, self.playbook];
         [fetchRequest setPredicate:predicate];
     } else if(self.offenseOrDefense){
         NSPredicate *predicate = [NSPredicate predicateWithFormat:
@@ -88,7 +88,7 @@
         [fetchRequest setPredicate:predicate];
     } else if (self.playbook){
         NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                                  @"(playbookPlay.playbook == %@)", self.playbook];
+                                  @"(playbookplay.playbook == %@)", self.playbook];
         [fetchRequest setPredicate:predicate];
     }
      

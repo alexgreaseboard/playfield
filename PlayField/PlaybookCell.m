@@ -12,8 +12,7 @@
 
 @implementation PlaybookCell
 
-- (id)initWithFrame:(CGRect)frame name:(NSString*)name
-{
+- (id)initWithFrame:(CGRect)frame name:(NSString*)name {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
@@ -22,7 +21,8 @@
         UIView *foundLabel = [self viewWithTag:57];
         if (foundLabel) [foundLabel removeFromSuperview];
         
-        self.backgroundColor = [UIColor whiteColor];
+        //self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"football-texture.jpg"]];
         CALayer *layer = [self layer];
         [layer setCornerRadius:5.0f];
         [layer setBorderColor:[UIColor colorWithRed:.20 green:.15 blue:.33 alpha:0.99].CGColor]; // purple
@@ -30,7 +30,7 @@
         
         // add the label
         self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0,
-                                                               frame.size.width, 20)];
+                                                                   frame.size.width, 20)];
         self.nameLabel.textColor = [UIColor lightTextColor];
         self.nameLabel.textAlignment = NSTextAlignmentLeft;
         self.nameLabel.textColor = [UIColor lightTextColor];
@@ -43,6 +43,13 @@
         self.nameLabel.adjustsFontSizeToFitWidth = YES;
         [self.contentView addSubview:self.nameLabel];
     }
+    return self;
+}
+
+- (id)initWithFrame:(CGRect)frame playbook:(Playbook*)playbook
+{
+    self = [self initWithFrame:frame name:playbook.name];
+    
     return self;
 }
 

@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Playbook.h"
 
 @interface PlaybookCell : UICollectionViewCell
 
 
+- (id)initWithFrame:(CGRect)frame playbook:(Playbook*)playbook;
 - (id)initWithFrame:(CGRect)frame name:(NSString*)name;
 
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
