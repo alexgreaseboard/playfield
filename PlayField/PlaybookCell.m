@@ -57,6 +57,40 @@
     playbook = pPlaybook;
     self = [self initWithFrame:frame name:playbook.name];
     
+    //remove the label or you'll get 'ghost' labels
+    UIView *foundLabel = [self viewWithTag:58];
+    if (foundLabel) [foundLabel removeFromSuperview];
+    foundLabel = [self viewWithTag:59];
+    if (foundLabel) [foundLabel removeFromSuperview];
+    
+    // add the type label
+    UILabel *offenseDefenseLbl = [[UILabel alloc] initWithFrame:CGRectMake(0, self.nameLabel.frame.size.height,
+                                                               frame.size.width, 20)];
+    offenseDefenseLbl.textColor = [UIColor lightTextColor];
+    offenseDefenseLbl.textAlignment = NSTextAlignmentLeft;
+    offenseDefenseLbl.backgroundColor = [UIColor colorWithWhite:0.2 alpha:0.65];
+    
+    offenseDefenseLbl.tag=58;
+    offenseDefenseLbl.font = [UIFont boldSystemFontOfSize:14.0];
+    offenseDefenseLbl.text = [NSString stringWithFormat:@"  %@", playbook.type];
+    offenseDefenseLbl.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight;
+    offenseDefenseLbl.adjustsFontSizeToFitWidth = YES;
+    [self.contentView addSubview:offenseDefenseLbl];
+    
+    
+    // add the label
+    UILabel *numPlaysLbl = [[UILabel alloc] initWithFrame:CGRectMake(0, self.nameLabel.frame.size.height + offenseDefenseLbl.frame.size.height,
+                                                                           frame.size.width, 20)];
+    numPlaysLbl.textColor = [UIColor lightTextColor];
+    numPlaysLbl.textAlignment = NSTextAlignmentLeft;
+    numPlaysLbl.backgroundColor = [UIColor colorWithWhite:0.2 alpha:0.65];
+    
+    numPlaysLbl.tag=59;
+    numPlaysLbl.font = [UIFont boldSystemFontOfSize:14.0];
+    numPlaysLbl.text = [NSString stringWithFormat:@"  %d Plays", playbook.playbookplays.count];
+    numPlaysLbl.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight;
+    numPlaysLbl.adjustsFontSizeToFitWidth = YES;
+    [self.contentView addSubview:numPlaysLbl];
     return self;
 }
 

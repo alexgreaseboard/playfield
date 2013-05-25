@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "PlaybookPlay.h"
 
 @class PlaySprite, PlaybookPlay;
 
@@ -19,7 +20,7 @@
 @property (nonatomic, retain) NSString * runPass;
 @property (nonatomic, retain) NSString * type;
 @property (nonatomic, retain) NSOrderedSet *playSprite;
-@property (nonatomic, retain) PlaybookPlay *playbookplay;
+@property (nonatomic, retain) NSOrderedSet *playbookplays;
 @end
 
 @interface Play (CoreDataGeneratedAccessors)
@@ -34,4 +35,15 @@
 - (void)removePlaySpriteObject:(PlaySprite *)value;
 - (void)addPlaySprite:(NSOrderedSet *)values;
 - (void)removePlaySprite:(NSOrderedSet *)values;
+
+- (void)insertObject:(PlaybookPlay *)value inPlaybookplaysAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromPlaybookplaysAtIndex:(NSUInteger)idx;
+- (void)insertPlaybookplays:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removePlaybookplaysAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInPlaybookplaysAtIndex:(NSUInteger)idx withObject:(PlaybookPlay *)value;
+- (void)replacePlaybookplaysAtIndexes:(NSIndexSet *)indexes withPlaybookplays:(NSArray *)values;
+- (void)addPlaybookplaysObject:(PlaybookPlay *)value;
+- (void)removePlaybookplaysObject:(PlaybookPlay *)value;
+- (void)addPlaybookplays:(NSOrderedSet *)values;
+- (void)removePlaybookplays:(NSOrderedSet *)values;
 @end

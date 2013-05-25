@@ -6,7 +6,7 @@
         <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="runPass" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="playbookplay" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PlaybookPlay" inverseName="play" inverseEntity="PlaybookPlay" syncable="YES"/>
+        <relationship name="playbookplays" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PlaybookPlay" inverseName="play" inverseEntity="PlaybookPlay" syncable="YES"/>
         <relationship name="playSprite" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="PlaySprite" inverseName="play" inverseEntity="PlaySprite" syncable="YES"/>
     </entity>
     <entity name="Playbook" representedClassName="Playbook" syncable="YES">
@@ -14,12 +14,12 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="playbookplay" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PlaybookPlay" inverseName="playbook" inverseEntity="PlaybookPlay" syncable="YES"/>
+        <relationship name="playbookplays" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PlaybookPlay" inverseName="playbook" inverseEntity="PlaybookPlay" syncable="YES"/>
     </entity>
     <entity name="PlaybookPlay" representedClassName="PlaybookPlay" syncable="YES">
         <attribute name="displayOrder" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="play" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Play" inverseName="playbookplay" inverseEntity="Play" syncable="YES"/>
-        <relationship name="playbook" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Playbook" inverseName="playbookplay" inverseEntity="Playbook" syncable="YES"/>
+        <relationship name="play" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Play" inverseName="playbookplays" inverseEntity="Play" syncable="YES"/>
+        <relationship name="playbook" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Playbook" inverseName="playbookplays" inverseEntity="Playbook" syncable="YES"/>
     </entity>
     <entity name="Player" syncable="YES">
         <attribute name="backupPosition" optional="YES" attributeType="String" syncable="YES"/>
@@ -67,9 +67,9 @@
         <relationship name="parentSprite" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PlaySprite" inverseName="spritePoints" inverseEntity="PlaySprite" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Play" positionX="-461" positionY="-45" width="128" height="150"/>
-        <element name="Playbook" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="PlaybookPlay" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="Play" positionX="-461" positionY="-45" width="128" height="148"/>
+        <element name="Playbook" positionX="-297" positionY="162" width="128" height="118"/>
+        <element name="PlaybookPlay" positionX="160" positionY="192" width="128" height="88"/>
         <element name="Player" positionX="-641" positionY="-45" width="128" height="240"/>
         <element name="PlaySprite" positionX="-200" positionY="-45" width="128" height="105"/>
         <element name="Practice" positionX="-162" positionY="324" width="128" height="88"/>

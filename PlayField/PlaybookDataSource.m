@@ -40,7 +40,7 @@
     
     PlaybookCell *playbookCell = (PlaybookCell *) cell;
     Playbook *playbook = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    playbookCell = [playbookCell initWithFrame:playbookCell.frame name:playbook.name];
+    playbookCell = [playbookCell initWithFrame:playbookCell.frame playbook:playbook];
     return playbookCell;
 }
 

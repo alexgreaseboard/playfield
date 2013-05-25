@@ -19,6 +19,6 @@
 @dynamic runPass;
 @dynamic type;
 @dynamic playSprite;
-@dynamic playbookplay;
+@dynamic playbookplays;
 
 @end
