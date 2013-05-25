@@ -51,6 +51,9 @@
     self.collectionView.delegate = self;
     self.collectionView.backgroundColor = [UIColor clearColor];
     
+    UIPanGestureRecognizer *gestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanFrom:)];
+    [self.view addGestureRecognizer:gestureRecognizer];
+    
     [self configureView ];
 }
 
@@ -92,7 +95,7 @@
     NSLog(@"*** Fatal error in %s:%d\n%@\n%@", __FILE__, __LINE__, error, [error userInfo]);
     
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Internal Error", nil) message:NSLocalizedString(@"There was a fatal error in the app and it cannot continue.\n\nPress OK to terminate the app. Sorry for the inconvenience.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-    //[alertView show];
+    [alertView show];
 }
 
 - (IBAction)returnToPlaybooks:(id)sender {
@@ -100,19 +103,40 @@
     [self.presentingViewController dismissViewControllerAnimated:YES completion: nil];
 }
 
-
-- (void)draggingStarted:(UIPanGestureRecognizer *)sender forPlay:(Play *)pPlay {
-	
+- (void)handlePanFrom:(UIPanGestureRecognizer *)recognizer {
     
-}
-
-- (void)draggingChanged:(UIPanGestureRecognizer *)sender{
-	
-}
-
-- (void)draggingEnded:(UIPanGestureRecognizer *)sender
-{
-	
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        CGPoint pinchPoint = [recognizer locationInView:self.collectionView];
+        NSIndexPath *landingPoint = [self.collectionView indexPathForItemAtPoint:pinchPoint];
+        if (landingPoint) {
+            initialDraggingFrame.origin = pinchPoint;
+            initialDraggingFrame.size.height = 150;
+            initialDraggingFrame.size.width = 150;
+            // center the cell
+            //initialDraggingFrame.origin.x -= (initialDraggingFrame.size.width / 2);
+            //initialDraggingFrame.origin.y -= (8 + self.collectionView.contentOffset.y);
+            // have we scrolled?
+            //            initialDraggingFrame.origin.y -= [self.playsCollection contentOffset].y;
+            //initialDraggingFrame.origin.y += (initialDraggingFrame.size.height);
+            
+            // add the cell to the view
+            //draggingPlay = [self.playsDS.fetchedResultsController objectAtIndexPath:pannedItem];
+            draggingItem = [[PlaybookCell alloc] initWithFrame:initialDraggingFrame name:draggingPlay.name];
+            [self.view addSubview:draggingItem];
+        }
+                
+    } else if (recognizer.state == UIGestureRecognizerStateChanged) {
+        CGPoint translation = [recognizer translationInView:self.collectionView];
+        CGRect newFrame = initialDraggingFrame;
+        newFrame.origin.x += translation.x;
+        newFrame.origin.y += translation.y;
+        draggingItem.frame = newFrame;
+    } else if (recognizer.state == UIGestureRecognizerStateEnded) {
+        
+        [draggingItem removeFromSuperview];
+        draggingItem = nil;
+        draggingPlay = nil;
+    }        
 }
 
 @end
