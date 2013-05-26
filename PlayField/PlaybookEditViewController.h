@@ -13,6 +13,7 @@
 
 @protocol PlaybookEditDelegate <NSObject>
 - (void) playbookEdit:(PlaybookEditViewController *)controller saveEdit:(id)playbook;
+- (void) deletePlaybook:(Playbook *)playbook;
 @end
 
 @interface PlaybookEditViewController : UITableViewController {
@@ -28,5 +29,6 @@
 
 - (IBAction)cancel:(id)sender;
 - (IBAction)savePlaybook:(id)sender;
+- (IBAction)deletePlaybook:(id)sender;
 
 @end

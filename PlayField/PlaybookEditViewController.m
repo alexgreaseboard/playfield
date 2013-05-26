@@ -65,6 +65,11 @@
     [self.presentingViewController dismissViewControllerAnimated:YES completion: nil];
 }
 
+- (IBAction)deletePlaybook:(id)sender {
+    [self.presentingViewController dismissViewControllerAnimated:NO completion: nil];
+    [self.delegate deletePlaybook:self.playbook];
+}
+
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return nil;

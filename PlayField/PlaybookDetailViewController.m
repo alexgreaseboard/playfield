@@ -93,6 +93,17 @@
     }
 }
 
+- (void)deletePlaybook:(Playbook *)playbook {
+    [self.managedObjectContext deleteObject:playbook];
+    // Save the context.
+    NSError *error = nil;
+    if (![_playbook.managedObjectContext save:&error]) {
+        [self fatalCoreDataError:error];
+        return;
+    }
+    [self returnToPlaybooks:self];
+}
+
 - (void) fatalCoreDataError:(NSError *)error
 {
     NSLog(@"*** Fatal error in %s:%d\n%@\n%@", __FILE__, __LINE__, error, [error userInfo]);
