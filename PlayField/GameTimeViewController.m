@@ -164,7 +164,11 @@
             if(index > 0){
                 index--;
             }
-            [self.upcomingPlaysDS.upcomingPlays insertObject:draggedItem atIndex:index];
+            if(index < self.upcomingPlaysDS.upcomingPlays.count){
+                [self.upcomingPlaysDS.upcomingPlays insertObject:draggedItem atIndex:index];
+            } else {
+                [self.upcomingPlaysDS.upcomingPlays addObject:draggedItem];
+            }
         } else if(newFrame.origin.x > 0 && newFrame.origin.y > 0 && newFrame.origin.x < self.upcomingPlaysCollection.frame.size.width && newFrame.origin.y < self.upcomingPlaysCollection.frame.size.height){
             [self.upcomingPlaysDS.upcomingPlays removeObject:draggedItem];
             [self.upcomingPlaysDS.upcomingPlays addObject:draggedItem];
@@ -219,6 +223,7 @@
         }
         [self.upcomingPlaysDS.upcomingPlays removeObject:draggingPlaybook];
         // get all the plays associated with the current playbook and add them
+        self.playbookPlayDS.playbook = draggingPlaybook;
         id <NSFetchedResultsSectionInfo> section = self.playbookPlayDS.fetchedResultsController.sections[0];
         for(PlaybookPlay *playbookPlay in [section objects]){
             [self addDraggedCell:recognizer draggedItem:playbookPlay];
@@ -304,15 +309,11 @@
 #pragma GameTimeViewController 
 - (void) enableButtons{
     if(self.upcomingPlaysDS.upcomingPlays.count > 0){
-        self.nextPlayButton.enabled = YES;
-        self.removeAllButton.enabled = YES;
-        self.nextPlayButton.alpha = 1.0;
-        self.removeAllButton.alpha = 1.0;
+        [self.nextPlayButton setEnabled: YES];
+        [self.removeAllButton setEnabled: YES];
     } else {
-        self.nextPlayButton.enabled = NO;
-        self.removeAllButton.enabled = NO;
-        self.nextPlayButton.alpha = 0.7f;
-        self.removeAllButton.alpha = 0.7f;
+        [self.nextPlayButton setEnabled: NO];
+        [self.removeAllButton setEnabled: NO];
     }
 }
 

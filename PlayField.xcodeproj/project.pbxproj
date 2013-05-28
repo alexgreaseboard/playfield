@@ -57,6 +57,7 @@
 		394DEEC116F55C5A0047A3B7 /* PracticeEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 394DEEBF16F395C20047A3B7 /* PracticeEditViewController.m */; };
 		3989D24E1751143E00AD8372 /* LXReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3989D24D1751143E00AD8372 /* LXReorderableCollectionViewFlowLayout.m */; };
 		3989D252175128C400AD8372 /* PlaybookPlayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3989D251175128C400AD8372 /* PlaybookPlayCell.m */; };
+		398A32881754235800B03ED2 /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 398A32871754235800B03ED2 /* CustomButton.m */; };
 		399B7F07170733980047244D /* TimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 399B7F06170733980047244D /* TimerView.m */; };
 		399B7F0B17073AE60047244D /* TimerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 399B7F0A17073AE60047244D /* TimerView.xib */; };
 		39E2FFCA1731DD230062332C /* PlaybookDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E2FFC91731DD230062332C /* PlaybookDataSource.m */; };
@@ -322,6 +323,8 @@
 		3989D24D1751143E00AD8372 /* LXReorderableCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXReorderableCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		3989D250175128C400AD8372 /* PlaybookPlayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybookPlayCell.h; sourceTree = "<group>"; };
 		3989D251175128C400AD8372 /* PlaybookPlayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybookPlayCell.m; sourceTree = "<group>"; };
+		398A32861754235800B03ED2 /* CustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomButton.h; sourceTree = "<group>"; };
+		398A32871754235800B03ED2 /* CustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomButton.m; sourceTree = "<group>"; };
 		399B7F05170733980047244D /* TimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerView.h; sourceTree = "<group>"; };
 		399B7F06170733980047244D /* TimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerView.m; sourceTree = "<group>"; };
 		399B7F0A17073AE60047244D /* TimerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimerView.xib; sourceTree = "<group>"; };
@@ -831,13 +834,15 @@
 			name = Practice;
 			sourceTree = "<group>";
 		};
-		3989D24F175122F400AD8372 /* ReorderableCollectionView */ = {
+		398A32891754235F00B03ED2 /* UIOverrideComponent */ = {
 			isa = PBXGroup;
 			children = (
+				398A32861754235800B03ED2 /* CustomButton.h */,
+				398A32871754235800B03ED2 /* CustomButton.m */,
 				3989D24C1751143E00AD8372 /* LXReorderableCollectionViewFlowLayout.h */,
 				3989D24D1751143E00AD8372 /* LXReorderableCollectionViewFlowLayout.m */,
 			);
-			name = ReorderableCollectionView;
+			name = UIOverrideComponent;
 			sourceTree = "<group>";
 		};
 		399B7F04170729700047244D /* Timer */ = {
@@ -909,7 +914,7 @@
 				29E2AAA716CFAEB600005AAF /* TableCell */,
 				399B7F04170729700047244D /* Timer */,
 				29E2FE3D16D900E0002270CF /* Model */,
-				3989D24F175122F400AD8372 /* ReorderableCollectionView */,
+				398A32891754235F00B03ED2 /* UIOverrideComponent */,
 				29E2AACC16CFB19700005AAF /* AppDelegate.h */,
 				29E2AACD16CFB19700005AAF /* AppDelegate.m */,
 				29E2AAC016CFAFBE00005AAF /* MainViewController.h */,
@@ -1622,6 +1627,7 @@
 				29939AA91750E80100448DAF /* Play.m in Sources */,
 				3989D24E1751143E00AD8372 /* LXReorderableCollectionViewFlowLayout.m in Sources */,
 				3989D252175128C400AD8372 /* PlaybookPlayCell.m in Sources */,
+				398A32881754235800B03ED2 /* CustomButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
