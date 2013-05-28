@@ -1909,7 +1909,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="top" text="Current Play" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="none" adjustsFontSizeToFit="NO" id="QR4-F4-zZy">
+                            <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="top" text="Current Play" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="none" adjustsFontSizeToFit="NO" id="QR4-F4-zZy" customClass="PurpleLabel">
                                 <rect key="frame" x="8" y="4" width="175" height="23"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
@@ -1955,7 +1955,7 @@
                                     <outlet property="delegate" destination="89f-El-YeM" id="AvW-AI-v37"/>
                                 </connections>
                             </collectionView>
-                            <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="top" text="  Upcoming Plays" lineBreakMode="tailTruncation" baselineAdjustment="none" adjustsFontSizeToFit="NO" id="HqH-cq-8qe">
+                            <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="top" text="  Upcoming Plays" lineBreakMode="tailTruncation" baselineAdjustment="none" adjustsFontSizeToFit="NO" id="HqH-cq-8qe" customClass="PurpleLabel">
                                 <rect key="frame" x="283" y="4" width="732" height="23"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
@@ -2001,7 +2001,7 @@
                                     <outlet property="delegate" destination="89f-El-YeM" id="dpt-PF-rJ0"/>
                                 </connections>
                             </collectionView>
-                            <label autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hhQ-dw-6Pp">
+                            <label autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hhQ-dw-6Pp" customClass="ShinyLabel">
                                 <rect key="frame" x="0.0" y="204" width="1062" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration">
@@ -2012,7 +2012,7 @@
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" cocoaTouchSystemColor="lightTextColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="a3t-2u-6g6" customClass="CustomButton">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="a3t-2u-6g6" customClass="PurpleButton">
                                 <rect key="frame" x="191" y="93" width="84" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -2032,7 +2032,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tAG-lE-G6T" customClass="CustomButton">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tAG-lE-G6T" customClass="PurpleButton">
                                 <rect key="frame" x="191" y="42" width="84" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -2048,7 +2048,7 @@
                                     <action selector="loadNextPlay:" destination="89f-El-YeM" eventType="touchUpInside" id="OcS-Dm-wAb"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Oxc-6X-Xzd" customClass="CustomButton">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Oxc-6X-Xzd" customClass="PurpleButton">
                                 <rect key="frame" x="8" y="207" width="139" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>

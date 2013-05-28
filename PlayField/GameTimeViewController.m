@@ -45,7 +45,7 @@
     gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];
     //[self.view.layer insertSublayer:gradient below:self.collectionLabel.layer];
     
-    self.collectionLabel.backgroundColor = [UIColor colorWithWhite:0.08 alpha:0.2];
+    self.collectionLabel.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.8];
     self.offenseOrDefense = @"Defense";
     self.collectionLabel.text = @"Defense Playbooks";
     
@@ -117,7 +117,9 @@
             
             // add the cell to the view
             draggingPlaybookPlay = [self.playbookPlayDS.fetchedResultsController objectAtIndexPath:pannedItem];
+            draggingPlaybookPlay.status = @"Dragging";
             draggingCell = [[PlaybookPlayCell alloc] initWithFrame:initialDraggingFrame playbookPlay:draggingPlaybookPlay];
+            [((PlaybookPlayCell*) draggingCell) highlightCell];
             [self.view addSubview:draggingCell];
         }
     } else if (recognizer.state == UIGestureRecognizerStateChanged) {
@@ -131,6 +133,7 @@
         newFrame.origin.x += translation.x;
         newFrame.origin.y += translation.y;
         draggingCell.frame = newFrame;
+        //draggingPlaybookPlay.status = @"Dragging";
         //move the placeholder
         [self addDraggedCell:recognizer draggedItem:draggingPlaybookPlay];
     } else {
@@ -139,6 +142,7 @@
         }
         //NSLog(@"dragging ended");
         // add the cell to the appropriate place
+        draggingPlaybookPlay.status = nil;
         [self addDraggedCell:recognizer draggedItem:draggingPlaybookPlay];
         
         [draggingCell removeFromSuperview];
@@ -158,20 +162,29 @@
         NSIndexPath *landingPoint = [self.upcomingPlaysCollection indexPathForItemAtPoint:newFrame.origin];
     
         if(landingPoint){
-            [self.upcomingPlaysDS.upcomingPlays removeObject:draggingPlaybookPlay];
+            
             //Play *landingItem = self.upcomingPlaysDS.upcomingPlays[landingPoint.item];
             int index = landingPoint.item;
             if(index > 0){
                 index--;
             }
-            if(index < self.upcomingPlaysDS.upcomingPlays.count){
-                [self.upcomingPlaysDS.upcomingPlays insertObject:draggedItem atIndex:index];
-            } else {
-                [self.upcomingPlaysDS.upcomingPlays addObject:draggedItem];
+            //NSLog(@"New index: %d old index: %d", index, [self.upcomingPlaysDS.upcomingPlays indexOfObject:draggedItem]);
+            // only add/remove if the index changed
+            if(index != [self.upcomingPlaysDS.upcomingPlays indexOfObject:draggedItem]){
+                [self.upcomingPlaysDS.upcomingPlays removeObject:draggingPlaybookPlay];
+                if(index < self.upcomingPlaysDS.upcomingPlays.count){
+                    [self.upcomingPlaysDS.upcomingPlays insertObject:draggedItem atIndex:index];
+                } else {
+                    [self.upcomingPlaysDS.upcomingPlays addObject:draggedItem];
+                }
             }
         } else if(newFrame.origin.x > 0 && newFrame.origin.y > 0 && newFrame.origin.x < self.upcomingPlaysCollection.frame.size.width && newFrame.origin.y < self.upcomingPlaysCollection.frame.size.height){
-            [self.upcomingPlaysDS.upcomingPlays removeObject:draggedItem];
-            [self.upcomingPlaysDS.upcomingPlays addObject:draggedItem];
+            
+            if([self.upcomingPlaysDS.upcomingPlays indexOfObject:draggedItem] != (self.upcomingPlaysDS.upcomingPlays.count - 1)){
+                //NSLog(@"Appending item");
+                [self.upcomingPlaysDS.upcomingPlays removeObject:draggedItem];
+                [self.upcomingPlaysDS.upcomingPlays addObject:draggedItem];
+            }
         } else {
             //NSLog(@"Not dragging over upcoming plays %f %f", newFrame.origin.x, newFrame.origin.y);
         }
@@ -216,7 +229,9 @@
         newFrame.origin.y += translation.y;
         draggingCell.frame = newFrame;
         //move the placeholder
-        [self addDraggedCell:recognizer draggedItem:draggingPlaybook];
+        if([draggingPlaybook.playbookplays count] > 0){
+            [self addDraggedCell:recognizer draggedItem:draggingPlaybook];
+        }
     } else {
         if(self.currentPannedItem == nil || draggingPlaybook == nil){
             return;
@@ -258,7 +273,9 @@
             // add the cell to the view
             
             draggingPlaybookPlay = [self.upcomingPlaysDS.upcomingPlays objectAtIndex:pannedItem.item];
+            draggingPlaybookPlay.status = @"Dragging";
             draggingCell = [[PlaybookPlayCell alloc] initWithFrame:initialDraggingFrame playbookPlay:draggingPlaybookPlay];
+            [((PlaybookPlayCell*) draggingCell) highlightCell];
             [self.view addSubview:draggingCell];
             upcomingPlayRemoved = NO;
             //NSLog(@"Finding dragging play at index %d %@", pannedItem.item, draggingPlay);
@@ -267,7 +284,7 @@
         if(self.currentPannedItem == nil || draggingPlaybookPlay == nil){
             return;
         }
-        //NSLog(@"Dragging changed");
+        //NSLog(@"Upcoming plays Dragging changed");
         // move the cell around
         CGPoint translation = [recognizer translationInView:self.upcomingPlaysCollection];
         CGRect newFrame = initialDraggingFrame;
@@ -277,7 +294,7 @@
         
         //remove it if needed
         CGPoint location = [recognizer locationInView:self.upcomingPlaysCollection];
-        NSLog(@"Location: %f Height: %f", location.y, self.upcomingPlaysCollection.frame.size.height);
+        //NSLog(@"Location: %f Height: %f", location.y, self.upcomingPlaysCollection.frame.size.height);
         if(upcomingPlayRemoved == NO && location.y > (self.upcomingPlaysCollection.frame.size.height)){
             [self.upcomingPlaysDS.upcomingPlays removeObject:draggingPlaybookPlay];
             [self.upcomingPlaysCollection reloadData];
@@ -291,6 +308,8 @@
         if(self.currentPannedItem == nil || draggingPlaybookPlay == nil){
             return;
         }
+        draggingPlaybookPlay.status = nil;
+        [self.upcomingPlaysCollection reloadData];
         [draggingCell removeFromSuperview];
         draggingCell = nil;
         draggingPlaybookPlay = nil;

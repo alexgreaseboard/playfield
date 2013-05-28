@@ -39,8 +39,13 @@
     PlaybookPlay *playbookPlay = [self.upcomingPlays objectAtIndex:indexPath.item];
     
     if([playbookPlay isKindOfClass:[PlaybookPlay class]]){
-        Play *play = playbookPlay.play;
-        playbookCell = [playbookCell initWithFrame:playbookCell.frame name:play.name];
+        playbookCell = [playbookCell initWithFrame:playbookCell.frame playbookPlay:playbookPlay];
+        if([playbookPlay.status isEqualToString:@"Dragging"]){
+            [playbookCell highlightCell];
+            //NSLog(@"Index %d is dragging", indexPath.item);
+        } else {
+            [playbookCell unhighlightCell];
+        }
     } else {
         Playbook *playBook = (Playbook*)playbookPlay;
         playbookCell = [playbookCell initWithFrame:playbookCell.frame name:playBook.name];

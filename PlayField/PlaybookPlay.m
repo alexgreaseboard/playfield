@@ -16,5 +16,6 @@
 @dynamic playbook;
 @dynamic play;
 @dynamic displayOrder;
+@synthesize status;
 
 @end

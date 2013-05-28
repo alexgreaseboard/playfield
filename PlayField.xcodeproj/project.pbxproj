@@ -57,7 +57,9 @@
 		394DEEC116F55C5A0047A3B7 /* PracticeEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 394DEEBF16F395C20047A3B7 /* PracticeEditViewController.m */; };
 		3989D24E1751143E00AD8372 /* LXReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3989D24D1751143E00AD8372 /* LXReorderableCollectionViewFlowLayout.m */; };
 		3989D252175128C400AD8372 /* PlaybookPlayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3989D251175128C400AD8372 /* PlaybookPlayCell.m */; };
-		398A32881754235800B03ED2 /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 398A32871754235800B03ED2 /* CustomButton.m */; };
+		398A32881754235800B03ED2 /* PurpleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 398A32871754235800B03ED2 /* PurpleButton.m */; };
+		398A328C1754333100B03ED2 /* PurpleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 398A328B1754333100B03ED2 /* PurpleLabel.m */; };
+		398A328F175435C400B03ED2 /* ShinyLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 398A328E175435C400B03ED2 /* ShinyLabel.m */; };
 		399B7F07170733980047244D /* TimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 399B7F06170733980047244D /* TimerView.m */; };
 		399B7F0B17073AE60047244D /* TimerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 399B7F0A17073AE60047244D /* TimerView.xib */; };
 		39E2FFCA1731DD230062332C /* PlaybookDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E2FFC91731DD230062332C /* PlaybookDataSource.m */; };
@@ -323,8 +325,12 @@
 		3989D24D1751143E00AD8372 /* LXReorderableCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXReorderableCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		3989D250175128C400AD8372 /* PlaybookPlayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybookPlayCell.h; sourceTree = "<group>"; };
 		3989D251175128C400AD8372 /* PlaybookPlayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybookPlayCell.m; sourceTree = "<group>"; };
-		398A32861754235800B03ED2 /* CustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomButton.h; sourceTree = "<group>"; };
-		398A32871754235800B03ED2 /* CustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomButton.m; sourceTree = "<group>"; };
+		398A32861754235800B03ED2 /* PurpleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurpleButton.h; sourceTree = "<group>"; };
+		398A32871754235800B03ED2 /* PurpleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurpleButton.m; sourceTree = "<group>"; };
+		398A328A1754333100B03ED2 /* PurpleLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurpleLabel.h; sourceTree = "<group>"; };
+		398A328B1754333100B03ED2 /* PurpleLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurpleLabel.m; sourceTree = "<group>"; };
+		398A328D175435C400B03ED2 /* ShinyLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShinyLabel.h; sourceTree = "<group>"; };
+		398A328E175435C400B03ED2 /* ShinyLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShinyLabel.m; sourceTree = "<group>"; };
 		399B7F05170733980047244D /* TimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerView.h; sourceTree = "<group>"; };
 		399B7F06170733980047244D /* TimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerView.m; sourceTree = "<group>"; };
 		399B7F0A17073AE60047244D /* TimerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimerView.xib; sourceTree = "<group>"; };
@@ -837,10 +843,14 @@
 		398A32891754235F00B03ED2 /* UIOverrideComponent */ = {
 			isa = PBXGroup;
 			children = (
-				398A32861754235800B03ED2 /* CustomButton.h */,
-				398A32871754235800B03ED2 /* CustomButton.m */,
+				398A32861754235800B03ED2 /* PurpleButton.h */,
+				398A32871754235800B03ED2 /* PurpleButton.m */,
+				398A328A1754333100B03ED2 /* PurpleLabel.h */,
+				398A328B1754333100B03ED2 /* PurpleLabel.m */,
 				3989D24C1751143E00AD8372 /* LXReorderableCollectionViewFlowLayout.h */,
 				3989D24D1751143E00AD8372 /* LXReorderableCollectionViewFlowLayout.m */,
+				398A328D175435C400B03ED2 /* ShinyLabel.h */,
+				398A328E175435C400B03ED2 /* ShinyLabel.m */,
 			);
 			name = UIOverrideComponent;
 			sourceTree = "<group>";
@@ -1627,7 +1637,9 @@
 				29939AA91750E80100448DAF /* Play.m in Sources */,
 				3989D24E1751143E00AD8372 /* LXReorderableCollectionViewFlowLayout.m in Sources */,
 				3989D252175128C400AD8372 /* PlaybookPlayCell.m in Sources */,
-				398A32881754235800B03ED2 /* CustomButton.m in Sources */,
+				398A32881754235800B03ED2 /* PurpleButton.m in Sources */,
+				398A328C1754333100B03ED2 /* PurpleLabel.m in Sources */,
+				398A328F175435C400B03ED2 /* ShinyLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,5 +16,6 @@
 @property (nonatomic, retain) Playbook *playbook;
 @property (nonatomic, retain) Play *play;
 @property (nonatomic, retain) NSNumber *displayOrder;
+@property (nonatomic, strong) NSString *status;
 
 @end

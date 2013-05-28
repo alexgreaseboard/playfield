@@ -142,12 +142,12 @@ Playbook *selectedPlaybook;
 	newFrame.origin.y += translation.y;
 	draggingItem.frame = newFrame;
     
+    [hoveringOverCell unhighlightCell];
     NSIndexPath *landingPoint = [self.playbooksCollection indexPathForItemAtPoint:newFrame.origin];
     if(landingPoint) {
         hoveringOverCell = (PlaybookCell *)[self.playbooksCollection cellForItemAtIndexPath:landingPoint];
         [hoveringOverCell highlightCell];
     } else {
-        [hoveringOverCell unhighlightCell];
         hoveringOverCell = nil;
     }
 }
@@ -179,6 +179,7 @@ Playbook *selectedPlaybook;
 
 - (void)draggingEnded:(UIPanGestureRecognizer *)sender
 {
+    [hoveringOverCell unhighlightCell];
 	[self addPlayToPlaybook:sender];
     
     NSError *error = nil;

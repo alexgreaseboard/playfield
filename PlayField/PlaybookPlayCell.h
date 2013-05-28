@@ -19,5 +19,6 @@
 - (void) unhighlightCell;
 
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
+@property (nonatomic) Boolean *isHover;
 
 @end

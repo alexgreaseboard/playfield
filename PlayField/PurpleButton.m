@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Jai. All rights reserved.
 //
 
-#import "CustomButton.h"
+#import "PurpleButton.h"
 
-@implementation CustomButton{
+@implementation PurpleButton{
     CAGradientLayer *shineLayer;
     CALayer         *highlightLayer;
 }
@@ -53,7 +53,6 @@
 
 // for when the button is selected
 - (void)addHighlightLayer {
-    if(self.enabled){
     highlightLayer = [CALayer layer];
     highlightLayer.backgroundColor = [UIColor colorWithRed:0.25f
                                                      green:0.25f
@@ -62,7 +61,6 @@
     highlightLayer.frame = self.layer.bounds;
     highlightLayer.hidden = YES;
     [self.layer insertSublayer:highlightLayer below:shineLayer];
-    }
 }
 
 - (void)setHighlighted:(BOOL)highlight {

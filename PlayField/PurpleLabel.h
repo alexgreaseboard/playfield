@@ -1,5 +1,5 @@
 //
-//  CustomButton.h
+//  PurpleLabel.h
 //  PlayField
 //
 //  Created by Emily Jeppson on 5/27/13.
@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "ShinyLabel.h"
 
-@interface CustomButton : UIButton
-    
+@interface PurpleLabel : ShinyLabel
+
 @end

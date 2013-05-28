@@ -12,6 +12,7 @@
 
 @implementation PlaybookCell {
     Playbook *playbook;
+    CAGradientLayer *disabledLayer;
 }
 
 - (id)initWithFrame:(CGRect)frame name:(NSString*)name {
@@ -99,11 +100,28 @@
 }
 
 - (void) highlightCell {
-    self.backgroundColor = [UIColor blueColor];
+    if(!disabledLayer){
+        [disabledLayer removeFromSuperlayer];
+        disabledLayer = [CAGradientLayer layer];
+        disabledLayer.colors = [NSArray arrayWithObjects:
+                                (id)[UIColor colorWithWhite:1.0f alpha:0.1f].CGColor,
+                                (id)[UIColor colorWithWhite:1.0f alpha:0.01f].CGColor,
+                                (id)[UIColor colorWithWhite:0.75f alpha:0.5f].CGColor,
+                                nil];
+        disabledLayer.locations = [NSArray arrayWithObjects:
+                                   [NSNumber numberWithFloat:0.0f],
+                                   [NSNumber numberWithFloat:0.6f],
+                                   [NSNumber numberWithFloat:0.9f],
+                                   nil];
+        disabledLayer.frame = self.layer.bounds;
+        [self.layer insertSublayer:disabledLayer above:self.layer];
+    }
+    disabledLayer.hidden = NO;
 }
 
 - (void) unhighlightCell {
-    self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"football-texture.jpg"]];
+    [disabledLayer removeFromSuperlayer];
+    disabledLayer = nil;
 }
 
 @end
