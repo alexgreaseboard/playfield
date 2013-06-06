@@ -23,6 +23,7 @@
     Playbook *draggingPlaybook;
     CGRect initialDraggingFrame;
     bool upcomingPlayRemoved;
+    PlaybookPlay *selectedPlaybookplay;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -64,7 +65,7 @@
     self.playbooksCollection.dataSource = self.playBookDS;
     self.playbooksCollection.delegate = self.playBookDS;
     self.upcomingPlaysCollection.dataSource = self.upcomingPlaysDS;
-    self.upcomingPlaysCollection.delegate = self.upcomingPlaysDS;
+    self.upcomingPlaysCollection.delegate = self;
     
     [self.playbooksCollection registerClass:[PlaybookCell class] forCellWithReuseIdentifier:@"PlaybookCell"];
     [self.upcomingPlaysCollection registerClass:[PlaybookPlayCell class] forCellWithReuseIdentifier:@"PlaybookPlayCell"];
@@ -372,4 +373,31 @@
     [self.playbooksCollection reloadData];
     [self.playsCollection reloadData];
 }
+
+
+#pragma mark – UICollectionViewDelegateFlowLayout
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    selectedPlaybookplay = [self.upcomingPlaysDS.upcomingPlays objectAtIndex:indexPath.item];
+    [self performSegueWithIdentifier:@"playbookPlayDetailSegue" sender:selectedPlaybookplay];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"playbookPlayDetailSegue"]) {
+        UINavigationController *navigationController = segue.destinationViewController;
+        CocosViewController *controller = (CocosViewController *) navigationController;
+        [controller setCurrentPlay:selectedPlaybookplay.play];
+    }
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self.playBookDS collectionView:collectionView layout:collectionViewLayout sizeForItemAtIndexPath:indexPath];
+}
+
+- (UIEdgeInsets)collectionView:
+(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return [self.playBookDS collectionView:collectionView layout:collectionViewLayout insetForSectionAtIndex:section];
+}
+
 @end

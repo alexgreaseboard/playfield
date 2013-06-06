@@ -9,11 +9,15 @@
 #import "PlaybookPinchGestureRecognizer.h"
 #import "PinchLayout.h"
 #import "PlaybookPlayCell.h"
+#import "CocosViewController.h"
+#import "PlaybookPlay.h"
 
 static const CGFloat kMinScale = 1.0f;
 static const CGFloat kMaxScale = 3.0f;
 
-@implementation PlaybookPinchGestureRecognizer
+@implementation PlaybookPinchGestureRecognizer{
+    PlaybookPlay *selectedPlaybookplay;
+}
 
 // Pinch out - show the plays, hide the playbooks
 - (void)handlePinchOutGesture: (UIPinchGestureRecognizer*)recognizer
@@ -38,8 +42,7 @@ static const CGFloat kMaxScale = 3.0f;
             self.playsCollection = [[UICollectionView alloc]
                                     initWithFrame:self.playbooksCollection.frame collectionViewLayout:layout];
             self.playsCollection.backgroundColor = [UIColor clearColor];
-            // todo pass in the selected playbook
-            self.playsCollection.delegate = self.playbookPlayDS;
+            self.playsCollection.delegate = self;
             self.playsCollection.dataSource = self.playbookPlayDS;
             self.playsCollection.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
             self.playsCollection.backgroundColor = [UIColor clearColor];
@@ -49,12 +52,15 @@ static const CGFloat kMaxScale = 3.0f;
             
             [self.playsCollection registerClass:[PlaybookPlayCell class] forCellWithReuseIdentifier:@"PlaybookPlayCell"];
             [self.view addSubview:self.playsCollection];
-            // gestures - pinch to close
-            UIPinchGestureRecognizer *recognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchInGesture:)];
-            recognizer.delegate = self;
-            [self.playsCollection addGestureRecognizer:recognizer];
-            // gestures - drag & drop
+            
+            
             if(self.collectionLabel){
+                // gestures - pinch to close
+                UIPinchGestureRecognizer *recognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchInGesture:)];
+                recognizer.delegate = self;
+                [self.playsCollection addGestureRecognizer:recognizer];
+                
+                // gestures - drag & drop
                 UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePlayPanning:)];
                 panRecognizer.delegate = self;
                 [self.playsCollection addGestureRecognizer:panRecognizer];
@@ -108,6 +114,31 @@ static const CGFloat kMaxScale = 3.0f;
         self.playsCollection = nil;
         self.currentPinchedItem = nil;
     }
+}
+
+#pragma mark – UICollectionViewDelegateFlowLayout
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    selectedPlaybookplay = [self.playbookPlayDS.fetchedResultsController objectAtIndexPath:indexPath];
+    [self performSegueWithIdentifier:@"playbookPlayDetailSegue" sender:selectedPlaybookplay];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"playbookPlayDetailSegue"]) {
+        UINavigationController *navigationController = segue.destinationViewController;
+        CocosViewController *controller = (CocosViewController *) navigationController;
+        [controller setCurrentPlay:selectedPlaybookplay.play];
+    }
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self.playBookDS collectionView:collectionView layout:collectionViewLayout sizeForItemAtIndexPath:indexPath];
+}
+
+- (UIEdgeInsets)collectionView:
+(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return [self.playBookDS collectionView:collectionView layout:collectionViewLayout insetForSectionAtIndex:section];
 }
 
 

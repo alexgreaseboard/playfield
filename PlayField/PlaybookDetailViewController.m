@@ -21,6 +21,7 @@
     PlaybookPlayDataSource *playbookPlayDS;
     PlaybookPlayCell *draggingItem;
     Play *draggingPlay;
+    PlaybookPlay *selectedPlaybookplay;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -78,6 +79,10 @@
         PlaybookEditViewController *editController = (PlaybookEditViewController *) navigationController.topViewController;
         editController.delegate = self;
         editController.playbook = self.playbook; 
+    } else if ([segue.identifier isEqualToString:@"playbookPlayDetailSegue"]) {
+        UINavigationController *navigationController = segue.destinationViewController;
+        CocosViewController *controller = (CocosViewController *) navigationController;
+        [controller setCurrentPlay:selectedPlaybookplay.play];
     }
 }
 
@@ -151,6 +156,11 @@
         draggingItem = nil;
         draggingPlay = nil;
     }        
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    selectedPlaybookplay = [playbookPlayDS.fetchedResultsController objectAtIndexPath:indexPath];
+    [self performSegueWithIdentifier:@"playbookPlayDetailSegue" sender:selectedPlaybookplay];
 }
 
 @end

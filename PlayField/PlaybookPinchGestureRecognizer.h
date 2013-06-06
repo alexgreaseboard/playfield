@@ -10,7 +10,7 @@
 #import "PlaybookDataSource.h"
 #import "PlaybookPlayDataSource.h"
 
-@interface PlaybookPinchGestureRecognizer : UIViewController<UIGestureRecognizerDelegate>
+@interface PlaybookPinchGestureRecognizer : UIViewController<UIGestureRecognizerDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (strong, nonatomic) IBOutlet UILabel *collectionLabel;
 @property (strong, nonatomic) NSString *offenseOrDefense;
