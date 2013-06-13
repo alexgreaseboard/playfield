@@ -77,6 +77,7 @@
     [fetchRequest setFetchBatchSize:20];
     
     // Predicates
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlaybookPlayDS - fetching type: %@, playbook: %@", self.offenseOrDefense, self.playbook.name]];
     if(self.offenseOrDefense && self.playbook){
         NSPredicate *predicate = [NSPredicate predicateWithFormat:
                                   @"(play.type == %@) && (playbook == %@)", self.offenseOrDefense, self.playbook];
@@ -129,7 +130,7 @@
 
 // Reorder plays
 - (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath willMoveToIndexPath:(NSIndexPath *)toIndexPath {
-    NSLog(@"Reordering plays...");
+   [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlaybookPlayDataSource - Reordering plays..."]];
     NSMutableArray *mutableArray = [[NSMutableArray alloc] initWithArray:self.fetchedResultsController.fetchedObjects];
     id object = [mutableArray objectAtIndex:fromIndexPath.item];
     [mutableArray removeObjectAtIndex:fromIndexPath.item];

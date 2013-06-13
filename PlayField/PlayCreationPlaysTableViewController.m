@@ -35,7 +35,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlayCreationPlaysTable - viewDidLoad"]];
+                                
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self action:@selector(returnToMenu:) ];
     self.navigationItem.leftBarButtonItem = menuButton;
     
@@ -78,6 +79,7 @@
 
 - (IBAction)insertNewPlay:(id)sender
 {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlayCreationPlaysTable - insertNewPlay"]];
     Play *newPlay = [NSEntityDescription insertNewObjectForEntityForName:@"Play" inManagedObjectContext:self.managedObjectContext];
     
     NSString *tabTitle = self.tabBarItem.title;
@@ -118,6 +120,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlayCreationPlaysTable - selected play at index %d", indexPath.item]];
     Play *play = [[self fetchedResultsController] objectAtIndexPath:indexPath];
     [detailViewController setCurrentPlay:play];
 }
@@ -130,6 +133,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlayCreationPlaysTable - deleting play at index %d", indexPath.item]];
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
         [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
         
@@ -143,7 +147,7 @@
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
-    //NSLog(@"Move row at index path %i %i", fromIndexPath.item, toIndexPath.item);
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlayCreationPlaysTable - Move row at index path from %i to %i", fromIndexPath.item, toIndexPath.item]];
     NSMutableArray *allPlays = [self.fetchedResultsController.fetchedObjects mutableCopy];
     Play *playToMove = [self.fetchedResultsController objectAtIndexPath:fromIndexPath];
     [allPlays removeObject:playToMove];
@@ -278,6 +282,7 @@
 }
 
 - (IBAction)startReorder:(id)sender{
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlayCreationPlaysTable - start reorder"]];
     if(isReordering == NO){
         isReordering = YES;
         [self setEditing:YES animated:YES];
@@ -313,6 +318,7 @@
 - (void)handlePanning:(UIPanGestureRecognizer *)sender {
     
     if(sender.state == UIGestureRecognizerStateBegan){
+        [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlayCreationPlaysTable - dragging started"]];
         //NSLog(@"Dragging started");
         CGPoint p1 = [sender locationOfTouch:0 inView:self.tableView];
         NSIndexPath *newPinchedIndexPath1 = [self.tableView indexPathForRowAtPoint:p1];
@@ -324,6 +330,7 @@
     } else if(sender.state == UIGestureRecognizerStateEnded){
         [self.delegate draggingEnded:sender];
         //NSLog(@"Dragging stopped");
+        [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlayCreationPlaysTable - dragging stopped"]];
     }
     
 }

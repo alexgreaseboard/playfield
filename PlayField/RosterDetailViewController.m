@@ -21,7 +21,7 @@
 {
     if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
-        
+        [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"RosterDetail - setDetailItem %@", newDetailItem]];
         // Update the view.
         [self configureView];
     }

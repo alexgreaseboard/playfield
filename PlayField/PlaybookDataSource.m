@@ -113,7 +113,7 @@
 
 // for re-ordering playbooks
 - (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath willMoveToIndexPath:(NSIndexPath *)toIndexPath {
-    NSLog(@"Reordering playbooks...");
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlaybookDataSource - Reordering playbooks..."]];
     NSMutableArray *mutableArray = [[NSMutableArray alloc] initWithArray:self.fetchedResultsController.fetchedObjects];
     id object = [mutableArray objectAtIndex:fromIndexPath.item];
     [mutableArray removeObjectAtIndex:fromIndexPath.item];

@@ -32,6 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"CocosViewController - viewDidLoad"]];
 	// Do any additional setup after loading the view.
     CCDirector *director = [CCDirector sharedDirector];
     
@@ -80,6 +81,7 @@
 
 - (void)setCurrentPlay:(Play *)pPlay
 {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"CocosViewController - setCurrentPlay %@", pPlay]];
     if (_detailItem != pPlay) {
         _detailItem = pPlay;
 
@@ -127,6 +129,7 @@
 }
 
 - (IBAction)saveButtonPressed:(id)sender {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"CocosViewController - saveButtonPressed"]];
     SavePlayViewController *viewControllerForPopover = [self.storyboard instantiateViewControllerWithIdentifier:@"savePlayViewController"];
     viewControllerForPopover.delegate = self;
     if (savePlayPopover != nil && savePlayPopover.popoverVisible)
@@ -138,6 +141,7 @@
 }
 
 - (void)savePlay:(id)sender {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"CocosViewController - savePlay"]];
     [self configureView];
     // Save each PlaySprite SpritePoints.
     for( PlaySprite *ps in _helloWorldLayer.movableSprites ) {
@@ -154,6 +158,7 @@
 
 - (void) copyPlayInverted:(bool) inverted
 {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"CocosViewController - copyPlayInverted %d", inverted]];
     Play *newPlay = [NSEntityDescription insertNewObjectForEntityForName:@"Play" inManagedObjectContext:self.managedObjectContext];
     
     NSString *appendToName;
@@ -215,6 +220,7 @@
 
 - (void)savePlayViewController:(SavePlayViewController *)controller
 {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"CocosViewController - savePlay"]];
     [self savePlay:self];
     if (savePlayPopover != nil && savePlayPopover.popoverVisible)
     {
@@ -225,6 +231,7 @@
 }
 - (void)saveDuplicatePlayViewController:(SavePlayViewController *)controller
 {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"CocosViewController - saveDuplicatePlay"]];
     [self copyPlayInverted:false];
     if (savePlayPopover != nil && savePlayPopover.popoverVisible)
     {
@@ -234,6 +241,7 @@
 }
 - (void)saveReversePlayViewController:(SavePlayViewController *)controller
 {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"CocosViewController - saveReversePlay"]];
     [self copyPlayInverted:true];
     if (savePlayPopover != nil && savePlayPopover.popoverVisible)
     {

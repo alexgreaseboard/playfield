@@ -26,7 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlaybookEdit - loading"]];
     playbookTypes = [[NSArray alloc] initWithObjects:@"Offense", @"Defense", @"Practice", nil];
     
     [self configureView ];
@@ -51,10 +51,12 @@
 }
 
 - (IBAction)cancel:(id)sender {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlaybookEdit - cancel"]];
     [self.presentingViewController dismissViewControllerAnimated:YES completion: nil];
 }
 
 - (IBAction)savePlaybook:(id)sender {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlaybookEdit - save %@", _playbookName.text]];
     self.playbook.name = _playbookName.text;
     self.playbook.notes = _notes.text;
     
@@ -66,6 +68,7 @@
 }
 
 - (IBAction)deletePlaybook:(id)sender {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlaybookEdit - delete"]];
     [self.presentingViewController dismissViewControllerAnimated:NO completion: nil];
     [self.delegate deletePlaybook:self.playbook];
 }

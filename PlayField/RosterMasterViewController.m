@@ -27,6 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Roster - loading roster"]];
 	// Do any additional setup after loading the view, typically from a nib.
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self action:@selector(returnToMenu:) ];
     self.navigationItem.leftBarButtonItem = menuButton;
@@ -48,6 +49,7 @@
 
 - (void)insertNewObject:(id)sender
 {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Roster - insert new object"]];
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
     NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:self.managedObjectContext];
     self.detailViewController.detailItem = newManagedObject;
@@ -69,6 +71,7 @@
 
 -(void) rosterDetailViewController:(RosterDetailViewController *)controller saveDetail:(id) detailItem
 {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Roster - save detailItem %@", detailItem]];
     // Save the context.
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
@@ -79,6 +82,7 @@
 
 -(void) rosterDetailViewController:(RosterDetailViewController *)controller deleteItem:(id)detailItem
 {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Roster - delete item: %@", detailItem]];
     self.managedObjectContext = [self.fetchedResultsController managedObjectContext];
     [self.managedObjectContext deleteObject:detailItem];
     
@@ -118,6 +122,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Roster - commitEditingStyle for indexPath %@", indexPath]];
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
         [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
         

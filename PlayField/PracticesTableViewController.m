@@ -30,6 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PracticeTable - loading"]];
 
     // add the two buttons
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self action:@selector(returnToMenu:) ];
@@ -88,6 +89,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PracticeTable - deleting practice"]];
         // Delete the row from the data source
         id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][indexPath.section];
         [[sectionInfo objects] objectAtIndex:indexPath.item];
@@ -106,11 +108,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PracticeTable - selected practice"]];
     Practice *practice = [self.fetchedResultsController objectAtIndexPath:indexPath];
     [self.practiceViewController resetViewWithPractice:practice];
 }
 
 -(void)showPracticeScreen:(id)sender{
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PracticeTable - practice edit"]];
     [self performSegueWithIdentifier:@"showPracticeEdit" sender:sender];
 }
 
@@ -127,6 +131,7 @@
 
 #pragma mark - PracticeEditController
 - (void)practiceEditController:(PracticeEditViewController *)controller didFinishAddingPractice:(Practice *)practice{
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PracticeTable - done adding practice"]];
     // Save the context.
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
@@ -148,6 +153,7 @@
 }
 
 - (void)practiceEditController:(PracticeEditViewController *)controller didCancelAddingPractice:(Practice *)practice{
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PracticeTable - cancel adding practice"]];
     // Save the context.
     [self.managedObjectContext deleteObject:practice];
     NSError *error = nil;

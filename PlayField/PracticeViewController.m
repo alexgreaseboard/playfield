@@ -49,6 +49,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Practice - loading"]];
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
@@ -238,6 +239,7 @@
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Practice - selected Item "]];
     PracticeItem *item = [self findItemAtIndex:indexPath.item];
     if([item.itemType isEqualToString:@"item"]){
         [self performSegueWithIdentifier:@"showPracticeItemEdit" sender:item];
@@ -347,11 +349,13 @@
 }
 
 - (IBAction)editPractice:(id)sender{
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Practice - edit practice"]];
     [self performSegueWithIdentifier:@"showPracticeEdit" sender:sender];
 }
 
 #pragma mark -PracticeEditViewController
 - (void)practiceEditController:(PracticeEditViewController *)controller didFinishAddingPractice:(Practice *)practice{
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Practice - finished adding practice"]];
     [self resetViewWithPractice:practice];
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
@@ -374,6 +378,7 @@
 }
 - (void)practiceItemController:(PracticeItemEditController *)controller didDeleteItem:(PracticeItem *)item{
     // delete an item, not column
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Practice - delete item"]];
     if([item.itemType isEqualToString:@"item"] || [item.itemType isEqualToString:@"placeholder"]){
         for(int i=0; i< self.practice.practiceColumns.count; i++){
             if(([item.columnNumber integerValue] / 2) == i){
@@ -412,6 +417,7 @@
 
 #pragma mark - PracticeOptionsDelegate
 - (void)addColumn{
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Practice - add column"]];
     if(self.practice != nil){
         [practiceOptionsPopover dismissPopoverAnimated:YES];
         [self performSegueWithIdentifier:@"showPracticeColumnEdit" sender:nil];
@@ -447,7 +453,7 @@
 }
 
 - (void)draggingStarted:(UIPanGestureRecognizer *)sender forPlay:(Play *)play{
-	//NSLog(@"Dragging started");
+	[TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Practice - draggingStarted %@", play.name]];
     if(self.practice == nil || play == nil  || [self.practice.practiceColumns count] == 0){
         return;
     }
@@ -545,6 +551,7 @@
     if(self.practice == nil || draggingCell == nil || [self.practice.practiceColumns count] == 0){
         return;
     }
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Practice - dragging ended"]];
 	//NSLog(@"dragging ended");
     // add the cell to the appropriate place
 	[self addDraggedCell:sender forItem:draggingItem];
@@ -562,6 +569,7 @@
 
 #pragma mark - PracticeColumnEditDelegate
 - (void)practiceColumnEditController:(PracticeColumnEditController *)controller didFinishAddingColumn:(PracticeColumn *)column{
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Practice - finished adding column %@", column.columnName]];
     column.practice = self.practice;
     [self.practice addPracticeColumnsObject:column];
     int previousItemCount = [self.collectionView numberOfItemsInSection:0 ];
@@ -600,6 +608,7 @@
 }
 
 - (int)generateTimeItemsForColumn:(PracticeColumn*)column{
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Practice - generating time items for column %@", column.columnName]];
     // add the time header
     PracticeItem *item = [NSEntityDescription insertNewObjectForEntityForName:@"PracticeItem" inManagedObjectContext:self.managedObjectContext];
     [item createTimeHeader];
@@ -632,6 +641,7 @@
 }
 - (void)practiceItemController:(PracticeColumnEditController *)controller didDeleteColumn:(PracticeColumn *)column{
     // delete remove column
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Practice - delete column %@", column.columnName]];
     [self.managedObjectContext deleteObject:column];
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
@@ -688,6 +698,7 @@
     
     //NSLog(@"Pinching %@, %@", item1.itemName, item2.itemName);
     if(sender.state == UIGestureRecognizerStateChanged && item1 == item2 && [item1.itemType isEqualToString:@"item"]){
+        [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Practice - pinching %@", item1.itemName]];
         //increment by 5 minutes
         CGFloat newMinutes = [item1.numberOfMinutes floatValue] * sender.scale;
         NSInteger newMinutesInt = round(newMinutes);

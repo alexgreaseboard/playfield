@@ -39,7 +39,7 @@
 - (void)configureView
 {
     // Update the user interface for the detail item.
-    
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"RosterDetailEdit - configureView for %@", self.detailItem]];
     if (self.detailItem) {
         self.firstName.text = [[self.detailItem valueForKey:@"firstName"] description];
         self.lastName.text = [[self.detailItem valueForKey:@"lastName"] description];
@@ -79,6 +79,7 @@
 }
 - (IBAction)done
 {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"RosterDetailEdit - done for %@", self.detailItem]];
     [self.detailItem setValue:self.firstName.text forKey:@"firstName"];
     [self.detailItem setValue:self.lastName.text forKey:@"lastName"];
     [self.detailItem setValue:self.position.text forKey:@"position"];

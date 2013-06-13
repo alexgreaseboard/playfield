@@ -36,6 +36,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlaybookDetail - loading"]];
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"field.jpg"]];
     
@@ -87,7 +88,7 @@
 }
 
 - (void) playbookEdit:(PlaybookEditViewController *)controller saveEdit:(id)playbook {
-    
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlaybookDetail - savePlaybookEdit"]];
     [self configureView];
     
     // Save the context.
@@ -99,6 +100,7 @@
 }
 
 - (void)deletePlaybook:(Playbook *)playbook {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlaybookDetail - delete playbook %@", playbook]];
     [self.managedObjectContext deleteObject:playbook];
     // Save the context.
     NSError *error = nil;
@@ -118,12 +120,12 @@
 }
 
 - (IBAction)returnToPlaybooks:(id)sender {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlaybookDetail - returnToPlaybooks"]];
     [self.parent reloadData];
     [self.presentingViewController dismissViewControllerAnimated:YES completion: nil];
 }
 
 - (void)handlePanFrom:(UIPanGestureRecognizer *)recognizer {
-    
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         CGPoint pinchPoint = [recognizer locationInView:self.collectionView];
         NSIndexPath *landingPoint = [self.collectionView indexPathForItemAtPoint:pinchPoint];

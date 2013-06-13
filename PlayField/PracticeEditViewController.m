@@ -17,6 +17,7 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PracticeEdit - loading"]];
     self.doneButton.enabled = NO;
     if(self.practice.practiceName == nil){
         self.title = @"New Practice";
@@ -28,18 +29,21 @@
 }
 
 -(IBAction)done:(id)sender{
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PracticeEdit - done"]];
     self.practice.practiceDuration = [NSNumber numberWithInt:[self.practiceDuration.text integerValue]];
     self.practice.practiceName = self.practiceName.text;
     [self.delegate practiceEditController:self didFinishAddingPractice:self.practice];
 }
 
 -(IBAction)cancel:(id)sender{
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PracticeEdit - cancel"]];
     [self.delegate practiceEditController:self didCancelAddingPractice:self.practice];
 }
 
 // listen for characters changing in the text field and enable the button if it has characters
 - (BOOL)textField:(UITextField *)theTextField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PracticeEdit - shouldChangeCharacters"]];
     NSString *newText = [theTextField.text stringByReplacingCharactersInRange:range withString:string];
     if([theTextField.restorationIdentifier isEqualToString:@"practiceDurationText"]){
         // make sure we have a valid number in the text field

@@ -12,6 +12,7 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PracticeItemEdit - loading"]];
     
     NSString *label = @"Practice Item";
     self.deleteButton.title = [NSString stringWithFormat:@"Delete %@", label];
@@ -22,22 +23,26 @@
 }
 
 -(IBAction)done:(id)sender{
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PracticeItemEdit - done"]];
     self.practiceItem.numberOfMinutes = [NSNumber numberWithInt:[self.numberOfMinutes.text integerValue]];
     self.practiceItem.itemName = self.practiceItemName.text;
     [self.delegate practiceItemController:self didFinishEditingItem:self.practiceItem];
 }
 
 -(IBAction)cancel:(id)sender{
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PracticeItemEdit - cancel"]];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(IBAction)deleteItem:(id)sender{
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PracticeItemEdit - delete item"]];
     [self.delegate practiceItemController:self didDeleteItem:self.practiceItem];
 }
 
 // listen for characters changing in the text field and enable the button if it has characters
 - (BOOL)textField:(UITextField *)theTextField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PracticeItemEdit - shouldChangeCharacters"]];
     NSString *newText = [theTextField.text stringByReplacingCharactersInRange:range withString:string];
     if([theTextField.restorationIdentifier isEqualToString:@"numberOfMinutes"]){
     // make sure we have a valid number in the text field

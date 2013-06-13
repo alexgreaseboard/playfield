@@ -27,6 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlayCreationDetails - loading"]];
     
     playTypes = [[NSArray alloc] initWithObjects:@"Offense", @"Defense", @"Drill", nil];
     playRunPasses = [[NSArray alloc] initWithObjects:@"Pass", @"Run", nil];
@@ -61,6 +62,7 @@
 }
 
 - (IBAction)savePlayDetails:(id)sender {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlayCreationDetails - savePlayDetails %@", self.playName.text]];
     self.play.name = self.playName.text;
     self.play.notes = self.playNotes.text;
     
@@ -75,6 +77,7 @@
 }
 
 - (IBAction)cancelPlayDetails:(id)sender {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlayCreationDetails - cancelPlayDetails"]];
     [self.presentingViewController dismissViewControllerAnimated:YES completion: nil];
 }
 

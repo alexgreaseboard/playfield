@@ -49,6 +49,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self customizeAppearance];
+    // Testflight
+    // !!!: Use the next line only during beta
+    [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
+    
+    [TestFlight takeOff:@"e9a15330-1dd5-411e-b20d-b01f4cf7bcdd"];
+    
     // For Roster
     //UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
     //UINavigationController *masterNavigationController = [splitViewController.viewControllers objectAtIndex:0];

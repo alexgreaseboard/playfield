@@ -82,6 +82,7 @@
 }
 
 - (void)selectSpriteForTouch:(CGPoint)touchLocation {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld -  selectSpritForTouch"]];
     PlaySprite *newPlayerSprite = nil;
     for (PlaySprite *ps in self.movableSprites) {
         if (CGRectContainsPoint(ps.sprite.boundingBox, touchLocation)) {
@@ -97,7 +98,7 @@
 }
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
-
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld -  ccTouchBegan"]];
     if(!positioning) {
         [self resetScene];
     }
@@ -132,6 +133,7 @@
 }
 
 -(void) ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event{
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld - ccTouchEnded"]];
     if(positioning) {
         CGPoint newPosition = [self convertTouchToNodeSpace:touch];
         [selPlayerSprite repositionSpriteWithPosition:newPosition ];
@@ -152,6 +154,7 @@
 
 - (void)draggingStarted:(UIPanGestureRecognizer *)recognizer forItemWithName:(NSString *)name
 {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld - dragging started for %@", name]];
     NSString *imageName;
     if([name isEqualToString:@"Offense"]) {
         imageName = @"offense-1.png";
@@ -179,6 +182,7 @@
 }
 
 - (void)draggingEnded:(UIPanGestureRecognizer *)recognizer{
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld -  draggingEnded"]];
     CGPoint newPosition = [recognizer translationInView:recognizer.view];
     newPosition = [[CCDirector sharedDirector] convertToGL:newPosition];
     newPosition = [self convertToNodeSpace:newPosition];
@@ -217,12 +221,14 @@
 }
 
 - (void)playButtonTapped:(id)sender {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld - playButtonTapped"]];
     for (PlaySprite *ps in self.movableSprites) {
         [ps moveSpriteWithSpeed:100];
     }
 }
 
 - (void)resetButtonTapped:(id)sender {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld - resetButtonTapped"]];
     for (PlaySprite *ps in self.movableSprites) {
         [ps resetSprite];
     }
@@ -232,6 +238,7 @@
 }
 
 - (void)positionButtonTapped:(id)sender {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld - positionButtonTapped"]];
     if( positioning ) {
         for(PlaySprite *ps in self.movableSprites) {
             [ps.sprite stopAllActions];
@@ -257,6 +264,8 @@
 
 - (void) addDefaultPlay
 {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld - addDefaultPlay"]];
+    
     // Offense
     int centerH = 350;
     int centerV = 300;
@@ -290,6 +299,8 @@
 
 - (void) addDefaultDrill
 {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld - addDefaultDrill"]];
+    
     // Offense
     int centerH = 350;
     int centerV = 300;
@@ -328,6 +339,7 @@
 }
 
 - (void) setCurrentPlay:(Play *)pPlay {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld - setCurrentPlay"]];
     for(PlaySprite *ps in self.movableSprites) {
         [self removeChild:ps.sprite];
     }

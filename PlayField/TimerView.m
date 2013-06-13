@@ -59,6 +59,7 @@
 }
 
 - (IBAction)toggleStartStop:(id)sender {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Timer - toggleStartStop"]];
     timerRunning = !timerRunning;
     if(!timerRunning){ // stop the timer
         [self.startButton setTitle:@"Start" forState:UIControlStateNormal];
@@ -81,6 +82,7 @@
 
 
 - (IBAction)resetTimer:(id)sender {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Timer - reset"]];
     self.resetButton.enabled = NO;
     self.timerLabel.text = @"00:00:00.0";
     startTime = 0;

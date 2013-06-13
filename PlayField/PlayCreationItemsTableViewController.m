@@ -33,6 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlayCreationItemsTable - loading"]];
     
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self action:@selector(returnToMenu:) ];
     self.navigationItem.leftBarButtonItem = menuButton;
@@ -113,6 +114,7 @@
 - (void)handlePanning:(UIPanGestureRecognizer *)sender {
     
     if(sender.state == UIGestureRecognizerStateBegan){
+        [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlayCreationItemsTable - dragging started"]];
         //NSLog(@"Dragging started");
         CGPoint p1 = [sender locationOfTouch:0 inView:self.tableView];
         NSIndexPath *newPinchedIndexPath1 = [self.tableView indexPathForRowAtPoint:p1];
@@ -123,6 +125,7 @@
         [self.delegate draggingChanged:sender];
         //NSLog(@"Dragging..");
     } else if(sender.state == UIGestureRecognizerStateEnded){
+        [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlayCreationItemsTable - dragging stopped"]];
         [self.delegate draggingEnded:sender];
         //NSLog(@"Dragging stopped");
     }

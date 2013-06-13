@@ -25,7 +25,7 @@ static const CGFloat kMaxScale = 3.0f;
     // begin pinching
      //NSLog(@"Pinching");
     if (recognizer.state == UIGestureRecognizerStateBegan) {
-        //NSLog(@"Begin pinching");
+        [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlaybookPinch - Begin pinching out"]];
         // get the pinch point in the play books collection
         CGPoint pinchPoint = [recognizer locationInView:self.playbooksCollection];
         NSIndexPath *pinchedItem = [self.playbooksCollection indexPathForItemAtPoint:pinchPoint];
@@ -79,7 +79,7 @@ static const CGFloat kMaxScale = 3.0f;
             // fade out the playbooks collection
             self.playbooksCollection.alpha = 1.0f - theScalePct; }
     } else {
-        //NSLog(@"Pinching ended");
+        [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlaybookPinch - pinching out ended"]];
         if (self.currentPinchedItem) {
             Playbook *playbook = [self.playBookDS.fetchedResultsController objectAtIndexPath:self.currentPinchedItem];
             if(self.collectionLabel){
@@ -96,6 +96,7 @@ static const CGFloat kMaxScale = 3.0f;
 - (void)handlePinchInGesture: (UIPinchGestureRecognizer*)recognizer
 {
     if (recognizer.state == UIGestureRecognizerStateBegan) {
+        [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlaybookPinch - begin pinch in"]];
         self.playbooksCollection.alpha = 0.0f;
     }
     else if (recognizer.state == UIGestureRecognizerStateChanged) {
@@ -108,6 +109,7 @@ static const CGFloat kMaxScale = 3.0f;
         layout.pinchCenter = [recognizer locationInView:self.playbooksCollection];
         self.playbooksCollection.alpha = 1.0f - theScalePct;
     } else {
+        [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlaybookPinch - end pinch in"]];
         self.collectionLabel.text = [NSString stringWithFormat:@"%@ Playbooks", self.offenseOrDefense];
         self.playbooksCollection.alpha = 1.0f;
         [self.playsCollection removeFromSuperview];

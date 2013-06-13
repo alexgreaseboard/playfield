@@ -29,6 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PracticeOtherItemsTable - loading"]];
 
     items = [[NSMutableArray alloc] init];
     [items addObject:@"Team Meeting"];
@@ -86,6 +87,7 @@
     
     if(sender.state == UIGestureRecognizerStateBegan){
         //NSLog(@"Dragging started");
+        [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PracticeOtherItemsTable - started dragging"]];
         CGPoint p1 = [sender locationOfTouch:0 inView:self.tableView];
         NSIndexPath *newPinchedIndexPath1 = [self.tableView indexPathForRowAtPoint:p1];
         //get the label

@@ -38,6 +38,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [TestFlight passCheckpoint:@"Loading GameTime"];
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"field.jpg"]];
     
@@ -104,6 +105,7 @@
         CGPoint pinchPoint = [recognizer locationInView:self.playsCollection];
         NSIndexPath *pannedItem = [self.playsCollection indexPathForItemAtPoint:pinchPoint];
         if (pannedItem) {
+            [TestFlight passCheckpoint:@"GameTime - started dragging a play"];
             self.currentPannedItem = pannedItem;
 
             initialDraggingFrame.origin = pinchPoint;
@@ -141,6 +143,7 @@
         if(self.currentPannedItem == nil || draggingPlaybookPlay == nil){
             return;
         }
+        [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - finished dragging play - %@", draggingPlaybookPlay.play]];
         //NSLog(@"dragging ended");
         // add the cell to the appropriate place
         draggingPlaybookPlay.status = nil;
@@ -169,7 +172,8 @@
             if(index > 0){
                 index--;
             }
-            //NSLog(@"New index: %d old index: %d", index, [self.upcomingPlaysDS.upcomingPlays indexOfObject:draggedItem]);
+            
+            [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime -  dragging upcoming play New index: %d old index: %d", index, [self.upcomingPlaysDS.upcomingPlays indexOfObject:draggedItem]]];
             // only add/remove if the index changed
             if(index != [self.upcomingPlaysDS.upcomingPlays indexOfObject:draggedItem]){
                 [self.upcomingPlaysDS.upcomingPlays removeObject:draggingPlaybookPlay];
@@ -197,6 +201,7 @@
 - (void)handlePlaybookPanning:(UIPanGestureRecognizer *)recognizer
 {
     if (recognizer.state == UIGestureRecognizerStateBegan) {
+        [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - started dragging playbook"]];
         // get the pinch point in the play books collection
         CGPoint pinchPoint = [recognizer locationInView:self.playbooksCollection];
         NSIndexPath *pannedItem = [self.playbooksCollection indexPathForItemAtPoint:pinchPoint];
@@ -237,6 +242,7 @@
         if(self.currentPannedItem == nil || draggingPlaybook == nil){
             return;
         }
+        [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - finished dragging playbook %@", draggingPlaybook.name]];
         [self.upcomingPlaysDS.upcomingPlays removeObject:draggingPlaybook];
         // get all the plays associated with the current playbook and add them
         self.playbookPlayDS.playbook = draggingPlaybook;
@@ -259,6 +265,7 @@
         CGPoint pinchPoint = [recognizer locationInView:self.upcomingPlaysCollection];
         NSIndexPath *pannedItem = [self.upcomingPlaysCollection indexPathForItemAtPoint:pinchPoint];
         if (pannedItem) {
+            [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - started dragging upcoming play"]];
             self.currentPannedItem = pannedItem;
             
             initialDraggingFrame.origin = pinchPoint;
@@ -300,15 +307,18 @@
             [self.upcomingPlaysDS.upcomingPlays removeObject:draggingPlaybookPlay];
             [self.upcomingPlaysCollection reloadData];
             upcomingPlayRemoved = YES;
+            [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - removed upcoming play %@", draggingPlaybookPlay]];
         } else if(location.y <= (self.upcomingPlaysCollection.frame.size.height)){
             // add it back if needed
             [self addDraggedCell:recognizer draggedItem:draggingPlaybookPlay];
             upcomingPlayRemoved = NO;
+            [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - added upcoming play %@", draggingPlaybookPlay]];
         }
     } else {
         if(self.currentPannedItem == nil || draggingPlaybookPlay == nil){
             return;
         }
+        [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - finished dragging upcoming play %@", draggingPlaybookPlay]];
         draggingPlaybookPlay.status = nil;
         [self.upcomingPlaysCollection reloadData];
         [draggingCell removeFromSuperview];
@@ -340,6 +350,7 @@
 - (IBAction)loadNextPlay:(id)sender {
     // get the first play from upcoming plays
     if(self.upcomingPlaysDS.upcomingPlays.count > 0){
+        [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - load next play"]];
         PlaybookPlay *firstPlaybookPlay = self.upcomingPlaysDS.upcomingPlays[0];
         
         CGRect frame = CGRectMake(self.currentPlayView.frame.origin.x + 2, self.currentPlayView.frame.origin.y, 150, 150);
@@ -352,12 +363,14 @@
 }
 
 - (IBAction)removeAllPlays:(id)sender {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - remove all plays"]];
     [self.upcomingPlaysDS.upcomingPlays removeAllObjects];
     [self.upcomingPlaysCollection reloadData];
     [self enableButtons];
 }
 
 - (IBAction)switchType:(id)sender {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - switching type. Old type: %@", self.offenseOrDefense]];
     NSString *newLabel = [NSString stringWithFormat:@"Switch to %@", self.offenseOrDefense];
     [self.switchTypeButton setTitle:newLabel forState:UIControlStateNormal];
     if([self.offenseOrDefense isEqualToString:@"Offense"]){
@@ -377,6 +390,7 @@
 
 #pragma mark – UICollectionViewDelegateFlowLayout
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - selected play"]];
     selectedPlaybookplay = [self.upcomingPlaysDS.upcomingPlays objectAtIndex:indexPath.item];
     [self performSegueWithIdentifier:@"playbookPlayDetailSegue" sender:selectedPlaybookplay];
 }

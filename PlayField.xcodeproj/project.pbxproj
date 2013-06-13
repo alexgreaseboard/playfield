@@ -62,6 +62,10 @@
 		398A328F175435C400B03ED2 /* ShinyLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 398A328E175435C400B03ED2 /* ShinyLabel.m */; };
 		399B7F07170733980047244D /* TimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 399B7F06170733980047244D /* TimerView.m */; };
 		399B7F0B17073AE60047244D /* TimerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 399B7F0A17073AE60047244D /* TimerView.xib */; };
+		39D7A09517694AA7004E6307 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D7A09117694AA7004E6307 /* libTestFlight.a */; };
+		39D7A09617694AA7004E6307 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 39D7A09217694AA7004E6307 /* README.md */; };
+		39D7A09717694AA7004E6307 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 39D7A09317694AA7004E6307 /* release_notes.md */; };
+		39D7A09917694B3C004E6307 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D7A09817694B3C004E6307 /* libz.dylib */; };
 		39E2FFCA1731DD230062332C /* PlaybookDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E2FFC91731DD230062332C /* PlaybookDataSource.m */; };
 		39E2FFCD1731EBD50062332C /* GameTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E2FFCC1731EBD50062332C /* GameTimeViewController.m */; };
 		39E2FFD1173322320062332C /* PinchLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E2FFD0173322320062332C /* PinchLayout.m */; };
@@ -334,6 +338,11 @@
 		399B7F05170733980047244D /* TimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerView.h; sourceTree = "<group>"; };
 		399B7F06170733980047244D /* TimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerView.m; sourceTree = "<group>"; };
 		399B7F0A17073AE60047244D /* TimerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimerView.xib; sourceTree = "<group>"; };
+		39D7A09117694AA7004E6307 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		39D7A09217694AA7004E6307 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		39D7A09317694AA7004E6307 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
+		39D7A09417694AA7004E6307 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		39D7A09817694B3C004E6307 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		39E2FFC81731DD230062332C /* PlaybookDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybookDataSource.h; sourceTree = "<group>"; };
 		39E2FFC91731DD230062332C /* PlaybookDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybookDataSource.m; sourceTree = "<group>"; };
 		39E2FFCB1731EBD50062332C /* GameTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTimeViewController.h; sourceTree = "<group>"; };
@@ -672,6 +681,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39D7A09917694B3C004E6307 /* libz.dylib in Frameworks */,
 				29E2AAD416CFBE1100005AAF /* CoreData.framework in Frameworks */,
 				6D148F7816C988E70069CB76 /* QuartzCore.framework in Frameworks */,
 				6D148F7A16C988E70069CB76 /* OpenGLES.framework in Frameworks */,
@@ -682,6 +692,7 @@
 				6D148F8416C988E70069CB76 /* Foundation.framework in Frameworks */,
 				6D148F8616C988E70069CB76 /* CoreGraphics.framework in Frameworks */,
 				6D148F8816C988E70069CB76 /* GameKit.framework in Frameworks */,
+				39D7A09517694AA7004E6307 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -865,6 +876,17 @@
 			name = Timer;
 			sourceTree = "<group>";
 		};
+		39D7A09017694AA7004E6307 /* TestFlightSDK1.2.5 */ = {
+			isa = PBXGroup;
+			children = (
+				39D7A09117694AA7004E6307 /* libTestFlight.a */,
+				39D7A09217694AA7004E6307 /* README.md */,
+				39D7A09317694AA7004E6307 /* release_notes.md */,
+				39D7A09417694AA7004E6307 /* TestFlight.h */,
+			);
+			path = TestFlightSDK1.2.5;
+			sourceTree = "<group>";
+		};
 		39E2FFCE1731EBDA0062332C /* GameTime */ = {
 			isa = PBXGroup;
 			children = (
@@ -881,6 +903,8 @@
 		6D148F6B16C988E70069CB76 = {
 			isa = PBXGroup;
 			children = (
+				39D7A09817694B3C004E6307 /* libz.dylib */,
+				39D7A09017694AA7004E6307 /* TestFlightSDK1.2.5 */,
 				29C26AE716EBBA4500DFDF8A /* Default-Landscape~ipad.png */,
 				6D148F8916C988E70069CB76 /* PlayField */,
 				6D148F7616C988E70069CB76 /* Frameworks */,
@@ -1471,6 +1495,8 @@
 				6DF6E96C171081A300386229 /* trash.png in Resources */,
 				6DF6E96E171081CE00386229 /* field-reference.pdf in Resources */,
 				29939A951750E02A00448DAF /* football-texture.jpg in Resources */,
+				39D7A09617694AA7004E6307 /* README.md in Resources */,
+				39D7A09717694AA7004E6307 /* release_notes.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1704,6 +1730,10 @@
 				HEADER_SEARCH_PATHS = "\"PlayField/libs/kazmath/include\"";
 				INFOPLIST_FILE = PlayField/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/TestFlightSDK1.2.5\"",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-lz",
@@ -1732,6 +1762,10 @@
 				HEADER_SEARCH_PATHS = "\"PlayField/libs/kazmath/include\"";
 				INFOPLIST_FILE = PlayField/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/TestFlightSDK1.2.5\"",
+				);
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lsqlite3",

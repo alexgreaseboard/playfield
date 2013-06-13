@@ -13,6 +13,7 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PracticeColumnEdit - loading"]];
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
     
@@ -27,6 +28,7 @@
 }
 
 - (IBAction)done:(id)sender {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PracticeColumnEdit - done"]];
     if(self.practiceColumn != nil){
         self.practiceColumn.columnName = self.columnNameTextField.text;
         self.practiceColumn.notes = self.notesField.text;
@@ -41,16 +43,19 @@
 }
 
 - (IBAction)cancel:(id)sender {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PracticeColumnEdit - cancel"]];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)deleteColumn:(id)sender {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PracticeColumnEdit - deleteColumn"]];
     [self.delegate practiceItemController:self didDeleteColumn:self.practiceColumn];
 }
 
 // listen for characters changing in the text field and enable the button if it has characters
 - (BOOL)textField:(UITextField *)theTextField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PracticeColumnEdit - shouldChangeCharactersInRange"]];
     NSString *newText = [theTextField.text stringByReplacingCharactersInRange:range withString:string];
     if([theTextField.restorationIdentifier isEqualToString:@"praticeColumnText"]){
         if(newText.length == 0){

@@ -39,6 +39,7 @@ Playbook *selectedPlaybook;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Playbook - loading"]];
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"field.jpg"]];
 
@@ -73,6 +74,7 @@ Playbook *selectedPlaybook;
 }
 
 - (IBAction)addPlaybook:(id)sender {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Playbook - addPlaybook"]];
     Playbook *newPlaybook = [NSEntityDescription insertNewObjectForEntityForName:@"Playbook" inManagedObjectContext:self.managedObjectContext];
     newPlaybook.name = @"New Playbook";
     newPlaybook.type = @"Offense";
@@ -90,6 +92,7 @@ Playbook *selectedPlaybook;
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Playbook - selectedItem %d", indexPath.item]];
     selectedPlaybook = [self.playBookDS.fetchedResultsController objectAtIndexPath:indexPath];
     [self performSegueWithIdentifier:@"playbookDetailSegue" sender:selectedPlaybook];
 }
@@ -119,7 +122,7 @@ Playbook *selectedPlaybook;
 }
 
 - (void)draggingStarted:(UIPanGestureRecognizer *)sender forPlay:(Play *)pPlay {
-	
+	[TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Playbook - started dragging play %@", pPlay]];
     draggingPlay = pPlay;
 	CGPoint touchPoint = [sender locationOfTouch:0 inView:self.playbooksCollection];
 	initialDraggingFrame.origin = touchPoint;
@@ -153,6 +156,7 @@ Playbook *selectedPlaybook;
 }
 
 - (void)addPlayToPlaybook:(UIPanGestureRecognizer*)sender {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Playbook - addPlayToPLaybook"]];
     // add the cell to the appropriate place
     CGPoint translation = [sender translationInView:self.playbooksCollection];
     CGRect newFrame = initialDraggingFrame;
@@ -179,6 +183,7 @@ Playbook *selectedPlaybook;
 
 - (void)draggingEnded:(UIPanGestureRecognizer *)sender
 {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Playbook - draggingEnded"]];
     [hoveringOverCell unhighlightCell];
 	[self addPlayToPlaybook:sender];
     
