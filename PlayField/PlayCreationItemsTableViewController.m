@@ -46,7 +46,7 @@
     [_items addObject:[PlayDrillItem itemWithText:@"Defense-LB" andWithImage:@"defense-LB.png"]];
     [_items addObject:[PlayDrillItem itemWithText:@"Defense-SS" andWithImage:@"defense-SS.png"]];
     [_items addObject:[PlayDrillItem itemWithText:@"Defense" andWithImage:@"defense.png"]];
-    [_items addObject:[PlayDrillItem itemWithText:@"offense-1" andWithImage:@"offense-1.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense-1" andWithImage:@"offense-1.png"]];
     [_items addObject:[PlayDrillItem itemWithText:@"Offense-2" andWithImage:@"offense-2.png"]];
     [_items addObject:[PlayDrillItem itemWithText:@"Offense-3" andWithImage:@"offense-3.png"]];
     [_items addObject:[PlayDrillItem itemWithText:@"Offense-4" andWithImage:@"offense-4.png"]];
