@@ -18,6 +18,7 @@
 @implementation CocosViewController
 {
     UIPopoverController *savePlayPopover;
+    CCDirector *director;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -34,7 +35,7 @@
     [super viewDidLoad];
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"CocosViewController - viewDidLoad"]];
 	// Do any additional setup after loading the view.
-    CCDirector *director = [CCDirector sharedDirector];
+    director = [CCDirector sharedDirector];
     
     if([director isViewLoaded] == NO)
     {
@@ -143,6 +144,18 @@
 - (void)savePlay:(id)sender {
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"CocosViewController - savePlay"]];
     [self configureView];
+    // take a screenshot of the play
+    UIGraphicsBeginImageContextWithOptions(director.view.bounds.size, director.view.opaque, 0.0);
+    [director.view.layer renderInContext:UIGraphicsGetCurrentContext()]; // TODO this is producing a blank image
+    UIImage *screenshot = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    NSData *screenshotData=UIImageJPEGRepresentation(screenshot, 1.0 ); //you can use PNG too
+    self.detailItem.thumbnail = screenshotData;
+    // uncomment next line to save to photos
+    //UIImageWriteToSavedPhotosAlbum(screenshot,nil,NULL,NULL);
+    
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"CocosViewController - creating screenshot %@", self.detailItem.thumbnail]];
+    
     // Save each PlaySprite SpritePoints.
     for( PlaySprite *ps in _helloWorldLayer.movableSprites ) {
         [ps saveSpritePoints];

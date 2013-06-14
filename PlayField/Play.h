@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NSNumber * order;
 @property (nonatomic, retain) NSString * runPass;
 @property (nonatomic, retain) NSString * type;
+@property (nonatomic, retain) NSData * thumbnail;
 @property (nonatomic, retain) NSOrderedSet *playSprite;
 @property (nonatomic, retain) NSOrderedSet *playbookplays;
 @end
