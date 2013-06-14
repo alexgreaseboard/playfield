@@ -117,7 +117,6 @@
 }
 
 #pragma mark - Table view delegate
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlayCreationPlaysTable - selected play at index %d", indexPath.item]];

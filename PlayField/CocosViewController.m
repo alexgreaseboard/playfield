@@ -70,18 +70,23 @@
     
     // Finish up our view controller containment responsibilities.
     [director didMoveToParentViewController:self];
+
+        CCScene *scene = [HelloWorldLayer scene];
     
-    CCScene *scene = [HelloWorldLayer scene];
+        // Run whatever scene we'd like to run here.
+        [director pushScene:scene];
     
-    // Run whatever scene we'd like to run here.
-    [director pushScene:scene];
-    
-    _helloWorldLayer = [scene.children objectAtIndex:0];
+        _helloWorldLayer = [scene.children objectAtIndex:0];
+
 }
 
 - (void)setCurrentPlay:(Play *)pPlay
 {
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"CocosViewController - setCurrentPlay %@", pPlay]];
+    if( self.helloWorldLayer == nil) {
+        [self viewDidLoad];
+    }
+    
     if (_detailItem != pPlay) {
         _detailItem = pPlay;
 

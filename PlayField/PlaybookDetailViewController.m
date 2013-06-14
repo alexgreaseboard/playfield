@@ -84,6 +84,11 @@
         UINavigationController *navigationController = segue.destinationViewController;
         CocosViewController *controller = (CocosViewController *) navigationController;
         [controller setCurrentPlay:selectedPlaybookplay.play];
+    } else if ([segue.identifier isEqualToString:@"playbookShowPlaySegue"]) {
+        NSLog(@"There");
+        UINavigationController *navigationController = segue.destinationViewController;
+        CocosViewController *controller = (CocosViewController *) navigationController;
+        [controller setCurrentPlay:selectedPlaybookplay.play];
     }
 }
 
@@ -162,7 +167,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     selectedPlaybookplay = [playbookPlayDS.fetchedResultsController objectAtIndexPath:indexPath];
-    [self performSegueWithIdentifier:@"playbookPlayDetailSegue" sender:selectedPlaybookplay];
+    [self performSegueWithIdentifier:@"playbookShowPlaySegue" sender:selectedPlaybookplay];
 }
 
 @end

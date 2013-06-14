@@ -190,7 +190,6 @@
 - (void)draw {
     glLineWidth(3.0f);
     //glColor3f(1.0,1.0,1.0);
-    
     for (PlaySprite *ps in self.movableSprites) {
         for (int i = 0; i < [ps.toucharray count]; i+=2) {
             CGPoint start = CGPointFromString([ps.toucharray objectAtIndex:i]);
@@ -331,7 +330,8 @@
         [self removeChild:ps.sprite];
     }
     [self.movableSprites removeAllObjects];
-    
+    NSLog(@"===================HERE=============");
+    NSLog(@"PlaySpritecount:%i", [pPlay.playSprite count]);
     self.play = pPlay;
     if( [self.play.playSprite count] == 0 ) {
         // Add default play.
