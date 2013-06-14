@@ -117,13 +117,6 @@
     oldTouchLocation = [self convertToNodeSpace:oldTouchLocation];
     
     if(!positioning) {
-        // add touches to the touch array
-        //SpritePoint *sp1 = [NSEntityDescription insertNewObjectForEntityForName:@"SpritePoint" inManagedObjectContext:self.managedObjectContext];
-        //sp1.point = NSStringFromCGPoint(newTouchLocation);
-        //sp1.playSprite = selPlayerSprite;
-        //SpritePoint *sp2 = [NSEntityDescription insertNewObjectForEntityForName:@"SpritePoint" inManagedObjectContext:self.managedObjectContext];
-        //sp2.point = NSStringFromCGPoint(oldTouchLocation);
-        //sp2.playSprite = selPlayerSprite;
         [selPlayerSprite.toucharray addObject:NSStringFromCGPoint(newTouchLocation)];
         [selPlayerSprite.toucharray addObject:NSStringFromCGPoint(oldTouchLocation)];
     }
@@ -156,13 +149,7 @@
 {
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld - dragging started for %@", name]];
     NSString *imageName;
-    if([name isEqualToString:@"Offense"]) {
-        imageName = @"offense-1.png";
-    } else if([name isEqualToString:@"Defense"]) {
-        imageName = @"defense.png";
-    } else if([name isEqualToString:@"Cone"]) {
-        imageName = @"cone.png";
-    }
+    imageName = [name stringByAppendingString:@".png"];
 
     CGPoint touchLocation = [recognizer locationInView:recognizer.view];
     touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
@@ -269,32 +256,32 @@
     // Offense
     int centerH = 350;
     int centerV = 300;
-    [self addPlayerSpriteWithImage:@"offense-1.png" andPosition:ccp(centerH,centerV)];    // Center
-    [self addPlayerSpriteWithImage:@"offense-1.png" andPosition:ccp(centerH+50,centerV)];
-    [self addPlayerSpriteWithImage:@"offense-1.png" andPosition:ccp(centerH+100,centerV)];
-    [self addPlayerSpriteWithImage:@"offense-1.png" andPosition:ccp(centerH-50,centerV)];
-    [self addPlayerSpriteWithImage:@"offense-1.png" andPosition:ccp(centerH-100,centerV)];
-    [self addPlayerSpriteWithImage:@"offense-1.png" andPosition:ccp(centerH-150,centerV)];
-    [self addPlayerSpriteWithImage:@"offense-1.png" andPosition:ccp(centerH,centerV-40)]; // Quarterback
-    [self addPlayerSpriteWithImage:@"offense-1.png" andPosition:ccp(centerH,centerV-100)];
-    [self addPlayerSpriteWithImage:@"offense-1.png" andPosition:ccp(centerH-50,centerV-100)];
-    [self addPlayerSpriteWithImage:@"offense-1.png" andPosition:ccp(centerH+175,centerV-60)];
-    [self addPlayerSpriteWithImage:@"offense-1.png" andPosition:ccp(centerH+250,centerV)];
+    [self addPlayerSpriteWithImage:@"Offense-1.png" andPosition:ccp(centerH,centerV)];    // Center
+    [self addPlayerSpriteWithImage:@"Offense-1.png" andPosition:ccp(centerH+50,centerV)];
+    [self addPlayerSpriteWithImage:@"Offense-1.png" andPosition:ccp(centerH+100,centerV)];
+    [self addPlayerSpriteWithImage:@"Offense-1.png" andPosition:ccp(centerH-50,centerV)];
+    [self addPlayerSpriteWithImage:@"Offense-1.png" andPosition:ccp(centerH-100,centerV)];
+    [self addPlayerSpriteWithImage:@"Offense-1.png" andPosition:ccp(centerH-150,centerV)];
+    [self addPlayerSpriteWithImage:@"Offense-1.png" andPosition:ccp(centerH,centerV-40)]; // Quarterback
+    [self addPlayerSpriteWithImage:@"Offense-1.png" andPosition:ccp(centerH,centerV-100)];
+    [self addPlayerSpriteWithImage:@"Offense-1.png" andPosition:ccp(centerH-50,centerV-100)];
+    [self addPlayerSpriteWithImage:@"Offense-1.png" andPosition:ccp(centerH+175,centerV-60)];
+    [self addPlayerSpriteWithImage:@"Offense-1.png" andPosition:ccp(centerH+250,centerV)];
     
     // Defense
     centerH = 350;
     centerV = 350;
-    [self addPlayerSpriteWithImage:@"defense.png" andPosition:ccp(centerH,centerV)];    
-    [self addPlayerSpriteWithImage:@"defense.png" andPosition:ccp(centerH+100,centerV)];
-    [self addPlayerSpriteWithImage:@"defense.png" andPosition:ccp(centerH+165,centerV)];
-    [self addPlayerSpriteWithImage:@"defense.png" andPosition:ccp(centerH-100,centerV)];
-    [self addPlayerSpriteWithImage:@"defense.png" andPosition:ccp(centerH-150,centerV)];
-    [self addPlayerSpriteWithImage:@"defense.png" andPosition:ccp(centerH-50,centerV+50)];
-    [self addPlayerSpriteWithImage:@"defense.png" andPosition:ccp(centerH+50,centerV+50)];
-    [self addPlayerSpriteWithImage:@"defense.png" andPosition:ccp(centerH+200,centerV+50)];
-    [self addPlayerSpriteWithImage:@"defense.png" andPosition:ccp(centerH+275,centerV+50)];
-    [self addPlayerSpriteWithImage:@"defense.png" andPosition:ccp(centerH-200,centerV+75)];
-    [self addPlayerSpriteWithImage:@"defense.png" andPosition:ccp(centerH,centerV+175)];
+    [self addPlayerSpriteWithImage:@"Defense.png" andPosition:ccp(centerH,centerV)];
+    [self addPlayerSpriteWithImage:@"Defense.png" andPosition:ccp(centerH+100,centerV)];
+    [self addPlayerSpriteWithImage:@"Defense.png" andPosition:ccp(centerH+165,centerV)];
+    [self addPlayerSpriteWithImage:@"Defense.png" andPosition:ccp(centerH-100,centerV)];
+    [self addPlayerSpriteWithImage:@"Defense.png" andPosition:ccp(centerH-150,centerV)];
+    [self addPlayerSpriteWithImage:@"Defense.png" andPosition:ccp(centerH-50,centerV+50)];
+    [self addPlayerSpriteWithImage:@"Defense.png" andPosition:ccp(centerH+50,centerV+50)];
+    [self addPlayerSpriteWithImage:@"Defense.png" andPosition:ccp(centerH+200,centerV+50)];
+    [self addPlayerSpriteWithImage:@"Defense.png" andPosition:ccp(centerH+275,centerV+50)];
+    [self addPlayerSpriteWithImage:@"Defense.png" andPosition:ccp(centerH-200,centerV+75)];
+    [self addPlayerSpriteWithImage:@"Defense.png" andPosition:ccp(centerH,centerV+175)];
 }
 
 - (void) addDefaultDrill
@@ -304,8 +291,8 @@
     // Offense
     int centerH = 350;
     int centerV = 300;
-    [self addPlayerSpriteWithImage:@"offense-1.png" andPosition:ccp(centerH,centerV)];    // Player
-    [self addPlayerSpriteWithImage:@"cone.png" andPosition:ccp(centerH,centerV + 100)];    // Cone
+    [self addPlayerSpriteWithImage:@"Offense-1.png" andPosition:ccp(centerH,centerV)];    // Player
+    [self addPlayerSpriteWithImage:@"Cone.png" andPosition:ccp(centerH,centerV + 100)];    // Cone
 }
 
 - (void) addPlayerSpriteWithImage:(NSString *)pImage andPosition:(CGPoint)pPosition {
