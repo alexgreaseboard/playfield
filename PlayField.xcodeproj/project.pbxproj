@@ -202,6 +202,27 @@
 		6D14911616C988EC0069CB76 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D14911516C988EC0069CB76 /* main.m */; };
 		6D14911C16C988EC0069CB76 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D14911B16C988EC0069CB76 /* HelloWorldLayer.m */; };
 		6D14912616C98A110069CB76 /* footballField.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D14912516C98A110069CB76 /* footballField.jpg */; };
+		6D80DADF176BC4100006E8C8 /* Cone.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DACA176BC4100006E8C8 /* Cone.png */; };
+		6D80DAE0176BC4100006E8C8 /* Defense-C.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DACB176BC4100006E8C8 /* Defense-C.png */; };
+		6D80DAE1176BC4100006E8C8 /* Defense-DE.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DACC176BC4100006E8C8 /* Defense-DE.png */; };
+		6D80DAE2176BC4100006E8C8 /* Defense-DL.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DACD176BC4100006E8C8 /* Defense-DL.png */; };
+		6D80DAE3176BC4100006E8C8 /* Defense-FS.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DACE176BC4100006E8C8 /* Defense-FS.png */; };
+		6D80DAE4176BC4100006E8C8 /* Defense-LB.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DACF176BC4100006E8C8 /* Defense-LB.png */; };
+		6D80DAE5176BC4100006E8C8 /* Defense-SS.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DAD0176BC4100006E8C8 /* Defense-SS.png */; };
+		6D80DAE6176BC4100006E8C8 /* Defense.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DAD1176BC4100006E8C8 /* Defense.png */; };
+		6D80DAE7176BC4100006E8C8 /* Offense-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DAD2176BC4100006E8C8 /* Offense-1.png */; };
+		6D80DAE8176BC4100006E8C8 /* Offense-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DAD3176BC4100006E8C8 /* Offense-2.png */; };
+		6D80DAE9176BC4100006E8C8 /* Offense-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DAD4176BC4100006E8C8 /* Offense-3.png */; };
+		6D80DAEA176BC4100006E8C8 /* Offense-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DAD5176BC4100006E8C8 /* Offense-4.png */; };
+		6D80DAEB176BC4100006E8C8 /* Offense-C.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DAD6176BC4100006E8C8 /* Offense-C.png */; };
+		6D80DAEC176BC4100006E8C8 /* Offense-LG.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DAD7176BC4100006E8C8 /* Offense-LG.png */; };
+		6D80DAED176BC4100006E8C8 /* Offense-LT.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DAD8176BC4100006E8C8 /* Offense-LT.png */; };
+		6D80DAEE176BC4100006E8C8 /* Offense-RG.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DAD9176BC4100006E8C8 /* Offense-RG.png */; };
+		6D80DAEF176BC4100006E8C8 /* Offense-RT.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DADA176BC4100006E8C8 /* Offense-RT.png */; };
+		6D80DAF0176BC4100006E8C8 /* Offense-TE.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DADB176BC4100006E8C8 /* Offense-TE.png */; };
+		6D80DAF1176BC4100006E8C8 /* Offense-Y.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DADC176BC4100006E8C8 /* Offense-Y.png */; };
+		6D80DAF2176BC4100006E8C8 /* Offense-Z.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DADD176BC4100006E8C8 /* Offense-Z.png */; };
+		6D80DAF3176BC4100006E8C8 /* Offense.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DADE176BC4100006E8C8 /* Offense.png */; };
 		6D91974016EE333400BA1DF3 /* PlaybookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D91973F16EE333400BA1DF3 /* PlaybookCell.m */; };
 		6DC9C0E216F2C5990001644A /* PlaybookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC9C0E116F2C5990001644A /* PlaybookDetailViewController.m */; };
 		6DCFB60B1711DF420065700F /* PlaybookEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCFB60A1711DF420065700F /* PlaybookEditViewController.m */; };
@@ -611,6 +632,27 @@
 		6D14911A16C988EC0069CB76 /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
 		6D14911B16C988EC0069CB76 /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		6D14912516C98A110069CB76 /* footballField.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = footballField.jpg; sourceTree = "<group>"; };
+		6D80DACA176BC4100006E8C8 /* Cone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cone.png; sourceTree = "<group>"; };
+		6D80DACB176BC4100006E8C8 /* Defense-C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Defense-C.png"; sourceTree = "<group>"; };
+		6D80DACC176BC4100006E8C8 /* Defense-DE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Defense-DE.png"; sourceTree = "<group>"; };
+		6D80DACD176BC4100006E8C8 /* Defense-DL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Defense-DL.png"; sourceTree = "<group>"; };
+		6D80DACE176BC4100006E8C8 /* Defense-FS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Defense-FS.png"; sourceTree = "<group>"; };
+		6D80DACF176BC4100006E8C8 /* Defense-LB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Defense-LB.png"; sourceTree = "<group>"; };
+		6D80DAD0176BC4100006E8C8 /* Defense-SS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Defense-SS.png"; sourceTree = "<group>"; };
+		6D80DAD1176BC4100006E8C8 /* Defense.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Defense.png; sourceTree = "<group>"; };
+		6D80DAD2176BC4100006E8C8 /* Offense-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-1.png"; sourceTree = "<group>"; };
+		6D80DAD3176BC4100006E8C8 /* Offense-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-2.png"; sourceTree = "<group>"; };
+		6D80DAD4176BC4100006E8C8 /* Offense-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-3.png"; sourceTree = "<group>"; };
+		6D80DAD5176BC4100006E8C8 /* Offense-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-4.png"; sourceTree = "<group>"; };
+		6D80DAD6176BC4100006E8C8 /* Offense-C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-C.png"; sourceTree = "<group>"; };
+		6D80DAD7176BC4100006E8C8 /* Offense-LG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-LG.png"; sourceTree = "<group>"; };
+		6D80DAD8176BC4100006E8C8 /* Offense-LT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-LT.png"; sourceTree = "<group>"; };
+		6D80DAD9176BC4100006E8C8 /* Offense-RG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-RG.png"; sourceTree = "<group>"; };
+		6D80DADA176BC4100006E8C8 /* Offense-RT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-RT.png"; sourceTree = "<group>"; };
+		6D80DADB176BC4100006E8C8 /* Offense-TE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-TE.png"; sourceTree = "<group>"; };
+		6D80DADC176BC4100006E8C8 /* Offense-Y.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-Y.png"; sourceTree = "<group>"; };
+		6D80DADD176BC4100006E8C8 /* Offense-Z.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-Z.png"; sourceTree = "<group>"; };
+		6D80DADE176BC4100006E8C8 /* Offense.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Offense.png; sourceTree = "<group>"; };
 		6D91973E16EE333400BA1DF3 /* PlaybookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybookCell.h; sourceTree = "<group>"; };
 		6D91973F16EE333400BA1DF3 /* PlaybookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybookCell.m; sourceTree = "<group>"; };
 		6DC9C0E016F2C5990001644A /* PlaybookDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybookDetailViewController.h; sourceTree = "<group>"; };
@@ -1309,6 +1351,27 @@
 		6DF6E930171081A300386229 /* field graphics */ = {
 			isa = PBXGroup;
 			children = (
+				6D80DACA176BC4100006E8C8 /* Cone.png */,
+				6D80DACB176BC4100006E8C8 /* Defense-C.png */,
+				6D80DACC176BC4100006E8C8 /* Defense-DE.png */,
+				6D80DACD176BC4100006E8C8 /* Defense-DL.png */,
+				6D80DACE176BC4100006E8C8 /* Defense-FS.png */,
+				6D80DACF176BC4100006E8C8 /* Defense-LB.png */,
+				6D80DAD0176BC4100006E8C8 /* Defense-SS.png */,
+				6D80DAD1176BC4100006E8C8 /* Defense.png */,
+				6D80DAD2176BC4100006E8C8 /* Offense-1.png */,
+				6D80DAD3176BC4100006E8C8 /* Offense-2.png */,
+				6D80DAD4176BC4100006E8C8 /* Offense-3.png */,
+				6D80DAD5176BC4100006E8C8 /* Offense-4.png */,
+				6D80DAD6176BC4100006E8C8 /* Offense-C.png */,
+				6D80DAD7176BC4100006E8C8 /* Offense-LG.png */,
+				6D80DAD8176BC4100006E8C8 /* Offense-LT.png */,
+				6D80DAD9176BC4100006E8C8 /* Offense-RG.png */,
+				6D80DADA176BC4100006E8C8 /* Offense-RT.png */,
+				6D80DADB176BC4100006E8C8 /* Offense-TE.png */,
+				6D80DADC176BC4100006E8C8 /* Offense-Y.png */,
+				6D80DADD176BC4100006E8C8 /* Offense-Z.png */,
+				6D80DADE176BC4100006E8C8 /* Offense.png */,
 				6DF6E931171081A300386229 /* bttn-add.png */,
 				6DF6E932171081A300386229 /* bttn-move.png */,
 				6DF6E933171081A300386229 /* bttn-play.png */,
@@ -1413,6 +1476,27 @@
 				29939A951750E02A00448DAF /* football-texture.jpg in Resources */,
 				39D7A09617694AA7004E6307 /* README.md in Resources */,
 				39D7A09717694AA7004E6307 /* release_notes.md in Resources */,
+				6D80DADF176BC4100006E8C8 /* Cone.png in Resources */,
+				6D80DAE0176BC4100006E8C8 /* Defense-C.png in Resources */,
+				6D80DAE1176BC4100006E8C8 /* Defense-DE.png in Resources */,
+				6D80DAE2176BC4100006E8C8 /* Defense-DL.png in Resources */,
+				6D80DAE3176BC4100006E8C8 /* Defense-FS.png in Resources */,
+				6D80DAE4176BC4100006E8C8 /* Defense-LB.png in Resources */,
+				6D80DAE5176BC4100006E8C8 /* Defense-SS.png in Resources */,
+				6D80DAE6176BC4100006E8C8 /* Defense.png in Resources */,
+				6D80DAE7176BC4100006E8C8 /* Offense-1.png in Resources */,
+				6D80DAE8176BC4100006E8C8 /* Offense-2.png in Resources */,
+				6D80DAE9176BC4100006E8C8 /* Offense-3.png in Resources */,
+				6D80DAEA176BC4100006E8C8 /* Offense-4.png in Resources */,
+				6D80DAEB176BC4100006E8C8 /* Offense-C.png in Resources */,
+				6D80DAEC176BC4100006E8C8 /* Offense-LG.png in Resources */,
+				6D80DAED176BC4100006E8C8 /* Offense-LT.png in Resources */,
+				6D80DAEE176BC4100006E8C8 /* Offense-RG.png in Resources */,
+				6D80DAEF176BC4100006E8C8 /* Offense-RT.png in Resources */,
+				6D80DAF0176BC4100006E8C8 /* Offense-TE.png in Resources */,
+				6D80DAF1176BC4100006E8C8 /* Offense-Y.png in Resources */,
+				6D80DAF2176BC4100006E8C8 /* Offense-Z.png in Resources */,
+				6D80DAF3176BC4100006E8C8 /* Offense.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
