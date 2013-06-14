@@ -18,6 +18,7 @@
 @dynamic order;
 @dynamic runPass;
 @dynamic type;
+@dynamic thumbnail;
 @dynamic playSprite;
 @dynamic playbookplays;
 

@@ -62,7 +62,8 @@
 }
 
 - (void) addPlaysInformation {
-    
+    UIImage *playImage = [UIImage imageWithData:playbookPlay.play.thumbnail];
+    self.backgroundColor = [UIColor colorWithPatternImage:playImage];
 }
 
 - (void) highlightCell {

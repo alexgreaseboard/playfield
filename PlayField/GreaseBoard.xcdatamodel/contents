@@ -5,6 +5,7 @@
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="runPass" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thumbnail" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="playbookplays" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PlaybookPlay" inverseName="play" inverseEntity="PlaybookPlay" syncable="YES"/>
         <relationship name="playSprite" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="PlaySprite" inverseName="play" inverseEntity="PlaySprite" syncable="YES"/>
@@ -67,7 +68,7 @@
         <relationship name="parentSprite" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PlaySprite" inverseName="spritePoints" inverseEntity="PlaySprite" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Play" positionX="-461" positionY="-45" width="128" height="148"/>
+        <element name="Play" positionX="-461" positionY="-45" width="128" height="163"/>
         <element name="Playbook" positionX="-297" positionY="162" width="128" height="118"/>
         <element name="PlaybookPlay" positionX="160" positionY="192" width="128" height="88"/>
         <element name="Player" positionX="-641" positionY="-45" width="128" height="240"/>
