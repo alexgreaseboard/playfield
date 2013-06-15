@@ -150,16 +150,7 @@
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"CocosViewController - savePlay"]];
     [self configureView];
     // take a screenshot of the play
-    UIGraphicsBeginImageContextWithOptions(director.view.bounds.size, director.view.opaque, 0.0);
-    [director.view.layer renderInContext:UIGraphicsGetCurrentContext()]; // TODO this is producing a blank image
-    UIImage *screenshot = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    NSData *screenshotData=UIImageJPEGRepresentation(screenshot, 1.0 ); //you can use PNG too
-    self.detailItem.thumbnail = screenshotData;
-    // uncomment next line to save to photos
-    //UIImageWriteToSavedPhotosAlbum(screenshot,nil,NULL,NULL);
-    
-    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"CocosViewController - creating screenshot %@", self.detailItem.thumbnail]];
+    self.detailItem.thumbnail = [_helloWorldLayer screenshotUIImage:self.view.frame.size forWinSize:self.view.frame.size];
     
     // Save each PlaySprite SpritePoints.
     for( PlaySprite *ps in _helloWorldLayer.movableSprites ) {
@@ -213,6 +204,16 @@
             }
             spNew.parentSprite = psNew;
         }
+    }
+    
+    // generate the screenshot
+    if(inverted){
+        UIImage* sourceImage = [UIImage imageWithData:self.detailItem.thumbnail];
+        UIImage* flippedImage = [UIImage imageWithCGImage:sourceImage.CGImage
+                                                    scale:1.0 orientation: UIImageOrientationUpMirrored];
+        newPlay.thumbnail = UIImageJPEGRepresentation(flippedImage, 1.0 );
+    } else{
+        newPlay.thumbnail = self.detailItem.thumbnail;
     }
     
     // Save the context.

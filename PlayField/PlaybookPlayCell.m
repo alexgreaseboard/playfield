@@ -24,7 +24,6 @@
         UIView *foundLabel = [self viewWithTag:57];
         if (foundLabel) [foundLabel removeFromSuperview];
         
-        //self.backgroundColor = [UIColor whiteColor];
         self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"football-texture.jpg"]];
         CALayer *layer = [self layer];
         [layer setCornerRadius:5.0f];
@@ -33,14 +32,14 @@
         
         // add the label
         self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0,
-                                                                   frame.size.width, 20)];
+                                                                   frame.size.width, 30)];
         self.nameLabel.textColor = [UIColor lightTextColor];
         self.nameLabel.textAlignment = NSTextAlignmentLeft;
         self.nameLabel.textColor = [UIColor lightTextColor];
         self.nameLabel.backgroundColor = [UIColor colorWithWhite:0.2 alpha:0.65];
         
         self.nameLabel.tag=57;
-        self.nameLabel.font = [UIFont boldSystemFontOfSize:16.0];
+        self.nameLabel.font = [UIFont boldSystemFontOfSize:18.0];
         self.nameLabel.text = [NSString stringWithFormat:@"  %@", name];
         self.nameLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight;
         self.nameLabel.adjustsFontSizeToFitWidth = YES;
@@ -62,8 +61,11 @@
 }
 
 - (void) addPlaysInformation {
+    // create the thumbnail
     UIImage *playImage = [UIImage imageWithData:playbookPlay.play.thumbnail];
-    self.backgroundColor = [UIColor colorWithPatternImage:playImage];
+    self.backgroundView.contentMode = UIViewContentModeScaleAspectFill;
+    self.backgroundView = [[UIImageView alloc] initWithImage:playImage];
+    self.backgroundColor = [UIColor clearColor];
 }
 
 - (void) highlightCell {

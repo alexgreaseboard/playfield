@@ -23,5 +23,6 @@
 - (id) init;
 - (void) setCurrentPlay:(Play *)pPlay;
 - (void) addItemSprite:(NSString *)itemName;
+- (NSData*) screenshotUIImage:(CGSize) displaySize forWinSize: (CGSize) winSize;
 
 @end
