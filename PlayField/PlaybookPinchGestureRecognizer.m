@@ -143,5 +143,8 @@ static const CGFloat kMaxScale = 3.0f;
     return [self.playBookDS collectionView:collectionView layout:collectionViewLayout insetForSectionAtIndex:section];
 }
 
+- (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
+    return CGSizeMake(0, 0);
+}
 
 @end

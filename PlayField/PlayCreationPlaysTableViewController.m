@@ -325,7 +325,6 @@
         [self.delegate draggingStarted:sender forPlay:selectedPlay];
     } else if(sender.state == UIGestureRecognizerStateChanged){
         [self.delegate draggingChanged:sender];
-        //NSLog(@"Dragging..");
     } else if(sender.state == UIGestureRecognizerStateEnded){
         [self.delegate draggingEnded:sender];
         //NSLog(@"Dragging stopped");

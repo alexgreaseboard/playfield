@@ -148,32 +148,40 @@
 - (void)draggingStarted:(UIPanGestureRecognizer *)recognizer forItemWithName:(NSString *)name
 {
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld - dragging started for %@", name]];
-    NSString *imageName;
-    imageName = [name stringByAppendingString:@".png"];
+    if(name){
+        NSString *imageName;
+        imageName = [name stringByAppendingString:@".png"];
 
-    CGPoint touchLocation = [recognizer locationInView:recognizer.view];
-    touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
-    touchLocation = [self convertToNodeSpace:touchLocation];
+        UIView *view = [[CCDirector sharedDirector] view];
+        CGPoint touchLocation = [recognizer locationInView:view];
+        touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
+        touchLocation = [self convertToNodeSpace:touchLocation];
+        NSLog(@"TouchLocation start %f,%f", touchLocation.x, touchLocation.y);
     
-    [self addPlayerSpriteWithImage:imageName andPosition:touchLocation];
-    selPlayerSprite = [self.movableSprites lastObject];
+        [self addPlayerSpriteWithImage:imageName andPosition:touchLocation];
+        selPlayerSprite = [self.movableSprites lastObject];
+    }
 }
 
 - (void)draggingChanged:(UIPanGestureRecognizer *)recognizer{
-    CGPoint touchLocation = [recognizer translationInView:recognizer.view];
-    touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
-    touchLocation = [self convertToNodeSpace:touchLocation];
-    touchLocation = ccp(touchLocation.x, touchLocation.y);
+    UIView *view = [[CCDirector sharedDirector] view];
+    CGPoint touchLocation = [recognizer translationInView:view];
+    //touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
+    //touchLocation = [self convertToNodeSpace:touchLocation];
+    //touchLocation = ccp(touchLocation.x, touchLocation.y);
+    NSLog(@"TouchLocation change %f,%f", touchLocation.x, touchLocation.y);
     [self panForTranslation:touchLocation];
-    [recognizer setTranslation:CGPointZero inView:recognizer.view];
+    [recognizer setTranslation:CGPointZero inView:view];
 }
 
 - (void)draggingEnded:(UIPanGestureRecognizer *)recognizer{
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld -  draggingEnded"]];
-    CGPoint newPosition = [recognizer translationInView:recognizer.view];
-    newPosition = [[CCDirector sharedDirector] convertToGL:newPosition];
-    newPosition = [self convertToNodeSpace:newPosition];
-    [selPlayerSprite repositionSpriteWithPosition:newPosition ];
+    UIView *view = [[CCDirector sharedDirector] view];
+    CGPoint newPosition = [recognizer translationInView:view];
+    [self panForTranslation:newPosition];
+    //newPosition = [[CCDirector sharedDirector] convertToGL:newPosition];
+    //newPosition = [self convertToNodeSpace:newPosition];
+    //[selPlayerSprite repositionSpriteWithPosition:newPosition ];
     
     if (CGRectIntersectsRect(selPlayerSprite.sprite.boundingBox, trashMenuItem.boundingBox)) {
         [self removePlaySprite:selPlayerSprite];
@@ -183,7 +191,9 @@
 - (void)panForTranslation:(CGPoint)translation {
     if (selPlayerSprite) {
         CGPoint newPos = ccpAdd(selPlayerSprite.sprite.position, translation);
-        selPlayerSprite.sprite.position = newPos;
+        NSLog(@"TouchLocation newPosition %f,%f", newPos.x, newPos.y);
+        [selPlayerSprite repositionSpriteWithPosition:newPos];
+        //selPlayerSprite.sprite.position = newPos;
     }
 }
 

@@ -19,6 +19,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *nextPlayButton;
 @property (strong, nonatomic) IBOutlet UIButton *removeAllButton;
 @property (strong, nonatomic) IBOutlet UIButton *switchTypeButton;
+
 - (IBAction)close:(id)sender;
 - (IBAction)loadNextPlay:(id)sender;
 - (IBAction)removeAllPlays:(id)sender;
@@ -32,5 +33,6 @@
 
 // object context
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (retain, strong) PlaybookPlay *currentPlay;
 
 @end

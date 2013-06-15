@@ -84,6 +84,10 @@
     UIPanGestureRecognizer *upcomingPlaysGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleUpcomingPlaysPanning:)];
     upcomingPlaysGestureRecognizer.delegate = self;
     [self.upcomingPlaysCollection addGestureRecognizer:upcomingPlaysGestureRecognizer];
+    
+    // gestures - tap the current play
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleCurrentPlayTap:)];
+    [self.currentPlayView addGestureRecognizer:tapGesture];
 }
 
 - (void)didReceiveMemoryWarning
@@ -356,6 +360,8 @@
         CGRect frame = CGRectMake(self.currentPlayView.frame.origin.x + 2, self.currentPlayView.frame.origin.y, 150, 150);
         UICollectionViewCell *cell = [[PlaybookPlayCell alloc] initWithFrame:frame playbookPlay:firstPlaybookPlay];
         [self.currentPlayView addSubview:cell];
+        self.currentPlay = firstPlaybookPlay;
+        
         [self.upcomingPlaysDS.upcomingPlays removeObject:firstPlaybookPlay];
         [self.upcomingPlaysCollection reloadData];
         [self enableButtons];
@@ -391,7 +397,11 @@
 #pragma mark – UICollectionViewDelegateFlowLayout
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - selected play"]];
-    selectedPlaybookplay = [self.upcomingPlaysDS.upcomingPlays objectAtIndex:indexPath.item];
+    if(collectionView == self.upcomingPlaysCollection){
+        selectedPlaybookplay = [self.upcomingPlaysDS.upcomingPlays objectAtIndex:indexPath.item];
+    } else{
+        selectedPlaybookplay = [self.playbookPlayDS.fetchedResultsController objectAtIndexPath:indexPath];
+    }
     [self performSegueWithIdentifier:@"playbookShowPlaySegue" sender:selectedPlaybookplay];
 }
 
@@ -412,6 +422,12 @@
 (UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     return [self.playBookDS collectionView:collectionView layout:collectionViewLayout insetForSectionAtIndex:section];
+}
+
+-(void) handleCurrentPlayTap:(UITapGestureRecognizer *)recognizer{
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - selected current play"]];
+    selectedPlaybookplay = self.currentPlay;
+    [self performSegueWithIdentifier:@"playbookShowPlaySegue" sender:selectedPlaybookplay];
 }
 
 @end
