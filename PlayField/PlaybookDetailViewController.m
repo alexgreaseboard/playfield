@@ -80,14 +80,9 @@
         PlaybookEditViewController *editController = (PlaybookEditViewController *) navigationController.topViewController;
         editController.delegate = self;
         editController.playbook = self.playbook; 
-    } else if ([segue.identifier isEqualToString:@"playbookPlayDetailSegue"]) {
-        UINavigationController *navigationController = segue.destinationViewController;
-        CocosViewController *controller = (CocosViewController *) navigationController;
-        [controller setCurrentPlay:selectedPlaybookplay.play];
     } else if ([segue.identifier isEqualToString:@"playbookShowPlaySegue"]) {
-        NSLog(@"There");
         UINavigationController *navigationController = segue.destinationViewController;
-        CocosViewController *controller = (CocosViewController *) navigationController;
+        CocosViewController *controller = (CocosViewController *) navigationController.topViewController;
         [controller setCurrentPlay:selectedPlaybookplay.play];
     }
 }
