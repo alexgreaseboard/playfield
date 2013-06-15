@@ -392,13 +392,13 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - selected play"]];
     selectedPlaybookplay = [self.upcomingPlaysDS.upcomingPlays objectAtIndex:indexPath.item];
-    [self performSegueWithIdentifier:@"playbookPlayDetailSegue" sender:selectedPlaybookplay];
+    [self performSegueWithIdentifier:@"playbookShowPlaySegue" sender:selectedPlaybookplay];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"playbookPlayDetailSegue"]) {
+    if ([segue.identifier isEqualToString:@"playbookShowPlaySegue"]) {
         UINavigationController *navigationController = segue.destinationViewController;
-        CocosViewController *controller = (CocosViewController *) navigationController;
+        CocosViewController *controller = (CocosViewController *) navigationController.topViewController;
         [controller setCurrentPlay:selectedPlaybookplay.play];
     }
 }

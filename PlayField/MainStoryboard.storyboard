@@ -2086,7 +2086,7 @@
                         <outlet property="removeAllButton" destination="a3t-2u-6g6" id="Wl9-gI-CzI"/>
                         <outlet property="switchTypeButton" destination="Oxc-6X-Xzd" id="aaZ-M2-r8f"/>
                         <outlet property="upcomingPlaysCollection" destination="ckX-zu-gaU" id="iqs-f0-a54"/>
-                        <segue destination="YZG-Rj-PPd" kind="modal" identifier="playbookPlayDetailSegue" modalPresentationStyle="fullScreen" id="Gzk-WV-C4p"/>
+                        <segue destination="iZd-0D-Vte" kind="modal" identifier="playbookShowPlaySegue" modalPresentationStyle="pageSheet" id="sin-KZ-Ndb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tHV-Fn-iSE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2848,22 +2848,6 @@
             </objects>
             <point key="canvasLocation" x="-1005" y="8486"/>
         </scene>
-        <!--Cocos View Controller-->
-        <scene sceneID="rbM-tV-ujM">
-            <objects>
-                <viewController storyboardIdentifier="playView" id="YZG-Rj-PPd" customClass="CocosViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8so-q1-RaB">
-                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    </view>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TL9-qw-Jjt" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1851" y="9466"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="6EJ-PK-C3N">
             <objects>
@@ -2898,6 +2882,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="sin-KZ-Ndb"/>
         <segue reference="Tn5-6h-NGe"/>
     </inferredMetricsTieBreakers>
 </document>
