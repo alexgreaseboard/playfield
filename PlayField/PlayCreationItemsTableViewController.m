@@ -19,6 +19,7 @@
 @implementation PlayCreationItemsTableViewController {
     NSMutableArray *_items;
     CocosViewController *detailViewController;
+    UIPanGestureRecognizer *panning;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -66,7 +67,7 @@
     self.delegate = (id<PlayCreationItemsDelegate>)detailViewController.helloWorldLayer;
     
     // gesture recognizer for drag & drop
-    UIPanGestureRecognizer *panning = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePanning:)];
+    panning = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePanning:)];
     panning.minimumNumberOfTouches = 1;
     panning.maximumNumberOfTouches = 1;
     panning.delegate = self;
@@ -107,7 +108,18 @@
 }
 
 #pragma UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)panGestureRecognizer {
+    // only recognize the drag & drop for horizontal dragging - it interferes with scrolling
+    CGPoint translation = [panning translationInView:self.view];
+    return fabs(translation.x) > fabs(translation.y);
+}
+
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlayCreationItemsTable - should recognize simultaneously"]];
+    if ([panning isEqual:gestureRecognizer]) {
+        return [panning isEqual:otherGestureRecognizer];
+    }
+
     return YES;
 }
 

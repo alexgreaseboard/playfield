@@ -166,10 +166,7 @@
 - (void)draggingChanged:(UIPanGestureRecognizer *)recognizer{
     UIView *view = [[CCDirector sharedDirector] view];
     CGPoint touchLocation = [recognizer translationInView:view];
-    //touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
-    //touchLocation = [self convertToNodeSpace:touchLocation];
-    //touchLocation = ccp(touchLocation.x, touchLocation.y);
-    NSLog(@"TouchLocation change %f,%f", touchLocation.x, touchLocation.y);
+    touchLocation.y = touchLocation.y * -1;
     [self panForTranslation:touchLocation];
     [recognizer setTranslation:CGPointZero inView:view];
 }
@@ -179,9 +176,6 @@
     UIView *view = [[CCDirector sharedDirector] view];
     CGPoint newPosition = [recognizer translationInView:view];
     [self panForTranslation:newPosition];
-    //newPosition = [[CCDirector sharedDirector] convertToGL:newPosition];
-    //newPosition = [self convertToNodeSpace:newPosition];
-    //[selPlayerSprite repositionSpriteWithPosition:newPosition ];
     
     if (CGRectIntersectsRect(selPlayerSprite.sprite.boundingBox, trashMenuItem.boundingBox)) {
         [self removePlaySprite:selPlayerSprite];
@@ -191,7 +185,7 @@
 - (void)panForTranslation:(CGPoint)translation {
     if (selPlayerSprite) {
         CGPoint newPos = ccpAdd(selPlayerSprite.sprite.position, translation);
-        NSLog(@"TouchLocation newPosition %f,%f", newPos.x, newPos.y);
+        //NSLog(@"TouchLocation newPosition %f,%f", newPos.x, newPos.y);
         [selPlayerSprite repositionSpriteWithPosition:newPos];
         //selPlayerSprite.sprite.position = newPos;
     }
