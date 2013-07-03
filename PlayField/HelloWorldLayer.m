@@ -84,13 +84,28 @@
 - (void)selectSpriteForTouch:(CGPoint)touchLocation {
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld -  selectSpritForTouch"]];
     PlaySprite *newPlayerSprite = nil;
+    
+    int xDistance = 0;
+    int yDistance = 0;
     for (PlaySprite *ps in self.movableSprites) {
-        if (CGRectContainsPoint(ps.sprite.boundingBox, touchLocation)) {
-            newPlayerSprite = ps;
-            break;
+        int xDifference = abs( CGRectGetMidX(ps.sprite.boundingBox) - touchLocation.x );
+        int yDifference = abs ( CGRectGetMidY(ps.sprite.boundingBox) - touchLocation.y );
+        //[TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld -  selectSpritForTouch2 %i %i", xDifference, yDifference]];
+        if (CGRectContainsPoint(ps.sprite.boundingBox, touchLocation) ) { // if it's within the box
+            if(!newPlayerSprite){
+                //[TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld -  selectSpritForTouch3 - setting sprite %i %i", xDifference, yDifference]];
+                newPlayerSprite = ps;
+                xDistance = xDifference;
+                yDistance = yDifference;
+            } // if there are 2 sprites in the same place, get the one that is closest to the touch point instead of the first one found
+            else if(xDifference < xDistance && yDifference < yDistance){
+                    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld -  selectSpritForTouch4 - using second point"]];
+                    newPlayerSprite = ps;
+                    xDistance = xDifference;
+                    yDistance = yDifference;
+            }
         }
     }
-
     selPlayerSprite = newPlayerSprite;
         
     //remove objects each time the player makes a new path
@@ -122,7 +137,12 @@
     }
     
     CGPoint translation = ccpSub(newTouchLocation, oldTouchLocation);
-    [self panForTranslation:translation];
+    if (selPlayerSprite) {
+        CGPoint newPos = ccpAdd(selPlayerSprite.sprite.position, translation);
+        //NSLog(@"TouchLocation newPosition %f,%f", newPos.x, newPos.y);
+        //[selPlayerSprite repositionSpriteWithPosition:newPos];
+        selPlayerSprite.sprite.position = newPos;
+    }
 }
 
 -(void) ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event{
