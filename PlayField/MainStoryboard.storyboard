@@ -2874,7 +2874,7 @@
         <image name="bttn-practice.png" width="482" height="117"/>
         <image name="bttn-roster.png" width="482" height="117"/>
         <image name="greaseboard-logo.png" width="1042" height="424"/>
-        <image name="trash.png" width="120" height="200"/>
+        <image name="trash.png" width="60" height="100"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>

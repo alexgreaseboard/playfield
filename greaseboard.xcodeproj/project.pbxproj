@@ -27,6 +27,36 @@
 		299814ED1785B4FB00D230B9 /* gb-icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 299814EC1785B4FB00D230B9 /* gb-icon-72.png */; };
 		299814EF1785B66A00D230B9 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 299814EE1785B66A00D230B9 /* Default-Landscape~ipad.png */; };
 		299814F11785B68500D230B9 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 299814F01785B68500D230B9 /* Default-Landscape@2x~ipad.png */; };
+		299814F31785B85800D230B9 /* field-lights.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 299814F21785B85800D230B9 /* field-lights.jpg */; };
+		299814F51785B91900D230B9 /* field-lights@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 299814F41785B91900D230B9 /* field-lights@2x.jpg */; };
+		299814F71785BA4300D230B9 /* Offense-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 299814F61785BA4300D230B9 /* Offense-1.png */; };
+		299814FC1785BB9D00D230B9 /* bttn-add.png in Resources */ = {isa = PBXBuildFile; fileRef = 299814F81785BB9C00D230B9 /* bttn-add.png */; };
+		299814FD1785BB9D00D230B9 /* bttn-move.png in Resources */ = {isa = PBXBuildFile; fileRef = 299814F91785BB9C00D230B9 /* bttn-move.png */; };
+		299814FE1785BB9D00D230B9 /* bttn-play.png in Resources */ = {isa = PBXBuildFile; fileRef = 299814FA1785BB9C00D230B9 /* bttn-play.png */; };
+		299814FF1785BB9D00D230B9 /* bttn-replay.png in Resources */ = {isa = PBXBuildFile; fileRef = 299814FB1785BB9D00D230B9 /* bttn-replay.png */; };
+		299815011785BC2300D230B9 /* trash.png in Resources */ = {isa = PBXBuildFile; fileRef = 299815001785BC2300D230B9 /* trash.png */; };
+		299815031785BC4B00D230B9 /* Offense-1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 299815021785BC4B00D230B9 /* Offense-1-hd.png */; };
+		2998150C1785BD5F00D230B9 /* Cone.png in Resources */ = {isa = PBXBuildFile; fileRef = 299815041785BD5500D230B9 /* Cone.png */; };
+		2998150D1785BD5F00D230B9 /* Defense-C.png in Resources */ = {isa = PBXBuildFile; fileRef = 299815051785BD5600D230B9 /* Defense-C.png */; };
+		2998150E1785BD5F00D230B9 /* Defense-DE.png in Resources */ = {isa = PBXBuildFile; fileRef = 299815061785BD5700D230B9 /* Defense-DE.png */; };
+		2998150F1785BD5F00D230B9 /* Defense-DL.png in Resources */ = {isa = PBXBuildFile; fileRef = 299815071785BD5800D230B9 /* Defense-DL.png */; };
+		299815101785BD5F00D230B9 /* Defense-FS.png in Resources */ = {isa = PBXBuildFile; fileRef = 299815081785BD5900D230B9 /* Defense-FS.png */; };
+		299815111785BD5F00D230B9 /* Defense-LB.png in Resources */ = {isa = PBXBuildFile; fileRef = 299815091785BD5A00D230B9 /* Defense-LB.png */; };
+		299815121785BD5F00D230B9 /* Defense-SS.png in Resources */ = {isa = PBXBuildFile; fileRef = 2998150A1785BD5C00D230B9 /* Defense-SS.png */; };
+		299815131785BD5F00D230B9 /* Defense.png in Resources */ = {isa = PBXBuildFile; fileRef = 2998150B1785BD5C00D230B9 /* Defense.png */; };
+		299815201785BDE900D230B9 /* Offense-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 299815141785BDDB00D230B9 /* Offense-2.png */; };
+		299815211785BDE900D230B9 /* Offense-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 299815151785BDDC00D230B9 /* Offense-3.png */; };
+		299815221785BDE900D230B9 /* Offense-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 299815161785BDDD00D230B9 /* Offense-4.png */; };
+		299815231785BDE900D230B9 /* Offense-C.png in Resources */ = {isa = PBXBuildFile; fileRef = 299815171785BDDE00D230B9 /* Offense-C.png */; };
+		299815241785BDE900D230B9 /* Offense-LG.png in Resources */ = {isa = PBXBuildFile; fileRef = 299815181785BDDF00D230B9 /* Offense-LG.png */; };
+		299815251785BDE900D230B9 /* Offense-LT.png in Resources */ = {isa = PBXBuildFile; fileRef = 299815191785BDE100D230B9 /* Offense-LT.png */; };
+		299815261785BDE900D230B9 /* Offense-RG.png in Resources */ = {isa = PBXBuildFile; fileRef = 2998151A1785BDE200D230B9 /* Offense-RG.png */; };
+		299815271785BDE900D230B9 /* Offense-RT.png in Resources */ = {isa = PBXBuildFile; fileRef = 2998151B1785BDE300D230B9 /* Offense-RT.png */; };
+		299815281785BDE900D230B9 /* Offense-TE.png in Resources */ = {isa = PBXBuildFile; fileRef = 2998151C1785BDE400D230B9 /* Offense-TE.png */; };
+		299815291785BDE900D230B9 /* Offense-Y.png in Resources */ = {isa = PBXBuildFile; fileRef = 2998151D1785BDE500D230B9 /* Offense-Y.png */; };
+		2998152A1785BDE900D230B9 /* Offense-Z.png in Resources */ = {isa = PBXBuildFile; fileRef = 2998151E1785BDE600D230B9 /* Offense-Z.png */; };
+		2998152B1785BDE900D230B9 /* Offense.png in Resources */ = {isa = PBXBuildFile; fileRef = 2998151F1785BDE800D230B9 /* Offense.png */; };
+		2998152D1785BEB600D230B9 /* field.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2998152C1785BEB500D230B9 /* field.jpg */; };
 		29E2AAAE16CFAEDD00005AAF /* RosterMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2AAA916CFAEDD00005AAF /* RosterMasterViewController.m */; };
 		29E2AAAF16CFAEDD00005AAF /* RosterDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2AAAB16CFAEDD00005AAF /* RosterDetailViewController.m */; };
 		29E2AAB016CFAEDD00005AAF /* RosterDetailEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2AAAD16CFAEDD00005AAF /* RosterDetailEditViewController.m */; };
@@ -202,41 +232,40 @@
 		6D14911616C988EC0069CB76 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D14911516C988EC0069CB76 /* main.m */; };
 		6D14911C16C988EC0069CB76 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D14911B16C988EC0069CB76 /* HelloWorldLayer.m */; };
 		6D14912616C98A110069CB76 /* footballField.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D14912516C98A110069CB76 /* footballField.jpg */; };
-		6D80DADF176BC4100006E8C8 /* Cone.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DACA176BC4100006E8C8 /* Cone.png */; };
-		6D80DAE0176BC4100006E8C8 /* Defense-C.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DACB176BC4100006E8C8 /* Defense-C.png */; };
-		6D80DAE1176BC4100006E8C8 /* Defense-DE.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DACC176BC4100006E8C8 /* Defense-DE.png */; };
-		6D80DAE2176BC4100006E8C8 /* Defense-DL.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DACD176BC4100006E8C8 /* Defense-DL.png */; };
-		6D80DAE3176BC4100006E8C8 /* Defense-FS.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DACE176BC4100006E8C8 /* Defense-FS.png */; };
-		6D80DAE4176BC4100006E8C8 /* Defense-LB.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DACF176BC4100006E8C8 /* Defense-LB.png */; };
-		6D80DAE5176BC4100006E8C8 /* Defense-SS.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DAD0176BC4100006E8C8 /* Defense-SS.png */; };
-		6D80DAE6176BC4100006E8C8 /* Defense.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DAD1176BC4100006E8C8 /* Defense.png */; };
-		6D80DAE7176BC4100006E8C8 /* Offense-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DAD2176BC4100006E8C8 /* Offense-1.png */; };
-		6D80DAE8176BC4100006E8C8 /* Offense-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DAD3176BC4100006E8C8 /* Offense-2.png */; };
-		6D80DAE9176BC4100006E8C8 /* Offense-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DAD4176BC4100006E8C8 /* Offense-3.png */; };
-		6D80DAEA176BC4100006E8C8 /* Offense-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DAD5176BC4100006E8C8 /* Offense-4.png */; };
-		6D80DAEB176BC4100006E8C8 /* Offense-C.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DAD6176BC4100006E8C8 /* Offense-C.png */; };
-		6D80DAEC176BC4100006E8C8 /* Offense-LG.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DAD7176BC4100006E8C8 /* Offense-LG.png */; };
-		6D80DAED176BC4100006E8C8 /* Offense-LT.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DAD8176BC4100006E8C8 /* Offense-LT.png */; };
-		6D80DAEE176BC4100006E8C8 /* Offense-RG.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DAD9176BC4100006E8C8 /* Offense-RG.png */; };
-		6D80DAEF176BC4100006E8C8 /* Offense-RT.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DADA176BC4100006E8C8 /* Offense-RT.png */; };
-		6D80DAF0176BC4100006E8C8 /* Offense-TE.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DADB176BC4100006E8C8 /* Offense-TE.png */; };
-		6D80DAF1176BC4100006E8C8 /* Offense-Y.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DADC176BC4100006E8C8 /* Offense-Y.png */; };
-		6D80DAF2176BC4100006E8C8 /* Offense-Z.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DADD176BC4100006E8C8 /* Offense-Z.png */; };
-		6D80DAF3176BC4100006E8C8 /* Offense.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DADE176BC4100006E8C8 /* Offense.png */; };
+		6D80DADF176BC4100006E8C8 /* Cone-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DACA176BC4100006E8C8 /* Cone-hd.png */; };
+		6D80DAE0176BC4100006E8C8 /* Defense-C-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DACB176BC4100006E8C8 /* Defense-C-hd.png */; };
+		6D80DAE1176BC4100006E8C8 /* Defense-DE-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DACC176BC4100006E8C8 /* Defense-DE-hd.png */; };
+		6D80DAE2176BC4100006E8C8 /* Defense-DL-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DACD176BC4100006E8C8 /* Defense-DL-hd.png */; };
+		6D80DAE3176BC4100006E8C8 /* Defense-FS-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DACE176BC4100006E8C8 /* Defense-FS-hd.png */; };
+		6D80DAE4176BC4100006E8C8 /* Defense-LB-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DACF176BC4100006E8C8 /* Defense-LB-hd.png */; };
+		6D80DAE5176BC4100006E8C8 /* Defense-SS-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DAD0176BC4100006E8C8 /* Defense-SS-hd.png */; };
+		6D80DAE6176BC4100006E8C8 /* Defense-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DAD1176BC4100006E8C8 /* Defense-hd.png */; };
+		6D80DAE8176BC4100006E8C8 /* Offense-2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DAD3176BC4100006E8C8 /* Offense-2-hd.png */; };
+		6D80DAE9176BC4100006E8C8 /* Offense-3-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DAD4176BC4100006E8C8 /* Offense-3-hd.png */; };
+		6D80DAEA176BC4100006E8C8 /* Offense-4-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DAD5176BC4100006E8C8 /* Offense-4-hd.png */; };
+		6D80DAEB176BC4100006E8C8 /* Offense-C-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DAD6176BC4100006E8C8 /* Offense-C-hd.png */; };
+		6D80DAEC176BC4100006E8C8 /* Offense-LG-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DAD7176BC4100006E8C8 /* Offense-LG-hd.png */; };
+		6D80DAED176BC4100006E8C8 /* Offense-LT-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DAD8176BC4100006E8C8 /* Offense-LT-hd.png */; };
+		6D80DAEE176BC4100006E8C8 /* Offense-RG-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DAD9176BC4100006E8C8 /* Offense-RG-hd.png */; };
+		6D80DAEF176BC4100006E8C8 /* Offense-RT-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DADA176BC4100006E8C8 /* Offense-RT-hd.png */; };
+		6D80DAF0176BC4100006E8C8 /* Offense-TE-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DADB176BC4100006E8C8 /* Offense-TE-hd.png */; };
+		6D80DAF1176BC4100006E8C8 /* Offense-Y-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DADC176BC4100006E8C8 /* Offense-Y-hd.png */; };
+		6D80DAF2176BC4100006E8C8 /* Offense-Z-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DADD176BC4100006E8C8 /* Offense-Z-hd.png */; };
+		6D80DAF3176BC4100006E8C8 /* Offense-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D80DADE176BC4100006E8C8 /* Offense-hd.png */; };
 		6D91974016EE333400BA1DF3 /* PlaybookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D91973F16EE333400BA1DF3 /* PlaybookCell.m */; };
 		6DC9C0E216F2C5990001644A /* PlaybookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC9C0E116F2C5990001644A /* PlaybookDetailViewController.m */; };
 		6DCFB60B1711DF420065700F /* PlaybookEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCFB60A1711DF420065700F /* PlaybookEditViewController.m */; };
 		6DEF320B16D154B200AD57A1 /* About.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DEF320A16D154B200AD57A1 /* About.png */; };
 		6DF5649116DE971800E17E82 /* SavePlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF5649016DE971800E17E82 /* SavePlayViewController.m */; };
-		6DF6E94F171081A300386229 /* bttn-add.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DF6E931171081A300386229 /* bttn-add.png */; };
-		6DF6E950171081A300386229 /* bttn-move.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DF6E932171081A300386229 /* bttn-move.png */; };
-		6DF6E951171081A300386229 /* bttn-play.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DF6E933171081A300386229 /* bttn-play.png */; };
-		6DF6E952171081A300386229 /* bttn-replay.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DF6E934171081A300386229 /* bttn-replay.png */; };
+		6DF6E94F171081A300386229 /* bttn-add-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DF6E931171081A300386229 /* bttn-add-hd.png */; };
+		6DF6E950171081A300386229 /* bttn-move-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DF6E932171081A300386229 /* bttn-move-hd.png */; };
+		6DF6E951171081A300386229 /* bttn-play-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DF6E933171081A300386229 /* bttn-play-hd.png */; };
+		6DF6E952171081A300386229 /* bttn-replay-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DF6E934171081A300386229 /* bttn-replay-hd.png */; };
 		6DF6E95B171081A300386229 /* field-reference.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6DF6E93D171081A300386229 /* field-reference.jpg */; };
-		6DF6E95C171081A300386229 /* field.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6DF6E93E171081A300386229 /* field.jpg */; };
+		6DF6E95C171081A300386229 /* field-hd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6DF6E93E171081A300386229 /* field-hd.jpg */; };
 		6DF6E95D171081A300386229 /* header-tile.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6DF6E93F171081A300386229 /* header-tile.jpg */; };
 		6DF6E95E171081A300386229 /* menu-bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6DF6E940171081A300386229 /* menu-bg.jpg */; };
-		6DF6E96C171081A300386229 /* trash.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DF6E94E171081A300386229 /* trash.png */; };
+		6DF6E96C171081A300386229 /* trash-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DF6E94E171081A300386229 /* trash-hd.png */; };
 		6DF6E96E171081CE00386229 /* field-reference.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 6DF6E96D171081CE00386229 /* field-reference.pdf */; };
 		6DF750F616D55F33008D32B0 /* PlayCreationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF750F516D55F33008D32B0 /* PlayCreationDetailsViewController.m */; };
 /* End PBXBuildFile section */
@@ -267,6 +296,36 @@
 		299814EC1785B4FB00D230B9 /* gb-icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gb-icon-72.png"; path = "../gb-icon-72.png"; sourceTree = "<group>"; };
 		299814EE1785B66A00D230B9 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		299814F01785B68500D230B9 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape@2x~ipad.png"; path = "../Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
+		299814F21785B85800D230B9 /* field-lights.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "field-lights.jpg"; sourceTree = "<group>"; };
+		299814F41785B91900D230B9 /* field-lights@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "field-lights@2x.jpg"; sourceTree = "<group>"; };
+		299814F61785BA4300D230B9 /* Offense-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-1.png"; sourceTree = "<group>"; };
+		299814F81785BB9C00D230B9 /* bttn-add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bttn-add.png"; sourceTree = "<group>"; };
+		299814F91785BB9C00D230B9 /* bttn-move.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bttn-move.png"; sourceTree = "<group>"; };
+		299814FA1785BB9C00D230B9 /* bttn-play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bttn-play.png"; sourceTree = "<group>"; };
+		299814FB1785BB9D00D230B9 /* bttn-replay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bttn-replay.png"; sourceTree = "<group>"; };
+		299815001785BC2300D230B9 /* trash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash.png; sourceTree = "<group>"; };
+		299815021785BC4B00D230B9 /* Offense-1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-1-hd.png"; sourceTree = "<group>"; };
+		299815041785BD5500D230B9 /* Cone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cone.png; sourceTree = "<group>"; };
+		299815051785BD5600D230B9 /* Defense-C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Defense-C.png"; sourceTree = "<group>"; };
+		299815061785BD5700D230B9 /* Defense-DE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Defense-DE.png"; sourceTree = "<group>"; };
+		299815071785BD5800D230B9 /* Defense-DL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Defense-DL.png"; sourceTree = "<group>"; };
+		299815081785BD5900D230B9 /* Defense-FS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Defense-FS.png"; sourceTree = "<group>"; };
+		299815091785BD5A00D230B9 /* Defense-LB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Defense-LB.png"; sourceTree = "<group>"; };
+		2998150A1785BD5C00D230B9 /* Defense-SS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Defense-SS.png"; sourceTree = "<group>"; };
+		2998150B1785BD5C00D230B9 /* Defense.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Defense.png; sourceTree = "<group>"; };
+		299815141785BDDB00D230B9 /* Offense-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-2.png"; sourceTree = "<group>"; };
+		299815151785BDDC00D230B9 /* Offense-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-3.png"; sourceTree = "<group>"; };
+		299815161785BDDD00D230B9 /* Offense-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-4.png"; sourceTree = "<group>"; };
+		299815171785BDDE00D230B9 /* Offense-C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-C.png"; sourceTree = "<group>"; };
+		299815181785BDDF00D230B9 /* Offense-LG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-LG.png"; sourceTree = "<group>"; };
+		299815191785BDE100D230B9 /* Offense-LT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-LT.png"; sourceTree = "<group>"; };
+		2998151A1785BDE200D230B9 /* Offense-RG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-RG.png"; sourceTree = "<group>"; };
+		2998151B1785BDE300D230B9 /* Offense-RT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-RT.png"; sourceTree = "<group>"; };
+		2998151C1785BDE400D230B9 /* Offense-TE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-TE.png"; sourceTree = "<group>"; };
+		2998151D1785BDE500D230B9 /* Offense-Y.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-Y.png"; sourceTree = "<group>"; };
+		2998151E1785BDE600D230B9 /* Offense-Z.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-Z.png"; sourceTree = "<group>"; };
+		2998151F1785BDE800D230B9 /* Offense.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Offense.png; sourceTree = "<group>"; };
+		2998152C1785BEB500D230B9 /* field.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = field.jpg; sourceTree = "<group>"; };
 		29E2AAA816CFAEDD00005AAF /* RosterMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosterMasterViewController.h; sourceTree = "<group>"; };
 		29E2AAA916CFAEDD00005AAF /* RosterMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RosterMasterViewController.m; sourceTree = "<group>"; };
 		29E2AAAA16CFAEDD00005AAF /* RosterDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosterDetailViewController.h; sourceTree = "<group>"; };
@@ -634,27 +693,26 @@
 		6D14911A16C988EC0069CB76 /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
 		6D14911B16C988EC0069CB76 /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		6D14912516C98A110069CB76 /* footballField.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = footballField.jpg; sourceTree = "<group>"; };
-		6D80DACA176BC4100006E8C8 /* Cone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cone.png; sourceTree = "<group>"; };
-		6D80DACB176BC4100006E8C8 /* Defense-C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Defense-C.png"; sourceTree = "<group>"; };
-		6D80DACC176BC4100006E8C8 /* Defense-DE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Defense-DE.png"; sourceTree = "<group>"; };
-		6D80DACD176BC4100006E8C8 /* Defense-DL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Defense-DL.png"; sourceTree = "<group>"; };
-		6D80DACE176BC4100006E8C8 /* Defense-FS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Defense-FS.png"; sourceTree = "<group>"; };
-		6D80DACF176BC4100006E8C8 /* Defense-LB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Defense-LB.png"; sourceTree = "<group>"; };
-		6D80DAD0176BC4100006E8C8 /* Defense-SS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Defense-SS.png"; sourceTree = "<group>"; };
-		6D80DAD1176BC4100006E8C8 /* Defense.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Defense.png; sourceTree = "<group>"; };
-		6D80DAD2176BC4100006E8C8 /* Offense-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-1.png"; sourceTree = "<group>"; };
-		6D80DAD3176BC4100006E8C8 /* Offense-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-2.png"; sourceTree = "<group>"; };
-		6D80DAD4176BC4100006E8C8 /* Offense-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-3.png"; sourceTree = "<group>"; };
-		6D80DAD5176BC4100006E8C8 /* Offense-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-4.png"; sourceTree = "<group>"; };
-		6D80DAD6176BC4100006E8C8 /* Offense-C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-C.png"; sourceTree = "<group>"; };
-		6D80DAD7176BC4100006E8C8 /* Offense-LG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-LG.png"; sourceTree = "<group>"; };
-		6D80DAD8176BC4100006E8C8 /* Offense-LT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-LT.png"; sourceTree = "<group>"; };
-		6D80DAD9176BC4100006E8C8 /* Offense-RG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-RG.png"; sourceTree = "<group>"; };
-		6D80DADA176BC4100006E8C8 /* Offense-RT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-RT.png"; sourceTree = "<group>"; };
-		6D80DADB176BC4100006E8C8 /* Offense-TE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-TE.png"; sourceTree = "<group>"; };
-		6D80DADC176BC4100006E8C8 /* Offense-Y.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-Y.png"; sourceTree = "<group>"; };
-		6D80DADD176BC4100006E8C8 /* Offense-Z.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-Z.png"; sourceTree = "<group>"; };
-		6D80DADE176BC4100006E8C8 /* Offense.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Offense.png; sourceTree = "<group>"; };
+		6D80DACA176BC4100006E8C8 /* Cone-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cone-hd.png"; sourceTree = "<group>"; };
+		6D80DACB176BC4100006E8C8 /* Defense-C-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Defense-C-hd.png"; sourceTree = "<group>"; };
+		6D80DACC176BC4100006E8C8 /* Defense-DE-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Defense-DE-hd.png"; sourceTree = "<group>"; };
+		6D80DACD176BC4100006E8C8 /* Defense-DL-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Defense-DL-hd.png"; sourceTree = "<group>"; };
+		6D80DACE176BC4100006E8C8 /* Defense-FS-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Defense-FS-hd.png"; sourceTree = "<group>"; };
+		6D80DACF176BC4100006E8C8 /* Defense-LB-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Defense-LB-hd.png"; sourceTree = "<group>"; };
+		6D80DAD0176BC4100006E8C8 /* Defense-SS-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Defense-SS-hd.png"; sourceTree = "<group>"; };
+		6D80DAD1176BC4100006E8C8 /* Defense-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Defense-hd.png"; sourceTree = "<group>"; };
+		6D80DAD3176BC4100006E8C8 /* Offense-2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-2-hd.png"; sourceTree = "<group>"; };
+		6D80DAD4176BC4100006E8C8 /* Offense-3-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-3-hd.png"; sourceTree = "<group>"; };
+		6D80DAD5176BC4100006E8C8 /* Offense-4-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-4-hd.png"; sourceTree = "<group>"; };
+		6D80DAD6176BC4100006E8C8 /* Offense-C-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-C-hd.png"; sourceTree = "<group>"; };
+		6D80DAD7176BC4100006E8C8 /* Offense-LG-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-LG-hd.png"; sourceTree = "<group>"; };
+		6D80DAD8176BC4100006E8C8 /* Offense-LT-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-LT-hd.png"; sourceTree = "<group>"; };
+		6D80DAD9176BC4100006E8C8 /* Offense-RG-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-RG-hd.png"; sourceTree = "<group>"; };
+		6D80DADA176BC4100006E8C8 /* Offense-RT-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-RT-hd.png"; sourceTree = "<group>"; };
+		6D80DADB176BC4100006E8C8 /* Offense-TE-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-TE-hd.png"; sourceTree = "<group>"; };
+		6D80DADC176BC4100006E8C8 /* Offense-Y-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-Y-hd.png"; sourceTree = "<group>"; };
+		6D80DADD176BC4100006E8C8 /* Offense-Z-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-Z-hd.png"; sourceTree = "<group>"; };
+		6D80DADE176BC4100006E8C8 /* Offense-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-hd.png"; sourceTree = "<group>"; };
 		6D91973E16EE333400BA1DF3 /* PlaybookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybookCell.h; sourceTree = "<group>"; };
 		6D91973F16EE333400BA1DF3 /* PlaybookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybookCell.m; sourceTree = "<group>"; };
 		6DC9C0E016F2C5990001644A /* PlaybookDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybookDetailViewController.h; sourceTree = "<group>"; };
@@ -664,15 +722,15 @@
 		6DEF320A16D154B200AD57A1 /* About.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = About.png; sourceTree = "<group>"; };
 		6DF5648F16DE971800E17E82 /* SavePlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavePlayViewController.h; sourceTree = "<group>"; };
 		6DF5649016DE971800E17E82 /* SavePlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavePlayViewController.m; sourceTree = "<group>"; };
-		6DF6E931171081A300386229 /* bttn-add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bttn-add.png"; sourceTree = "<group>"; };
-		6DF6E932171081A300386229 /* bttn-move.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bttn-move.png"; sourceTree = "<group>"; };
-		6DF6E933171081A300386229 /* bttn-play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bttn-play.png"; sourceTree = "<group>"; };
-		6DF6E934171081A300386229 /* bttn-replay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bttn-replay.png"; sourceTree = "<group>"; };
+		6DF6E931171081A300386229 /* bttn-add-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bttn-add-hd.png"; sourceTree = "<group>"; };
+		6DF6E932171081A300386229 /* bttn-move-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bttn-move-hd.png"; sourceTree = "<group>"; };
+		6DF6E933171081A300386229 /* bttn-play-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bttn-play-hd.png"; sourceTree = "<group>"; };
+		6DF6E934171081A300386229 /* bttn-replay-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bttn-replay-hd.png"; sourceTree = "<group>"; };
 		6DF6E93D171081A300386229 /* field-reference.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "field-reference.jpg"; sourceTree = "<group>"; };
-		6DF6E93E171081A300386229 /* field.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = field.jpg; sourceTree = "<group>"; };
+		6DF6E93E171081A300386229 /* field-hd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "field-hd.jpg"; sourceTree = "<group>"; };
 		6DF6E93F171081A300386229 /* header-tile.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "header-tile.jpg"; sourceTree = "<group>"; };
 		6DF6E940171081A300386229 /* menu-bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "menu-bg.jpg"; sourceTree = "<group>"; };
-		6DF6E94E171081A300386229 /* trash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash.png; sourceTree = "<group>"; };
+		6DF6E94E171081A300386229 /* trash-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trash-hd.png"; sourceTree = "<group>"; };
 		6DF6E96D171081CE00386229 /* field-reference.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "field-reference.pdf"; sourceTree = "<group>"; };
 		6DF750F416D55F33008D32B0 /* PlayCreationDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayCreationDetailsViewController.h; sourceTree = "<group>"; };
 		6DF750F516D55F33008D32B0 /* PlayCreationDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayCreationDetailsViewController.m; sourceTree = "<group>"; };
@@ -754,6 +812,8 @@
 		29E2AAA616CFAEB000005AAF /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				299814F41785B91900D230B9 /* field-lights@2x.jpg */,
+				299814F21785B85800D230B9 /* field-lights.jpg */,
 				299814EE1785B66A00D230B9 /* Default-Landscape~ipad.png */,
 				299814F01785B68500D230B9 /* Default-Landscape@2x~ipad.png */,
 				299814EA1785B4F100D230B9 /* gb-icon-144.png */,
@@ -1355,36 +1415,63 @@
 		6DF6E930171081A300386229 /* field graphics */ = {
 			isa = PBXGroup;
 			children = (
-				6D80DACA176BC4100006E8C8 /* Cone.png */,
-				6D80DACB176BC4100006E8C8 /* Defense-C.png */,
-				6D80DACC176BC4100006E8C8 /* Defense-DE.png */,
-				6D80DACD176BC4100006E8C8 /* Defense-DL.png */,
-				6D80DACE176BC4100006E8C8 /* Defense-FS.png */,
-				6D80DACF176BC4100006E8C8 /* Defense-LB.png */,
-				6D80DAD0176BC4100006E8C8 /* Defense-SS.png */,
-				6D80DAD1176BC4100006E8C8 /* Defense.png */,
-				6D80DAD2176BC4100006E8C8 /* Offense-1.png */,
-				6D80DAD3176BC4100006E8C8 /* Offense-2.png */,
-				6D80DAD4176BC4100006E8C8 /* Offense-3.png */,
-				6D80DAD5176BC4100006E8C8 /* Offense-4.png */,
-				6D80DAD6176BC4100006E8C8 /* Offense-C.png */,
-				6D80DAD7176BC4100006E8C8 /* Offense-LG.png */,
-				6D80DAD8176BC4100006E8C8 /* Offense-LT.png */,
-				6D80DAD9176BC4100006E8C8 /* Offense-RG.png */,
-				6D80DADA176BC4100006E8C8 /* Offense-RT.png */,
-				6D80DADB176BC4100006E8C8 /* Offense-TE.png */,
-				6D80DADC176BC4100006E8C8 /* Offense-Y.png */,
-				6D80DADD176BC4100006E8C8 /* Offense-Z.png */,
-				6D80DADE176BC4100006E8C8 /* Offense.png */,
-				6DF6E931171081A300386229 /* bttn-add.png */,
-				6DF6E932171081A300386229 /* bttn-move.png */,
-				6DF6E933171081A300386229 /* bttn-play.png */,
-				6DF6E934171081A300386229 /* bttn-replay.png */,
+				6DF6E931171081A300386229 /* bttn-add-hd.png */,
+				299814F81785BB9C00D230B9 /* bttn-add.png */,
+				6DF6E932171081A300386229 /* bttn-move-hd.png */,
+				299814F91785BB9C00D230B9 /* bttn-move.png */,
+				6DF6E933171081A300386229 /* bttn-play-hd.png */,
+				299814FA1785BB9C00D230B9 /* bttn-play.png */,
+				6DF6E934171081A300386229 /* bttn-replay-hd.png */,
+				299814FB1785BB9D00D230B9 /* bttn-replay.png */,
+				6D80DACA176BC4100006E8C8 /* Cone-hd.png */,
+				299815041785BD5500D230B9 /* Cone.png */,
+				6D80DACB176BC4100006E8C8 /* Defense-C-hd.png */,
+				299815051785BD5600D230B9 /* Defense-C.png */,
+				6D80DACC176BC4100006E8C8 /* Defense-DE-hd.png */,
+				299815061785BD5700D230B9 /* Defense-DE.png */,
+				6D80DACD176BC4100006E8C8 /* Defense-DL-hd.png */,
+				299815071785BD5800D230B9 /* Defense-DL.png */,
+				6D80DACE176BC4100006E8C8 /* Defense-FS-hd.png */,
+				299815081785BD5900D230B9 /* Defense-FS.png */,
+				6D80DAD1176BC4100006E8C8 /* Defense-hd.png */,
+				6D80DACF176BC4100006E8C8 /* Defense-LB-hd.png */,
+				299815091785BD5A00D230B9 /* Defense-LB.png */,
+				6D80DAD0176BC4100006E8C8 /* Defense-SS-hd.png */,
+				2998150A1785BD5C00D230B9 /* Defense-SS.png */,
+				2998150B1785BD5C00D230B9 /* Defense.png */,
+				6DF6E93E171081A300386229 /* field-hd.jpg */,
 				6DF6E93D171081A300386229 /* field-reference.jpg */,
-				6DF6E93E171081A300386229 /* field.jpg */,
+				2998152C1785BEB500D230B9 /* field.jpg */,
 				6DF6E93F171081A300386229 /* header-tile.jpg */,
 				6DF6E940171081A300386229 /* menu-bg.jpg */,
-				6DF6E94E171081A300386229 /* trash.png */,
+				299815021785BC4B00D230B9 /* Offense-1-hd.png */,
+				299814F61785BA4300D230B9 /* Offense-1.png */,
+				6D80DAD3176BC4100006E8C8 /* Offense-2-hd.png */,
+				299815141785BDDB00D230B9 /* Offense-2.png */,
+				6D80DAD4176BC4100006E8C8 /* Offense-3-hd.png */,
+				299815151785BDDC00D230B9 /* Offense-3.png */,
+				6D80DAD5176BC4100006E8C8 /* Offense-4-hd.png */,
+				299815161785BDDD00D230B9 /* Offense-4.png */,
+				6D80DAD6176BC4100006E8C8 /* Offense-C-hd.png */,
+				299815171785BDDE00D230B9 /* Offense-C.png */,
+				6D80DADE176BC4100006E8C8 /* Offense-hd.png */,
+				6D80DAD7176BC4100006E8C8 /* Offense-LG-hd.png */,
+				299815181785BDDF00D230B9 /* Offense-LG.png */,
+				6D80DAD8176BC4100006E8C8 /* Offense-LT-hd.png */,
+				299815191785BDE100D230B9 /* Offense-LT.png */,
+				6D80DAD9176BC4100006E8C8 /* Offense-RG-hd.png */,
+				2998151A1785BDE200D230B9 /* Offense-RG.png */,
+				6D80DADA176BC4100006E8C8 /* Offense-RT-hd.png */,
+				2998151B1785BDE300D230B9 /* Offense-RT.png */,
+				6D80DADB176BC4100006E8C8 /* Offense-TE-hd.png */,
+				2998151C1785BDE400D230B9 /* Offense-TE.png */,
+				6D80DADC176BC4100006E8C8 /* Offense-Y-hd.png */,
+				2998151D1785BDE500D230B9 /* Offense-Y.png */,
+				6D80DADD176BC4100006E8C8 /* Offense-Z-hd.png */,
+				2998151E1785BDE600D230B9 /* Offense-Z.png */,
+				2998151F1785BDE800D230B9 /* Offense.png */,
+				6DF6E94E171081A300386229 /* trash-hd.png */,
+				299815001785BC2300D230B9 /* trash.png */,
 			);
 			path = "field graphics";
 			sourceTree = "<group>";
@@ -1463,44 +1550,73 @@
 				298017E816EB9EC500FF469E /* greaseboard-logo.png in Resources */,
 				298017E916EB9EC500FF469E /* home-reference.jpg in Resources */,
 				399B7F0B17073AE60047244D /* TimerView.xib in Resources */,
-				6DF6E94F171081A300386229 /* bttn-add.png in Resources */,
-				6DF6E950171081A300386229 /* bttn-move.png in Resources */,
-				6DF6E951171081A300386229 /* bttn-play.png in Resources */,
-				6DF6E952171081A300386229 /* bttn-replay.png in Resources */,
+				6DF6E94F171081A300386229 /* bttn-add-hd.png in Resources */,
+				6DF6E950171081A300386229 /* bttn-move-hd.png in Resources */,
+				6DF6E951171081A300386229 /* bttn-play-hd.png in Resources */,
+				6DF6E952171081A300386229 /* bttn-replay-hd.png in Resources */,
 				6DF6E95B171081A300386229 /* field-reference.jpg in Resources */,
-				6DF6E95C171081A300386229 /* field.jpg in Resources */,
+				6DF6E95C171081A300386229 /* field-hd.jpg in Resources */,
 				6DF6E95D171081A300386229 /* header-tile.jpg in Resources */,
 				6DF6E95E171081A300386229 /* menu-bg.jpg in Resources */,
-				6DF6E96C171081A300386229 /* trash.png in Resources */,
+				6DF6E96C171081A300386229 /* trash-hd.png in Resources */,
 				6DF6E96E171081CE00386229 /* field-reference.pdf in Resources */,
 				29939A951750E02A00448DAF /* football-texture.jpg in Resources */,
 				39D7A09617694AA7004E6307 /* README.md in Resources */,
 				39D7A09717694AA7004E6307 /* release_notes.md in Resources */,
-				6D80DADF176BC4100006E8C8 /* Cone.png in Resources */,
-				6D80DAE0176BC4100006E8C8 /* Defense-C.png in Resources */,
-				6D80DAE1176BC4100006E8C8 /* Defense-DE.png in Resources */,
-				6D80DAE2176BC4100006E8C8 /* Defense-DL.png in Resources */,
-				6D80DAE3176BC4100006E8C8 /* Defense-FS.png in Resources */,
-				6D80DAE4176BC4100006E8C8 /* Defense-LB.png in Resources */,
-				6D80DAE5176BC4100006E8C8 /* Defense-SS.png in Resources */,
-				6D80DAE6176BC4100006E8C8 /* Defense.png in Resources */,
-				6D80DAE7176BC4100006E8C8 /* Offense-1.png in Resources */,
-				6D80DAE8176BC4100006E8C8 /* Offense-2.png in Resources */,
-				6D80DAE9176BC4100006E8C8 /* Offense-3.png in Resources */,
-				6D80DAEA176BC4100006E8C8 /* Offense-4.png in Resources */,
-				6D80DAEB176BC4100006E8C8 /* Offense-C.png in Resources */,
-				6D80DAEC176BC4100006E8C8 /* Offense-LG.png in Resources */,
-				6D80DAED176BC4100006E8C8 /* Offense-LT.png in Resources */,
-				6D80DAEE176BC4100006E8C8 /* Offense-RG.png in Resources */,
-				6D80DAEF176BC4100006E8C8 /* Offense-RT.png in Resources */,
-				6D80DAF0176BC4100006E8C8 /* Offense-TE.png in Resources */,
-				6D80DAF1176BC4100006E8C8 /* Offense-Y.png in Resources */,
-				6D80DAF2176BC4100006E8C8 /* Offense-Z.png in Resources */,
-				6D80DAF3176BC4100006E8C8 /* Offense.png in Resources */,
+				6D80DADF176BC4100006E8C8 /* Cone-hd.png in Resources */,
+				6D80DAE0176BC4100006E8C8 /* Defense-C-hd.png in Resources */,
+				6D80DAE1176BC4100006E8C8 /* Defense-DE-hd.png in Resources */,
+				6D80DAE2176BC4100006E8C8 /* Defense-DL-hd.png in Resources */,
+				6D80DAE3176BC4100006E8C8 /* Defense-FS-hd.png in Resources */,
+				6D80DAE4176BC4100006E8C8 /* Defense-LB-hd.png in Resources */,
+				6D80DAE5176BC4100006E8C8 /* Defense-SS-hd.png in Resources */,
+				6D80DAE6176BC4100006E8C8 /* Defense-hd.png in Resources */,
+				6D80DAE8176BC4100006E8C8 /* Offense-2-hd.png in Resources */,
+				6D80DAE9176BC4100006E8C8 /* Offense-3-hd.png in Resources */,
+				6D80DAEA176BC4100006E8C8 /* Offense-4-hd.png in Resources */,
+				6D80DAEB176BC4100006E8C8 /* Offense-C-hd.png in Resources */,
+				6D80DAEC176BC4100006E8C8 /* Offense-LG-hd.png in Resources */,
+				6D80DAED176BC4100006E8C8 /* Offense-LT-hd.png in Resources */,
+				6D80DAEE176BC4100006E8C8 /* Offense-RG-hd.png in Resources */,
+				6D80DAEF176BC4100006E8C8 /* Offense-RT-hd.png in Resources */,
+				6D80DAF0176BC4100006E8C8 /* Offense-TE-hd.png in Resources */,
+				6D80DAF1176BC4100006E8C8 /* Offense-Y-hd.png in Resources */,
+				6D80DAF2176BC4100006E8C8 /* Offense-Z-hd.png in Resources */,
+				6D80DAF3176BC4100006E8C8 /* Offense-hd.png in Resources */,
 				299814EB1785B4F100D230B9 /* gb-icon-144.png in Resources */,
 				299814ED1785B4FB00D230B9 /* gb-icon-72.png in Resources */,
 				299814EF1785B66A00D230B9 /* Default-Landscape~ipad.png in Resources */,
 				299814F11785B68500D230B9 /* Default-Landscape@2x~ipad.png in Resources */,
+				299814F31785B85800D230B9 /* field-lights.jpg in Resources */,
+				299814F51785B91900D230B9 /* field-lights@2x.jpg in Resources */,
+				299814F71785BA4300D230B9 /* Offense-1.png in Resources */,
+				299814FC1785BB9D00D230B9 /* bttn-add.png in Resources */,
+				299814FD1785BB9D00D230B9 /* bttn-move.png in Resources */,
+				299814FE1785BB9D00D230B9 /* bttn-play.png in Resources */,
+				299814FF1785BB9D00D230B9 /* bttn-replay.png in Resources */,
+				299815011785BC2300D230B9 /* trash.png in Resources */,
+				299815031785BC4B00D230B9 /* Offense-1-hd.png in Resources */,
+				2998150C1785BD5F00D230B9 /* Cone.png in Resources */,
+				2998150D1785BD5F00D230B9 /* Defense-C.png in Resources */,
+				2998150E1785BD5F00D230B9 /* Defense-DE.png in Resources */,
+				2998150F1785BD5F00D230B9 /* Defense-DL.png in Resources */,
+				299815101785BD5F00D230B9 /* Defense-FS.png in Resources */,
+				299815111785BD5F00D230B9 /* Defense-LB.png in Resources */,
+				299815121785BD5F00D230B9 /* Defense-SS.png in Resources */,
+				299815131785BD5F00D230B9 /* Defense.png in Resources */,
+				299815201785BDE900D230B9 /* Offense-2.png in Resources */,
+				299815211785BDE900D230B9 /* Offense-3.png in Resources */,
+				299815221785BDE900D230B9 /* Offense-4.png in Resources */,
+				299815231785BDE900D230B9 /* Offense-C.png in Resources */,
+				299815241785BDE900D230B9 /* Offense-LG.png in Resources */,
+				299815251785BDE900D230B9 /* Offense-LT.png in Resources */,
+				299815261785BDE900D230B9 /* Offense-RG.png in Resources */,
+				299815271785BDE900D230B9 /* Offense-RT.png in Resources */,
+				299815281785BDE900D230B9 /* Offense-TE.png in Resources */,
+				299815291785BDE900D230B9 /* Offense-Y.png in Resources */,
+				2998152A1785BDE900D230B9 /* Offense-Z.png in Resources */,
+				2998152B1785BDE900D230B9 /* Offense.png in Resources */,
+				2998152D1785BEB600D230B9 /* field.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
