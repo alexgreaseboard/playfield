@@ -56,9 +56,9 @@
         CCMenuItem *positionMenuItem = [CCMenuItemImage itemWithNormalImage:@"bttn-move.png" selectedImage:@"bttn-move.png" target:self selector:@selector(positionButtonTapped:)];
         trashMenuItem = [CCMenuItemImage itemWithNormalImage:@"trash.png" selectedImage:@"trash.png" target:self selector:@selector(trashButtonTapped:)];
         playMenuItem.position = ccp(60, 60);
-        resetMenuItem.position = ccp(110,60);
-        positionMenuItem.position = ccp(160,60);
-        trashMenuItem.position = ccp(640,60);
+        resetMenuItem.position = ccp(130,60);
+        positionMenuItem.position = ccp(200,60);
+        trashMenuItem.position = ccp(640,40);
         CCMenu *starMenu = [CCMenu menuWithItems:playMenuItem, resetMenuItem, positionMenuItem, trashMenuItem, nil];
         //starMenu.position = CGPointZero;
         starMenu.position = ccp(0,15);
