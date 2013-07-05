@@ -55,7 +55,9 @@
     
     [TestFlight takeOff:@"e9a15330-1dd5-411e-b20d-b01f4cf7bcdd"];
     
-    
+    if(self.managedObjectContext){
+        
+    }
     NSURL *ubiq = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
     if (ubiq) {
         [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"iCloud access at %@", ubiq]];

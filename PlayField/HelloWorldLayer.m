@@ -56,9 +56,9 @@
         CCMenuItem *positionMenuItem = [CCMenuItemImage itemWithNormalImage:@"bttn-move.png" selectedImage:@"bttn-move.png" target:self selector:@selector(positionButtonTapped:)];
         trashMenuItem = [CCMenuItemImage itemWithNormalImage:@"trash.png" selectedImage:@"trash.png" target:self selector:@selector(trashButtonTapped:)];
         playMenuItem.position = ccp(60, 60);
-        resetMenuItem.position = ccp(110,60);
-        positionMenuItem.position = ccp(160,60);
-        trashMenuItem.position = ccp(640,60);
+        resetMenuItem.position = ccp(130,60);
+        positionMenuItem.position = ccp(200,60);
+        trashMenuItem.position = ccp(640,40);
         CCMenu *starMenu = [CCMenu menuWithItems:playMenuItem, resetMenuItem, positionMenuItem, trashMenuItem, nil];
         //starMenu.position = CGPointZero;
         starMenu.position = ccp(0,15);
@@ -84,13 +84,28 @@
 - (void)selectSpriteForTouch:(CGPoint)touchLocation {
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld -  selectSpritForTouch"]];
     PlaySprite *newPlayerSprite = nil;
+    
+    int xDistance = 0;
+    int yDistance = 0;
     for (PlaySprite *ps in self.movableSprites) {
-        if (CGRectContainsPoint(ps.sprite.boundingBox, touchLocation)) {
-            newPlayerSprite = ps;
-            break;
+        int xDifference = abs( CGRectGetMidX(ps.sprite.boundingBox) - touchLocation.x );
+        int yDifference = abs ( CGRectGetMidY(ps.sprite.boundingBox) - touchLocation.y );
+        //[TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld -  selectSpritForTouch2 %i %i", xDifference, yDifference]];
+        if (CGRectContainsPoint(ps.sprite.boundingBox, touchLocation) ) { // if it's within the box
+            if(!newPlayerSprite){
+                //[TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld -  selectSpritForTouch3 - setting sprite %i %i", xDifference, yDifference]];
+                newPlayerSprite = ps;
+                xDistance = xDifference;
+                yDistance = yDifference;
+            } // if there are 2 sprites in the same place, get the one that is closest to the touch point instead of the first one found
+            else if(xDifference < xDistance && yDifference < yDistance){
+                    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld -  selectSpritForTouch4 - using second point"]];
+                    newPlayerSprite = ps;
+                    xDistance = xDifference;
+                    yDistance = yDifference;
+            }
         }
     }
-
     selPlayerSprite = newPlayerSprite;
         
     //remove objects each time the player makes a new path
@@ -122,7 +137,12 @@
     }
     
     CGPoint translation = ccpSub(newTouchLocation, oldTouchLocation);
-    [self panForTranslation:translation];
+    if (selPlayerSprite) {
+        CGPoint newPos = ccpAdd(selPlayerSprite.sprite.position, translation);
+        //NSLog(@"TouchLocation newPosition %f,%f", newPos.x, newPos.y);
+        //[selPlayerSprite repositionSpriteWithPosition:newPos];
+        selPlayerSprite.sprite.position = newPos;
+    }
 }
 
 -(void) ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event{
