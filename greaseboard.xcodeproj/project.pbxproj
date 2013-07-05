@@ -1808,7 +1808,7 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = greaseboard.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jacob Toombs (CHCPZKR26B)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1831,7 +1831,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = greaseboard;
-				PROVISIONING_PROFILE = "DA7ACC2E-BFEB-4FB0-9951-E4D6A8E788B6";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1845,7 +1845,7 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = greaseboard.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jacob Toombs (CHCPZKR26B)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1866,7 +1866,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = greaseboard;
-				PROVISIONING_PROFILE = "DA7ACC2E-BFEB-4FB0-9951-E4D6A8E788B6";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
