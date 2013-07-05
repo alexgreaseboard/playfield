@@ -40,7 +40,7 @@
     [super viewDidLoad];
     [TestFlight passCheckpoint:@"Loading GameTime"];
 	// Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"field.jpg"]];
+    //self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"field.jpg"]];
     
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = [self.view convertRect:self.collectionLabel.frame toView:self.view];
