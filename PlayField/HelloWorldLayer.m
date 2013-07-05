@@ -107,6 +107,7 @@
         }
     }
     selPlayerSprite = newPlayerSprite;
+    //[selPlayerSprite.sprite setAnchorPoint:ccp(0.5f, 0.5f)];
         
     //remove objects each time the player makes a new path
     [selPlayerSprite resetPath];
