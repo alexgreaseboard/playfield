@@ -31,4 +31,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *weight;
 @property (weak, nonatomic) IBOutlet UILabel *time40;
 
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *editButton;
+
 @end

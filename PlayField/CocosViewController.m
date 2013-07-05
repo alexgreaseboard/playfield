@@ -72,13 +72,15 @@
     // Finish up our view controller containment responsibilities.
     [director didMoveToParentViewController:self];
 
-        CCScene *scene = [HelloWorldLayer scene];
+    CCScene *scene = [HelloWorldLayer scene];
     
-        // Run whatever scene we'd like to run here.
-        [director pushScene:scene];
+    // Run whatever scene we'd like to run here.
+    [director pushScene:scene];
     
-        _helloWorldLayer = [scene.children objectAtIndex:0];
-
+    _helloWorldLayer = [scene.children objectAtIndex:0];
+    
+    self.editButton.enabled = false;
+    self.saveButton.enabled = false;
 }
 
 - (void)setCurrentPlay:(Play *)pPlay
@@ -108,6 +110,11 @@
     // Update the user interface for the detail item.
     if (self.detailItem) {
         self.title = self.detailItem.name;
+        self.editButton.enabled = true;
+        self.saveButton.enabled = true;
+    } else {
+        self.editButton.enabled = false;
+        self.saveButton.enabled = false;
     }
 }
 

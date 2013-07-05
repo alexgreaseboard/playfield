@@ -66,6 +66,10 @@
         self.height.text = [[self.detailItem valueForKey:@"height"] description];
         self.weight.text = [[self.detailItem valueForKey:@"weight"] description];
         self.time40.text = [[self.detailItem valueForKey:@"time40"] description];
+        
+        self.editButton.enabled = true;
+    } else {
+        self.editButton.enabled = false;
     }
 }
 

@@ -34,4 +34,7 @@
 - (void)addItemSprite:(NSString *)itemName;
 - (IBAction)cancel:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *saveButton;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *editButton;
+
 @end

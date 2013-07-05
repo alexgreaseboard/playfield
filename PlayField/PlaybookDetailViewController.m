@@ -38,7 +38,7 @@
     [super viewDidLoad];
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlaybookDetail - loading"]];
     
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"field.jpg"]];
+    //self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"field.jpg"]];
     
     [self.collectionView registerClass:[PlaybookPlayCell class] forCellWithReuseIdentifier:@"PlaybookPlayCell"];
 	
