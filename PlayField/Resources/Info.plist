@@ -12,12 +12,7 @@
 	<string></string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>Icon.png</string>
-		<string>Icon@2x.png</string>
 		<string>gb-icon-72.png</string>
-		<string>Icon-Small-50.png</string>
-		<string>Icon-Small.png</string>
-		<string>Icon-Small@2x.png</string>
 		<string>gb-icon-144.png</string>
 	</array>
 	<key>CFBundleIcons</key>

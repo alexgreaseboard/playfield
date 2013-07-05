@@ -41,26 +41,26 @@
     
     _items = [[NSMutableArray alloc] init];
     [_items addObject:[PlayDrillItem itemWithText:@"Defense-C" andWithImage:@"Defense-C.png"]];
-    [_items addObject:[PlayDrillItem itemWithText:@"Defense-DE" andWithImage:@"defense-DE.png"]];
-    [_items addObject:[PlayDrillItem itemWithText:@"Defense-DL" andWithImage:@"defense-DL.png"]];
-    [_items addObject:[PlayDrillItem itemWithText:@"Defense-FS" andWithImage:@"defense-FS.png"]];
-    [_items addObject:[PlayDrillItem itemWithText:@"Defense-LB" andWithImage:@"defense-LB.png"]];
-    [_items addObject:[PlayDrillItem itemWithText:@"Defense-SS" andWithImage:@"defense-SS.png"]];
-    [_items addObject:[PlayDrillItem itemWithText:@"Defense" andWithImage:@"defense.png"]];
-    [_items addObject:[PlayDrillItem itemWithText:@"Offense-1" andWithImage:@"offense-1.png"]];
-    [_items addObject:[PlayDrillItem itemWithText:@"Offense-2" andWithImage:@"offense-2.png"]];
-    [_items addObject:[PlayDrillItem itemWithText:@"Offense-3" andWithImage:@"offense-3.png"]];
-    [_items addObject:[PlayDrillItem itemWithText:@"Offense-4" andWithImage:@"offense-4.png"]];
-    [_items addObject:[PlayDrillItem itemWithText:@"Offense-C" andWithImage:@"offense-C.png"]];
-    [_items addObject:[PlayDrillItem itemWithText:@"Offense-LG" andWithImage:@"offense-LG.png"]];
-    [_items addObject:[PlayDrillItem itemWithText:@"Offense-LT" andWithImage:@"offense-LT.png"]];
-    [_items addObject:[PlayDrillItem itemWithText:@"Offense-RG" andWithImage:@"offense-RG.png"]];
-    [_items addObject:[PlayDrillItem itemWithText:@"Offense-RT" andWithImage:@"offense-RT.png"]];
-    [_items addObject:[PlayDrillItem itemWithText:@"Offense-TE" andWithImage:@"offense-TE.png"]];
-    [_items addObject:[PlayDrillItem itemWithText:@"Offense-Y" andWithImage:@"offense-Y.png"]];
-    [_items addObject:[PlayDrillItem itemWithText:@"Offense-Z" andWithImage:@"offense-Z.png"]];
-    [_items addObject:[PlayDrillItem itemWithText:@"Offense" andWithImage:@"offense.png"]];
-    [_items addObject:[PlayDrillItem itemWithText:@"Cone" andWithImage:@"cone.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Defense-DE" andWithImage:@"Defense-DE.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Defense-DL" andWithImage:@"Defense-DL.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Defense-FS" andWithImage:@"Defense-FS.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Defense-LB" andWithImage:@"Defense-LB.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Defense-SS" andWithImage:@"Defense-SS.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Defense" andWithImage:@"Defense.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense-1" andWithImage:@"Offense-1.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense-2" andWithImage:@"Offense-2.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense-3" andWithImage:@"Offense-3.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense-4" andWithImage:@"Offense-4.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense-C" andWithImage:@"Offense-C.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense-LG" andWithImage:@"Offense-LG.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense-LT" andWithImage:@"Offense-LT.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense-RG" andWithImage:@"Offense-RG.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense-RT" andWithImage:@"Offense-RT.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense-TE" andWithImage:@"Offense-TE.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense-Y" andWithImage:@"Offense-Y.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense-Z" andWithImage:@"Offense-Z.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense" andWithImage:@"Offense.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Cone" andWithImage:@"Cone.png"]];
     
     detailViewController = (CocosViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
