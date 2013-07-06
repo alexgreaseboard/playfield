@@ -53,7 +53,7 @@
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithRed:(18.0 / 255.0) green:(50.0 / 255.0) blue:(33.0 / 255.0) alpha: 1];
     
     // available colors for the items
     self.availableColors = [[NSMutableArray alloc] initWithCapacity:20];
