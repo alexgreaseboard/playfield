@@ -131,6 +131,7 @@
         CGPoint collectionTouchPoint = [recognizer locationInView:self.collectionView];
         NSIndexPath *landingPoint = [self.collectionView indexPathForItemAtPoint:collectionTouchPoint];
         if (landingPoint) {
+            //draggingPlay = [playbookPlayDS.fetchedResultsController objectAtIndexPath:landingPoint];
             initialMainTouchPoint = [recognizer locationInView:self.view];
             initialDraggingFrame.origin = collectionTouchPoint;
             initialDraggingFrame.size.height = 150;
@@ -160,13 +161,17 @@
             translation.x = translation.x + initialMainTouchPoint.x;
             translation.y = translation.y + initialMainTouchPoint.y;
             if (CGRectContainsPoint([self.trashCan frame], translation)) {
-                NSLog(@"Deleting...");
+                // Call DeletePlaybook
             }
             [draggingItem removeFromSuperview];
         }
         draggingItem = nil;
         draggingPlay = nil;
     }        
+}
+
+- (void) deletePlayFromPlaybook:(Playbook *)playbook play:(Play *)play {
+    // Have to use play and not play name because two plays might have the same name.
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
