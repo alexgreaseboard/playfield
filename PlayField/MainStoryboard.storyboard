@@ -2075,6 +2075,21 @@
                                     <action selector="switchType:" destination="89f-El-YeM" eventType="touchUpInside" id="KnH-GZ-Tic"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NYq-DG-3O4" customClass="PurpleButton">
+                                <rect key="frame" x="951" y="207" width="53" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="doneButtonPressed:" destination="89f-El-YeM" eventType="touchUpInside" id="oGl-to-s18"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.066666670139999995" green="0.25098040700000002" blue="0.17254902420000001" alpha="1" colorSpace="deviceRGB"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -2090,10 +2105,12 @@
                     <connections>
                         <outlet property="collectionLabel" destination="hhQ-dw-6Pp" id="BaQ-Ez-TqH"/>
                         <outlet property="currentPlayView" destination="FeI-bB-FIc" id="asn-8O-FnE"/>
+                        <outlet property="doneButton" destination="NYq-DG-3O4" id="HnD-7n-MSU"/>
                         <outlet property="nextPlayButton" destination="tAG-lE-G6T" id="QVf-5H-HS7"/>
                         <outlet property="playbooksCollection" destination="yRY-uT-SqY" id="81B-TL-KKY"/>
                         <outlet property="removeAllButton" destination="a3t-2u-6g6" id="Wl9-gI-CzI"/>
                         <outlet property="switchTypeButton" destination="Oxc-6X-Xzd" id="aaZ-M2-r8f"/>
+                        <outlet property="timerView" destination="ira-8E-WJx" id="K5o-2b-ZIv"/>
                         <outlet property="upcomingPlaysCollection" destination="ckX-zu-gaU" id="iqs-f0-a54"/>
                         <segue destination="iZd-0D-Vte" kind="modal" identifier="playbookShowPlaySegue" modalPresentationStyle="pageSheet" id="sin-KZ-Ndb"/>
                     </connections>
@@ -2894,6 +2911,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="5yD-N9-zYE"/>
-        <segue reference="6gM-dK-R7A"/>
+        <segue reference="sin-KZ-Ndb"/>
     </inferredMetricsTieBreakers>
 </document>
