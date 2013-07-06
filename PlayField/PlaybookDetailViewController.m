@@ -147,14 +147,22 @@
         }
                 
     } else if (recognizer.state == UIGestureRecognizerStateChanged) {
-        CGPoint translation = [recognizer translationInView:self.collectionView];
+        CGPoint translation = [recognizer translationInView:self.view];
         CGRect newFrame = initialDraggingFrame;
         newFrame.origin.x += translation.x;
         newFrame.origin.y += translation.y;
         draggingItem.frame = newFrame;
     } else if (recognizer.state == UIGestureRecognizerStateEnded) {
-        
-        [draggingItem removeFromSuperview];
+        if( draggingItem != nil ) {
+            CGPoint translation = [recognizer translationInView:self.view];
+            if (CGRectContainsPoint([self.trashCan frame], translation)) {
+                NSLog(@"Deleting...");
+            } else {
+                NSLog(@"%@", NSStringFromCGPoint(translation));
+                NSLog(@"%@", NSStringFromCGRect(self.trashCan.frame));
+            }
+            [draggingItem removeFromSuperview];
+        }
         draggingItem = nil;
         draggingPlay = nil;
     }        

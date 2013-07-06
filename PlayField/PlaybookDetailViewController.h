@@ -17,7 +17,9 @@
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) PlaybookViewController *parent;
+@property (strong, nonatomic) IBOutlet UIImageView *trashCan;
 
 - (IBAction)returnToPlaybooks:(id)sender;
+
 
 @end
