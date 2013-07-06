@@ -1570,7 +1570,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="2am-Y9-KEi">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="playbookPlayCell" id="2am-Y9-KEi">
                                         <rect key="frame" x="0.0" y="0.0" width="143" height="138"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1588,7 +1588,7 @@
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <segue destination="iZd-0D-Vte" kind="modal" identifier="playbookShowPlaySegue" modalPresentationStyle="pageSheet" id="6gM-dK-R7A"/>
+                                            <segue destination="iZd-0D-Vte" kind="modal" identifier="playbookShowPlaySegue" modalPresentationStyle="currentContext" id="6gM-dK-R7A"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -2588,6 +2588,7 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9zi-KV-jGB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2881,8 +2882,9 @@
         <!--Navigation Controller-->
         <scene sceneID="6EJ-PK-C3N">
             <objects>
-                <navigationController modalPresentationStyle="pageSheet" id="iZd-0D-Vte" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" modalPresentationStyle="pageSheet" id="iZd-0D-Vte" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UPF-KU-cUo">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

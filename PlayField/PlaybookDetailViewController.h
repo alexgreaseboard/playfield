@@ -11,7 +11,7 @@
 #import "PlayCreationPlaysTableViewController.h"
 #import "PlaybookViewController.h"
 
-@interface PlaybookDetailViewController : UIViewController <PlaybookEditDelegate,UIAlertViewDelegate,PlayCreationPlaysDelegate,UICollectionViewDelegate>
+@interface PlaybookDetailViewController : UIViewController <PlaybookEditDelegate,UIAlertViewDelegate,UICollectionViewDelegate>
 
 @property (nonatomic, strong) Playbook *playbook;
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
