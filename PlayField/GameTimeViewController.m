@@ -64,7 +64,7 @@
     
     // set the datasources/delegates
     self.playbooksCollection.dataSource = self.playBookDS;
-    self.playbooksCollection.delegate = self.playBookDS;
+    self.playbooksCollection.delegate = self;
     self.upcomingPlaysCollection.dataSource = self.upcomingPlaysDS;
     self.upcomingPlaysCollection.delegate = self;
     
@@ -72,10 +72,10 @@
     [self.upcomingPlaysCollection registerClass:[PlaybookPlayCell class] forCellWithReuseIdentifier:@"PlaybookPlayCell"];
     
     // gestures - pinch
-    self.pinchOutGestureRecognizer = [[UIPinchGestureRecognizer alloc]
-                                      initWithTarget:self action:@selector(handlePinchOutGesture:)];
-    self.pinchOutGestureRecognizer.delegate = self;
-    [self.playbooksCollection addGestureRecognizer:self.pinchOutGestureRecognizer];
+    //self.pinchOutGestureRecognizer = [[UIPinchGestureRecognizer alloc]
+    //                                  initWithTarget:self action:@selector(handlePinchOutGesture:)];
+    //self.pinchOutGestureRecognizer.delegate = self;
+    //[self.playbooksCollection addGestureRecognizer:self.pinchOutGestureRecognizer];
     // gestures - drag & drop playbooks
     UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePlaybookPanning:)];
     panRecognizer.delegate = self;
@@ -393,14 +393,59 @@
     [self.playsCollection reloadData];
 }
 
+- (IBAction)doneButtonPressed:(id)sender {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - done button"]];
+    
+    // animate
+    CGRect newFrame = CGRectStandardize(self.playbooksCollection.frame);
+    newFrame.origin.y += newFrame.size.height;
+    [UIView animateWithDuration:.5 animations: ^{
+        self.playsCollection.frame = newFrame;
+        self.playbooksCollection.alpha = 1.0;
+        self.doneButton.alpha = 0;
+    }];
+}
+
 
 #pragma mark – UICollectionViewDelegateFlowLayout
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - selected play"]];
     if(collectionView == self.upcomingPlaysCollection){
         selectedPlaybookplay = [self.upcomingPlaysDS.upcomingPlays objectAtIndex:indexPath.item];
-    } else{
+    } else if(collectionView == self.playsCollection){
         selectedPlaybookplay = [self.playbookPlayDS.fetchedResultsController objectAtIndexPath:indexPath];
+    } else {
+        
+        Playbook *selectedPlaybook = [self.playBookDS.fetchedResultsController objectAtIndexPath:indexPath];
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        CGRect newFrame = CGRectInset( self.playbooksCollection.frame, 0, 0);
+        newFrame.origin.y += newFrame.size.height;
+        self.playsCollection = [[UICollectionView alloc]
+                                initWithFrame:newFrame collectionViewLayout:layout];
+        self.playsCollection.backgroundColor = [UIColor clearColor];
+        self.playsCollection.delegate = self;
+        self.playsCollection.dataSource = self.playbookPlayDS;
+        self.playsCollection.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        self.playsCollection.scrollEnabled = YES;
+        self.playbookPlayDS.playbook = selectedPlaybook;
+        
+        [self.playsCollection registerClass:[PlaybookPlayCell class] forCellWithReuseIdentifier:@"PlaybookPlayCell"];
+        
+        // animate - slide the new view up & hide the old one
+        [self.view  addSubview:self.playsCollection];
+        [self.view bringSubviewToFront:self.timerView];
+        [UIView animateWithDuration:.4 animations: ^{
+            self.playsCollection.frame = self.playbooksCollection.frame;
+            self.playbooksCollection.alpha = 0.0;
+            self.doneButton.alpha = 1;
+        }];
+        
+        // gestures - drag & drop
+        UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePlayPanning:)];
+        panRecognizer.delegate = self;
+        [self.playsCollection addGestureRecognizer:panRecognizer];
+
+        return;
     }
     [self performSegueWithIdentifier:@"playbookShowPlaySegue" sender:selectedPlaybookplay];
 }

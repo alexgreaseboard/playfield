@@ -59,10 +59,10 @@ Playbook *selectedPlaybook;
     self.playbooksCollection.backgroundColor = [UIColor clearColor];
     
     // gestures - pinch
-    self.pinchOutGestureRecognizer = [[UIPinchGestureRecognizer alloc]
-                                      initWithTarget:self action:@selector(handlePinchOutGesture:)];
-    self.pinchOutGestureRecognizer.delegate = self;
-    [self.playbooksCollection addGestureRecognizer:self.pinchOutGestureRecognizer];
+    //self.pinchOutGestureRecognizer = [[UIPinchGestureRecognizer alloc]
+    //                                  initWithTarget:self action:@selector(handlePinchOutGesture:)];
+    //self.pinchOutGestureRecognizer.delegate = self;
+    //[self.playbooksCollection addGestureRecognizer:self.pinchOutGestureRecognizer];
     
     [self.playbooksCollection registerClass:[PlaybookCell class] forCellWithReuseIdentifier:@"PlaybookCell"];
 }

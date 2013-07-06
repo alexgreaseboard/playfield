@@ -379,51 +379,19 @@
 - (NSData*) screenshotUIImage:(CGSize) displaySize forWinSize: (CGSize) winSize
 {
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld - screenshotUIImage"]];
-	//Create buffer for pixels
-	GLuint bufferLength = displaySize.width * displaySize.height * 4;
-	GLubyte* buffer = (GLubyte*)malloc(bufferLength);
-	
-	//Read Pixels from OpenGL
-	glReadPixels(0, 0, displaySize.width, displaySize.height, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
-	//Make data provider with data.
-	CGDataProviderRef provider = CGDataProviderCreateWithData(NULL, buffer, bufferLength, NULL);
-	
-	//Configure image
-	int bitsPerComponent = 8;
-	int bitsPerPixel = 32;
-	int bytesPerRow = 4 * displaySize.width;
-	CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
-	CGBitmapInfo bitmapInfo = kCGBitmapByteOrderDefault;
-	CGColorRenderingIntent renderingIntent = kCGRenderingIntentDefault;
-	CGImageRef iref = CGImageCreate(displaySize.width, displaySize.height, bitsPerComponent, bitsPerPixel, bytesPerRow, colorSpaceRef, bitmapInfo, provider, NULL, NO, renderingIntent);
-	
-	uint32_t* pixels = (uint32_t*)malloc(bufferLength);
-	CGContextRef context = CGBitmapContextCreate(pixels, winSize.width, winSize.height, 8, winSize.width * 4, CGImageGetColorSpace(iref), kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
-	
-	CGContextTranslateCTM(context, 0, displaySize.height);
-	CGContextScaleCTM(context, 1.0f, -1.0f);
-	
-	// for rotating
-    //case CCDeviceOrientationLandscapeLeft:
-	//CGContextRotateCTM(context, CC_DEGREES_TO_RADIANS(-90));
-	//CGContextTranslateCTM(context, -displaySize.height, 0);
-	//case CCDeviceOrientationLandscapeRight:
-	//CGContextRotateCTM(context, CC_DEGREES_TO_RADIANS(90));
-	//CGContextTranslateCTM(context, displaySize.height-displaySize.width, -displaySize.height);
-	
-	
-	CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, displaySize.width, displaySize.height), iref);
-	CGImageRef imageRef = CGBitmapContextCreateImage(context);
-	UIImage *outputImage = [[UIImage alloc] initWithCGImage:imageRef];
-	
-	//Dealloc
-	CGImageRelease(imageRef);
-	CGDataProviderRelease(provider);
-	CGImageRelease(iref);
-	CGColorSpaceRelease(colorSpaceRef);
-	CGContextRelease(context);
-	free(buffer);
-	free(pixels);
+    CCScene *scene = [[CCDirector sharedDirector] runningScene];
+    CCNode *startNode = [scene.children objectAtIndex:0];
+    
+	[CCDirector sharedDirector].nextDeltaTimeZero = YES;
+    
+    CCRenderTexture* rtx =
+    [CCRenderTexture renderTextureWithWidth:winSize.width
+                                     height:winSize.height];
+    [rtx begin];
+    [startNode visit];
+    [rtx end];
+    
+    UIImage *outputImage = [rtx getUIImage];
     
     // uncomment next line to save to photo album (for testing)
     //UIImageWriteToSavedPhotosAlbum(outputImage,nil,NULL,NULL);
