@@ -57,10 +57,10 @@
     
     // available colors for the items
     self.availableColors = [[NSMutableArray alloc] initWithCapacity:20];
-    [self.availableColors addObject:[UIColor colorWithRed:.17 green:.26 blue:.37 alpha:0.75]];// blue
-    [self.availableColors addObject:[UIColor colorWithRed:.66 green:.15 blue:.18 alpha:0.75]];// red
-    [self.availableColors addObject:[UIColor colorWithRed:.31 green:.41 blue:.18 alpha:0.85]];// green
-    [self.availableColors addObject:[UIColor colorWithRed:.20 green:.15 blue:.33 alpha:0.75]];// purple
+    [self.availableColors addObject:[UIColor colorWithRed:.17 green:.26 blue:.32 alpha:0.95]];// blue
+    [self.availableColors addObject:[UIColor colorWithRed:.66 green:.15 blue:.18 alpha:0.85]];// red
+    [self.availableColors addObject:[UIColor colorWithRed:.31 green:.41 blue:.18 alpha:0.95]];// green
+    [self.availableColors addObject:[UIColor colorWithRed:.20 green:.15 blue:.33 alpha:0.95]];// purple
     
     self.colorItemMap = [[NSMutableDictionary alloc] initWithCapacity:20];
 }
@@ -133,6 +133,7 @@
     self.tableView.delegate = self;
     self.tableView.allowsSelection = NO;
     self.tableView.rowHeight = 5 * self.pixelRatio; // 5 minute intervals
+    self.tableView.backgroundColor = [UIColor clearColor];
     
     self.tableView.separatorColor = [UIColor blackColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;

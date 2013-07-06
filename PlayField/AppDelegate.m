@@ -53,7 +53,7 @@
     // !!!: Use the next line only during beta
     [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
     
-    [TestFlight takeOff:@"e9a15330-1dd5-411e-b20d-b01f4cf7bcdd"];
+    [TestFlight takeOff:@"11f052b8-212b-4fcf-8e0b-540750f1972c"];
     
     if(self.managedObjectContext){
         
