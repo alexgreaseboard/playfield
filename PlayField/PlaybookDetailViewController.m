@@ -21,7 +21,7 @@
     CGPoint initialMainTouchPoint;
     PlaybookPlayDataSource *playbookPlayDS;
     PlaybookPlayCell *draggingItem;
-    Play *draggingPlay;
+    PlaybookPlay *draggingPlaybookPlay;
     PlaybookPlay *selectedPlaybookplay;
 }
 
@@ -131,7 +131,6 @@
         CGPoint collectionTouchPoint = [recognizer locationInView:self.collectionView];
         NSIndexPath *landingPoint = [self.collectionView indexPathForItemAtPoint:collectionTouchPoint];
         if (landingPoint) {
-            //draggingPlay = [playbookPlayDS.fetchedResultsController objectAtIndexPath:landingPoint];
             initialMainTouchPoint = [recognizer locationInView:self.view];
             initialDraggingFrame.origin = collectionTouchPoint;
             initialDraggingFrame.size.height = 150;
@@ -144,8 +143,8 @@
             initialDraggingFrame.origin.y -= (initialDraggingFrame.size.height / 2);
             
             // add the cell to the view
-            //draggingPlay = [self.playsDS.fetchedResultsController objectAtIndexPath:pannedItem];
-            draggingItem = [[PlaybookPlayCell alloc] initWithFrame:initialDraggingFrame name:draggingPlay.name];
+            draggingPlaybookPlay = [playbookPlayDS.fetchedResultsController objectAtIndexPath:landingPoint];
+            draggingItem = [[PlaybookPlayCell alloc] initWithFrame:initialDraggingFrame name:draggingPlaybookPlay.play.name];
             [self.view addSubview:draggingItem];
         }
                 
@@ -161,17 +160,24 @@
             translation.x = translation.x + initialMainTouchPoint.x;
             translation.y = translation.y + initialMainTouchPoint.y;
             if (CGRectContainsPoint([self.trashCan frame], translation)) {
-                // Call DeletePlaybook
+                [self deletePlaybookPlay:draggingPlaybookPlay];
             }
             [draggingItem removeFromSuperview];
         }
         draggingItem = nil;
-        draggingPlay = nil;
+        draggingPlaybookPlay = nil;
     }        
 }
 
-- (void) deletePlayFromPlaybook:(Playbook *)playbook play:(Play *)play {
-    // Have to use play and not play name because two plays might have the same name.
+- (void) deletePlaybookPlay:(PlaybookPlay *)playbookPlay {
+    [self.managedObjectContext deleteObject:playbookPlay];
+    [self.collectionView reloadData];
+    // Save the context.
+    NSError *error = nil;
+    if (![_playbook.managedObjectContext save:&error]) {
+        [self fatalCoreDataError:error];
+        return;
+    }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
