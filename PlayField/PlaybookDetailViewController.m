@@ -18,6 +18,7 @@
 
 @implementation PlaybookDetailViewController {
     CGRect initialDraggingFrame;
+    CGPoint initialMainTouchPoint;
     PlaybookPlayDataSource *playbookPlayDS;
     PlaybookPlayCell *draggingItem;
     Play *draggingPlay;
@@ -127,18 +128,19 @@
 
 - (void)handlePanFrom:(UIPanGestureRecognizer *)recognizer {
     if (recognizer.state == UIGestureRecognizerStateBegan) {
-        CGPoint pinchPoint = [recognizer locationInView:self.collectionView];
-        NSIndexPath *landingPoint = [self.collectionView indexPathForItemAtPoint:pinchPoint];
+        CGPoint collectionTouchPoint = [recognizer locationInView:self.collectionView];
+        NSIndexPath *landingPoint = [self.collectionView indexPathForItemAtPoint:collectionTouchPoint];
         if (landingPoint) {
-            initialDraggingFrame.origin = pinchPoint;
+            initialMainTouchPoint = [recognizer locationInView:self.view];
+            initialDraggingFrame.origin = collectionTouchPoint;
             initialDraggingFrame.size.height = 150;
             initialDraggingFrame.size.width = 150;
             // center the cell
-            //initialDraggingFrame.origin.x -= (initialDraggingFrame.size.width / 2);
+            initialDraggingFrame.origin.x -= (initialDraggingFrame.size.width / 2);
             //initialDraggingFrame.origin.y -= (8 + self.collectionView.contentOffset.y);
             // have we scrolled?
-            //            initialDraggingFrame.origin.y -= [self.playsCollection contentOffset].y;
-            //initialDraggingFrame.origin.y += (initialDraggingFrame.size.height);
+            initialDraggingFrame.origin.y -= [self.collectionView contentOffset].y;
+            initialDraggingFrame.origin.y -= (initialDraggingFrame.size.height / 2);
             
             // add the cell to the view
             //draggingPlay = [self.playsDS.fetchedResultsController objectAtIndexPath:pannedItem];
@@ -154,12 +156,11 @@
         draggingItem.frame = newFrame;
     } else if (recognizer.state == UIGestureRecognizerStateEnded) {
         if( draggingItem != nil ) {
-            CGPoint translation = [recognizer translationInView:self.view];
+            CGPoint translation = [recognizer translationInView:self.mainView];
+            translation.x = translation.x + initialMainTouchPoint.x;
+            translation.y = translation.y + initialMainTouchPoint.y;
             if (CGRectContainsPoint([self.trashCan frame], translation)) {
                 NSLog(@"Deleting...");
-            } else {
-                NSLog(@"%@", NSStringFromCGPoint(translation));
-                NSLog(@"%@", NSStringFromCGRect(self.trashCan.frame));
             }
             [draggingItem removeFromSuperview];
         }

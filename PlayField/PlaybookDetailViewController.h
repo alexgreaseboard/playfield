@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) PlaybookViewController *parent;
 @property (strong, nonatomic) IBOutlet UIImageView *trashCan;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
 
 - (IBAction)returnToPlaybooks:(id)sender;
 

@@ -1617,6 +1617,8 @@
                     <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="xcU-IY-50a" id="eQb-fX-Xr6"/>
+                        <outlet property="mainView" destination="jZ1-Ll-aX5" id="JbB-jB-Ga1"/>
+                        <outlet property="trashCan" destination="ou4-Re-fKI" id="h3C-bQ-rk4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oEU-wy-T7D" userLabel="First Responder" sceneMemberID="firstResponder"/>
