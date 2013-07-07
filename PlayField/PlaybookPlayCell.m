@@ -45,8 +45,10 @@
         self.nameLabel.adjustsFontSizeToFitWidth = YES;
         [self.contentView addSubview:self.nameLabel];
         
-        if(playbookPlay != nil) {
+        if(playbookPlay != nil && playbookPlay.play.thumbnail != nil) {
             [self addPlaysInformation];
+        } else {
+            self.backgroundColor = [UIColor grayColor];
         }
     }
     return self;

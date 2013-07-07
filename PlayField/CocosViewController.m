@@ -92,11 +92,14 @@
     
     if (_detailItem != pPlay) {
         _detailItem = pPlay;
-
+        
         [_helloWorldLayer setCurrentPlay:self.detailItem];
         
         // Update the view.
         [self configureView];
+        if(self.detailItem.thumbnail == nil){
+            self.detailItem.thumbnail = [self.helloWorldLayer screenshotUIImage:self.view.frame.size forWinSize:self.view.frame.size];
+        }
     }
 }
 
