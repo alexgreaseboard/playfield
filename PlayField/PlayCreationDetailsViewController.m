@@ -55,7 +55,7 @@
         }
         
         NSUInteger playRunPassIndex = [playRunPasses indexOfObject:self.play.runPass];
-        if( playTypeIndex != NSNotFound ) {
+        if( playRunPassIndex != NSNotFound ) {
             [self.playRunPass selectRow:playRunPassIndex inComponent:0 animated:NO];
         }
     }
