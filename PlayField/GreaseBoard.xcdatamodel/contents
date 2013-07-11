@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="GameTime" representedClassName="GameTime" syncable="YES">
+    <entity name="GameTime" syncable="YES">
         <attribute name="awayScore" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="awayTimeouts" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="homeScore" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="homeTimeouts" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="currentPlaybook" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Playbook" syncable="YES"/>
-        <relationship name="upcomingPlaybook" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Playbook" syncable="YES"/>
+        <relationship name="currentPlaybook" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Playbook" syncable="YES"/>
+        <relationship name="upcomingPlaybook" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Playbook" syncable="YES"/>
     </entity>
     <entity name="Play" representedClassName="Play" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -79,13 +79,13 @@
     <elements>
         <element name="Play" positionX="-461" positionY="-45" width="128" height="165"/>
         <element name="Playbook" positionX="-297" positionY="162" width="128" height="118"/>
-        <element name="PlaybookPlay" positionX="-90" positionY="72" width="128" height="88"/>
-        <element name="Player" positionX="-641" positionY="-45" width="128" height="240"/>
+        <element name="PlaybookPlay" positionX="160" positionY="192" width="128" height="88"/>
+        <element name="Player" positionX="-641" positionY="-45" width="128" height="255"/>
         <element name="PlaySprite" positionX="-200" positionY="-45" width="128" height="105"/>
         <element name="Practice" positionX="-162" positionY="324" width="128" height="88"/>
         <element name="PracticeColumn" positionX="52" positionY="324" width="128" height="120"/>
         <element name="PracticeItem" positionX="34" positionY="477" width="128" height="120"/>
         <element name="SpritePoint" positionX="7" positionY="-45" width="128" height="88"/>
-        <element name="GameTime" positionX="-353" positionY="351" width="128" height="133"/>
+        <element name="GameTime" positionX="-468" positionY="207" width="128" height="133"/>
     </elements>
 </model>
