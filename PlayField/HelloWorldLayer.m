@@ -241,9 +241,7 @@
 
 - (void)resetButtonTapped:(id)sender {
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld - resetButtonTapped"]];
-    for (PlaySprite *ps in self.movableSprites) {
-        [ps resetSprite];
-    }
+    [self resetScene];
 }
 
 - (void)trashButtonTapped:(id)sender {
