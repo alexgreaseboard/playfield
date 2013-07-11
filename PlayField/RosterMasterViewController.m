@@ -251,6 +251,7 @@
     NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.nameLabel.text = [[[[object valueForKey:@"lastName"] description] stringByAppendingString:@", "]stringByAppendingString:[[object valueForKey:@"firstName"] description]];
     cell.positionLabel.text = [[object valueForKey:@"position"] description];
+    cell.numberLabel.text = [@"#" stringByAppendingString:[[object valueForKey:@"number"] description]];
 }
 
 - (void) fatalCoreDataError:(NSError *)error

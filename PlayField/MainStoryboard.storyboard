@@ -378,11 +378,19 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5mS-qp-jpS">
+                                            <rect key="frame" x="249" y="2" width="51" height="39"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
                                     <outlet property="nameLabel" destination="Arm-5z-nG6" id="UoU-zt-Nb1"/>
+                                    <outlet property="numberLabel" destination="5mS-qp-jpS" id="RkB-8m-qkf"/>
                                     <outlet property="positionLabel" destination="oB2-PP-rCy" id="zL7-kn-8Mt"/>
                                 </connections>
                             </tableViewCell>

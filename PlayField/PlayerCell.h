@@ -12,5 +12,6 @@
 
 @property (nonatomic, strong) IBOutlet UILabel *nameLabel;
 @property (nonatomic, strong) IBOutlet UILabel *positionLabel;
+@property (strong, nonatomic) IBOutlet UILabel *numberLabel;
 
 @end
