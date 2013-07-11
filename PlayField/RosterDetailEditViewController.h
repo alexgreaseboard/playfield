@@ -33,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *height;
 @property (weak, nonatomic) IBOutlet UITextField *weight;
 @property (weak, nonatomic) IBOutlet UITextField *time40;
+@property (weak, nonatomic) IBOutlet UITextField *number;
 
 - (IBAction)cancel;
 - (IBAction)done;

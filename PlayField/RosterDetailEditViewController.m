@@ -54,6 +54,7 @@
         self.height.text = [[self.detailItem valueForKey:@"height"] description];
         self.weight.text = [[self.detailItem valueForKey:@"weight"] description];
         self.time40.text = [[self.detailItem valueForKey:@"time40"] description];
+        self.number.text = [[self.detailItem valueForKey:@"number"] description];
     }
 }
 
@@ -93,6 +94,7 @@
     [self.detailItem setValue:self.height.text forKey:@"height"];
     [self.detailItem setValue:self.weight.text forKey:@"weight"];
     [self.detailItem setValue:self.time40.text forKey:@"time40"];
+    [self.detailItem setValue:self.number.text forKey:@"number"];
     
     [self.delegate rosterDetailEditViewController:self saveEdit:self.detailItem];
     [self.presentingViewController dismissViewControllerAnimated:YES completion: nil];

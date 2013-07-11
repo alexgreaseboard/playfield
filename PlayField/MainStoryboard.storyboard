@@ -242,7 +242,7 @@
                                         </view>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="sky-zR-A0B">
-                                        <rect key="frame" x="0.0" y="455" width="703" height="45"/>
+                                        <rect key="frame" x="0.0" y="455" width="703" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="43" y="0.0" width="617" height="43"/>
@@ -261,6 +261,35 @@
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="40 time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RqW-Ox-87x">
+                                                    <rect key="frame" x="20" y="11" width="105" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="kkT-YQ-VTu">
+                                        <rect key="frame" x="0.0" y="499" width="703" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="43" y="0.0" width="617" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2ui-kX-tw3">
+                                                    <rect key="frame" x="20" y="0.0" width="577" height="43"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="h8W-Zg-kj5">
+                                                    <rect key="frame" x="133" y="0.0" width="464" height="43"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2yL-dh-1jC">
                                                     <rect key="frame" x="20" y="11" width="105" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -294,6 +323,7 @@
                         <outlet property="email" destination="1qz-mF-WvT" id="g0m-m2-gsE"/>
                         <outlet property="height" destination="sLc-nj-KsZ" id="RlF-ys-c59"/>
                         <outlet property="name" destination="mP0-Qg-qgV" id="WpO-sv-cLl"/>
+                        <outlet property="number" destination="h8W-Zg-kj5" id="x7b-Pk-5sl"/>
                         <outlet property="phone" destination="BGM-la-ybj" id="1fm-Zx-gtT"/>
                         <outlet property="position" destination="6Oq-mC-yev" id="RnO-CD-6cf"/>
                         <outlet property="time40" destination="Tzt-qh-Th2" id="qL1-Cp-9hs"/>
@@ -1059,13 +1089,29 @@
                                         </view>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="IY3-OM-LQj">
-                                        <rect key="frame" x="0.0" y="603" width="768" height="45"/>
+                                        <rect key="frame" x="0.0" y="603" width="768" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="45" y="0.0" width="678" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="40 Time" adjustsFontSizeToFit="NO" minimumFontSize="17" id="RPR-p5-c1m">
+                                                    <rect key="frame" x="20" y="0.0" width="638" height="43"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="oKx-2r-RcB">
+                                        <rect key="frame" x="0.0" y="647" width="768" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="45" y="0.0" width="678" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Number" adjustsFontSizeToFit="NO" minimumFontSize="17" id="Kqg-i4-dV3">
                                                     <rect key="frame" x="20" y="0.0" width="638" height="43"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -1101,6 +1147,7 @@
                         <outlet property="firstName" destination="nAr-uJ-j8C" id="rT0-P2-B3A"/>
                         <outlet property="height" destination="ibQ-K2-Prb" id="v8L-Ew-yp5"/>
                         <outlet property="lastName" destination="F4n-ML-l7o" id="egE-JR-vYa"/>
+                        <outlet property="number" destination="Kqg-i4-dV3" id="R5o-1j-cfd"/>
                         <outlet property="phone" destination="QcN-jp-9fR" id="Qz9-HZ-tna"/>
                         <outlet property="position" destination="i4P-bA-mYx" id="aZv-4O-KDN"/>
                         <outlet property="state" destination="qyq-xh-75i" id="jo9-qT-kFR"/>
@@ -1688,7 +1735,7 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Notes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IcV-0M-xrc">
-                                                    <rect key="frame" x="20" y="20" width="45" height="21"/>
+                                                    <rect key="frame" x="20" y="20" width="245" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

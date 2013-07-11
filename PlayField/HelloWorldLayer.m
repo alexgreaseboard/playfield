@@ -235,15 +235,14 @@
 - (void)playButtonTapped:(id)sender {
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld - playButtonTapped"]];
     for (PlaySprite *ps in self.movableSprites) {
-        [ps moveSpriteWithSpeed:100];
+        [ps.sprite stopAllActions];
+        [ps moveSpriteWithSpeed:150];
     }
 }
 
 - (void)resetButtonTapped:(id)sender {
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld - resetButtonTapped"]];
-    for (PlaySprite *ps in self.movableSprites) {
-        [ps resetSprite];
-    }
+    [self resetScene];
 }
 
 - (void)trashButtonTapped:(id)sender {
@@ -281,32 +280,32 @@
     // Offense
     int centerH = 350;
     int centerV = 300;
-    [self addPlayerSpriteWithImage:@"Offense-1.png" andPosition:ccp(centerH,centerV)];    // Center
-    [self addPlayerSpriteWithImage:@"Offense-1.png" andPosition:ccp(centerH+50,centerV)];
-    [self addPlayerSpriteWithImage:@"Offense-1.png" andPosition:ccp(centerH+100,centerV)];
-    [self addPlayerSpriteWithImage:@"Offense-1.png" andPosition:ccp(centerH-50,centerV)];
-    [self addPlayerSpriteWithImage:@"Offense-1.png" andPosition:ccp(centerH-100,centerV)];
-    [self addPlayerSpriteWithImage:@"Offense-1.png" andPosition:ccp(centerH-150,centerV)];
-    [self addPlayerSpriteWithImage:@"Offense-1.png" andPosition:ccp(centerH,centerV-40)]; // Quarterback
-    [self addPlayerSpriteWithImage:@"Offense-1.png" andPosition:ccp(centerH,centerV-100)];
-    [self addPlayerSpriteWithImage:@"Offense-1.png" andPosition:ccp(centerH-50,centerV-100)];
-    [self addPlayerSpriteWithImage:@"Offense-1.png" andPosition:ccp(centerH+175,centerV-60)];
-    [self addPlayerSpriteWithImage:@"Offense-1.png" andPosition:ccp(centerH+250,centerV)];
+    [self addPlayerSpriteWithImage:@"Offense-C.png" andPosition:ccp(centerH,centerV)];    // Center
+    [self addPlayerSpriteWithImage:@"Offense-RG.png" andPosition:ccp(centerH+50,centerV)];
+    [self addPlayerSpriteWithImage:@"Offense-RT.png" andPosition:ccp(centerH+100,centerV)];
+    [self addPlayerSpriteWithImage:@"Offense-LG.png" andPosition:ccp(centerH-50,centerV)];
+    [self addPlayerSpriteWithImage:@"Offense-LT.png" andPosition:ccp(centerH-100,centerV)];
+    [self addPlayerSpriteWithImage:@"Offense-Y.png" andPosition:ccp(centerH-300,centerV-20)];
+    [self addPlayerSpriteWithImage:@"Offense-1.png" andPosition:ccp(centerH,centerV-35)]; // Quarterback
+    [self addPlayerSpriteWithImage:@"Offense-2.png" andPosition:ccp(centerH,centerV-90)];
+    [self addPlayerSpriteWithImage:@"Offense-3.png" andPosition:ccp(centerH,centerV-140)];
+    [self addPlayerSpriteWithImage:@"Offense-TE.png" andPosition:ccp(centerH+150,centerV)];
+    [self addPlayerSpriteWithImage:@"Offense-Z.png" andPosition:ccp(centerH+320,centerV)];
     
     // Defense
     centerH = 350;
     centerV = 350;
-    [self addPlayerSpriteWithImage:@"Defense.png" andPosition:ccp(centerH,centerV)];
-    [self addPlayerSpriteWithImage:@"Defense.png" andPosition:ccp(centerH+100,centerV)];
-    [self addPlayerSpriteWithImage:@"Defense.png" andPosition:ccp(centerH+165,centerV)];
-    [self addPlayerSpriteWithImage:@"Defense.png" andPosition:ccp(centerH-100,centerV)];
-    [self addPlayerSpriteWithImage:@"Defense.png" andPosition:ccp(centerH-150,centerV)];
-    [self addPlayerSpriteWithImage:@"Defense.png" andPosition:ccp(centerH-50,centerV+50)];
-    [self addPlayerSpriteWithImage:@"Defense.png" andPosition:ccp(centerH+50,centerV+50)];
-    [self addPlayerSpriteWithImage:@"Defense.png" andPosition:ccp(centerH+200,centerV+50)];
-    [self addPlayerSpriteWithImage:@"Defense.png" andPosition:ccp(centerH+275,centerV+50)];
-    [self addPlayerSpriteWithImage:@"Defense.png" andPosition:ccp(centerH-200,centerV+75)];
-    [self addPlayerSpriteWithImage:@"Defense.png" andPosition:ccp(centerH,centerV+175)];
+    [self addPlayerSpriteWithImage:@"Defense-LB.png" andPosition:ccp(centerH,centerV+117)];
+    [self addPlayerSpriteWithImage:@"Defense-LB.png" andPosition:ccp(centerH+115,centerV+75)];
+    [self addPlayerSpriteWithImage:@"Defense-DE.png" andPosition:ccp(centerH+215,centerV+15)];
+    [self addPlayerSpriteWithImage:@"Defense-LB.png" andPosition:ccp(centerH-90,centerV+75)];
+    [self addPlayerSpriteWithImage:@"Defense-DE.png" andPosition:ccp(centerH-150,centerV)];
+    [self addPlayerSpriteWithImage:@"Defense-DL.png" andPosition:ccp(centerH-50,centerV+15)];
+    [self addPlayerSpriteWithImage:@"Defense-DL.png" andPosition:ccp(centerH+65,centerV)];
+    [self addPlayerSpriteWithImage:@"Defense-C.png" andPosition:ccp(centerH+320,centerV+50)];
+    [self addPlayerSpriteWithImage:@"Defense-SS.png" andPosition:ccp(centerH+225,centerV+117)];
+    [self addPlayerSpriteWithImage:@"Defense-C.png" andPosition:ccp(centerH-300,centerV+50)];
+    [self addPlayerSpriteWithImage:@"Defense-FS.png" andPosition:ccp(centerH,centerV+252)];
 }
 
 - (void) addDefaultDrill
