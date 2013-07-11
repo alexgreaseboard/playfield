@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "PlaybookDataSource.h"
 #import "PlaybookPlayDataSource.h"
-#import "UpcomingPlaysDataSource.h"
 #import "PlaybookPinchGestureRecognizer.h"
 #import "PurpleButton.h"
 #import "TimerView.h"
@@ -32,7 +31,7 @@
 
 
 
-@property (strong, nonatomic) UpcomingPlaysDataSource *upcomingPlaysDS;
+@property (strong, nonatomic) PlaybookPlayDataSource *upcomingPlaysDS;
 
 // gestures - pinching & panning
 @property (nonatomic, strong) NSIndexPath *currentPannedItem;

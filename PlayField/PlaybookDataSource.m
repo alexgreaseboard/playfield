@@ -78,6 +78,10 @@
         NSPredicate *predicate = [NSPredicate predicateWithFormat:
                                   @"(type == %@)", self.offenseOrDefense];
         [fetchRequest setPredicate:predicate];
+    } else{
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                                  @"(type != 'hidden')", self.offenseOrDefense];
+        [fetchRequest setPredicate:predicate];
     }
     
     // Edit the sort key as appropriate.

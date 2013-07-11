@@ -84,6 +84,7 @@
 		392CD80C16EBBDF5008194B7 /* PracticeColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CD80B16EBBDF4008194B7 /* PracticeColumn.m */; };
 		392CD80F16EBD9E5008194B7 /* PracticesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CD80E16EBD9E5008194B7 /* PracticesTableViewController.m */; };
 		392CD81216EBDA3C008194B7 /* PracticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 392CD81116EBDA3C008194B7 /* PracticeCell.m */; };
+		393DED7E178E42DC00953761 /* GameTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 393DED7D178E42DC00953761 /* GameTime.m */; };
 		394AEDBB16FBEF030043D6E8 /* PracticeOtherItemsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 394AEDBA16FBEF030043D6E8 /* PracticeOtherItemsTableViewController.m */; };
 		394DEEC116F55C5A0047A3B7 /* PracticeEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 394DEEBF16F395C20047A3B7 /* PracticeEditViewController.m */; };
 		3989D24E1751143E00AD8372 /* LXReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3989D24D1751143E00AD8372 /* LXReorderableCollectionViewFlowLayout.m */; };
@@ -101,7 +102,6 @@
 		39E2FFCD1731EBD50062332C /* GameTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E2FFCC1731EBD50062332C /* GameTimeViewController.m */; };
 		39E2FFD1173322320062332C /* PinchLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E2FFD0173322320062332C /* PinchLayout.m */; };
 		39E2FFD41733256A0062332C /* PlaybookPlayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E2FFD31733256A0062332C /* PlaybookPlayDataSource.m */; };
-		39E2FFD7173588C40062332C /* UpcomingPlaysDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E2FFD6173588C40062332C /* UpcomingPlaysDataSource.m */; };
 		39E2FFDA173F2B960062332C /* PlaybookPinchGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E2FFD9173F2B960062332C /* PlaybookPinchGestureRecognizer.m */; };
 		6D0724AD16D6A74B00DDA641 /* PlayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0724AC16D6A74B00DDA641 /* PlayCell.m */; };
 		6D148F7816C988E70069CB76 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D148F7716C988E70069CB76 /* QuartzCore.framework */; };
@@ -394,6 +394,8 @@
 		392CD80E16EBD9E5008194B7 /* PracticesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticesTableViewController.m; sourceTree = "<group>"; };
 		392CD81016EBDA3C008194B7 /* PracticeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeCell.h; sourceTree = "<group>"; };
 		392CD81116EBDA3C008194B7 /* PracticeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeCell.m; sourceTree = "<group>"; };
+		393DED7C178E42DC00953761 /* GameTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTime.h; sourceTree = "<group>"; };
+		393DED7D178E42DC00953761 /* GameTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTime.m; sourceTree = "<group>"; };
 		394AEDB916FBEF030043D6E8 /* PracticeOtherItemsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeOtherItemsTableViewController.h; sourceTree = "<group>"; };
 		394AEDBA16FBEF030043D6E8 /* PracticeOtherItemsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeOtherItemsTableViewController.m; sourceTree = "<group>"; };
 		394DEEBE16F395C20047A3B7 /* PracticeEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeEditViewController.h; sourceTree = "<group>"; };
@@ -425,8 +427,6 @@
 		39E2FFD0173322320062332C /* PinchLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinchLayout.m; sourceTree = "<group>"; };
 		39E2FFD21733256A0062332C /* PlaybookPlayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybookPlayDataSource.h; sourceTree = "<group>"; };
 		39E2FFD31733256A0062332C /* PlaybookPlayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybookPlayDataSource.m; sourceTree = "<group>"; };
-		39E2FFD5173588C40062332C /* UpcomingPlaysDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingPlaysDataSource.h; sourceTree = "<group>"; };
-		39E2FFD6173588C40062332C /* UpcomingPlaysDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingPlaysDataSource.m; sourceTree = "<group>"; };
 		39E2FFD8173F2B960062332C /* PlaybookPinchGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybookPinchGestureRecognizer.h; sourceTree = "<group>"; };
 		39E2FFD9173F2B960062332C /* PlaybookPinchGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybookPinchGestureRecognizer.m; sourceTree = "<group>"; };
 		6D0724AB16D6A74B00DDA641 /* PlayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayCell.h; sourceTree = "<group>"; };
@@ -874,6 +874,8 @@
 		29E2FE3D16D900E0002270CF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				393DED7C178E42DC00953761 /* GameTime.h */,
+				393DED7D178E42DC00953761 /* GameTime.m */,
 				29939AA71750E80100448DAF /* Play.h */,
 				29939AA81750E80100448DAF /* Play.m */,
 				29939AA41750E80100448DAF /* PlaybookPlay.h */,
@@ -981,8 +983,6 @@
 				39E2FFCC1731EBD50062332C /* GameTimeViewController.m */,
 				39E2FFCF173322320062332C /* PinchLayout.h */,
 				39E2FFD0173322320062332C /* PinchLayout.m */,
-				39E2FFD5173588C40062332C /* UpcomingPlaysDataSource.h */,
-				39E2FFD6173588C40062332C /* UpcomingPlaysDataSource.m */,
 			);
 			name = GameTime;
 			sourceTree = "<group>";
@@ -1821,7 +1821,6 @@
 				39E2FFCD1731EBD50062332C /* GameTimeViewController.m in Sources */,
 				39E2FFD1173322320062332C /* PinchLayout.m in Sources */,
 				39E2FFD41733256A0062332C /* PlaybookPlayDataSource.m in Sources */,
-				39E2FFD7173588C40062332C /* UpcomingPlaysDataSource.m in Sources */,
 				39E2FFDA173F2B960062332C /* PlaybookPinchGestureRecognizer.m in Sources */,
 				29939A9D1750E5C600448DAF /* GreaseBoard.xcdatamodel in Sources */,
 				29939AA31750E80100448DAF /* Playbook.m in Sources */,
@@ -1832,6 +1831,7 @@
 				398A32881754235800B03ED2 /* PurpleButton.m in Sources */,
 				398A328C1754333100B03ED2 /* PurpleLabel.m in Sources */,
 				398A328F175435C400B03ED2 /* ShinyLabel.m in Sources */,
+				393DED7E178E42DC00953761 /* GameTime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
