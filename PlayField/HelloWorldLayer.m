@@ -235,7 +235,8 @@
 - (void)playButtonTapped:(id)sender {
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld - playButtonTapped"]];
     for (PlaySprite *ps in self.movableSprites) {
-        [ps moveSpriteWithSpeed:100];
+        [ps.sprite stopAllActions];
+        [ps moveSpriteWithSpeed:150];
     }
 }
 
