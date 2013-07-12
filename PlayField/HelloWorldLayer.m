@@ -20,6 +20,9 @@
     PlaySprite *selPlayerSprite;
     CCMenuItem *trashMenuItem;
     CCSprite *background;
+    float currentBlue;
+    float currentRed;
+    float currentGreen;
 }
 
 +(CCScene *) scene
@@ -50,16 +53,28 @@
         [self addChild:background z:-1];
         [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_Default];
         
+        currentBlue = 1.0;
+        currentRed = 1.0;
+        currentGreen = 1.0;
+        
         // Standard method to create a button
         CCMenuItem *playMenuItem = [CCMenuItemImage itemWithNormalImage:@"bttn-play.png" selectedImage:@"bttn-play.png" target:self selector:@selector(playButtonTapped:)];
         CCMenuItem *resetMenuItem = [CCMenuItemImage itemWithNormalImage:@"bttn-replay.png" selectedImage:@"bttn-replay.png" target:self selector:@selector(resetButtonTapped:)];
         CCMenuItem *positionMenuItem = [CCMenuItemImage itemWithNormalImage:@"bttn-move.png" selectedImage:@"bttn-move.png" target:self selector:@selector(positionButtonTapped:)];
+        
+        CCMenuItem *blueCircleItem = [CCMenuItemImage itemWithNormalImage:@"blueCircle.png" selectedImage:@"blueCircle.png" target:self selector:@selector(blueCircleTapped:)];
+        CCMenuItem *redCircleItem = [CCMenuItemImage itemWithNormalImage:@"redCircle.png" selectedImage:@"redCircle.png" target:self selector:@selector(redCircleTapped:)];
+        CCMenuItem *greenCircleItem = [CCMenuItemImage itemWithNormalImage:@"greenCircle.png" selectedImage:@"greenCircle.png" target:self selector:@selector(greenCircleTapped:)];
+        
         trashMenuItem = [CCMenuItemImage itemWithNormalImage:@"trash.png" selectedImage:@"trash.png" target:self selector:@selector(trashButtonTapped:)];
         playMenuItem.position = ccp(60, 60);
         resetMenuItem.position = ccp(130,60);
         positionMenuItem.position = ccp(200,60);
+        blueCircleItem.position = ccp(300,60);
+        redCircleItem.position = ccp(410,60);
+        greenCircleItem.position = ccp(520,60);
         trashMenuItem.position = ccp(640,40);
-        CCMenu *starMenu = [CCMenu menuWithItems:playMenuItem, resetMenuItem, positionMenuItem, trashMenuItem, nil];
+        CCMenu *starMenu = [CCMenu menuWithItems:playMenuItem, resetMenuItem, positionMenuItem, blueCircleItem, redCircleItem, greenCircleItem, trashMenuItem, nil];
         //starMenu.position = CGPointZero;
         starMenu.position = ccp(0,15);
         [self addChild:starMenu];
@@ -215,7 +230,7 @@
 
 - (void)draw {
     glLineWidth(3.0f);
-    //glColor3f(1.0,1.0,1.0);
+    ccDrawColor4F(currentRed, currentGreen, currentBlue, 1.0);
     for (PlaySprite *ps in self.movableSprites) {
         for (int i = 0; i < [ps.toucharray count]; i+=2) {
             CGPoint start = CGPointFromString([ps.toucharray objectAtIndex:i]);
@@ -243,6 +258,24 @@
 - (void)resetButtonTapped:(id)sender {
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld - resetButtonTapped"]];
     [self resetScene];
+}
+
+- (void)blueCircleTapped:(id)sender {
+    currentBlue = 1.0;
+    currentGreen = 0.0;
+    currentRed = 0.0;
+}
+
+- (void)redCircleTapped:(id)sender {
+    currentBlue = 0.0;
+    currentGreen = 0.0;
+    currentRed = 1.0;
+}
+
+- (void)greenCircleTapped:(id)sender {
+    currentBlue = 0.0;
+    currentGreen = 1.0;
+    currentRed = 0.0;
 }
 
 - (void)trashButtonTapped:(id)sender {
