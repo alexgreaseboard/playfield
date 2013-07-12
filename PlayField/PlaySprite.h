@@ -22,6 +22,9 @@
 @property (nonatomic, retain) NSString *imageString;
 @property (nonatomic, retain) Play *play;
 @property (nonatomic, retain) NSOrderedSet *spritePoints;
+@property (nonatomic, assign) NSInteger blue;
+@property (nonatomic, assign) NSInteger red;
+@property (nonatomic, assign) NSInteger green;
 
 @property (nonatomic, strong) NSMutableArray *toucharray; // Used during adjusting and running.  Later stored in spritePoints.
 

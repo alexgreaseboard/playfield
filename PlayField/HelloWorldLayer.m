@@ -53,9 +53,9 @@
         [self addChild:background z:-1];
         [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_Default];
         
-        currentBlue = 1.0;
-        currentRed = 1.0;
-        currentGreen = 1.0;
+        currentBlue = 255;
+        currentRed = 255;
+        currentGreen = 255;
         
         // Standard method to create a button
         CCMenuItem *playMenuItem = [CCMenuItemImage itemWithNormalImage:@"bttn-play.png" selectedImage:@"bttn-play.png" target:self selector:@selector(playButtonTapped:)];
@@ -137,6 +137,9 @@
     
     CGPoint touchLocation = [self convertTouchToNodeSpace:touch];
     [self selectSpriteForTouch:touchLocation];
+    selPlayerSprite.red = currentRed;
+    selPlayerSprite.blue = currentBlue;
+    selPlayerSprite.green = currentGreen;
     return TRUE;
 }
 
@@ -230,9 +233,9 @@
 
 - (void)draw {
     glLineWidth(3.0f);
-    ccDrawColor4F(currentRed, currentGreen, currentBlue, 1.0);
     for (PlaySprite *ps in self.movableSprites) {
         for (int i = 0; i < [ps.toucharray count]; i+=2) {
+            ccDrawColor4B(ps.red, ps.green, ps.blue, 255);
             CGPoint start = CGPointFromString([ps.toucharray objectAtIndex:i]);
             CGPoint end = CGPointFromString([ps.toucharray objectAtIndex:i+1]);
             ccDrawLine(start, end);
@@ -261,21 +264,21 @@
 }
 
 - (void)blueCircleTapped:(id)sender {
-    currentBlue = 1.0;
-    currentGreen = 0.0;
-    currentRed = 0.0;
+    currentBlue = 255;
+    currentGreen = 0;
+    currentRed = 0;
 }
 
 - (void)redCircleTapped:(id)sender {
-    currentBlue = 0.0;
-    currentGreen = 0.0;
-    currentRed = 1.0;
+    currentBlue = 0;
+    currentGreen = 0;
+    currentRed = 255;
 }
 
 - (void)greenCircleTapped:(id)sender {
-    currentBlue = 0.0;
-    currentGreen = 1.0;
-    currentRed = 0.0;
+    currentBlue = 0;
+    currentGreen = 255;
+    currentRed = 0;
 }
 
 - (void)trashButtonTapped:(id)sender {

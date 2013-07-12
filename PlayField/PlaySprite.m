@@ -26,6 +26,9 @@
 @synthesize sprite;
 @synthesize startingCGPosition;
 @synthesize toucharray;
+@synthesize red;
+@synthesize blue;
+@synthesize green;
 
 - (id)initFromDatabase
 {
