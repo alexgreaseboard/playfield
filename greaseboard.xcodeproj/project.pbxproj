@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		292C9FBD16CFC3E30065103D /* CocosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 292C9FBC16CFC3E30065103D /* CocosViewController.m */; };
+		292F8AED178F961900F080AB /* blueCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 292F8AEC178F961900F080AB /* blueCircle.png */; };
+		292F8AEF178F97BD00F080AB /* redCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 292F8AEE178F97BD00F080AB /* redCircle.png */; };
+		292F8AF1178F982800F080AB /* greenCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 292F8AF0178F982800F080AB /* greenCircle.png */; };
 		297EEAC116E8E05400B425EE /* PlaybookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297EEAC016E8E05400B425EE /* PlaybookViewController.m */; };
 		298017E016EB9EC500FF469E /* bttn-gametime.png in Resources */ = {isa = PBXBuildFile; fileRef = 298017D616EB9EC500FF469E /* bttn-gametime.png */; };
 		298017E116EB9EC500FF469E /* bttn-playbooks.png in Resources */ = {isa = PBXBuildFile; fileRef = 298017D716EB9EC500FF469E /* bttn-playbooks.png */; };
@@ -286,6 +289,9 @@
 /* Begin PBXFileReference section */
 		292C9FBB16CFC3E30065103D /* CocosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosViewController.h; sourceTree = "<group>"; };
 		292C9FBC16CFC3E30065103D /* CocosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CocosViewController.m; sourceTree = "<group>"; };
+		292F8AEC178F961900F080AB /* blueCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueCircle.png; sourceTree = "<group>"; };
+		292F8AEE178F97BD00F080AB /* redCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redCircle.png; sourceTree = "<group>"; };
+		292F8AF0178F982800F080AB /* greenCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenCircle.png; sourceTree = "<group>"; };
 		297EEABF16E8E05400B425EE /* PlaybookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybookViewController.h; sourceTree = "<group>"; };
 		297EEAC016E8E05400B425EE /* PlaybookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybookViewController.m; sourceTree = "<group>"; };
 		298017D616EB9EC500FF469E /* bttn-gametime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bttn-gametime.png"; sourceTree = "<group>"; };
@@ -835,6 +841,9 @@
 		29E2AAA616CFAEB000005AAF /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				292F8AEC178F961900F080AB /* blueCircle.png */,
+				292F8AEE178F97BD00F080AB /* redCircle.png */,
+				292F8AF0178F982800F080AB /* greenCircle.png */,
 				299814F41785B91900D230B9 /* field-lights@2x.jpg */,
 				299814F21785B85800D230B9 /* field-lights.jpg */,
 				299814EE1785B66A00D230B9 /* Default-Landscape~ipad.png */,
@@ -1663,6 +1672,9 @@
 				6D9300521787633C00D45552 /* Offense@2x.png in Resources */,
 				6D930054178763C300D45552 /* Defense-LB@2x.png in Resources */,
 				6D930056178764BF00D45552 /* trash@2x.png in Resources */,
+				292F8AED178F961900F080AB /* blueCircle.png in Resources */,
+				292F8AEF178F97BD00F080AB /* redCircle.png in Resources */,
+				292F8AF1178F982800F080AB /* greenCircle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
