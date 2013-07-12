@@ -12,6 +12,7 @@
 #import "PlaybookPinchGestureRecognizer.h"
 #import "PurpleButton.h"
 #import "TimerView.h"
+#import "PurpleLabel.h"
 
 @interface GameTimeViewController : PlaybookPinchGestureRecognizer<UIGestureRecognizerDelegate>
 
@@ -19,9 +20,10 @@
 @property (strong, nonatomic) IBOutlet UIView *currentPlayView;
 @property (strong, nonatomic) IBOutlet UIButton *nextPlayButton;
 @property (strong, nonatomic) IBOutlet UIButton *removeAllButton;
-@property (strong, nonatomic) IBOutlet UIButton *switchTypeButton;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *typeButtons;
 @property (strong, nonatomic) IBOutlet TimerView *timerView;
 @property (strong, nonatomic) IBOutlet PurpleButton *doneButton;
+@property (strong, nonatomic) IBOutlet PurpleLabel *upcomingPlaysLabel;
 
 - (IBAction)close:(id)sender;
 - (IBAction)loadNextPlay:(id)sender;

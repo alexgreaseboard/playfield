@@ -2024,7 +2024,7 @@
                                     <outlet property="delegate" destination="89f-El-YeM" id="AvW-AI-v37"/>
                                 </connections>
                             </collectionView>
-                            <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="top" text="  Upcoming Plays" lineBreakMode="tailTruncation" baselineAdjustment="none" adjustsFontSizeToFit="NO" id="HqH-cq-8qe" customClass="PurpleLabel">
+                            <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="top" text="  Upcoming Offense Plays" lineBreakMode="tailTruncation" baselineAdjustment="none" adjustsFontSizeToFit="NO" id="HqH-cq-8qe" customClass="PurpleLabel">
                                 <rect key="frame" x="283" y="4" width="732" height="23"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
@@ -2070,7 +2070,7 @@
                                     <outlet property="delegate" destination="89f-El-YeM" id="dpt-PF-rJ0"/>
                                 </connections>
                             </collectionView>
-                            <label autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hhQ-dw-6Pp" customClass="ShinyLabel">
+                            <label autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" text="Offense Playbooks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hhQ-dw-6Pp" customClass="ShinyLabel">
                                 <rect key="frame" x="0.0" y="204" width="1062" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration">
@@ -2117,21 +2117,6 @@
                                     <action selector="loadNextPlay:" destination="89f-El-YeM" eventType="touchUpInside" id="OcS-Dm-wAb"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Oxc-6X-Xzd" customClass="PurpleButton">
-                                <rect key="frame" x="8" y="207" width="139" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                <state key="normal" title="Switch to Defense">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="switchType:" destination="89f-El-YeM" eventType="touchUpInside" id="KnH-GZ-Tic"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NYq-DG-3O4" customClass="PurpleButton">
                                 <rect key="frame" x="951" y="207" width="53" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -2147,6 +2132,18 @@
                                     <action selector="doneButtonPressed:" destination="89f-El-YeM" eventType="touchUpInside" id="oGl-to-s18"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="4yQ-r0-u6n">
+                                <rect key="frame" x="53" y="167" width="403" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Offense"/>
+                                    <segment title="Defense"/>
+                                    <segment title="Special Teams"/>
+                                </segments>
+                                <connections>
+                                    <action selector="switchType:" destination="89f-El-YeM" eventType="valueChanged" id="R2w-Si-diD"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.066666670139999995" green="0.25098040700000002" blue="0.17254902420000001" alpha="1" colorSpace="deviceRGB"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -2166,9 +2163,10 @@
                         <outlet property="nextPlayButton" destination="tAG-lE-G6T" id="QVf-5H-HS7"/>
                         <outlet property="playbooksCollection" destination="yRY-uT-SqY" id="81B-TL-KKY"/>
                         <outlet property="removeAllButton" destination="a3t-2u-6g6" id="Wl9-gI-CzI"/>
-                        <outlet property="switchTypeButton" destination="Oxc-6X-Xzd" id="aaZ-M2-r8f"/>
                         <outlet property="timerView" destination="ira-8E-WJx" id="K5o-2b-ZIv"/>
+                        <outlet property="typeButtons" destination="4yQ-r0-u6n" id="PGo-5K-j7C"/>
                         <outlet property="upcomingPlaysCollection" destination="ckX-zu-gaU" id="iqs-f0-a54"/>
+                        <outlet property="upcomingPlaysLabel" destination="HqH-cq-8qe" id="LO5-zT-5dc"/>
                         <segue destination="iZd-0D-Vte" kind="modal" identifier="playbookShowPlaySegue" modalPresentationStyle="pageSheet" id="sin-KZ-Ndb"/>
                     </connections>
                 </viewController>
@@ -2963,6 +2961,284 @@
         <image name="greaseboard-logo.png" width="1042" height="424"/>
         <image name="trash.png" width="60" height="100"/>
     </resources>
+    <classes>
+        <class className="CocosViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CocosViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel:"/>
+                <relationship kind="action" name="saveButtonPressed:"/>
+                <relationship kind="outlet" name="editButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="notes" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="saveButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="GameTimeViewController" superclassName="PlaybookPinchGestureRecognizer">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameTimeViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="close:"/>
+                <relationship kind="action" name="doneButtonPressed:"/>
+                <relationship kind="action" name="loadNextPlay:"/>
+                <relationship kind="action" name="removeAllPlays:"/>
+                <relationship kind="action" name="switchType:"/>
+                <relationship kind="outlet" name="currentPlayView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="doneButton" candidateClass="PurpleButton"/>
+                <relationship kind="outlet" name="nextPlayButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="removeAllButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="timerView" candidateClass="TimerView"/>
+                <relationship kind="outlet" name="typeButtons" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="upcomingPlaysLabel" candidateClass="PurpleLabel"/>
+            </relationships>
+        </class>
+        <class className="MainViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="showPlaybook:"/>
+                <relationship kind="action" name="showPlaysDrills:"/>
+                <relationship kind="action" name="showPractices:"/>
+                <relationship kind="action" name="showRoster:"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PlayCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PlayCreationDetailsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayCreationDetailsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelPlayDetails:"/>
+                <relationship kind="action" name="savePlayDetails:"/>
+                <relationship kind="outlet" name="playName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="playNotes" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="playRunPass" candidateClass="UIPickerView"/>
+                <relationship kind="outlet" name="playType" candidateClass="UIPickerView"/>
+            </relationships>
+        </class>
+        <class className="PlayCreationItemsTableViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayCreationItemsTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="PlayCreationPlaysTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayCreationPlaysTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="insertNewPlay:"/>
+            </relationships>
+        </class>
+        <class className="PlayDrillItemCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayDrillItemCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="image" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="itemName" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PlaybookCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaybookCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PlaybookDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaybookDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="returnToPlaybooks:"/>
+                <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="mainView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="trashCan" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="PlaybookEditViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaybookEditViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel:"/>
+                <relationship kind="action" name="deletePlaybook:"/>
+                <relationship kind="action" name="savePlaybook:"/>
+                <relationship kind="outlet" name="notes" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="playbookName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="type" candidateClass="UIPickerView"/>
+            </relationships>
+        </class>
+        <class className="PlaybookPinchGestureRecognizer" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaybookPinchGestureRecognizer.h"/>
+            <relationships>
+                <relationship kind="outlet" name="collectionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="playbooksCollection" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="playsCollection" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="upcomingPlaysCollection" candidateClass="UICollectionView"/>
+            </relationships>
+        </class>
+        <class className="PlaybookViewController" superclassName="PlaybookPinchGestureRecognizer">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaybookViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addPlaybook:"/>
+            </relationships>
+        </class>
+        <class className="PlayerCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayerCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="numberLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="positionLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PracticeCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PracticeCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="durationLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="practiceLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PracticeColumnEditController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PracticeColumnEditController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel:"/>
+                <relationship kind="action" name="deleteColumn:"/>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="outlet" name="columnNameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="deleteButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="doneButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="notesField" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="PracticeEditViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PracticeEditViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel:"/>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="outlet" name="doneButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="practiceDuration" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="practiceName" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="PracticeItemCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PracticeItemCell.h"/>
+        </class>
+        <class className="PracticeItemEditController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PracticeItemEditController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel:"/>
+                <relationship kind="action" name="deleteItem:"/>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="outlet" name="deleteButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="doneButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="numberOfMinutes" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="practiceItemName" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="PracticeOptionsController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PracticeOptionsController.h"/>
+            <relationships>
+                <relationship kind="action" name="addColumn:"/>
+                <relationship kind="action" name="generateRandomData:"/>
+            </relationships>
+        </class>
+        <class className="PracticeOtherItemsTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PracticeOtherItemsTableViewController.h"/>
+        </class>
+        <class className="PracticeViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PracticeViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="editPractice:"/>
+                <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="columnAddBtn" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="editPracticeBtn" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="menuButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="textField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
+        <class className="PracticesTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PracticesTableViewController.h"/>
+        </class>
+        <class className="PurpleButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PurpleButton.h"/>
+        </class>
+        <class className="PurpleLabel" superclassName="ShinyLabel">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PurpleLabel.h"/>
+        </class>
+        <class className="RosterDetailEditViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RosterDetailEditViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel"/>
+                <relationship kind="action" name="done"/>
+                <relationship kind="outlet" name="backupPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="city" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="email" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="firstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="height" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="lastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="number" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="phone" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="position" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="state" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="street" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="time40" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="weight" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="zipcode" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="RosterDetailViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RosterDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="address" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="backupPosition" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="editButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="email" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="height" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="number" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="phone" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="position" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="time40" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="weight" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="RosterMasterViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RosterMasterViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="returnToMenu:"/>
+            </relationships>
+        </class>
+        <class className="SavePlayViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SavePlayViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="saveDuplicate:"/>
+                <relationship kind="action" name="savePlay:"/>
+                <relationship kind="action" name="saveReverse:"/>
+            </relationships>
+        </class>
+        <class className="ShinyLabel" superclassName="UILabel">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ShinyLabel.h"/>
+        </class>
+        <class className="TimerView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TimerView.h"/>
+            <relationships>
+                <relationship kind="action" name="resetTimer:"/>
+                <relationship kind="action" name="toggleStartStop:"/>
+                <relationship kind="outlet" name="contentView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="resetButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="startButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="stepper" candidateClass="NSLayoutConstraint"/>
+                <relationship kind="outlet" name="timerBorder" candidateClass="UIView"/>
+                <relationship kind="outlet" name="timerLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

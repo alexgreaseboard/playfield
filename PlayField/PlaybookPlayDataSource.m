@@ -43,6 +43,11 @@
     PlaybookPlayCell *playbookCell = (PlaybookPlayCell *) cell;
     PlaybookPlay *playbookPlay = [self.fetchedResultsController objectAtIndexPath:indexPath];
     playbookCell = [playbookCell initWithFrame:playbookCell.frame playbookPlay:playbookPlay];
+    if([playbookPlay.status isEqualToString:@"Dragging"]){
+        [playbookCell highlightCell];
+    } else {
+        [playbookCell unhighlightCell];
+    }
     return playbookCell;
 }
 
@@ -77,7 +82,7 @@
     [fetchRequest setFetchBatchSize:20];
     
     // Predicates
-    //[TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlaybookPlayDS - fetching type: %@, playbook: %@", self.offenseOrDefense, self.playbook.name]];
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlaybookPlayDS - fetching type: %@, playbook: %@", self.offenseOrDefense, self.playbook.name]];
     if(self.offenseOrDefense && self.playbook){
         NSPredicate *predicate = [NSPredicate predicateWithFormat:
                                   @"(play.type == %@) && (playbook == %@) && playbook != nil", self.offenseOrDefense, self.playbook];
