@@ -13,6 +13,7 @@
 #import "PlaybookPlayCell.h"
 #import "Playbook.h"
 #import "GameTime.h"
+#import "LXReorderableCollectionViewFlowLayout.h"
 
 @interface GameTimeViewController ()
 
@@ -33,6 +34,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
+        
     }
     return self;
 }
@@ -60,6 +63,12 @@
     
     //disable buttons
     [self enableButtons];
+    
+}
+
+-(void) viewDidAppear:(BOOL)animated{
+    self.typeButtons.selectedSegmentIndex = 0;
+    [self.typeButtons sendActionsForControlEvents:UIControlEventValueChanged];
 }
 
 -(void) setupGametime{
@@ -106,6 +115,8 @@
     self.upcomingPlaysDS = [[PlaybookPlayDataSource alloc] initWithManagedObjectContext:self.managedObjectContext];
     
     // set the datasources/delegates
+    LXReorderableCollectionViewFlowLayout *layout = [[LXReorderableCollectionViewFlowLayout alloc] init];
+    self.upcomingPlaysCollection.collectionViewLayout = layout;
     self.playbooksCollection.dataSource = self.playBookDS;
     self.playbooksCollection.delegate = self;
     self.upcomingPlaysCollection.dataSource = self.upcomingPlaysDS;
