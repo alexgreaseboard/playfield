@@ -25,6 +25,7 @@
     float currentGreen;
     bool drawing;
     
+    CCMenu *menu;
     CCMenuItem *blueCircleItem;
     CCMenuItem *redCircleItem;
     CCMenuItem *greenCircleItem;
@@ -81,10 +82,10 @@
         redCircleItem.position = ccp(410,60);
         greenCircleItem.position = ccp(520,60);
         trashMenuItem.position = ccp(640,40);
-        CCMenu *starMenu = [CCMenu menuWithItems:playMenuItem, resetMenuItem, positionMenuItem, blueCircleItem, redCircleItem, greenCircleItem, trashMenuItem, nil];
-        //starMenu.position = CGPointZero;
-        starMenu.position = ccp(0,15);
-        [self addChild:starMenu];
+        menu = [CCMenu menuWithItems:playMenuItem, resetMenuItem, positionMenuItem, blueCircleItem, redCircleItem, greenCircleItem, trashMenuItem, nil];
+        menu.position = ccp(0,15);
+        [self addChild:menu];
+        [menu setVisible:false];
         
         self.movableSprites = [[NSMutableOrderedSet alloc] init];
         positioning = false;
@@ -438,6 +439,8 @@
     } else {
         [self loadPlaySprites];
     }
+    
+    [menu setVisible:true];
 }
 
 //- (void) addItemSprite:(NSString *)itemName
@@ -448,6 +451,7 @@
 - (NSData*) screenshotUIImage:(CGSize) displaySize forWinSize: (CGSize) winSize
 {
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld - screenshotUIImage"]];
+    [menu setVisible:false];
     CCScene *scene = [[CCDirector sharedDirector] runningScene];
     CCNode *startNode = [scene.children objectAtIndex:0];
     
@@ -466,6 +470,7 @@
     //UIImageWriteToSavedPhotosAlbum(outputImage,nil,NULL,NULL);
     
     // convert the UIImage to NSData
+    [menu setVisible:true];
     return UIImageJPEGRepresentation(outputImage, 1.0 ); //you can use PNG too
 }
 
