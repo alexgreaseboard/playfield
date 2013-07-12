@@ -50,17 +50,16 @@
     //[self.view.layer insertSublayer:gradient below:self.collectionLabel.layer];
     
     self.collectionLabel.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.8];
-    self.offenseOrDefense = @"Defense";
-    self.collectionLabel.text = @"Defense Playbooks";
     
-    //disable buttons
-    [self enableButtons];
     [self setupDataSources];
     [self setupGestures];
     
     // load the current game time object
     [self setupGametime];
-    self.upcomingPlaysDS.playbook = gameTime.upcomingPlaybook;
+    [self switchType:nil];
+    
+    //disable buttons
+    [self enableButtons];
 }
 
 -(void) setupGametime{
@@ -105,7 +104,6 @@
     self.playBookDS = [[PlaybookDataSource alloc] initWithManagedObjectContext:self.managedObjectContext];
     self.playbookPlayDS = [[PlaybookPlayDataSource alloc] initWithManagedObjectContext:self.managedObjectContext];
     self.upcomingPlaysDS = [[PlaybookPlayDataSource alloc] initWithManagedObjectContext:self.managedObjectContext];
-    [self switchType:nil];
     
     // set the datasources/delegates
     self.playbooksCollection.dataSource = self.playBookDS;
@@ -176,7 +174,6 @@
         if(self.currentPannedItem == nil || draggingPlaybookPlay == nil){
             return;
         }
-        //NSLog(@"Dragging changed");
         // move the cell around
         CGPoint translation = [recognizer translationInView:self.playsCollection];
         CGRect newFrame = initialDraggingFrame;
@@ -195,6 +192,11 @@
         // add the cell to the appropriate place
         draggingPlaybookPlay.status = nil;
         [self addDraggedCell:recognizer draggedItem:draggingPlaybookPlay];
+        NSError *error = nil;
+        if (![self.managedObjectContext save:&error]) {
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
         
         [self cleanupPlaybooks];
         [draggingCell removeFromSuperview];
@@ -208,12 +210,11 @@
     // if this is the first item being added to upcoming plays, create a playbook and save it to game time
     
     Playbook *upcomingPlaybook = gameTime.upcomingPlaybook;
-    if(upcomingPlaybook == nil){
-        [NSEntityDescription insertNewObjectForEntityForName:@"Playbook" inManagedObjectContext:self.managedObjectContext];
+    if(!upcomingPlaybook){
+        upcomingPlaybook = [NSEntityDescription insertNewObjectForEntityForName:@"Playbook" inManagedObjectContext:self.managedObjectContext];
         upcomingPlaybook.type = @"hidden";
         upcomingPlaybook.name = @"Upcoming Plays";
         gameTime.upcomingPlaybook = upcomingPlaybook;
-        self.upcomingPlaysDS.playbook = upcomingPlaybook;
     }
     if(draggedItem.playbook != gameTime.upcomingPlaybook){
         Play *play = draggedItem.play;
@@ -221,19 +222,26 @@
         draggedItem.playbook = gameTime.upcomingPlaybook;
         draggedItem.play = play;
     }
+    //draggedItem.status = @"Dragging";
+    self.upcomingPlaysDS.playbook = upcomingPlaybook;
+    [self.upcomingPlaysCollection reloadData];
     return draggedItem;
 }
 
 - (void) cleanupPlaybooks{
-    self.playbookPlayDS.playbook = gameTime.upcomingPlaybook;
-    id <NSFetchedResultsSectionInfo> section = self.playbookPlayDS.fetchedResultsController.sections[0];
-    if([draggingPlaybook.playbookplays count] > 0){
+    self.upcomingPlaysDS.playbook = gameTime.upcomingPlaybook;
+    id <NSFetchedResultsSectionInfo> section = self.upcomingPlaysDS.fetchedResultsController.sections[0];
+    //if([draggingPlaybook.playbookplays count] > 0){
         for(PlaybookPlay *playbookPlay in [section objects]){
             if(playbookPlay.displayOrder == nil){
                 [self.managedObjectContext deleteObject:playbookPlay];
             }
         }
+    for(int i=0; i<self.upcomingPlaysDS.fetchedResultsController.fetchedObjects.count; i++){
+        PlaybookPlay *pp = [self.upcomingPlaysDS.fetchedResultsController.fetchedObjects objectAtIndex:i];
+        pp.displayOrder = [NSNumber numberWithInt:i];
     }
+    //}
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
@@ -250,7 +258,6 @@
         newFrame.origin.x += self.upcomingPlaysCollection.contentOffset.x;
         NSIndexPath *landingPoint = [self.upcomingPlaysCollection indexPathForItemAtPoint:newFrame.origin];
     
-    NSLog(@"addDraggedCell landingPoint %@", landingPoint);
         if(landingPoint){
             
             //Play *landingItem = self.upcomingPlaysDS.upcomingPlays[landingPoint.item];
@@ -259,10 +266,20 @@
                 index--;
             }
             
-            for(PlaybookPlay *pp in [self.upcomingPlaysDS.fetchedResultsController fetchedObjects]){
-                if([pp.displayOrder integerValue] > index){
-                    pp.displayOrder = [NSNumber numberWithInt:index];
+            
+            NSLog(@"New index %i", index);
+            if(draggedItem.displayOrder.intValue != index){
+            for( int i=[self.upcomingPlaysDS.fetchedResultsController.fetchedObjects count]-1; i>=0; i--){
+                PlaybookPlay *pp = [self.upcomingPlaysDS.fetchedResultsController.fetchedObjects objectAtIndex:i];
+                if(pp != draggedItem){
+                    if(i >= index){
+                        NSLog(@"Changing from %i to %i", i, (i+1));
+                        pp.displayOrder = [NSNumber numberWithInt:(i+1)];
+                    } else {
+                        pp.displayOrder = [NSNumber numberWithInt:i];
+                    }
                 }
+            }
             }
             draggedItem.displayOrder = [NSNumber numberWithInt:index];
         } else if(newFrame.origin.x > 0 && newFrame.origin.y > 0 && newFrame.origin.x < self.upcomingPlaysCollection.frame.
@@ -481,17 +498,34 @@
 }
 
 - (IBAction)switchType:(id)sender {
-    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - switching type. Old type: %@", self.offenseOrDefense]];
-    NSString *newLabel = [NSString stringWithFormat:@"Switch to %@", self.offenseOrDefense];
-    [self.switchTypeButton setTitle:newLabel forState:UIControlStateNormal];
-    if([self.offenseOrDefense isEqualToString:@"Offense"]){
-        self.offenseOrDefense = @"Defense";
-        newLabel = [self.collectionLabel.text stringByReplacingOccurrencesOfString:@"Offense" withString:@"Defense"];
-    } else {
-        self.offenseOrDefense = @"Offense";
-        newLabel = [self.collectionLabel.text stringByReplacingOccurrencesOfString:@"Defense" withString:@"Offense"];
+    NSString *newValue = @"Offense"; // default value
+    NSLog(@"switch type");
+    if(sender){
+        UISegmentedControl *switchControl = (UISegmentedControl*)sender;
+        newValue = [switchControl titleForSegmentAtIndex:switchControl.selectedSegmentIndex];
     }
-    [self.collectionLabel setText:newLabel];
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - switching type. Old type: %@", self.offenseOrDefense]];
+    NSString *lbl = nil;
+    NSString *upLabel = nil;
+    self.offenseOrDefense = newValue;
+    
+    NSLog(@"new value %@", newValue);
+    if([self.upcomingPlaysLabel.text rangeOfString:@"Offense"].location != NSNotFound){
+        upLabel = [self.upcomingPlaysLabel.text stringByReplacingOccurrencesOfString:@"Offense" withString:newValue];
+        lbl = [self.collectionLabel.text stringByReplacingOccurrencesOfString:@"Offense" withString:newValue];
+    } else if([self.upcomingPlaysLabel.text rangeOfString:@"Defense"].location != NSNotFound){
+        NSLog(@"Defense");
+        lbl = [self.collectionLabel.text stringByReplacingOccurrencesOfString:@"Defense" withString:newValue];
+        upLabel = [self.upcomingPlaysLabel.text stringByReplacingOccurrencesOfString:@"Defense" withString:newValue];
+    } else {
+        NSLog(@"Special");
+        lbl = [self.collectionLabel.text stringByReplacingOccurrencesOfString:@"Special Teams" withString:newValue];
+        upLabel = [self.upcomingPlaysLabel.text stringByReplacingOccurrencesOfString:@"Special Teams" withString:newValue];
+    }
+    [self.upcomingPlaysLabel setText:upLabel];
+    [self.collectionLabel setText:lbl];
+    
+    self.upcomingPlaysDS.playbook = gameTime.upcomingPlaybook;
     self.playBookDS.offenseOrDefense = self.offenseOrDefense;
     self.playbookPlayDS.offenseOrDefense = self.offenseOrDefense;
     self.upcomingPlaysDS.offenseOrDefense = self.offenseOrDefense;
