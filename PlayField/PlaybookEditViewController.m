@@ -27,7 +27,7 @@
 {
     [super viewDidLoad];
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlaybookEdit - loading"]];
-    playbookTypes = [[NSArray alloc] initWithObjects:@"Offense", @"Defense", @"Practice", nil];
+    playbookTypes = [[NSArray alloc] initWithObjects:@"Offense", @"Defense", @"Special Teams", @"Practice", nil];
     
     [self configureView ];
 }
