@@ -103,11 +103,6 @@
     }
 }
 
-- (void)addItemSprite:(NSString *)itemName
-{
-    [_helloWorldLayer addItemSprite:itemName];
-}
-
 - (void)configureView
 {
     // Update the user interface for the detail item.
