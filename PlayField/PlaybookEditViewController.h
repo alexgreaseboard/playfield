@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 #import "Playbook.h"
 
 @class PlaybookEditViewController;
@@ -16,7 +17,7 @@
 - (void) deletePlaybook:(Playbook *)playbook;
 @end
 
-@interface PlaybookEditViewController : UITableViewController {
+@interface PlaybookEditViewController : UITableViewController <MFMailComposeViewControllerDelegate> {
     NSArray *playbookTypes;
 }
 
@@ -30,5 +31,6 @@
 - (IBAction)cancel:(id)sender;
 - (IBAction)savePlaybook:(id)sender;
 - (IBAction)deletePlaybook:(id)sender;
+- (IBAction)emailPlaybook:(id)sender;
 
 @end

@@ -273,6 +273,7 @@
 		6D930056178764BF00D45552 /* trash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D930055178764BF00D45552 /* trash@2x.png */; };
 		6DC9C0E216F2C5990001644A /* PlaybookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC9C0E116F2C5990001644A /* PlaybookDetailViewController.m */; };
 		6DCFB60B1711DF420065700F /* PlaybookEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCFB60A1711DF420065700F /* PlaybookEditViewController.m */; };
+		6DEAA40917917F07008AC5E2 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DEAA40817917F07008AC5E2 /* MessageUI.framework */; };
 		6DEF320B16D154B200AD57A1 /* About.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DEF320A16D154B200AD57A1 /* About.png */; };
 		6DF5649116DE971800E17E82 /* SavePlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF5649016DE971800E17E82 /* SavePlayViewController.m */; };
 		6DF6E94F171081A300386229 /* bttn-add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DF6E931171081A300386229 /* bttn-add@2x.png */; };
@@ -753,6 +754,7 @@
 		6DC9C0E116F2C5990001644A /* PlaybookDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybookDetailViewController.m; sourceTree = "<group>"; };
 		6DCFB6091711DF420065700F /* PlaybookEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybookEditViewController.h; sourceTree = "<group>"; };
 		6DCFB60A1711DF420065700F /* PlaybookEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybookEditViewController.m; sourceTree = "<group>"; };
+		6DEAA40817917F07008AC5E2 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		6DEF320A16D154B200AD57A1 /* About.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = About.png; sourceTree = "<group>"; };
 		6DF5648F16DE971800E17E82 /* SavePlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavePlayViewController.h; sourceTree = "<group>"; };
 		6DF5649016DE971800E17E82 /* SavePlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavePlayViewController.m; sourceTree = "<group>"; };
@@ -775,6 +777,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DEAA40917917F07008AC5E2 /* MessageUI.framework in Frameworks */,
 				39D7A09917694B3C004E6307 /* libz.dylib in Frameworks */,
 				29E2AAD416CFBE1100005AAF /* CoreData.framework in Frameworks */,
 				6D148F7816C988E70069CB76 /* QuartzCore.framework in Frameworks */,
@@ -1007,6 +1010,7 @@
 		6D148F6B16C988E70069CB76 = {
 			isa = PBXGroup;
 			children = (
+				6DEAA40817917F07008AC5E2 /* MessageUI.framework */,
 				3993ACDF177E5A76002E9FF7 /* greaseboard.entitlements */,
 				39D7A09817694B3C004E6307 /* libz.dylib */,
 				39D7A09017694AA7004E6307 /* TestFlightSDK1.2.5 */,
