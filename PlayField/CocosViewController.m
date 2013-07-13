@@ -185,6 +185,7 @@
     newPlay.name = dupName;
     newPlay.notes = self.detailItem.notes;
     newPlay.type = self.detailItem.type;
+    newPlay.runPass = self.detailItem.runPass;
     
     for(PlaySprite *psOld in self.detailItem.playSprite) {
         PlaySprite *psNew = [NSEntityDescription insertNewObjectForEntityForName:@"PlaySprite" inManagedObjectContext:self.managedObjectContext];
