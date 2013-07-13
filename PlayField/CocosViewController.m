@@ -197,6 +197,9 @@
         }
         
         psNew.imageString = psOld.imageString;
+        psNew.red = psOld.red;
+        psNew.blue = psOld.blue;
+        psNew.green = psOld.green;
         
         for(SpritePoint *spOld in psOld.spritePoints) {
             SpritePoint *spNew = [NSEntityDescription insertNewObjectForEntityForName:@"SpritePoint" inManagedObjectContext:self.managedObjectContext];
