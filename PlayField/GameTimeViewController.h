@@ -24,13 +24,14 @@
 @property (strong, nonatomic) IBOutlet TimerView *timerView;
 @property (strong, nonatomic) IBOutlet PurpleButton *doneButton;
 @property (strong, nonatomic) IBOutlet PurpleLabel *upcomingPlaysLabel;
+@property (strong, nonatomic) IBOutlet PurpleButton *gameButton;
 
 - (IBAction)close:(id)sender;
 - (IBAction)loadNextPlay:(id)sender;
 - (IBAction)removeAllPlays:(id)sender;
 - (IBAction)switchType:(id)sender;
 - (IBAction)doneButtonPressed:(id)sender;
-
+- (IBAction)toggleGame:(id)sender;
 
 
 @property (strong, nonatomic) PlaybookPlayDataSource *upcomingPlaysDS;

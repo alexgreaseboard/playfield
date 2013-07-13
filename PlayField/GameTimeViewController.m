@@ -100,6 +100,12 @@
         gameTime.homeTimeouts = [NSNumber numberWithInt:3];
     }
     
+    if(gameTime.currentPlaybook){
+        [self.gameButton setTitle:@"Stop Recording Game" forState:UIControlStateNormal];
+    } else {
+        [self.gameButton setTitle:@"Start Recording Game" forState:UIControlStateNormal];
+    }
+    
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
@@ -359,6 +365,7 @@
             [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - adding contents of playbook"]];
             
             self.playbookPlayDS.playbook = draggingPlaybook;
+            self.playbookPlayDS.offenseOrDefense = nil;
             id <NSFetchedResultsSectionInfo> section = self.playbookPlayDS.fetchedResultsController.sections[0];
             if([draggingPlaybook.playbookplays count] > 0){
                 for(PlaybookPlay *playbookPlay in [section objects]){
@@ -480,11 +487,19 @@
         UICollectionViewCell *cell = [[PlaybookPlayCell alloc] initWithFrame:frame playbookPlay:firstPlaybookPlay];
         [self.currentPlayView addSubview:cell];
         self.currentPlay = firstPlaybookPlay;
+        // if we're recording the game, add this play to the gametime playbook
+        if(gameTime.currentPlaybook){
+            PlaybookPlay *newPlaybookPlay = [NSEntityDescription insertNewObjectForEntityForName:@"PlaybookPlay" inManagedObjectContext:self.managedObjectContext];
+            newPlaybookPlay.play = firstPlaybookPlay.play;
+            newPlaybookPlay.playbook = gameTime.currentPlaybook;
+            newPlaybookPlay.displayOrder = [NSNumber numberWithInt:[gameTime.currentPlaybook.playbookplays count]];
+        }
         
         [self.managedObjectContext deleteObject:firstPlaybookPlay];
         for(PlaybookPlay *pp in self.upcomingPlaysDS.fetchedResultsController.fetchedObjects){
             pp.displayOrder = [NSNumber numberWithInt:pp.displayOrder.intValue - 1];
         }
+        //save
         NSError *error = nil;
         if (![self.managedObjectContext save:&error]) {
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
@@ -560,6 +575,36 @@
         self.playbooksCollection.alpha = 1.0;
         self.doneButton.alpha = 0;
     }];
+}
+
+- (IBAction)toggleGame:(id)sender {
+    if(gameTime.currentPlaybook){ // stop recording the game
+        [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - stop recording game"]];
+        gameTime.currentPlaybook = nil;
+        [self.gameButton setTitle:@"Start Recording Game" forState:UIControlStateNormal];
+        NSError *error = nil;
+        if (![self.managedObjectContext save:&error]) {
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    } else {
+        // start recording the game
+        [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - start recording game"]];
+        Playbook *newPlaybook = [NSEntityDescription insertNewObjectForEntityForName:@"Playbook" inManagedObjectContext:self.managedObjectContext];
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"dd-MM-yyyy HH:mm"];
+        newPlaybook.name = [NSString stringWithFormat:@"Game %@", [formatter stringFromDate:[NSDate date]]];
+        newPlaybook.type = @"Offense";
+        
+        gameTime.currentPlaybook = newPlaybook;
+        [self.gameButton setTitle:@"Stop Recording Game" forState:UIControlStateNormal];
+        NSError *error = nil;
+        if (![self.managedObjectContext save:&error]) {
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
 }
 
 
