@@ -109,6 +109,7 @@
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     aFetchedResultsController.delegate = self;
     _fetchedResultsController = aFetchedResultsController;
+    NSLog(@"Count: %i", [aFetchedResultsController.fetchedObjects count]);
     
 	NSError *error = nil;
 	if (![self.fetchedResultsController performFetch:&error]) {
