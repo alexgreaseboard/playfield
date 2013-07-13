@@ -47,7 +47,10 @@
         <attribute name="zipcode" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="PlaySprite" representedClassName="PlaySprite" syncable="YES">
+        <attribute name="blue" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="green" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="imageString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="red" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="startingPosition" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="play" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Play" inverseName="playSprite" inverseEntity="Play" syncable="YES"/>
         <relationship name="spritePoints" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="SpritePoint" inverseName="parentSprite" inverseEntity="SpritePoint" syncable="YES"/>
@@ -77,15 +80,15 @@
         <relationship name="parentSprite" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PlaySprite" inverseName="spritePoints" inverseEntity="PlaySprite" syncable="YES"/>
     </entity>
     <elements>
+        <element name="GameTime" positionX="-468" positionY="207" width="128" height="133"/>
         <element name="Play" positionX="-461" positionY="-45" width="128" height="165"/>
         <element name="Playbook" positionX="-297" positionY="162" width="128" height="118"/>
         <element name="PlaybookPlay" positionX="160" positionY="192" width="128" height="88"/>
         <element name="Player" positionX="-641" positionY="-45" width="128" height="255"/>
-        <element name="PlaySprite" positionX="-200" positionY="-45" width="128" height="105"/>
+        <element name="PlaySprite" positionX="-200" positionY="-45" width="128" height="150"/>
         <element name="Practice" positionX="-162" positionY="324" width="128" height="88"/>
         <element name="PracticeColumn" positionX="52" positionY="324" width="128" height="120"/>
         <element name="PracticeItem" positionX="34" positionY="477" width="128" height="120"/>
         <element name="SpritePoint" positionX="7" positionY="-45" width="128" height="88"/>
-        <element name="GameTime" positionX="-468" positionY="207" width="128" height="133"/>
     </elements>
 </model>

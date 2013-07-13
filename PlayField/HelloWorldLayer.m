@@ -23,6 +23,14 @@
     float currentBlue;
     float currentRed;
     float currentGreen;
+    bool drawing;
+    
+    CCMenu *menu;
+    CCMenuItem *blueCircleItem;
+    CCMenuItem *redCircleItem;
+    CCMenuItem *greenCircleItem;
+    CCMenuItem *playMenuItem;
+    CCMenuItem *resetMenuItem;
 }
 
 +(CCScene *) scene
@@ -53,18 +61,18 @@
         [self addChild:background z:-1];
         [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_Default];
         
-        currentBlue = 1.0;
-        currentRed = 1.0;
-        currentGreen = 1.0;
+        currentBlue = 255;
+        currentRed = 255;
+        currentGreen = 255;
         
         // Standard method to create a button
-        CCMenuItem *playMenuItem = [CCMenuItemImage itemWithNormalImage:@"bttn-play.png" selectedImage:@"bttn-play.png" target:self selector:@selector(playButtonTapped:)];
-        CCMenuItem *resetMenuItem = [CCMenuItemImage itemWithNormalImage:@"bttn-replay.png" selectedImage:@"bttn-replay.png" target:self selector:@selector(resetButtonTapped:)];
+        playMenuItem = [CCMenuItemImage itemWithNormalImage:@"bttn-play.png" selectedImage:@"bttn-play.png" target:self selector:@selector(playButtonTapped:)];
+        resetMenuItem = [CCMenuItemImage itemWithNormalImage:@"bttn-replay.png" selectedImage:@"bttn-replay.png" target:self selector:@selector(resetButtonTapped:)];
         CCMenuItem *positionMenuItem = [CCMenuItemImage itemWithNormalImage:@"bttn-move.png" selectedImage:@"bttn-move.png" target:self selector:@selector(positionButtonTapped:)];
         
-        CCMenuItem *blueCircleItem = [CCMenuItemImage itemWithNormalImage:@"blueCircle.png" selectedImage:@"blueCircle.png" target:self selector:@selector(blueCircleTapped:)];
-        CCMenuItem *redCircleItem = [CCMenuItemImage itemWithNormalImage:@"redCircle.png" selectedImage:@"redCircle.png" target:self selector:@selector(redCircleTapped:)];
-        CCMenuItem *greenCircleItem = [CCMenuItemImage itemWithNormalImage:@"greenCircle.png" selectedImage:@"greenCircle.png" target:self selector:@selector(greenCircleTapped:)];
+        blueCircleItem = [CCMenuItemImage itemWithNormalImage:@"blueCircle.png" selectedImage:@"blueCircle.png" target:self selector:@selector(blueCircleTapped:)];
+        redCircleItem = [CCMenuItemImage itemWithNormalImage:@"redCircle.png" selectedImage:@"redCircle.png" target:self selector:@selector(redCircleTapped:)];
+        greenCircleItem = [CCMenuItemImage itemWithNormalImage:@"greenCircle.png" selectedImage:@"greenCircle.png" target:self selector:@selector(greenCircleTapped:)];
         
         trashMenuItem = [CCMenuItemImage itemWithNormalImage:@"trash.png" selectedImage:@"trash.png" target:self selector:@selector(trashButtonTapped:)];
         playMenuItem.position = ccp(60, 60);
@@ -74,13 +82,14 @@
         redCircleItem.position = ccp(410,60);
         greenCircleItem.position = ccp(520,60);
         trashMenuItem.position = ccp(640,40);
-        CCMenu *starMenu = [CCMenu menuWithItems:playMenuItem, resetMenuItem, positionMenuItem, blueCircleItem, redCircleItem, greenCircleItem, trashMenuItem, nil];
-        //starMenu.position = CGPointZero;
-        starMenu.position = ccp(0,15);
-        [self addChild:starMenu];
+        menu = [CCMenu menuWithItems:playMenuItem, resetMenuItem, positionMenuItem, blueCircleItem, redCircleItem, greenCircleItem, trashMenuItem, nil];
+        menu.position = ccp(0,15);
+        [self addChild:menu];
+        [menu setVisible:false];
         
         self.movableSprites = [[NSMutableOrderedSet alloc] init];
         positioning = false;
+        drawing = false;
     }
     
     [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
@@ -136,7 +145,20 @@
     }
     
     CGPoint touchLocation = [self convertTouchToNodeSpace:touch];
-    [self selectSpriteForTouch:touchLocation];
+    if( drawing ) {
+        [self addPlayerSpriteWithImage:nil andPosition:touchLocation];
+        [self selectSpriteForTouch:touchLocation];
+        if( selPlayerSprite.imageString != nil) {
+            selPlayerSprite = nil; // If drawing, don't allow user to grab sprite with image.
+        }
+    } else {
+        [self selectSpriteForTouch:touchLocation];
+    }
+    
+    selPlayerSprite.red = currentRed;
+    selPlayerSprite.blue = currentBlue;
+    selPlayerSprite.green = currentGreen;
+    
     return TRUE;
 }
 
@@ -230,9 +252,9 @@
 
 - (void)draw {
     glLineWidth(3.0f);
-    ccDrawColor4F(currentRed, currentGreen, currentBlue, 1.0);
     for (PlaySprite *ps in self.movableSprites) {
         for (int i = 0; i < [ps.toucharray count]; i+=2) {
+            ccDrawColor4B(ps.red, ps.green, ps.blue, 255);
             CGPoint start = CGPointFromString([ps.toucharray objectAtIndex:i]);
             CGPoint end = CGPointFromString([ps.toucharray objectAtIndex:i+1]);
             ccDrawLine(start, end);
@@ -261,40 +283,58 @@
 }
 
 - (void)blueCircleTapped:(id)sender {
-    currentBlue = 1.0;
-    currentGreen = 0.0;
-    currentRed = 0.0;
+    drawing = true;
+    currentBlue = 255;
+    currentGreen = 0;
+    currentRed = 0;
 }
 
 - (void)redCircleTapped:(id)sender {
-    currentBlue = 0.0;
-    currentGreen = 0.0;
-    currentRed = 1.0;
+    drawing = false;
+    currentBlue = 0;
+    currentGreen = 0;
+    currentRed = 255;
 }
 
 - (void)greenCircleTapped:(id)sender {
-    currentBlue = 0.0;
-    currentGreen = 1.0;
-    currentRed = 0.0;
+    drawing = false;
+    currentBlue = 0;
+    currentGreen = 255;
+    currentRed = 0;
 }
 
 - (void)trashButtonTapped:(id)sender {
+    NSMutableArray *lines = [[NSMutableArray alloc] init];
+    for (PlaySprite *ps in self.movableSprites) {
+        if( ps.imageString == nil) {
+            [lines addObject:ps];
+        }
+    }
+    for( NSObject *o in lines ) {
+        [self removePlaySprite:(PlaySprite *)o];
+    }
 }
 
 - (void)positionButtonTapped:(id)sender {
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld - positionButtonTapped"]];
-    if( positioning ) {
+    positioning = !positioning;
+    if( !positioning ) {
         for(PlaySprite *ps in self.movableSprites) {
             [ps.sprite stopAllActions];
             [ps.sprite runAction:[CCRotateTo actionWithDuration:0.1 angle:0]];
         }
+        [self redCircleTapped:nil]; // Set default color after positioning.
     } else {
         [self resetScene];
         for(PlaySprite *ps in self.movableSprites) {
             [self actionSpriteForPositioning:ps.sprite];
         }
     }
-    positioning = !positioning;
+    [redCircleItem setVisible:!positioning];
+    [blueCircleItem setVisible:!positioning];
+    [greenCircleItem setVisible:!positioning];
+    [playMenuItem setVisible:!positioning];
+    [resetMenuItem setVisible:!positioning];
 }
 
 - (void) actionSpriteForPositioning:(CCSprite *)pSprite
@@ -388,8 +428,6 @@
         [self removeChild:ps.sprite];
     }
     [self.movableSprites removeAllObjects];
-    NSLog(@"===================HERE=============");
-    NSLog(@"PlaySpritecount:%i", [pPlay.playSprite count]);
     self.play = pPlay;
     if( [self.play.playSprite count] == 0 ) {
         // Add default play.
@@ -401,16 +439,19 @@
     } else {
         [self loadPlaySprites];
     }
+    
+    [menu setVisible:true];
 }
 
-- (void) addItemSprite:(NSString *)itemName
-{
-    [self addPlayerSpriteWithImage:itemName andPosition:ccp(350,75)];
-}
+//- (void) addItemSprite:(NSString *)itemName
+//{
+//    [self addPlayerSpriteWithImage:itemName andPosition:ccp(350,75)];
+//}
 
 - (NSData*) screenshotUIImage:(CGSize) displaySize forWinSize: (CGSize) winSize
 {
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"HelloWorld - screenshotUIImage"]];
+    [menu setVisible:false];
     CCScene *scene = [[CCDirector sharedDirector] runningScene];
     CCNode *startNode = [scene.children objectAtIndex:0];
     
@@ -429,6 +470,7 @@
     //UIImageWriteToSavedPhotosAlbum(outputImage,nil,NULL,NULL);
     
     // convert the UIImage to NSData
+    [menu setVisible:true];
     return UIImageJPEGRepresentation(outputImage, 1.0 ); //you can use PNG too
 }
 

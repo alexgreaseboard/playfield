@@ -26,10 +26,20 @@
 @synthesize sprite;
 @synthesize startingCGPosition;
 @synthesize toucharray;
+@synthesize red;
+@synthesize blue;
+@synthesize green;
 
 - (id)initFromDatabase
 {
-    self.sprite = [CCSprite spriteWithFile:self.imageString];
+    if( self.imageString == nil ) {
+        self.sprite = [CCSprite node];
+        CCTexture2D *tex = [[CCTexture2D alloc] initWithData:nil pixelFormat:kCCTexture2DPixelFormat_RGB5A1 pixelsWide:1 pixelsHigh:1 contentSize:CGSizeMake(1, 1)];
+        [self.sprite setTexture:tex];
+        [self.sprite setTextureRect:CGRectMake(0, 0, 1, 1)];
+    } else {
+        self.sprite = [CCSprite spriteWithFile:self.imageString];
+    }
     self.startingCGPosition = CGPointFromString(self.startingPosition);
     self.sprite.position = self.startingCGPosition;
 

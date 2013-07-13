@@ -31,7 +31,6 @@
 
 - (void)savePlay:(id)sender;
 - (void)setCurrentPlay:(Play *)pPlay;
-- (void)addItemSprite:(NSString *)itemName;
 - (IBAction)cancel:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *saveButton;

@@ -58,6 +58,12 @@
         if( playRunPassIndex != NSNotFound ) {
             [self.playRunPass selectRow:playRunPassIndex inComponent:0 animated:NO];
         }
+        
+        NSString *playName = self.playName.text;
+        if( [playName isEqual:@"New Offense"] || [playName isEqual:@"New Defense"] || [playName isEqual:@"New Drill"] ) {
+            self.playName.text = @"";
+            [self.playName selectAll:nil];
+        }
     }
 }
 
