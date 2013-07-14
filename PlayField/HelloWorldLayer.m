@@ -73,14 +73,14 @@
         whiteCircleItem = [CCMenuItemImage itemWithNormalImage:@"whiteCircle.png" selectedImage:@"whiteCircle-s.png" target:self selector:@selector(whiteCircleTapped:)];
         
         trashMenuItem = [CCMenuItemImage itemWithNormalImage:@"trash.png" selectedImage:@"trash.png" target:self selector:@selector(trashButtonTapped:)];
-        playMenuItem.position = ccp(60, 60);
-        resetMenuItem.position = ccp(130,60);
-        positionMenuItem.position = ccp(200,60);
-        whiteCircleItem.position = ccp(290,60);
-        redCircleItem.position = ccp(360,60);
-        yellowCircleItem.position = ccp(430,60);
-        blueCircleItem.position = ccp(520,60);
-        trashMenuItem.position = ccp(640,40);
+        playMenuItem.position = ccp(60, 50);
+        resetMenuItem.position = ccp(130,50);
+        positionMenuItem.position = ccp(200,50);
+        whiteCircleItem.position = ccp(290,50);
+        redCircleItem.position = ccp(360,50);
+        yellowCircleItem.position = ccp(430,50);
+        blueCircleItem.position = ccp(520,50);
+        trashMenuItem.position = ccp(640,30);
         menu = [CCMenu menuWithItems:playMenuItem, resetMenuItem, positionMenuItem, whiteCircleItem, redCircleItem, yellowCircleItem, blueCircleItem, trashMenuItem, nil];
         menu.position = ccp(0,15);
         [self addChild:menu];
@@ -357,6 +357,7 @@
     [whiteCircleItem setVisible:!positioning];
     [playMenuItem setVisible:!positioning];
     [resetMenuItem setVisible:!positioning];
+    drawing = false;
 }
 
 - (void) actionSpriteForPositioning:(CCSprite *)pSprite
