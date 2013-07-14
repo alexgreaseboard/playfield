@@ -339,13 +339,8 @@
             draggingCell = [[PlaybookCell alloc] initWithFrame:initialDraggingFrame playbook:draggingPlaybook];
             [self.view addSubview:draggingCell];
         }
-    } else { // changed or ended
+    } else if(recognizer.state == UIGestureRecognizerStateChanged){ // changed or ended
         if(self.currentPannedItem == nil || draggingPlaybook == nil){
-            [self cleanupPlaybooks];
-            [draggingCell removeFromSuperview];
-            draggingCell = nil;
-            draggingPlaybook = nil;
-            self.currentPannedItem = nil;
             return;
         }
         //NSLog(@"Dragging changed");
@@ -379,6 +374,12 @@
             self.currentPannedItem = nil;
         }
         
+    } else {
+        [self cleanupPlaybooks];
+        [draggingCell removeFromSuperview];
+        draggingCell = nil;
+        draggingPlaybook = nil;
+        self.currentPannedItem = nil;
     }
 
 }
@@ -575,6 +576,8 @@
         self.playbooksCollection.alpha = 1.0;
         self.doneButton.alpha = 0;
     }];
+    
+    [self.collectionLabel setText:[self.collectionLabel.text stringByReplacingOccurrencesOfString:@"Plays" withString:@"Playbooks" ]];
 }
 
 - (IBAction)toggleGame:(id)sender {
@@ -640,6 +643,7 @@
             self.playbooksCollection.alpha = 0.0;
             self.doneButton.alpha = 1;
         }];
+        [self.collectionLabel setText:[self.collectionLabel.text stringByReplacingOccurrencesOfString:@"Playbooks" withString:@"Plays" ]];
         
         // gestures - drag & drop
         UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePlayPanning:)];

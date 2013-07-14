@@ -67,11 +67,12 @@
     UIImage *playImage = [UIImage imageWithData:playbookPlay.play.thumbnail];
     self.backgroundView.contentMode = UIViewContentModeScaleAspectFill;
     self.backgroundView = [[UIImageView alloc] initWithImage:playImage];
-    self.backgroundColor = [UIColor clearColor];
 }
 
 - (void) highlightCell {
     if(!disabledLayer){
+        self.backgroundView = nil;
+        self.backgroundColor = [UIColor blackColor];
         [disabledLayer removeFromSuperlayer];
         disabledLayer = [CAGradientLayer layer];
         disabledLayer.colors = [NSArray arrayWithObjects:
