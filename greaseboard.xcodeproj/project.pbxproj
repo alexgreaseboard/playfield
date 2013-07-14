@@ -60,6 +60,12 @@
 		2998152A1785BDE900D230B9 /* Offense-Z.png in Resources */ = {isa = PBXBuildFile; fileRef = 2998151E1785BDE600D230B9 /* Offense-Z.png */; };
 		2998152B1785BDE900D230B9 /* Offense.png in Resources */ = {isa = PBXBuildFile; fileRef = 2998151F1785BDE800D230B9 /* Offense.png */; };
 		2998152D1785BEB600D230B9 /* field.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2998152C1785BEB500D230B9 /* field.jpg */; };
+		29DF6AEA1792ED200037482D /* Bag.png in Resources */ = {isa = PBXBuildFile; fileRef = 29DF6AE91792ED200037482D /* Bag.png */; };
+		29DF6AEC1792ED2F0037482D /* Coach.png in Resources */ = {isa = PBXBuildFile; fileRef = 29DF6AEB1792ED2F0037482D /* Coach.png */; };
+		29DF6AEF1792ED540037482D /* Bag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 29DF6AED1792ED540037482D /* Bag@2x.png */; };
+		29DF6AF01792ED540037482D /* Coach@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 29DF6AEE1792ED540037482D /* Coach@2x.png */; };
+		29DF6AF31792EE880037482D /* Bag-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 29DF6AF11792EE880037482D /* Bag-hd.png */; };
+		29DF6AF41792EE880037482D /* Coach-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 29DF6AF21792EE880037482D /* Coach-hd.png */; };
 		29E2AAAE16CFAEDD00005AAF /* RosterMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2AAA916CFAEDD00005AAF /* RosterMasterViewController.m */; };
 		29E2AAAF16CFAEDD00005AAF /* RosterDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2AAAB16CFAEDD00005AAF /* RosterDetailViewController.m */; };
 		29E2AAB016CFAEDD00005AAF /* RosterDetailEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2AAAD16CFAEDD00005AAF /* RosterDetailEditViewController.m */; };
@@ -348,6 +354,12 @@
 		2998151E1785BDE600D230B9 /* Offense-Z.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-Z.png"; sourceTree = "<group>"; };
 		2998151F1785BDE800D230B9 /* Offense.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Offense.png; sourceTree = "<group>"; };
 		2998152C1785BEB500D230B9 /* field.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = field.jpg; sourceTree = "<group>"; };
+		29DF6AE91792ED200037482D /* Bag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bag.png; sourceTree = "<group>"; };
+		29DF6AEB1792ED2F0037482D /* Coach.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Coach.png; sourceTree = "<group>"; };
+		29DF6AED1792ED540037482D /* Bag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bag@2x.png"; sourceTree = "<group>"; };
+		29DF6AEE1792ED540037482D /* Coach@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Coach@2x.png"; sourceTree = "<group>"; };
+		29DF6AF11792EE880037482D /* Bag-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bag-hd.png"; sourceTree = "<group>"; };
+		29DF6AF21792EE880037482D /* Coach-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Coach-hd.png"; sourceTree = "<group>"; };
 		29E2AAA816CFAEDD00005AAF /* RosterMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosterMasterViewController.h; sourceTree = "<group>"; };
 		29E2AAA916CFAEDD00005AAF /* RosterMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RosterMasterViewController.m; sourceTree = "<group>"; };
 		29E2AAAA16CFAEDD00005AAF /* RosterDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosterDetailViewController.h; sourceTree = "<group>"; };
@@ -1447,6 +1459,12 @@
 		6DF6E930171081A300386229 /* field graphics */ = {
 			isa = PBXGroup;
 			children = (
+				29DF6AF11792EE880037482D /* Bag-hd.png */,
+				29DF6AF21792EE880037482D /* Coach-hd.png */,
+				29DF6AED1792ED540037482D /* Bag@2x.png */,
+				29DF6AEE1792ED540037482D /* Coach@2x.png */,
+				29DF6AEB1792ED2F0037482D /* Coach.png */,
+				29DF6AE91792ED200037482D /* Bag.png */,
 				6DF6E931171081A300386229 /* bttn-add@2x.png */,
 				299814F81785BB9C00D230B9 /* bttn-add.png */,
 				6DF6E932171081A300386229 /* bttn-move@2x.png */,
@@ -1688,6 +1706,12 @@
 				292F8AEF178F97BD00F080AB /* redCircle.png in Resources */,
 				292F8AF1178F982800F080AB /* greenCircle.png in Resources */,
 				393DED861790D44C00953761 /* Scoreboard.xib in Resources */,
+				29DF6AEA1792ED200037482D /* Bag.png in Resources */,
+				29DF6AEC1792ED2F0037482D /* Coach.png in Resources */,
+				29DF6AEF1792ED540037482D /* Bag@2x.png in Resources */,
+				29DF6AF01792ED540037482D /* Coach@2x.png in Resources */,
+				29DF6AF31792EE880037482D /* Bag-hd.png in Resources */,
+				29DF6AF41792EE880037482D /* Coach-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

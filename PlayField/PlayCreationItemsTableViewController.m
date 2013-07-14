@@ -60,6 +60,8 @@
     [_items addObject:[PlayDrillItem itemWithText:@"Offense-Y" andWithImage:@"Offense-Y.png"]];
     [_items addObject:[PlayDrillItem itemWithText:@"Offense-Z" andWithImage:@"Offense-Z.png"]];
     [_items addObject:[PlayDrillItem itemWithText:@"Offense" andWithImage:@"Offense.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Bag" andWithImage:@"Bag.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Coach" andWithImage:@"Coach.png"]];
     [_items addObject:[PlayDrillItem itemWithText:@"Cone" andWithImage:@"Cone.png"]];
     
     detailViewController = (CocosViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
