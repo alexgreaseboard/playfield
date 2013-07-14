@@ -28,7 +28,8 @@
     CCMenu *menu;
     CCMenuItem *blueCircleItem;
     CCMenuItem *redCircleItem;
-    CCMenuItem *greenCircleItem;
+    CCMenuItem *yellowCircleItem;
+    CCMenuItem *whiteCircleItem;
     CCMenuItem *playMenuItem;
     CCMenuItem *resetMenuItem;
 }
@@ -61,35 +62,33 @@
         [self addChild:background z:-1];
         [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_Default];
         
-        currentBlue = 255;
-        currentRed = 255;
-        currentGreen = 255;
-        
         // Standard method to create a button
         playMenuItem = [CCMenuItemImage itemWithNormalImage:@"bttn-play.png" selectedImage:@"bttn-play.png" target:self selector:@selector(playButtonTapped:)];
         resetMenuItem = [CCMenuItemImage itemWithNormalImage:@"bttn-replay.png" selectedImage:@"bttn-replay.png" target:self selector:@selector(resetButtonTapped:)];
         CCMenuItem *positionMenuItem = [CCMenuItemImage itemWithNormalImage:@"bttn-move.png" selectedImage:@"bttn-move.png" target:self selector:@selector(positionButtonTapped:)];
         
-        blueCircleItem = [CCMenuItemImage itemWithNormalImage:@"blueCircle.png" selectedImage:@"blueCircle.png" target:self selector:@selector(blueCircleTapped:)];
-        redCircleItem = [CCMenuItemImage itemWithNormalImage:@"redCircle.png" selectedImage:@"redCircle.png" target:self selector:@selector(redCircleTapped:)];
-        greenCircleItem = [CCMenuItemImage itemWithNormalImage:@"greenCircle.png" selectedImage:@"greenCircle.png" target:self selector:@selector(greenCircleTapped:)];
+        blueCircleItem = [CCMenuItemImage itemWithNormalImage:@"blueCircle.png" selectedImage:@"blueCircle-s.png" target:self selector:@selector(blueCircleTapped:)];
+        redCircleItem = [CCMenuItemImage itemWithNormalImage:@"redCircle.png" selectedImage:@"redCircle-s.png" target:self selector:@selector(redCircleTapped:)];
+        yellowCircleItem = [CCMenuItemImage itemWithNormalImage:@"yellowCircle.png" selectedImage:@"yellowCircle-s.png" target:self selector:@selector(yellowCircleTapped:)];
+        whiteCircleItem = [CCMenuItemImage itemWithNormalImage:@"whiteCircle.png" selectedImage:@"whiteCircle-s.png" target:self selector:@selector(whiteCircleTapped:)];
         
         trashMenuItem = [CCMenuItemImage itemWithNormalImage:@"trash.png" selectedImage:@"trash.png" target:self selector:@selector(trashButtonTapped:)];
         playMenuItem.position = ccp(60, 60);
         resetMenuItem.position = ccp(130,60);
         positionMenuItem.position = ccp(200,60);
-        blueCircleItem.position = ccp(300,60);
-        redCircleItem.position = ccp(410,60);
-        greenCircleItem.position = ccp(520,60);
+        whiteCircleItem.position = ccp(290,60);
+        redCircleItem.position = ccp(360,60);
+        yellowCircleItem.position = ccp(430,60);
+        blueCircleItem.position = ccp(520,60);
         trashMenuItem.position = ccp(640,40);
-        menu = [CCMenu menuWithItems:playMenuItem, resetMenuItem, positionMenuItem, blueCircleItem, redCircleItem, greenCircleItem, trashMenuItem, nil];
+        menu = [CCMenu menuWithItems:playMenuItem, resetMenuItem, positionMenuItem, whiteCircleItem, redCircleItem, yellowCircleItem, blueCircleItem, trashMenuItem, nil];
         menu.position = ccp(0,15);
         [self addChild:menu];
         [menu setVisible:false];
         
         self.movableSprites = [[NSMutableOrderedSet alloc] init];
         positioning = false;
-        drawing = false;
+        [self whiteCircleTapped:self];
     }
     
     [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
@@ -283,6 +282,8 @@
 }
 
 - (void)blueCircleTapped:(id)sender {
+    [self resetColorButton];
+    [blueCircleItem selected];
     drawing = true;
     currentBlue = 255;
     currentGreen = 0;
@@ -290,17 +291,37 @@
 }
 
 - (void)redCircleTapped:(id)sender {
+    [self resetColorButton];
+    [redCircleItem selected];
     drawing = false;
     currentBlue = 0;
     currentGreen = 0;
     currentRed = 255;
 }
 
-- (void)greenCircleTapped:(id)sender {
+- (void)yellowCircleTapped:(id)sender {
+    [self resetColorButton];
+    [yellowCircleItem selected];
     drawing = false;
     currentBlue = 0;
     currentGreen = 255;
-    currentRed = 0;
+    currentRed = 255;
+}
+
+- (void)whiteCircleTapped:(id)sender {
+    [self resetColorButton];
+    [whiteCircleItem selected];
+    drawing = false;
+    currentBlue = 255;
+    currentGreen = 255;
+    currentRed = 255;
+}
+
+- (void)resetColorButton {
+    [whiteCircleItem unselected];
+    [blueCircleItem unselected];
+    [yellowCircleItem unselected];
+    [redCircleItem unselected];
 }
 
 - (void)trashButtonTapped:(id)sender {
@@ -323,7 +344,7 @@
             [ps.sprite stopAllActions];
             [ps.sprite runAction:[CCRotateTo actionWithDuration:0.1 angle:0]];
         }
-        [self redCircleTapped:nil]; // Set default color after positioning.
+        [self whiteCircleTapped:nil]; // Set default color after positioning.
     } else {
         [self resetScene];
         for(PlaySprite *ps in self.movableSprites) {
@@ -332,7 +353,8 @@
     }
     [redCircleItem setVisible:!positioning];
     [blueCircleItem setVisible:!positioning];
-    [greenCircleItem setVisible:!positioning];
+    [yellowCircleItem setVisible:!positioning];
+    [whiteCircleItem setVisible:!positioning];
     [playMenuItem setVisible:!positioning];
     [resetMenuItem setVisible:!positioning];
 }
