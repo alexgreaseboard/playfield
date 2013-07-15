@@ -185,6 +185,7 @@
     newPlay.name = dupName;
     newPlay.notes = self.detailItem.notes;
     newPlay.type = self.detailItem.type;
+    newPlay.runPass = self.detailItem.runPass;
     
     for(PlaySprite *psOld in self.detailItem.playSprite) {
         PlaySprite *psNew = [NSEntityDescription insertNewObjectForEntityForName:@"PlaySprite" inManagedObjectContext:self.managedObjectContext];
@@ -197,6 +198,9 @@
         }
         
         psNew.imageString = psOld.imageString;
+        psNew.red = psOld.red;
+        psNew.blue = psOld.blue;
+        psNew.green = psOld.green;
         
         for(SpritePoint *spOld in psOld.spritePoints) {
             SpritePoint *spNew = [NSEntityDescription insertNewObjectForEntityForName:@"SpritePoint" inManagedObjectContext:self.managedObjectContext];

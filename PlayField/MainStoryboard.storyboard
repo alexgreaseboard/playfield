@@ -1764,10 +1764,15 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                     <items>
-                                                        <barButtonItem title="Delete Playbook" width="749" id="Ydz-JP-zga">
+                                                        <barButtonItem systemItem="trash" id="Ydz-JP-zga">
                                                             <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <connections>
                                                                 <action selector="deletePlaybook:" destination="VkY-ke-0zk" id="orn-hd-o3Z"/>
+                                                            </connections>
+                                                        </barButtonItem>
+                                                        <barButtonItem systemItem="reply" id="rhS-vj-Cu9">
+                                                            <connections>
+                                                                <action selector="emailPlaybook:" destination="VkY-ke-0zk" id="kXO-D7-E2M"/>
                                                             </connections>
                                                         </barButtonItem>
                                                     </items>
