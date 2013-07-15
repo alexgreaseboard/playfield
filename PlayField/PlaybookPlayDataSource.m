@@ -24,8 +24,9 @@
 #pragma mark - UICollectionView Datasource
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
+    _fetchedResultsController = nil;
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-    //NSLog(@"Number of items in section %d", [sectionInfo numberOfObjects]);
+    NSLog(@"Number of items in section %d", [sectionInfo numberOfObjects]);
     return [sectionInfo numberOfObjects];
 }
 
@@ -39,7 +40,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"PlaybookPlayCell" forIndexPath:indexPath];
-    
+    NSLog(@"Getting item %@", indexPath);
     PlaybookPlayCell *playbookCell = (PlaybookPlayCell *) cell;
     PlaybookPlay *playbookPlay = [self.fetchedResultsController objectAtIndexPath:indexPath];
     playbookCell = [playbookCell initWithFrame:playbookCell.frame playbookPlay:playbookPlay];
@@ -82,7 +83,7 @@
     [fetchRequest setFetchBatchSize:20];
     
     // Predicates
-    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlaybookPlayDS - fetching type: %@, playbook: %@", self.offenseOrDefense, self.playbook.name]];
+    //[TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlaybookPlayDS - fetching type: %@, playbook: %@", self.offenseOrDefense, self.playbook.name]];
     if(self.offenseOrDefense && self.playbook){
         NSPredicate *predicate = [NSPredicate predicateWithFormat:
                                   @"(play.type == %@) && (playbook == %@) && playbook != nil", self.offenseOrDefense, self.playbook];
@@ -109,7 +110,6 @@
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     aFetchedResultsController.delegate = self;
     _fetchedResultsController = aFetchedResultsController;
-    NSLog(@"Count: %i", [aFetchedResultsController.fetchedObjects count]);
     
 	NSError *error = nil;
 	if (![self.fetchedResultsController performFetch:&error]) {

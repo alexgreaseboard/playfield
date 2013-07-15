@@ -823,6 +823,7 @@
 		29E2AAA516CFAEA700005AAF /* PlayCreation */ = {
 			isa = PBXGroup;
 			children = (
+				29E9360F16E82EBE00B439C1 /* Playbook */,
 				29E2AAB116CFAEFB00005AAF /* PlayCreationPlaysTableViewController.h */,
 				29E2AAB216CFAEFB00005AAF /* PlayCreationPlaysTableViewController.m */,
 				29E2AAB316CFAEFB00005AAF /* PlayCreationItemsTableViewController.h */,
@@ -1044,7 +1045,6 @@
 				39E2FFCE1731EBDA0062332C /* GameTime */,
 				29E2AAA416CFAEA200005AAF /* Roster */,
 				29E2AAA516CFAEA700005AAF /* PlayCreation */,
-				29E9360F16E82EBE00B439C1 /* Playbook */,
 				392CD7DC16EBA18C008194B7 /* Practice */,
 				29E2AAA716CFAEB600005AAF /* TableCell */,
 				399B7F04170729700047244D /* Timer */,

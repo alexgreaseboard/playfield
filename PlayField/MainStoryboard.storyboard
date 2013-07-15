@@ -1990,7 +1990,7 @@
                             </button>
                             <view contentMode="scaleToFill" id="FeI-bB-FIc">
                                 <rect key="frame" x="8" y="20" width="175" height="175"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.19175884430000001" green="0.0" blue="0.41021603950000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="top" text="Current Play" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="none" adjustsFontSizeToFit="NO" id="QR4-F4-zZy" customClass="PurpleLabel">

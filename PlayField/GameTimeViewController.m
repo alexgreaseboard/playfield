@@ -14,6 +14,7 @@
 #import "Playbook.h"
 #import "GameTime.h"
 #import "LXReorderableCollectionViewFlowLayout.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface GameTimeViewController ()
 
@@ -27,6 +28,8 @@
     bool upcomingPlayRemoved;
     PlaybookPlay *selectedPlaybookplay;
     GameTime *gameTime; // there should always be 1 gametime for this page
+    CAGradientLayer *currentPlayLayer;
+    PlaybookPlayCell *currentPlayCell;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -110,6 +113,36 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
+    
+    // highlight the upcoming plays section
+    currentPlayLayer = [CAGradientLayer layer];
+    if(gameTime.currentPlaybook){
+        currentPlayLayer.colors = [NSArray arrayWithObjects:
+                               (id)[UIColor colorWithWhite:1.0f alpha:0.4f].CGColor,
+                               (id)[UIColor colorWithWhite:1.0f alpha:0.05f].CGColor,
+                               (id)[UIColor colorWithWhite:1.0f alpha:0.05f].CGColor,
+                               (id)[UIColor colorWithWhite:1.0f alpha:0.4f].CGColor,
+                               nil];
+    } else {
+        currentPlayLayer.colors = [NSArray arrayWithObjects:
+                                   (id)[UIColor colorWithWhite:0 alpha:0.4f].CGColor,
+                                   (id)[UIColor colorWithWhite:0 alpha:0.05f].CGColor,
+                                   (id)[UIColor colorWithWhite:0 alpha:0.05f].CGColor,
+                                   (id)[UIColor colorWithWhite:0 alpha:0.4f].CGColor,
+                                   nil];
+    }
+    currentPlayLayer.locations = [NSArray arrayWithObjects:
+                                  [NSNumber numberWithFloat:0.15f],
+                                  [NSNumber numberWithFloat:0.4f],
+                                  [NSNumber numberWithFloat:0.6f],
+                                  [NSNumber numberWithFloat:1.0f],
+                                  nil];
+    CGRect frame = self.currentPlayView.frame;
+    frame.origin.x = 0;
+    frame.origin.y = 0;
+    currentPlayLayer.frame = frame;
+    
+    [self.currentPlayView.layer insertSublayer:currentPlayLayer above:self.currentPlayView.layer];
 }
 
 - (void) setupDataSources {
@@ -353,8 +386,8 @@
         
         // is it within the upcoming plays section?
         CGPoint upcomingPlaysTanslation = [recognizer locationInView:self.upcomingPlaysCollection];
-        NSLog(@"UpcomingPlaysTanslation %f %f %f %f", upcomingPlaysTanslation.x
-              , upcomingPlaysTanslation.y, self.upcomingPlaysCollection.bounds.size.width, self.upcomingPlaysCollection.bounds.size.height);
+        //NSLog(@"UpcomingPlaysTanslation %f %f %f %f", upcomingPlaysTanslation.x
+        //      , upcomingPlaysTanslation.y, self.upcomingPlaysCollection.bounds.size.width, self.upcomingPlaysCollection.bounds.size.height);
         if(upcomingPlaysTanslation.x > 0 && upcomingPlaysTanslation.x < self.upcomingPlaysCollection.bounds.size.width && upcomingPlaysTanslation.y > 0
            && upcomingPlaysTanslation.y < self.upcomingPlaysCollection.bounds.size.height){
             [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - adding contents of playbook"]];
@@ -380,6 +413,7 @@
         draggingCell = nil;
         draggingPlaybook = nil;
         self.currentPannedItem = nil;
+        [self enableButtons];
     }
 
 }
@@ -467,9 +501,9 @@
 }
 
 
-#pragma GameTimeViewController 
+#pragma GameTimeViewController
 - (void) enableButtons{
-    if([self.upcomingPlaysDS.fetchedResultsController.fetchedObjects count] > 0){
+    if([self.upcomingPlaysCollection numberOfItemsInSection:0] > 0){
         [self.nextPlayButton setEnabled: YES];
         [self.removeAllButton setEnabled: YES];
     } else {
@@ -485,8 +519,11 @@
         PlaybookPlay *firstPlaybookPlay = [self.upcomingPlaysDS.fetchedResultsController.fetchedObjects objectAtIndex:0];
         
         CGRect frame = CGRectMake(self.currentPlayView.frame.origin.x + 2, self.currentPlayView.frame.origin.y, 150, 150);
-        UICollectionViewCell *cell = [[PlaybookPlayCell alloc] initWithFrame:frame playbookPlay:firstPlaybookPlay];
-        [self.currentPlayView addSubview:cell];
+        if(currentPlayCell){
+            [currentPlayCell removeFromSuperview];
+        }
+        currentPlayCell = [[PlaybookPlayCell alloc] initWithFrame:frame playbookPlay:firstPlaybookPlay];
+        [self.currentPlayView addSubview:currentPlayCell];
         self.currentPlay = firstPlaybookPlay;
         // if we're recording the game, add this play to the gametime playbook
         if(gameTime.currentPlaybook){
@@ -506,7 +543,6 @@
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
-        
         [self.upcomingPlaysCollection reloadData];
         [self enableButtons];
     }
@@ -521,6 +557,10 @@
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
+    }
+    selectedPlaybookplay = nil;
+    if(currentPlayCell){
+        [currentPlayCell removeFromSuperview];
     }
     
     [self.upcomingPlaysCollection reloadData];
@@ -583,6 +623,10 @@
 - (IBAction)toggleGame:(id)sender {
     if(gameTime.currentPlaybook){ // stop recording the game
         [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - stop recording game"]];
+        if([gameTime.currentPlaybook.playbookplays count] == 0){
+            // if no plays were added, don't create a new playbook
+            [self.managedObjectContext deleteObject:gameTime.currentPlaybook];
+        }
         gameTime.currentPlaybook = nil;
         [self.gameButton setTitle:@"Start Recording Game" forState:UIControlStateNormal];
         NSError *error = nil;
@@ -590,13 +634,20 @@
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
+        
+        currentPlayLayer.colors = [NSArray arrayWithObjects:
+                                   (id)[UIColor colorWithWhite:0 alpha:0.4f].CGColor,
+                                   (id)[UIColor colorWithWhite:0 alpha:0.05f].CGColor,
+                                   (id)[UIColor colorWithWhite:0 alpha:0.05f].CGColor,
+                                   (id)[UIColor colorWithWhite:0 alpha:0.4f].CGColor,
+                                   nil];
     } else {
         // start recording the game
         [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - start recording game"]];
         Playbook *newPlaybook = [NSEntityDescription insertNewObjectForEntityForName:@"Playbook" inManagedObjectContext:self.managedObjectContext];
         
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"dd-MM-yyyy HH:mm"];
+        [formatter setDateFormat:@"MMM-dd-yyyy HH:mm"];
         newPlaybook.name = [NSString stringWithFormat:@"Game %@", [formatter stringFromDate:[NSDate date]]];
         newPlaybook.type = @"Offense";
         
@@ -607,6 +658,13 @@
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
+        
+        currentPlayLayer.colors = [NSArray arrayWithObjects:
+                                   (id)[UIColor colorWithWhite:1.0f alpha:0.4f].CGColor,
+                                   (id)[UIColor colorWithWhite:1.0f alpha:0.05f].CGColor,
+                                   (id)[UIColor colorWithWhite:1.0f alpha:0.05f].CGColor,
+                                   (id)[UIColor colorWithWhite:1.0f alpha:0.4f].CGColor,
+                                   nil];
     }
 }
 
@@ -677,7 +735,9 @@
 -(void) handleCurrentPlayTap:(UITapGestureRecognizer *)recognizer{
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - selected current play"]];
     selectedPlaybookplay = self.currentPlay;
-    [self performSegueWithIdentifier:@"playbookShowPlaySegue" sender:selectedPlaybookplay];
+    if(selectedPlaybookplay){
+        [self performSegueWithIdentifier:@"playbookShowPlaySegue" sender:selectedPlaybookplay];
+    }
 }
 
 @end
