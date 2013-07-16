@@ -27,7 +27,7 @@
         self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"football-texture.jpg"]];
         CALayer *layer = [self layer];
         [layer setCornerRadius:5.0f];
-        [layer setBorderColor:[UIColor colorWithRed:.20 green:.15 blue:.33 alpha:0.99].CGColor]; // purple
+        [layer setBorderColor:[UIColor blackColor].CGColor]; // purple
         [layer setBorderWidth:1.0f];
         
         // add the label
