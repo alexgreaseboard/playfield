@@ -129,8 +129,8 @@
     } else { // start the timer
         [self.playStartButton setTitle:@"Pause" forState:UIControlStateNormal];
         self.playResetButton.enabled = NO;
-        if(playStartTime == 15){
-            playStartTime = [NSDate timeIntervalSinceReferenceDate] + 15;
+        if(playStartTime == 25){
+            playStartTime = [NSDate timeIntervalSinceReferenceDate] + 25;
         }
         if(playPauseTime > 0){ // account for pausing (stopping without resetting)
             NSTimeInterval pauseElapse = [NSDate timeIntervalSinceReferenceDate] - playPauseTime;
@@ -195,8 +195,8 @@
     if(playTimerRunning){
         [self togglePlayStartStop:nil];
     }
-    self.playResetButton.enabled = NO;
-    playStartTime = 15; // 15 seconds
+    
+    playStartTime = 25; // 25 seconds
     playPauseTime = 0;
     [self setTimerLabelForInterval:playStartTime forLabel:self.playTimerLabel];
 }

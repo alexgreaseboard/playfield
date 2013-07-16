@@ -66,12 +66,14 @@
     
     //disable buttons
     [self enableButtons];
+    [self arrangeScoreboard];
     
 }
 
 -(void) viewDidAppear:(BOOL)animated{
     self.typeButtons.selectedSegmentIndex = 0;
     [self.typeButtons sendActionsForControlEvents:UIControlEventValueChanged];
+    [self arrangeScoreboard];
 }
 
 -(void) setupGametime{
@@ -102,6 +104,12 @@
         gameTime.awayTimeouts = [NSNumber numberWithInt:3];
         gameTime.homeTimeouts = [NSNumber numberWithInt:3];
     }
+    self.homeScoreStepper.value = gameTime.homeScore.intValue;
+    self.awayScoreStepper.value = gameTime.awayScore.intValue;
+    self.homeTOStepper.value = gameTime.homeTimeouts.intValue;
+    self.awayTOStepper.value = gameTime.awayTimeouts.intValue;
+    [self changeScore:nil];
+    [self changeTimeouts:nil];
     
     if(gameTime.currentPlaybook){
         [self.gameButton setTitle:@"Stop Recording Game" forState:UIControlStateNormal];
@@ -113,16 +121,28 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-    
+    [self addGradients];
+}
+
+- (void) arrangeScoreboard{
+    [TestFlight passCheckpoint:@"GameTime - arrange scoreboard"];
+    CGRect scoreboardFrame = self.scoreboardView.frame;
+    scoreboardFrame.origin.x = 0 - scoreboardFrame.size.width + 200;
+    scoreboardFrame.origin.y = self.view.frame.size.height - 50;
+    self.scoreboardView.frame = scoreboardFrame;
+    [self.view bringSubviewToFront:self.scoreboardView];
+}
+
+- (void) addGradients{
     // highlight the upcoming plays section
     currentPlayLayer = [CAGradientLayer layer];
     if(gameTime.currentPlaybook){
         currentPlayLayer.colors = [NSArray arrayWithObjects:
-                               (id)[UIColor colorWithWhite:1.0f alpha:0.4f].CGColor,
-                               (id)[UIColor colorWithWhite:1.0f alpha:0.05f].CGColor,
-                               (id)[UIColor colorWithWhite:1.0f alpha:0.05f].CGColor,
-                               (id)[UIColor colorWithWhite:1.0f alpha:0.4f].CGColor,
-                               nil];
+                                   (id)[UIColor colorWithWhite:1.0f alpha:0.4f].CGColor,
+                                   (id)[UIColor colorWithWhite:1.0f alpha:0.05f].CGColor,
+                                   (id)[UIColor colorWithWhite:1.0f alpha:0.05f].CGColor,
+                                   (id)[UIColor colorWithWhite:1.0f alpha:0.4f].CGColor,
+                                   nil];
     } else {
         currentPlayLayer.colors = [NSArray arrayWithObjects:
                                    (id)[UIColor colorWithWhite:0 alpha:0.4f].CGColor,
@@ -143,6 +163,26 @@
     currentPlayLayer.frame = frame;
     
     [self.currentPlayView.layer insertSublayer:currentPlayLayer above:self.currentPlayView.layer];
+    
+    CAGradientLayer *upcomingLayer = [CAGradientLayer layer];
+    upcomingLayer.colors = [NSArray arrayWithObjects:
+                            (id)[UIColor colorWithWhite:0 alpha:0.4f].CGColor,
+                            (id)[UIColor colorWithWhite:0 alpha:0.05f].CGColor,
+                            (id)[UIColor colorWithWhite:0 alpha:0.05f].CGColor,
+                            (id)[UIColor colorWithWhite:0 alpha:0.4f].CGColor,
+                            nil];
+    upcomingLayer.locations = [NSArray arrayWithObjects:
+                               [NSNumber numberWithFloat:0.15f],
+                               [NSNumber numberWithFloat:0.4f],
+                               [NSNumber numberWithFloat:0.6f],
+                               [NSNumber numberWithFloat:1.0f],
+                               nil];
+    frame = self.upcomingPlaysCollection.frame;
+    frame.origin.x = 0;
+    frame.origin.y = 0;
+    frame.size.width = self.upcomingPlaysCollection.bounds.size.width + 300;
+    upcomingLayer.frame = frame;
+    [self.upcomingPlaysCollection.layer insertSublayer:upcomingLayer above:self.upcomingPlaysCollection.layer];
 }
 
 - (void) setupDataSources {
@@ -167,6 +207,7 @@
 }
 
 - (void) setupGestures{
+    [TestFlight passCheckpoint:@"GameTime -  setupGestures"];
     // gestures = drag & drop playbooks
     UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePlaybookPanning:)];
     panRecognizer.delegate = self;
@@ -696,6 +737,7 @@
         // animate - slide the new view up & hide the old one
         [self.view  addSubview:self.playsCollection];
         [self.view bringSubviewToFront:self.timerView];
+        [self.view bringSubviewToFront:self.scoreboardView];
         [UIView animateWithDuration:.4 animations: ^{
             self.playsCollection.frame = self.playbooksCollection.frame;
             self.playbooksCollection.alpha = 0.0;
@@ -740,4 +782,76 @@
     }
 }
 
+- (IBAction)changeScore:(id)sender {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - change away score"]];
+    gameTime.awayScore = [NSNumber numberWithFloat:self.awayScoreStepper.value];
+    gameTime.homeScore = [NSNumber numberWithFloat:self.homeScoreStepper.value];
+    [self.awayScoreLbl setText:[NSString stringWithFormat:@"%02u", gameTime.awayScore.intValue]];
+    [self.homeScoreLbl setText:[NSString stringWithFormat:@"%02u", gameTime.homeScore.intValue]];
+    [self setScoresLblValue];
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+}
+
+- (IBAction)toggleScoreboard:(id)sender {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - toggle scoreboard"]];
+    if([self.scoreboardButton.titleLabel.text isEqualToString:@"Show"]){
+        [self.scoreboardButton setTitle:@"Hide" forState:UIControlStateNormal];
+        CGRect newFrame = self.scoreboardView.frame;
+        newFrame.origin.x = (self.view.frame.size.width / 2 ) - (self.scoreboardView.frame.size.width / 2);
+        newFrame.origin.y = (self.view.frame.size.height / 2) - (self.scoreboardView.frame.size.height / 2);
+        [UIView animateWithDuration:.4 animations: ^{
+            self.scoreboardView.frame = newFrame;
+            self.scoreboardLabel.textAlignment = NSTextAlignmentCenter;
+            self.scoresLbl.textAlignment = NSTextAlignmentCenter;
+        }];
+    } else {
+        [self.scoreboardButton setTitle:@"Show" forState:UIControlStateNormal];
+        [UIView animateWithDuration:.4 animations: ^{
+            [self arrangeScoreboard];
+            self.scoreboardLabel.textAlignment = NSTextAlignmentRight;
+            self.scoresLbl.textAlignment = NSTextAlignmentRight;
+        }];
+    }
+}
+
+- (IBAction)resetScoreboard:(id)sender {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - reset scoreboard"]];
+    self.awayScoreStepper.value = 0;
+    self.homeScoreStepper.value = 0;
+    self.homeTOStepper.value = 3;
+    self.awayTOStepper.value = 3;
+    [self changeScore:nil];
+    [self changeTimeouts:nil];
+}
+
+- (IBAction)changeTimeouts:(id)sender {
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - change timeouts"]];
+    gameTime.homeTimeouts = [NSNumber numberWithFloat:self.homeTOStepper.value];
+    gameTime.awayTimeouts = [NSNumber numberWithFloat:self.awayTOStepper.value];
+    NSString *lbl = @"";
+    for( int i=0; i< self.homeTOStepper.value; i++){
+        lbl = [NSString stringWithFormat:@"%@%@", lbl, @"| "];
+    }
+    [self.homeTOLbl setText:lbl];
+    
+    lbl = @"";
+    for( int i=0; i< self.awayTOStepper.value; i++){
+        lbl = [NSString stringWithFormat:@"%@%@", lbl, @"| "];
+    }
+    [self.awayTOLbl setText:lbl];
+    [self setScoresLblValue];
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+}
+
+- (void) setScoresLblValue{
+    [self.scoresLbl setText:[NSString stringWithFormat:@"Scores: %@/%@ TO: %@/%@", gameTime.homeScore, gameTime.awayScore, gameTime.homeTimeouts, gameTime.awayTimeouts]];
+}
 @end
