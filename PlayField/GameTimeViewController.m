@@ -14,6 +14,7 @@
 #import "Playbook.h"
 #import "GameTime.h"
 #import "LXReorderableCollectionViewFlowLayout.h"
+#import "TimerChangeControllerViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface GameTimeViewController ()
@@ -50,10 +51,7 @@
 	// Do any additional setup after loading the view.
     //self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"field.jpg"]];
     
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = [self.view convertRect:self.collectionLabel.frame toView:self.view];
-    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];
-    //[self.view.layer insertSublayer:gradient below:self.collectionLabel.layer];
+    self.timerView.parent = self;
     
     self.collectionLabel.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.8];
     
@@ -138,10 +136,10 @@
     currentPlayLayer = [CAGradientLayer layer];
     if(gameTime.currentPlaybook){
         currentPlayLayer.colors = [NSArray arrayWithObjects:
-                                   (id)[UIColor colorWithWhite:1.0f alpha:0.4f].CGColor,
+                                   (id)[UIColor colorWithWhite:1.0f alpha:0.3f].CGColor,
                                    (id)[UIColor colorWithWhite:1.0f alpha:0.05f].CGColor,
                                    (id)[UIColor colorWithWhite:1.0f alpha:0.05f].CGColor,
-                                   (id)[UIColor colorWithWhite:1.0f alpha:0.4f].CGColor,
+                                   (id)[UIColor colorWithWhite:1.0f alpha:0.3f].CGColor,
                                    nil];
     } else {
         currentPlayLayer.colors = [NSArray arrayWithObjects:
@@ -164,6 +162,7 @@
     
     [self.currentPlayView.layer insertSublayer:currentPlayLayer above:self.currentPlayView.layer];
     
+    UIView *upcomingView = [[UIView alloc] initWithFrame:self.upcomingPlaysCollection.frame];
     CAGradientLayer *upcomingLayer = [CAGradientLayer layer];
     upcomingLayer.colors = [NSArray arrayWithObjects:
                             (id)[UIColor colorWithWhite:0 alpha:0.4f].CGColor,
@@ -177,12 +176,14 @@
                                [NSNumber numberWithFloat:0.6f],
                                [NSNumber numberWithFloat:1.0f],
                                nil];
-    frame = self.upcomingPlaysCollection.frame;
+    frame = upcomingView.frame;
     frame.origin.x = 0;
     frame.origin.y = 0;
     frame.size.width = self.upcomingPlaysCollection.bounds.size.width + 300;
     upcomingLayer.frame = frame;
-    [self.upcomingPlaysCollection.layer insertSublayer:upcomingLayer above:self.upcomingPlaysCollection.layer];
+    [upcomingView.layer insertSublayer:upcomingLayer above:upcomingView.layer];
+    self.upcomingPlaysCollection.backgroundView = upcomingView;
+    
 }
 
 - (void) setupDataSources {
@@ -701,10 +702,10 @@
         }
         
         currentPlayLayer.colors = [NSArray arrayWithObjects:
-                                   (id)[UIColor colorWithWhite:1.0f alpha:0.4f].CGColor,
+                                   (id)[UIColor colorWithWhite:1.0f alpha:0.3f].CGColor,
                                    (id)[UIColor colorWithWhite:1.0f alpha:0.05f].CGColor,
                                    (id)[UIColor colorWithWhite:1.0f alpha:0.05f].CGColor,
-                                   (id)[UIColor colorWithWhite:1.0f alpha:0.4f].CGColor,
+                                   (id)[UIColor colorWithWhite:1.0f alpha:0.3f].CGColor,
                                    nil];
     }
 }
@@ -760,6 +761,10 @@
         UINavigationController *navigationController = segue.destinationViewController;
         CocosViewController *controller = (CocosViewController *) navigationController.topViewController;
         [controller setCurrentPlay:selectedPlaybookplay.play];
+    } else if ([segue.identifier isEqualToString:@"showTimeChanger"]){
+        UINavigationController *navController = segue.destinationViewController;
+        TimerChangeControllerViewController *controller = (TimerChangeControllerViewController *) navController.topViewController;
+        
     }
 }
 
@@ -775,7 +780,7 @@
 }
 
 -(void) handleCurrentPlayTap:(UITapGestureRecognizer *)recognizer{
-    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - selected current play"]];
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - selected current play %@", self.currentPlay.play]];
     selectedPlaybookplay = self.currentPlay;
     if(selectedPlaybookplay){
         [self performSegueWithIdentifier:@"playbookShowPlaySegue" sender:selectedPlaybookplay];

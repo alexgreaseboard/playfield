@@ -1978,7 +1978,7 @@
                         <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="bottom" showsHorizontalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="yRY-uT-SqY">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="bottom" restorationIdentifier="greaseboardStoryboard" showsHorizontalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="yRY-uT-SqY">
                                 <rect key="frame" x="0.0" y="250" width="1024" height="445"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -2336,12 +2336,13 @@
                         <outlet property="typeButtons" destination="4yQ-r0-u6n" id="PGo-5K-j7C"/>
                         <outlet property="upcomingPlaysCollection" destination="ckX-zu-gaU" id="iqs-f0-a54"/>
                         <outlet property="upcomingPlaysLabel" destination="HqH-cq-8qe" id="LO5-zT-5dc"/>
-                        <segue destination="iZd-0D-Vte" kind="modal" identifier="playbookShowPlaySegue" modalPresentationStyle="pageSheet" id="sin-KZ-Ndb"/>
+                        <segue destination="iZd-0D-Vte" kind="modal" identifier="playbookShowPlaySegue" modalPresentationStyle="formSheet" id="sin-KZ-Ndb"/>
+                        <segue destination="wHe-CX-bDw" kind="modal" identifier="showTimeChanger" id="XNl-ep-MV1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tHV-Fn-iSE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-82" y="8720"/>
+            <point key="canvasLocation" x="174" y="8500"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="j1E-te-Ah5">
@@ -2799,7 +2800,7 @@
         <!--Cocos View Controller-->
         <scene sceneID="e1o-nU-iw0">
             <objects>
-                <viewController modalPresentationStyle="pageSheet" id="mau-ik-NH7" customClass="CocosViewController" sceneMemberID="viewController">
+                <viewController autoresizesArchivedViewToFullSize="NO" modalPresentationStyle="formSheet" id="mau-ik-NH7" customClass="CocosViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="HBH-qX-Rdh">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="nxJ-pr-F9a">
                             <connections>
@@ -2810,11 +2811,11 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9zi-KV-jGB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5571" y="4574"/>
+            <point key="canvasLocation" x="5215" y="4574"/>
         </scene>
         <!--Practice Edit View Controller - New Practice-->
         <scene sceneID="hlT-vc-lfL">
@@ -3101,12 +3102,29 @@
             </objects>
             <point key="canvasLocation" x="-1005" y="8486"/>
         </scene>
+        <!--Timer Change Controller View Controller - Game Clock Time-->
+        <scene sceneID="mdM-5z-2ds">
+            <objects>
+                <viewController storyboardIdentifier="TimerChange" autoresizesArchivedViewToFullSize="NO" title="Game Clock Time" modalTransitionStyle="flipHorizontal" modalPresentationStyle="currentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="InB-eY-yrl" customClass="TimerChangeControllerViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gzG-gT-JSh">
+                        <rect key="frame" x="0.0" y="64" width="540" height="556"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Game Clock" id="ytY-Ax-Xm3"/>
+                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cv9-xY-pJs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-315" y="9382"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="6EJ-PK-C3N">
             <objects>
-                <navigationController definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" modalPresentationStyle="pageSheet" id="iZd-0D-Vte" sceneMemberID="viewController">
+                <navigationController autoresizesArchivedViewToFullSize="NO" modalPresentationStyle="formSheet" id="iZd-0D-Vte" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UPF-KU-cUo">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -3119,6 +3137,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZLl-w4-lcU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4597" y="4574"/>
+        </scene>
+        <!--Navigation Controller - Game Clock Time-->
+        <scene sceneID="bXg-sw-Yo8">
+            <objects>
+                <navigationController storyboardIdentifier="" autoresizesArchivedViewToFullSize="NO" title="Game Clock Time" modalTransitionStyle="flipHorizontal" modalPresentationStyle="formSheet" id="wHe-CX-bDw" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <value key="contentSizeForViewInPopover" type="size" width="200" height="300"/>
+                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bZn-n1-677">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="InB-eY-yrl" kind="relationship" relationship="rootViewController" id="48M-Vb-hxl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qff-46-JsM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-973" y="9382"/>
         </scene>
     </scenes>
     <resources>

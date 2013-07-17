@@ -7,6 +7,7 @@
 //
 
 #import "TimerView.h"
+#import "TimerChangeControllerViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation TimerView{
@@ -49,6 +50,22 @@
     frame = self.frame;
     frame.origin.y = 0;
     self.contentView.frame = frame;
+    
+    
+    // add a shine to the background
+    CAGradientLayer *shineLayer = [CAGradientLayer layer];
+        shineLayer.colors = [NSArray arrayWithObjects:
+                                   (id)[UIColor colorWithWhite:1.0f alpha:0.2f].CGColor,
+                                   (id)[UIColor colorWithWhite:1.0f alpha:0.0f].CGColor,
+                                   nil];
+    shineLayer.locations = [NSArray arrayWithObjects:
+                                  [NSNumber numberWithFloat:0.0f],
+                                  [NSNumber numberWithFloat:0.2f],
+                                  nil];
+    shineLayer.frame = frame;
+    [self.contentView.layer insertSublayer:shineLayer above:self.contentView.layer];
+    
+    
     
     //move to the far right & add border
     CALayer *layer = [self.timerBorder layer];
@@ -114,8 +131,8 @@
 }
 
 - (IBAction)changeTime:(id)sender {
-    self.minutesTextField.alpha = 1;
-    // todo
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Timer - change time"]];
+    [self.parent performSegueWithIdentifier:@"showTimeChanger" sender:self];
 }
 
 - (IBAction)togglePlayStartStop:(id)sender {
@@ -186,8 +203,6 @@
     label.text = [NSString stringWithFormat:@"%02u:%02u.%u", minutes, seconds, fraction];
 }
 
-- (IBAction)changePlayTime:(id)sender {
-}
 
 - (IBAction)resetPlayTime:(id)sender {
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Timer - reset play timer"]];

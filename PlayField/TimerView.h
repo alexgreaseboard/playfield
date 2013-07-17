@@ -15,7 +15,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *startButton;
 @property (strong, nonatomic) IBOutlet UIButton *resetButton;
 @property (strong, nonatomic) IBOutlet PurpleButton *changeButton;
-@property (strong, nonatomic) IBOutlet UITextField *minutesTextField;
 
 @property (strong, nonatomic) IBOutlet PurpleButton *playStartButton;
 @property (strong, nonatomic) IBOutlet PurpleButton *playResetButton;
@@ -27,13 +26,13 @@
 @property (strong, nonatomic) IBOutlet UIView *timerBorder;
 
 @property (nonatomic) NSTimeInterval initialStartTime;
+@property (retain, nonatomic) UIViewController *parent;
 
 - (IBAction)toggleStartStop:(id)sender;
 - (IBAction)resetTimer:(id)sender;
 - (IBAction)changeTime:(id)sender;
 
 - (IBAction)togglePlayStartStop:(id)sender;
-- (IBAction)changePlayTime:(id)sender;
 - (IBAction)resetPlayTime:(id)sender;
 
 @end
