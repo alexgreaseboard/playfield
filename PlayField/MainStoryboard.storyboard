@@ -2164,47 +2164,52 @@
                                     <action selector="switchType:" destination="89f-El-YeM" eventType="valueChanged" id="R2w-Si-diD"/>
                                 </connections>
                             </segmentedControl>
-                            <view contentMode="scaleToFill" id="PuD-kH-yOt">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" id="PuD-kH-yOt">
                                 <rect key="frame" x="160" y="223" width="319" height="321"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Scoreboard" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eyP-yV-dkX">
-                                        <rect key="frame" x="52" y="-3" width="203" height="32"/>
+                                    <view alpha="0.5" contentMode="scaleToFill" id="yno-og-lHo">
+                                        <rect key="frame" x="0.0" y="0.0" width="319" height="49"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Scoreboard" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eyP-yV-dkX">
+                                        <rect key="frame" x="52" y="-2" width="203" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="999" id="cWW-0V-0Gl">
-                                        <rect key="frame" x="30" y="128" width="94" height="27"/>
+                                        <rect key="frame" x="30" y="136" width="94" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <connections>
                                             <action selector="changeScore:" destination="89f-El-YeM" eventType="valueChanged" id="U2u-0u-rv9"/>
                                         </connections>
                                     </stepper>
                                     <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="999" id="EEw-x9-rQc">
-                                        <rect key="frame" x="197" y="128" width="94" height="27"/>
+                                        <rect key="frame" x="197" y="136" width="94" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <connections>
                                             <action selector="changeScore:" destination="89f-El-YeM" eventType="valueChanged" id="abm-bZ-TOf"/>
                                         </connections>
                                     </stepper>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Home Score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="d0w-AP-qh2">
-                                        <rect key="frame" x="15" y="46" width="123" height="21"/>
+                                        <rect key="frame" x="15" y="54" width="123" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Away Score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6ht-A9-KeC">
-                                        <rect key="frame" x="178" y="46" width="135" height="21"/>
+                                        <rect key="frame" x="178" y="54" width="135" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="89V-Fc-8BM">
-                                        <rect key="frame" x="25" y="72" width="100" height="57"/>
+                                        <rect key="frame" x="25" y="80" width="100" height="57"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="55"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -2218,7 +2223,7 @@
                                         </connections>
                                     </stepper>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Timeouts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rXm-pK-OVY">
-                                        <rect key="frame" x="15" y="174" width="123" height="21"/>
+                                        <rect key="frame" x="14" y="174" width="123" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -2232,7 +2237,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WV0-7i-ajS">
-                                        <rect key="frame" x="189" y="72" width="110" height="57"/>
+                                        <rect key="frame" x="189" y="80" width="110" height="57"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="55"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -2291,17 +2296,17 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wlt-IU-in5">
-                                        <rect key="frame" x="52" y="20" width="203" height="21"/>
+                                        <rect key="frame" x="52" y="22" width="203" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.072995465780000005" green="0.22570551659999999" blue="0.15151879100000001" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.066666670139999995" green="0.25098040700000002" blue="0.17254902420000001" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="backgroundColor" red="0.072995465780640742" green="0.22570551658163263" blue="0.15151879104313595" alpha="0.89000000000000001" colorSpace="calibratedRGB"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" title="Game Time" id="rIE-nb-rsc">
@@ -2336,8 +2341,7 @@
                         <outlet property="typeButtons" destination="4yQ-r0-u6n" id="PGo-5K-j7C"/>
                         <outlet property="upcomingPlaysCollection" destination="ckX-zu-gaU" id="iqs-f0-a54"/>
                         <outlet property="upcomingPlaysLabel" destination="HqH-cq-8qe" id="LO5-zT-5dc"/>
-                        <segue destination="iZd-0D-Vte" kind="modal" identifier="playbookShowPlaySegue" modalPresentationStyle="formSheet" id="sin-KZ-Ndb"/>
-                        <segue destination="wHe-CX-bDw" kind="modal" identifier="showTimeChanger" id="XNl-ep-MV1"/>
+                        <segue destination="iZd-0D-Vte" kind="modal" identifier="playbookShowPlaySegue" modalPresentationStyle="pageSheet" id="sin-KZ-Ndb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tHV-Fn-iSE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2526,7 +2530,7 @@
             <objects>
                 <tableViewController autoresizesArchivedViewToFullSize="NO" title="Column Add/Edit" modalPresentationStyle="formSheet" id="ps3-ND-3lb" customClass="PracticeColumnEditController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Lgc-LT-vvf">
-                        <rect key="frame" x="0.0" y="20" width="540" height="512"/>
+                        <rect key="frame" x="0.0" y="64" width="540" height="512"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.066666670139999995" green="0.25098040700000002" blue="0.17254902420000001" alpha="1" colorSpace="deviceRGB"/>
                         <sections>
@@ -2671,7 +2675,7 @@
                                             <rect key="frame" x="31" y="0.0" width="478" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="numberOfMinutes" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Duration (in minutes)" minimumFontSize="17" id="5Aw-dq-qoe">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="numberOfMinutes" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Duration (in minutes)" minimumFontSize="17" clearButtonMode="always" id="5Aw-dq-qoe">
                                                     <rect key="frame" x="29" y="8" width="429" height="30"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -2801,6 +2805,12 @@
         <scene sceneID="e1o-nU-iw0">
             <objects>
                 <viewController autoresizesArchivedViewToFullSize="NO" modalPresentationStyle="formSheet" id="mau-ik-NH7" customClass="CocosViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9af-Qq-wth">
+                        <rect key="frame" x="0.0" y="0.0" width="708" height="704"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
                     <navigationItem key="navigationItem" id="HBH-qX-Rdh">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="nxJ-pr-F9a">
                             <connections>
@@ -2811,11 +2821,11 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9zi-KV-jGB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5215" y="4574"/>
+            <point key="canvasLocation" x="5863" y="4574"/>
         </scene>
         <!--Practice Edit View Controller - New Practice-->
         <scene sceneID="hlT-vc-lfL">
@@ -2835,7 +2845,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="RAp-tN-5Gt">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="always" id="RAp-tN-5Gt">
                                                     <rect key="frame" x="277" y="7" width="236" height="30"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
@@ -2860,7 +2870,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="practiceDurationText" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="# of minutes" minimumFontSize="17" id="RLk-Tn-EKw">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="practiceDurationText" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="# of minutes" minimumFontSize="17" clearButtonMode="always" id="RLk-Tn-EKw">
                                                     <rect key="frame" x="278" y="7" width="233" height="30"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -3102,29 +3112,12 @@
             </objects>
             <point key="canvasLocation" x="-1005" y="8486"/>
         </scene>
-        <!--Timer Change Controller View Controller - Game Clock Time-->
-        <scene sceneID="mdM-5z-2ds">
-            <objects>
-                <viewController storyboardIdentifier="TimerChange" autoresizesArchivedViewToFullSize="NO" title="Game Clock Time" modalTransitionStyle="flipHorizontal" modalPresentationStyle="currentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="InB-eY-yrl" customClass="TimerChangeControllerViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="gzG-gT-JSh">
-                        <rect key="frame" x="0.0" y="64" width="540" height="556"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Game Clock" id="ytY-Ax-Xm3"/>
-                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cv9-xY-pJs" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-315" y="9382"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="6EJ-PK-C3N">
             <objects>
                 <navigationController autoresizesArchivedViewToFullSize="NO" modalPresentationStyle="formSheet" id="iZd-0D-Vte" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UPF-KU-cUo">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -3136,27 +3129,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZLl-w4-lcU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4597" y="4574"/>
-        </scene>
-        <!--Navigation Controller - Game Clock Time-->
-        <scene sceneID="bXg-sw-Yo8">
-            <objects>
-                <navigationController storyboardIdentifier="" autoresizesArchivedViewToFullSize="NO" title="Game Clock Time" modalTransitionStyle="flipHorizontal" modalPresentationStyle="formSheet" id="wHe-CX-bDw" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <value key="contentSizeForViewInPopover" type="size" width="200" height="300"/>
-                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bZn-n1-677">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="InB-eY-yrl" kind="relationship" relationship="rootViewController" id="48M-Vb-hxl"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Qff-46-JsM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-973" y="9382"/>
+            <point key="canvasLocation" x="4685" y="4574"/>
         </scene>
     </scenes>
     <resources>
@@ -3174,7 +3147,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="5yD-N9-zYE"/>
-        <segue reference="sin-KZ-Ndb"/>
+        <segue reference="6gM-dK-R7A"/>
+        <segue reference="Tn5-6h-NGe"/>
     </inferredMetricsTieBreakers>
 </document>

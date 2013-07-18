@@ -15,6 +15,7 @@
 #import "PracticeItemEditController.h"
 #import "PracticeOptionsController.h"
 #import "PracticeColumnEditController.h"
+#import "PracticesTableViewController.h"
 #import "AppDelegate.h"
 #import "PracticeOtherItemsTableViewController.h"
 #import "TimerView.h"
@@ -53,15 +54,17 @@
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
-    self.view.backgroundColor = [UIColor colorWithRed:(18.0 / 255.0) green:(50.0 / 255.0) blue:(33.0 / 255.0) alpha: 1];
+    self.view.backgroundColor = [UIColor colorWithRed:(18.0 / 255.0) green:(50.0 / 255.0) blue:(33.0 / 255.0) alpha: 0.8f];
     
     // available colors for the items
     self.availableColors = [[NSMutableArray alloc] initWithCapacity:20];
-    [self.availableColors addObject:[UIColor colorWithRed:.17 green:.26 blue:.32 alpha:0.95]];// blue
-    [self.availableColors addObject:[UIColor colorWithRed:.66 green:.15 blue:.18 alpha:0.85]];// red
-    [self.availableColors addObject:[UIColor colorWithRed:.31 green:.41 blue:.18 alpha:0.95]];// green
-    [self.availableColors addObject:[UIColor colorWithRed:.20 green:.15 blue:.33 alpha:0.95]];// purple
+    [self.availableColors addObject:[UIColor colorWithRed:(34.0 / 255.0) green:(93.0 / 255.0) blue:(90.0 / 255.0) alpha: .8]];// bluegreen
     
+    [self.availableColors addObject:[UIColor colorWithRed:.66 green:.15 blue:.18 alpha:0.8]];// red
+    [self.availableColors addObject:[UIColor colorWithRed:.31 green:.41 blue:.18 alpha:0.9]];// green
+    [self.availableColors addObject:[UIColor colorWithRed:.20 green:.15 blue:.33 alpha:0.9]];// purple
+    [self.availableColors addObject:[UIColor colorWithRed:(182 / 255.0) green:(67 / 255.0) blue:(131 / 255.0) alpha: 0.95]];// pink
+    [self.availableColors addObject:[UIColor colorWithRed:(34.0 / 255.0) green:(37.0 / 255.0) blue:(93.0 / 255.0) alpha: 0.9]];// blue
     self.colorItemMap = [[NSMutableDictionary alloc] initWithCapacity:20];
 }
 
@@ -92,6 +95,7 @@
     }
     // generate the time labels
     for(PracticeColumn* column in practice.practiceColumns){
+        NSLog(@"-------- %@", column.columnName);
         [self generateTimeItemsForColumn:column];
     }
     
@@ -135,7 +139,7 @@
     self.tableView.rowHeight = 5 * self.pixelRatio; // 5 minute intervals
     self.tableView.backgroundColor = [UIColor clearColor];
     
-    self.tableView.separatorColor = [UIColor blackColor];
+    self.tableView.separatorColor = [UIColor whiteColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.view addSubview:self.tableView];
     [self.view sendSubviewToBack:self.tableView];
@@ -180,7 +184,7 @@
     PracticeItem *practiceItem = [self findItemAtIndex:indexPath.item];
     PracticeItemCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"PracticeCell" forIndexPath:indexPath];
     cell.hidden = NO;
-    //NSLog(@"Configuring cell for item %@ and cell %@", practiceItem, cell);
+    //NSLog(@"Configuring cell for item %@ and cell %@", practiceItem.itemType, practiceItem.itemName);
     if([practiceItem.itemType isEqualToString:@"item"] && practiceItem.backgroundColor == nil){
         [self setColorForItem:practiceItem];
     }
@@ -216,7 +220,6 @@
     NSInteger count = 0;
     int columnNumber = 0;
     for(PracticeColumn *practiceColumn in self.practice.practiceColumns){
-        
         NSInteger initialCount = count;
         count += practiceColumn.timePracticeItems.count;
         if(index < count){
@@ -632,6 +635,8 @@
 }
 - (void)practiceColumnEditController:(PracticeColumnEditController *)controller didFinishEditingColumn:(PracticeColumn *)column{
     //NSLog(@"Column name %@", column.columnName);
+    PracticeItem *item = column.practiceItems[0];
+    item.itemName = column.columnName;
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);

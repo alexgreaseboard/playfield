@@ -27,7 +27,7 @@
         self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"football-texture.jpg"]];
         CALayer *layer = [self layer];
         [layer setCornerRadius:5.0f];
-        [layer setBorderColor:[UIColor blackColor].CGColor]; // purple
+        [layer setBorderColor:[UIColor blackColor].CGColor];
         [layer setBorderWidth:1.0f];
         
         // add the label
@@ -71,8 +71,6 @@
 
 - (void) highlightCell {
     if(!disabledLayer){
-        self.backgroundView = nil;
-        self.backgroundColor = [UIColor blackColor];
         [disabledLayer removeFromSuperlayer];
         disabledLayer = [CAGradientLayer layer];
         disabledLayer.colors = [NSArray arrayWithObjects:

@@ -7,17 +7,18 @@
 //
 
 #import "TimerView.h"
-#import "TimerChangeControllerViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation TimerView{
     NSTimeInterval startTime;
     NSTimeInterval pauseTime;
+    NSTimeInterval manualTime;
     bool timerRunning;
     
     NSTimeInterval playStartTime;
     NSTimeInterval playPauseTime;
     bool playTimerRunning;
+    CGRect originalFrame;
 }
 
 - (id)initWithFrame:(CGRect)aRect{
@@ -65,8 +66,6 @@
     shineLayer.frame = frame;
     [self.contentView.layer insertSublayer:shineLayer above:self.contentView.layer];
     
-    
-    
     //move to the far right & add border
     CALayer *layer = [self.timerBorder layer];
     [layer setCornerRadius:5.0f];
@@ -86,6 +85,10 @@
     frame.origin.x = self.contentView.frame.size.width - self.timerBorder.frame.size.width - self.playContentView.frame.size.width - 30;
     frame.origin.y = 3;
     self.playContentView.frame = frame;
+    
+    // gestures
+    //UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGameTime:)];
+    //[self.timerBorder addGestureRecognizer:tapGesture];
     
     // initialize
     timerRunning = NO;
@@ -107,6 +110,8 @@
         self.resetButton.enabled = NO;
         if(startTime == self.initialStartTime){
             startTime = [NSDate timeIntervalSinceReferenceDate] + self.initialStartTime;
+        } else if(startTime == manualTime){
+            startTime = [NSDate timeIntervalSinceReferenceDate] + manualTime;
         }
         if(pauseTime > 0){ // account for pausing (stopping without resetting)
             NSTimeInterval pauseElapse = [NSDate timeIntervalSinceReferenceDate] - pauseTime;
@@ -132,7 +137,50 @@
 
 - (IBAction)changeTime:(id)sender {
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Timer - change time"]];
-    [self.parent performSegueWithIdentifier:@"showTimeChanger" sender:self];
+    //[self.parent performSegueWithIdentifier:@"showTimeChanger" sender:self];    
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Game Clock" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Done", nil];
+    message.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [message textFieldAtIndex:0].clearButtonMode = UITextFieldViewModeAlways;
+    [message textFieldAtIndex:0].text = self.timerLabel.text;
+    [[message textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeNumberPad];
+    [message show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    if([title isEqualToString:@"Done"])
+    {
+        UITextField *newTime = [alertView textFieldAtIndex:0];
+        [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Timer - change time to %@", newTime.text]];
+        NSString *inputText = newTime.text;
+        NSRange match = [inputText rangeOfString:@":"];
+        NSString *minutes = [inputText substringToIndex:match.location];
+        NSString *seconds = [inputText substringFromIndex:(match.location + 1)];
+        manualTime = minutes.intValue * 60 + seconds.intValue;
+        if(timerRunning){
+            [self toggleStartStop:nil];
+        }
+        startTime = manualTime;
+        pauseTime = 0;
+        [self setTimerLabelForInterval:startTime forLabel:self.timerLabel];
+
+    }
+}
+
+- (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView
+{
+    NSString *inputText = [[alertView textFieldAtIndex:0] text];
+    NSRange match = [inputText rangeOfString:@":"];
+    if( match.length > 0 ){
+        NSString *minutes = [inputText substringToIndex:match.location];
+        NSString *seconds = [inputText substringFromIndex:(match.location + 1)];
+        NSLog(@"%@,%@",minutes,seconds);
+        if(minutes.intValue > 0 || seconds.intValue > 0){
+            return YES;
+        }
+    }
+    return NO;
 }
 
 - (IBAction)togglePlayStartStop:(id)sender {
@@ -200,7 +248,11 @@
     int fraction = timeInterval * 10;
     
     // update label
-    label.text = [NSString stringWithFormat:@"%02u:%02u.%u", minutes, seconds, fraction];
+    if(minutes > 0){
+        label.text = [NSString stringWithFormat:@"%02u:%02u.%u", minutes, seconds, fraction];
+    } else {
+        label.text = [NSString stringWithFormat:@"%02u.%u", seconds, fraction];
+    }
 }
 
 
@@ -215,4 +267,19 @@
     playPauseTime = 0;
     [self setTimerLabelForInterval:playStartTime forLabel:self.playTimerLabel];
 }
+
+/*
+-(void) tapGameTime:(UITapGestureRecognizer *)recognizer{
+    NSLog(@"Tapped");
+    originalFrame = self.timerBorder.frame;
+    CGRect newFrame = self.timerBorder.frame;
+    newFrame.size.height = 200;
+    newFrame.size.width = 500;
+    newFrame.origin.x = self.contentView.frame.size.width / 2 - newFrame.size.width / 2;
+    newFrame.origin.y = -400;
+    [UIView animateWithDuration:.4 animations: ^{
+        self.timerBorder.frame = newFrame;
+        self.timerBorder.backgroundColor = [UIColor blackColor];
+    }];
+}*/
 @end

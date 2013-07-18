@@ -14,7 +14,6 @@
 #import "Playbook.h"
 #import "GameTime.h"
 #import "LXReorderableCollectionViewFlowLayout.h"
-#import "TimerChangeControllerViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface GameTimeViewController ()
@@ -49,7 +48,6 @@
     [super viewDidLoad];
     [TestFlight passCheckpoint:@"Loading GameTime"];
 	// Do any additional setup after loading the view.
-    //self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"field.jpg"]];
     
     self.timerView.parent = self;
     
@@ -66,12 +64,31 @@
     [self enableButtons];
     [self arrangeScoreboard];
     
+    // background image
+    CGRect frame = self.view.frame;
+    frame.size.width = 1024;
+    frame.size.height = 768;
+    UIGraphicsBeginImageContext(frame.size);
+    [[UIImage imageNamed:@"field.jpg"] drawInRect:frame];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
 }
 
 -(void) viewDidAppear:(BOOL)animated{
     self.typeButtons.selectedSegmentIndex = 0;
     [self.typeButtons sendActionsForControlEvents:UIControlEventValueChanged];
     [self arrangeScoreboard];
+    
+    CALayer *layer = [self.scoreboardView layer];
+    [layer setCornerRadius:8.0f];
+    [layer setBorderColor:[UIColor blackColor].CGColor];
+    [layer setBorderWidth:1.0f];
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:@"field.jpg"] drawInRect:self.scoreboardView.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    self.scoreboardView.backgroundColor = [UIColor colorWithPatternImage:image];
 }
 
 -(void) setupGametime{
@@ -110,9 +127,9 @@
     [self changeTimeouts:nil];
     
     if(gameTime.currentPlaybook){
-        [self.gameButton setTitle:@"Stop Recording Game" forState:UIControlStateNormal];
+        [self.gameButton setTitle:@"Stop Tracking Game" forState:UIControlStateNormal];
     } else {
-        [self.gameButton setTitle:@"Start Recording Game" forState:UIControlStateNormal];
+        [self.gameButton setTitle:@"Start Tracking Game" forState:UIControlStateNormal];
     }
     
     if (![self.managedObjectContext save:&error]) {
@@ -126,7 +143,7 @@
     [TestFlight passCheckpoint:@"GameTime - arrange scoreboard"];
     CGRect scoreboardFrame = self.scoreboardView.frame;
     scoreboardFrame.origin.x = 0 - scoreboardFrame.size.width + 200;
-    scoreboardFrame.origin.y = self.view.frame.size.height - 50;
+    scoreboardFrame.origin.y = self.view.frame.size.height - 47;
     self.scoreboardView.frame = scoreboardFrame;
     [self.view bringSubviewToFront:self.scoreboardView];
 }
@@ -285,6 +302,9 @@
         // add the cell to the appropriate place
         draggingPlaybookPlay.status = nil;
         [self addDraggedCell:recognizer draggedItem:draggingPlaybookPlay];
+        if(draggingPlaybookPlay.playbook == nil){
+            [self.managedObjectContext deleteObject:draggingPlaybookPlay];
+        }
         NSError *error = nil;
         if (![self.managedObjectContext save:&error]) {
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
@@ -312,7 +332,6 @@
     if(draggedItem.playbook != gameTime.upcomingPlaybook){
         Play *play = draggedItem.play;
         draggedItem = [NSEntityDescription insertNewObjectForEntityForName:@"PlaybookPlay" inManagedObjectContext:self.managedObjectContext];
-        draggedItem.playbook = gameTime.upcomingPlaybook;
         draggedItem.play = play;
     }
     //draggedItem.status = @"Dragging";
@@ -352,7 +371,7 @@
         NSIndexPath *landingPoint = [self.upcomingPlaysCollection indexPathForItemAtPoint:newFrame.origin];
     
         if(landingPoint){
-            
+            NSLog(@"Landing point -------------");
             //Play *landingItem = self.upcomingPlaysDS.upcomingPlays[landingPoint.item];
             int index = landingPoint.item;
             if(index > 0){
@@ -372,12 +391,16 @@
             }
             }
             draggedItem.displayOrder = [NSNumber numberWithInt:index];
+            draggedItem.playbook = gameTime.upcomingPlaybook;
         } else if(newFrame.origin.x > 0 && newFrame.origin.y > 0 && newFrame.origin.x < self.upcomingPlaysCollection.frame.
             size.width && newFrame.origin.y < self.upcomingPlaysCollection.frame.size.height){
-            NSLog(@"Adding to end");
+            //NSLog(@"Adding to end");
             draggedItem.displayOrder = [NSNumber numberWithInt:[self.upcomingPlaysDS.fetchedResultsController.fetchedObjects count] ];
+            draggedItem.playbook = gameTime.upcomingPlaybook;
         } else {
+            draggedItem.playbook = nil;
             //NSLog(@"Not dragging over upcoming plays %f %f", newFrame.origin.x, newFrame.origin.y);
+            //return;
         }
     // save & reload
     NSError *error = nil;
@@ -664,13 +687,13 @@
 
 - (IBAction)toggleGame:(id)sender {
     if(gameTime.currentPlaybook){ // stop recording the game
-        [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - stop recording game"]];
+        [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - stop tracking game"]];
         if([gameTime.currentPlaybook.playbookplays count] == 0){
             // if no plays were added, don't create a new playbook
             [self.managedObjectContext deleteObject:gameTime.currentPlaybook];
         }
         gameTime.currentPlaybook = nil;
-        [self.gameButton setTitle:@"Start Recording Game" forState:UIControlStateNormal];
+        [self.gameButton setTitle:@"Start Tracking Game" forState:UIControlStateNormal];
         NSError *error = nil;
         if (![self.managedObjectContext save:&error]) {
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
@@ -684,8 +707,8 @@
                                    (id)[UIColor colorWithWhite:0 alpha:0.4f].CGColor,
                                    nil];
     } else {
-        // start recording the game
-        [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - start recording game"]];
+        // start tracking the game
+        [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - start tracking game"]];
         Playbook *newPlaybook = [NSEntityDescription insertNewObjectForEntityForName:@"Playbook" inManagedObjectContext:self.managedObjectContext];
         
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -694,7 +717,7 @@
         newPlaybook.type = @"Offense";
         
         gameTime.currentPlaybook = newPlaybook;
-        [self.gameButton setTitle:@"Stop Recording Game" forState:UIControlStateNormal];
+        [self.gameButton setTitle:@"Stop Tracking Game" forState:UIControlStateNormal];
         NSError *error = nil;
         if (![self.managedObjectContext save:&error]) {
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
@@ -761,10 +784,6 @@
         UINavigationController *navigationController = segue.destinationViewController;
         CocosViewController *controller = (CocosViewController *) navigationController.topViewController;
         [controller setCurrentPlay:selectedPlaybookplay.play];
-    } else if ([segue.identifier isEqualToString:@"showTimeChanger"]){
-        UINavigationController *navController = segue.destinationViewController;
-        TimerChangeControllerViewController *controller = (TimerChangeControllerViewController *) navController.topViewController;
-        
     }
 }
 
@@ -857,6 +876,6 @@
 }
 
 - (void) setScoresLblValue{
-    [self.scoresLbl setText:[NSString stringWithFormat:@"Scores: %@/%@ TO: %@/%@", gameTime.homeScore, gameTime.awayScore, gameTime.homeTimeouts, gameTime.awayTimeouts]];
+    [self.scoresLbl setText:[NSString stringWithFormat:@"Score: %@/%@ TO: %@/%@", gameTime.homeScore, gameTime.awayScore, gameTime.homeTimeouts, gameTime.awayTimeouts]];
 }
 @end

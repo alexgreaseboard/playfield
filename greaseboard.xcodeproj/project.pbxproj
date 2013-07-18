@@ -109,7 +109,6 @@
 		393DED7E178E42DC00953761 /* GameTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 393DED7D178E42DC00953761 /* GameTime.m */; };
 		393DED81178F95ED00953761 /* PurpleSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 393DED80178F95ED00953761 /* PurpleSegmentControl.m */; };
 		393DED84178FAC0E00953761 /* PlaybookPinchGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 393DED83178FAC0E00953761 /* PlaybookPinchGestureRecognizer.m */; };
-		393DED8C179622E200953761 /* TimerChangeControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 393DED8B179622E200953761 /* TimerChangeControllerViewController.m */; };
 		394AEDBB16FBEF030043D6E8 /* PracticeOtherItemsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 394AEDBA16FBEF030043D6E8 /* PracticeOtherItemsTableViewController.m */; };
 		394DEEC116F55C5A0047A3B7 /* PracticeEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 394DEEBF16F395C20047A3B7 /* PracticeEditViewController.m */; };
 		3989D24E1751143E00AD8372 /* LXReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3989D24D1751143E00AD8372 /* LXReorderableCollectionViewFlowLayout.m */; };
@@ -447,8 +446,6 @@
 		393DED80178F95ED00953761 /* PurpleSegmentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurpleSegmentControl.m; sourceTree = "<group>"; };
 		393DED82178FAC0E00953761 /* PlaybookPinchGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybookPinchGestureRecognizer.h; sourceTree = "<group>"; };
 		393DED83178FAC0E00953761 /* PlaybookPinchGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybookPinchGestureRecognizer.m; sourceTree = "<group>"; };
-		393DED8A179622E200953761 /* TimerChangeControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerChangeControllerViewController.h; sourceTree = "<group>"; };
-		393DED8B179622E200953761 /* TimerChangeControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerChangeControllerViewController.m; sourceTree = "<group>"; };
 		394AEDB916FBEF030043D6E8 /* PracticeOtherItemsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeOtherItemsTableViewController.h; sourceTree = "<group>"; };
 		394AEDBA16FBEF030043D6E8 /* PracticeOtherItemsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeOtherItemsTableViewController.m; sourceTree = "<group>"; };
 		394DEEBE16F395C20047A3B7 /* PracticeEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeEditViewController.h; sourceTree = "<group>"; };
@@ -1017,8 +1014,6 @@
 				399B7F05170733980047244D /* TimerView.h */,
 				399B7F06170733980047244D /* TimerView.m */,
 				399B7F0A17073AE60047244D /* TimerView.xib */,
-				393DED8A179622E200953761 /* TimerChangeControllerViewController.h */,
-				393DED8B179622E200953761 /* TimerChangeControllerViewController.m */,
 			);
 			name = Timer;
 			sourceTree = "<group>";
@@ -1935,7 +1930,6 @@
 				393DED7E178E42DC00953761 /* GameTime.m in Sources */,
 				393DED81178F95ED00953761 /* PurpleSegmentControl.m in Sources */,
 				393DED84178FAC0E00953761 /* PlaybookPinchGestureRecognizer.m in Sources */,
-				393DED8C179622E200953761 /* TimerChangeControllerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
