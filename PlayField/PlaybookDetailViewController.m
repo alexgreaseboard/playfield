@@ -144,7 +144,8 @@
             
             // add the cell to the view
             draggingPlaybookPlay = [playbookPlayDS.fetchedResultsController objectAtIndexPath:landingPoint];
-            draggingItem = [[PlaybookPlayCell alloc] initWithFrame:initialDraggingFrame name:draggingPlaybookPlay.play.name];
+            draggingItem = [[PlaybookPlayCell alloc] initWithFrame:initialDraggingFrame ];
+            [draggingItem configureCell:draggingPlaybookPlay];
             [self.view addSubview:draggingItem];
         }
                 

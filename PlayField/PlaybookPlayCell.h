@@ -11,14 +11,12 @@
 
 @interface PlaybookPlayCell : UICollectionViewCell
 
-
-- (id)initWithFrame:(CGRect)frame playbookPlay:(PlaybookPlay*)playbookPlay;
-- (id)initWithFrame:(CGRect)frame name:(NSString*)name;
-
 - (void) highlightCell;
 - (void) unhighlightCell;
+-(void) configureCell:(PlaybookPlay*)pPlaybookPlay;
 
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (nonatomic) Boolean *isHover;
+@property (strong, nonatomic) PlaybookPlay *playbookPlay;
 
 @end

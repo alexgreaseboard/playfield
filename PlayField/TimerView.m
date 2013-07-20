@@ -32,12 +32,42 @@
 }
 
 - (void)awakeFromNib
-{
-    if(!self.initialStartTime){
-        self.initialStartTime = 15 * 60; // 15 minutes default
-    }
+{ 
     self.contentView = [[[NSBundle mainBundle] loadNibNamed:@"TimerView" owner:self options:nil] objectAtIndex:0];
     [self addSubview:self.contentView];
+    
+    // if a time is specified, don't show the play timer (for practice page)
+    if(!self.initialStartTime){
+        self.initialStartTime = 15 * 60; // 15 minutes default
+    } else {
+        [self.playContentView removeFromSuperview];
+    }
+    
+    [self setupUI];
+    
+    // gestures
+    //UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGameTime:)];
+    //[self.timerBorder addGestureRecognizer:tapGesture];
+    
+    
+    // initialize
+    timerRunning = NO;
+    playTimerRunning = NO;
+    [self resetTimer:self];
+    [self resetPlayTime:self];
+    
+    // see if there are any current notifications and set the timer if so
+    NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    if(notifications.count > 0){
+        UILocalNotification *notification = notifications[0];
+        pauseTime = 0;
+        startTime = [notification.fireDate timeIntervalSinceReferenceDate];
+        [self toggleStartStop:nil];
+        [self updateTime];
+    }
+}
+
+- (void) setupUI{
     // set the background
     self.backgroundColor = [UIColor clearColor];
     self.contentView.backgroundColor = [UIColor colorWithWhite:0.2 alpha:0.65];
@@ -52,17 +82,16 @@
     frame.origin.y = 0;
     self.contentView.frame = frame;
     
-    
     // add a shine to the background
     CAGradientLayer *shineLayer = [CAGradientLayer layer];
-        shineLayer.colors = [NSArray arrayWithObjects:
-                                   (id)[UIColor colorWithWhite:1.0f alpha:0.2f].CGColor,
-                                   (id)[UIColor colorWithWhite:1.0f alpha:0.0f].CGColor,
-                                   nil];
+    shineLayer.colors = [NSArray arrayWithObjects:
+                         (id)[UIColor colorWithWhite:1.0f alpha:0.2f].CGColor,
+                         (id)[UIColor colorWithWhite:1.0f alpha:0.0f].CGColor,
+                         nil];
     shineLayer.locations = [NSArray arrayWithObjects:
-                                  [NSNumber numberWithFloat:0.0f],
-                                  [NSNumber numberWithFloat:0.2f],
-                                  nil];
+                            [NSNumber numberWithFloat:0.0f],
+                            [NSNumber numberWithFloat:0.2f],
+                            nil];
     shineLayer.frame = frame;
     [self.contentView.layer insertSublayer:shineLayer above:self.contentView.layer];
     
@@ -85,16 +114,6 @@
     frame.origin.x = self.contentView.frame.size.width - self.timerBorder.frame.size.width - self.playContentView.frame.size.width - 30;
     frame.origin.y = 3;
     self.playContentView.frame = frame;
-    
-    // gestures
-    //UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGameTime:)];
-    //[self.timerBorder addGestureRecognizer:tapGesture];
-    
-    // initialize
-    timerRunning = NO;
-    playTimerRunning = NO;
-    [self resetTimer:self];
-    [self resetPlayTime:self];
 }
 
 - (IBAction)toggleStartStop:(id)sender {
@@ -105,6 +124,7 @@
         self.resetButton.enabled = YES;
         self.startButton.enabled = YES;
         pauseTime = [NSDate timeIntervalSinceReferenceDate];
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
     } else { // start the timer
         [self.startButton setTitle:@"Pause" forState:UIControlStateNormal];
         self.resetButton.enabled = NO;
@@ -117,6 +137,19 @@
             NSTimeInterval pauseElapse = [NSDate timeIntervalSinceReferenceDate] - pauseTime;
             pauseTime = 0;
             startTime = startTime + pauseElapse;
+        }
+        
+        UILocalNotification *notification = [[UILocalNotification alloc] init];
+        if(notification){
+            notification.fireDate = [NSDate dateWithTimeIntervalSinceReferenceDate:startTime];
+            //NSLog(@"Firedate %@", notification.fireDate);
+            notification.timeZone = [NSTimeZone defaultTimeZone];
+            notification.alertBody = @"Times Up!";
+            notification.alertAction = NSLocalizedString(@"Done",nil);
+            notification.applicationIconBadgeNumber = 0;
+            notification.soundName = UILocalNotificationDefaultSoundName;
+        
+            [[UIApplication sharedApplication] scheduleLocalNotification:notification];
         }
         [self updateTime];
     }
@@ -229,14 +262,16 @@
     // calculate elapsed time
     NSTimeInterval currentTime = [NSDate timeIntervalSinceReferenceDate];
     NSTimeInterval elapsed = startTime - currentTime;
-    [self setTimerLabelForInterval:elapsed forLabel:self.timerLabel];
+    
     
     if(elapsed >= 0){
         [self performSelector:@selector(updateTime) withObject:self afterDelay:0.1];
     } else {
         self.startButton.enabled = NO;
         self.resetButton.enabled = YES;
+        elapsed = 0;
     }
+    [self setTimerLabelForInterval:elapsed forLabel:self.timerLabel];
 }
 
 - (void) setTimerLabelForInterval:(NSTimeInterval) timeInterval forLabel:(UILabel*)label{

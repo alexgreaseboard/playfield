@@ -294,6 +294,13 @@
     return _persistentStoreCoordinator;
 }
 
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    //NSLog(@"didReceiveLocalNotification %@", notification);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"GreaseBoard Timer" message:@"Times Up!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
+}
+
 #pragma mark - Application's Documents directory
 
 // Returns the URL to the application's Documents directory.

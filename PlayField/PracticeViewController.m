@@ -44,7 +44,8 @@
 	PracticeItem *draggingItem;
     PracticeItem *placeholderItem; // a placeholder to expand the column when dragging
     CGRect initialDraggingFrame;
-    UIView *timer;
+    TimerView *timer;
+    PracticeItem *pinchingItem;
 }
 
 - (void)viewDidLoad
@@ -147,6 +148,7 @@
     // add the timer
     [timer removeFromSuperview];
     timer = [[TimerView alloc] init];
+    timer.initialStartTime = practice.practiceDuration.intValue * 60;
     [self.view addSubview:timer];
     [timer awakeFromNib];
     
@@ -695,7 +697,8 @@
 - (void) handlePinching:(UIPinchGestureRecognizer *)sender{
     // Get the pinch points.
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Practice - handlePinching. Touchpoints: %i", sender.numberOfTouches]];
-    if(sender.numberOfTouches > 1){
+    // get the current item
+    if(sender.numberOfTouches > 1 && !pinchingItem){
         CGPoint p1 = [sender locationOfTouch:0 inView:[self collectionView]];
         CGPoint p2 = [sender locationOfTouch:1 inView:[self collectionView]];
         NSIndexPath *newPinchedIndexPath1 = [self.collectionView indexPathForItemAtPoint:p1];
@@ -703,15 +706,18 @@
     
         PracticeItem *item1 = [self findItemAtIndex:newPinchedIndexPath1.item];
         PracticeItem *item2 = [self findItemAtIndex:newPinchedIndexPath2.item];
-    
-        //NSLog(@"Pinching %@, %@", item1.itemName, item2.itemName);
-        if(sender.state == UIGestureRecognizerStateChanged && item1 == item2 && [item1.itemType isEqualToString:@"item"]){
-            [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Practice - pinching %@", item1.itemName]];
+        if(item1 == item2 && [item1.itemType isEqualToString:@"item"]){
+            pinchingItem = item1;
+        }
+    }
+    // if we have a pinching item
+    if((sender.state == UIGestureRecognizerStateBegan || sender.state == UIGestureRecognizerStateChanged) && pinchingItem){
+            [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Practice - pinching %@", pinchingItem.itemName]];
             //increment by 5 minutes
-            CGFloat newMinutes = [item1.numberOfMinutes floatValue] * sender.scale;
+            CGFloat newMinutes = [pinchingItem.numberOfMinutes floatValue] * sender.scale * 1.1;
             NSInteger newMinutesInt = round(newMinutes);
             if(newMinutes > 0 && newMinutesInt % 5 == 0){
-                item1.numberOfMinutes = [NSNumber numberWithInt:newMinutesInt];
+                pinchingItem.numberOfMinutes = [NSNumber numberWithInt:newMinutesInt];
                 sender.scale = 1; // reset the scale
                 NSError *error = nil;
                 if (![self.managedObjectContext save:&error]) {
@@ -724,7 +730,8 @@
             [UIView setAnimationsEnabled:NO];
             [self.collectionView reloadData];
             [UIView setAnimationsEnabled:animationsEnabled];
-        }
+    } else if(sender.state == UIGestureRecognizerStateEnded){
+        pinchingItem = nil;
     }
 }
 

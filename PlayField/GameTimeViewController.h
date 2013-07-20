@@ -39,6 +39,15 @@
 @property (strong, nonatomic) IBOutlet UIStepper *awayTOStepper;
 @property (strong, nonatomic) IBOutlet UILabel *scoresLbl;
 
+@property (strong, nonatomic) PlaybookPlayDataSource *upcomingPlaysDS;
+
+// gestures - pinching & panning
+@property (nonatomic, strong) NSIndexPath *currentPannedItem;
+
+// object context
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) PlaybookPlay *currentPlay;
+
 - (IBAction)close:(id)sender;
 - (IBAction)loadNextPlay:(id)sender;
 - (IBAction)removeAllPlays:(id)sender;
@@ -49,15 +58,4 @@
 - (IBAction)toggleScoreboard:(id)sender;
 - (IBAction)resetScoreboard:(id)sender;
 - (IBAction)changeTimeouts:(id)sender;
-
-
-@property (strong, nonatomic) PlaybookPlayDataSource *upcomingPlaysDS;
-
-// gestures - pinching & panning
-@property (nonatomic, strong) NSIndexPath *currentPannedItem;
-
-// object context
-@property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (retain, strong) PlaybookPlay *currentPlay;
-
 @end

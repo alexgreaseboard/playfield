@@ -37,8 +37,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        
-        
     }
     return self;
 }
@@ -276,8 +274,11 @@
             draggingPlaybookPlay = [self.playbookPlayDS.fetchedResultsController objectAtIndexPath:pannedItem];
             draggingPlaybookPlay = [self createDraggingPlaybook:draggingPlaybookPlay];
             draggingPlaybookPlay.status = @"Dragging";
-            draggingCell = [[PlaybookPlayCell alloc] initWithFrame:initialDraggingFrame playbookPlay:draggingPlaybookPlay];
-            [((PlaybookPlayCell*) draggingCell) highlightCell];
+            draggingPlaybookPlay.displayOrder = nil;
+            PlaybookPlayCell *newCell = [[PlaybookPlayCell alloc] initWithFrame:initialDraggingFrame];
+            [newCell configureCell:draggingPlaybookPlay];
+            [newCell highlightCell];
+            draggingCell = newCell;
             [self.view addSubview:draggingCell];
         }
     } else if (recognizer.state == UIGestureRecognizerStateChanged) {
@@ -290,7 +291,6 @@
         newFrame.origin.x += translation.x;
         newFrame.origin.y += translation.y;
         draggingCell.frame = newFrame;
-        //draggingPlaybookPlay.status = @"Dragging";
         //move the placeholder
         [self addDraggedCell:recognizer draggedItem:draggingPlaybookPlay];
     } else {
@@ -305,16 +305,14 @@
         if(draggingPlaybookPlay.playbook == nil){
             [self.managedObjectContext deleteObject:draggingPlaybookPlay];
         }
-        NSError *error = nil;
-        if (![self.managedObjectContext save:&error]) {
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
-        }
         
         [self cleanupPlaybooks];
+        [UIView setAnimationsEnabled:NO];
+        [self.upcomingPlaysCollection reloadData];
         [draggingCell removeFromSuperview];
         draggingCell = nil;
         draggingPlaybookPlay = nil;
+        [UIView setAnimationsEnabled:YES];
         [self enableButtons];
     }
 }
@@ -334,7 +332,6 @@
         draggedItem = [NSEntityDescription insertNewObjectForEntityForName:@"PlaybookPlay" inManagedObjectContext:self.managedObjectContext];
         draggedItem.play = play;
     }
-    //draggedItem.status = @"Dragging";
     self.upcomingPlaysDS.playbook = upcomingPlaybook;
     [self.upcomingPlaysCollection reloadData];
     return draggedItem;
@@ -343,17 +340,20 @@
 - (void) cleanupPlaybooks{
     self.upcomingPlaysDS.playbook = gameTime.upcomingPlaybook;
     id <NSFetchedResultsSectionInfo> section = self.upcomingPlaysDS.fetchedResultsController.sections[0];
-    //if([draggingPlaybook.playbookplays count] > 0){
-        for(PlaybookPlay *playbookPlay in [section objects]){
-            if(playbookPlay.displayOrder == nil){
-                [self.managedObjectContext deleteObject:playbookPlay];
-            }
+
+    for(PlaybookPlay *playbookPlay in [section objects]){
+        if(playbookPlay.displayOrder == nil){
+            [self.managedObjectContext deleteObject:playbookPlay];
+        } else {
+            playbookPlay.status = nil;
         }
+    }
+    // reset the display order
     for(int i=0; i<self.upcomingPlaysDS.fetchedResultsController.fetchedObjects.count; i++){
         PlaybookPlay *pp = [self.upcomingPlaysDS.fetchedResultsController.fetchedObjects objectAtIndex:i];
         pp.displayOrder = [NSNumber numberWithInt:i];
     }
-    //}
+
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
@@ -368,10 +368,20 @@
         newFrame.origin.x += translation.x;
         newFrame.origin.y += translation.y;
         newFrame.origin.x += self.upcomingPlaysCollection.contentOffset.x;
+        // for clunky fingers - if they drag above the upcoming plays, still include it
+        if(newFrame.origin.y < 15){
+            newFrame.origin.y = 15;
+        }
         NSIndexPath *landingPoint = [self.upcomingPlaysCollection indexPathForItemAtPoint:newFrame.origin];
+        if(!landingPoint){
+            CGPoint origin = newFrame.origin;
+            origin.x += 11;
+            landingPoint = [self.upcomingPlaysCollection indexPathForItemAtPoint:origin];
+        }
+        Boolean updates = NO;
     
         if(landingPoint){
-            NSLog(@"Landing point -------------");
+            //NSLog(@"Landing point ------------- %i", landingPoint.item);
             //Play *landingItem = self.upcomingPlaysDS.upcomingPlays[landingPoint.item];
             int index = landingPoint.item;
             if(index > 0){
@@ -379,37 +389,68 @@
             }
             
             if(draggedItem.displayOrder.intValue != index){
-            for( int i=[self.upcomingPlaysDS.fetchedResultsController.fetchedObjects count]-1; i>=0; i--){
-                PlaybookPlay *pp = [self.upcomingPlaysDS.fetchedResultsController.fetchedObjects objectAtIndex:i];
-                if(pp != draggedItem){
-                    if(i >= index){
-                        pp.displayOrder = [NSNumber numberWithInt:(i+1)];
-                    } else {
+                //NSLog(@"Changing display order..");
+                updates = YES;
+                for( int i=[self.upcomingPlaysDS.fetchedResultsController.fetchedObjects count]-1; i>=0; i--){
+                    PlaybookPlay *pp = [self.upcomingPlaysDS.fetchedResultsController.fetchedObjects objectAtIndex:i];
+                    if(pp != draggedItem){
+                        if(i >= index){
+                            pp.displayOrder = [NSNumber numberWithInt:(i+1)];
+                        } else {
+                            pp.displayOrder = [NSNumber numberWithInt:i];
+                        }
+                    }
+                }
+                draggedItem.displayOrder = [NSNumber numberWithInt:index];
+            }
+            
+            draggedItem.playbook = gameTime.upcomingPlaybook;
+        } else if(newFrame.origin.x > 0 && newFrame.origin.y > 0 && newFrame.origin.y < self.upcomingPlaysCollection.frame.size.height){
+            
+            int newIndex = [self.upcomingPlaysDS.fetchedResultsController.fetchedObjects count];
+            // NSLog(@"Old value %@ - %i",draggedItem.displayOrder, newIndex);
+            if(draggedItem.displayOrder == nil || draggedItem.displayOrder.intValue != newIndex){
+                NSLog(@"Adding to end");
+                updates = YES;
+                draggedItem.displayOrder = [NSNumber numberWithInt:newIndex];
+                draggedItem.playbook = gameTime.upcomingPlaybook;
+                for( int i=[self.upcomingPlaysDS.fetchedResultsController.fetchedObjects count]-1; i>=0; i--){
+                    PlaybookPlay *pp = [self.upcomingPlaysDS.fetchedResultsController.fetchedObjects objectAtIndex:i];
+                    if(pp != draggedItem){
                         pp.displayOrder = [NSNumber numberWithInt:i];
                     }
                 }
+
             }
-            }
-            draggedItem.displayOrder = [NSNumber numberWithInt:index];
-            draggedItem.playbook = gameTime.upcomingPlaybook;
-        } else if(newFrame.origin.x > 0 && newFrame.origin.y > 0 && newFrame.origin.x < self.upcomingPlaysCollection.frame.
-            size.width && newFrame.origin.y < self.upcomingPlaysCollection.frame.size.height){
-            //NSLog(@"Adding to end");
-            draggedItem.displayOrder = [NSNumber numberWithInt:[self.upcomingPlaysDS.fetchedResultsController.fetchedObjects count] ];
-            draggedItem.playbook = gameTime.upcomingPlaybook;
         } else {
-            draggedItem.playbook = nil;
+            if(draggedItem.playbook != nil){
+                updates = YES;
+                for( int i=[self.upcomingPlaysDS.fetchedResultsController.fetchedObjects count]-1; i>=0; i--){
+                    PlaybookPlay *pp = [self.upcomingPlaysDS.fetchedResultsController.fetchedObjects objectAtIndex:i];
+                    if(pp != draggedItem && i > draggedItem.displayOrder.intValue){
+                        pp.displayOrder = [NSNumber numberWithInt:(i-1)];
+                    }
+                }
+                draggedItem.playbook = nil;
+            }
+            
             //NSLog(@"Not dragging over upcoming plays %f %f", newFrame.origin.x, newFrame.origin.y);
             //return;
         }
-    // save & reload
-    NSError *error = nil;
-    if (![self.managedObjectContext save:&error]) {
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
+    
+    if(updates){
+        [UIView setAnimationsEnabled:NO];
+        // save & reload
+        NSError *error = nil;
+        if (![self.managedObjectContext save:&error]) {
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+        [self.upcomingPlaysCollection reloadData];
+        [UIView setAnimationsEnabled:YES];
+        //NSLog(@"Loading updates...");
     }
-    [self.upcomingPlaysCollection reloadData];
-        
+    
 }
 
 // drag & drop for playbooks to upcoming plays
@@ -453,17 +494,18 @@
         CGPoint upcomingPlaysTanslation = [recognizer locationInView:self.upcomingPlaysCollection];
         //NSLog(@"UpcomingPlaysTanslation %f %f %f %f", upcomingPlaysTanslation.x
         //      , upcomingPlaysTanslation.y, self.upcomingPlaysCollection.bounds.size.width, self.upcomingPlaysCollection.bounds.size.height);
-        if(upcomingPlaysTanslation.x > 0 && upcomingPlaysTanslation.x < self.upcomingPlaysCollection.bounds.size.width && upcomingPlaysTanslation.y > 0
-           && upcomingPlaysTanslation.y < self.upcomingPlaysCollection.bounds.size.height){
+        if(upcomingPlaysTanslation.x > 0 && upcomingPlaysTanslation.y < self.upcomingPlaysCollection.bounds.size.height){
             [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - adding contents of playbook"]];
             
             self.playbookPlayDS.playbook = draggingPlaybook;
             self.playbookPlayDS.offenseOrDefense = nil;
-            id <NSFetchedResultsSectionInfo> section = self.playbookPlayDS.fetchedResultsController.sections[0];
             if([draggingPlaybook.playbookplays count] > 0){
-                for(PlaybookPlay *playbookPlay in [section objects]){
+                int index = draggingPlaybook.playbookplays.count;
+                for(PlaybookPlay *playbookPlay in draggingPlaybook.playbookplays){
                     PlaybookPlay *newPp = [self createDraggingPlaybook:playbookPlay];
-                    [self addDraggedCell:recognizer draggedItem:newPp];
+                    newPp.displayOrder = [NSNumber numberWithInt:index];
+                    newPp.playbook = gameTime.upcomingPlaybook;
+                    index ++;
                 }
             }
             [draggingCell removeFromSuperview];
@@ -486,6 +528,7 @@
 // for removing plays from upcoming plays
 - (void)handleUpcomingPlaysPanning:(UIPanGestureRecognizer *)recognizer
 {
+    /*
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         // get the pinch point in the play books collection
         CGPoint pinchPoint = [recognizer locationInView:self.upcomingPlaysCollection];
@@ -510,8 +553,11 @@
             
             draggingPlaybookPlay = [self.upcomingPlaysDS.fetchedResultsController.fetchedObjects objectAtIndex:pannedItem.item];
             draggingPlaybookPlay.status = @"Dragging";
-            draggingCell = [[PlaybookPlayCell alloc] initWithFrame:initialDraggingFrame playbookPlay:draggingPlaybookPlay];
-            [((PlaybookPlayCell*) draggingCell) highlightCell];
+            draggingPlaybookPlay.displayOrder = nil;
+            PlaybookPlayCell *newCell = [[PlaybookPlayCell alloc] initWithFrame:initialDraggingFrame];
+            [newCell configureCell:draggingPlaybookPlay];
+            [newCell highlightCell];
+            draggingCell = newCell;
             [self.view addSubview:draggingCell];
             upcomingPlayRemoved = NO;
             //NSLog(@"Finding dragging play at index %d %@", pannedItem.item, draggingPlay);
@@ -529,7 +575,7 @@
             draggingCell.frame = newFrame;
         
             //remove it if needed
-            NSLog(@"Translation %f %f", translation.y, translation.x);
+            //NSLog(@"Translation %f %f", translation.y, translation.x);
         
             [self.managedObjectContext deleteObject:draggingPlaybookPlay];
             NSError *error = nil;
@@ -540,13 +586,6 @@
             [self.upcomingPlaysCollection reloadData];
             upcomingPlayRemoved = YES;
             [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - removed upcoming play %@", draggingPlaybookPlay]];
-        // reordering
-        /*else if(location.y <= (self.upcomingPlaysCollection.frame.size.height)){
-            // add it back if needed
-            [self addDraggedCell:recognizer draggedItem:draggingPlaybookPlay];
-            upcomingPlayRemoved = NO;
-            [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - added upcoming play %@", draggingPlaybookPlay]];
-        } */
     } else {
         if(self.currentPannedItem == nil || draggingPlaybookPlay == nil){
             return;
@@ -558,6 +597,7 @@
         self.currentPannedItem = nil;
         [self enableButtons];
     }
+     */
 }
 
 #pragma UIGestureRecognizerDelegate
@@ -574,22 +614,32 @@
     } else {
         [self.nextPlayButton setEnabled: NO];
         [self.removeAllButton setEnabled: NO];
+        if(self.currentPlay){
+            [self.removeAllButton setEnabled:YES];
+        }
     }
+    
 }
 
 - (IBAction)loadNextPlay:(id)sender {
     // get the first play from upcoming plays
     if([self.upcomingPlaysDS.fetchedResultsController.fetchedObjects count] > 0){
         [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - load next play"]];
+        if(self.currentPlay){
+            [self.managedObjectContext deleteObject:self.currentPlay];
+        }
         PlaybookPlay *firstPlaybookPlay = [self.upcomingPlaysDS.fetchedResultsController.fetchedObjects objectAtIndex:0];
         
         CGRect frame = CGRectMake(self.currentPlayView.frame.origin.x + 2, self.currentPlayView.frame.origin.y, 150, 150);
         if(currentPlayCell){
             [currentPlayCell removeFromSuperview];
         }
-        currentPlayCell = [[PlaybookPlayCell alloc] initWithFrame:frame playbookPlay:firstPlaybookPlay];
+        currentPlayCell = [[PlaybookPlayCell alloc] initWithFrame:frame];
+        [currentPlayCell configureCell:firstPlaybookPlay];
         [self.currentPlayView addSubview:currentPlayCell];
+        NSLog(@"First play %@", firstPlaybookPlay.play.name);
         self.currentPlay = firstPlaybookPlay;
+        NSLog(@"First play %@", self.currentPlay.play.name);
         // if we're recording the game, add this play to the gametime playbook
         if(gameTime.currentPlaybook){
             PlaybookPlay *newPlaybookPlay = [NSEntityDescription insertNewObjectForEntityForName:@"PlaybookPlay" inManagedObjectContext:self.managedObjectContext];
@@ -598,7 +648,7 @@
             newPlaybookPlay.displayOrder = [NSNumber numberWithInt:[gameTime.currentPlaybook.playbookplays count]];
         }
         
-        [self.managedObjectContext deleteObject:firstPlaybookPlay];
+        firstPlaybookPlay.playbook = nil; // remove it from upcoming plays
         for(PlaybookPlay *pp in self.upcomingPlaysDS.fetchedResultsController.fetchedObjects){
             pp.displayOrder = [NSNumber numberWithInt:pp.displayOrder.intValue - 1];
         }
@@ -615,20 +665,26 @@
 
 - (IBAction)removeAllPlays:(id)sender {
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - remove all plays"]];
+    // delete upcoming plays
     for(PlaybookPlay *pp in self.upcomingPlaysDS.fetchedResultsController.fetchedObjects){
         [self.managedObjectContext deleteObject:pp];
     }
+    // delete the current play
+    if(self.currentPlay){
+        [self.managedObjectContext deleteObject:self.currentPlay];
+        [currentPlayCell removeFromSuperview];
+        self.currentPlay = nil;
+    }
+    // save
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
     selectedPlaybookplay = nil;
-    if(currentPlayCell){
-        [currentPlayCell removeFromSuperview];
-    }
-    
+    [UIView setAnimationsEnabled:NO];
     [self.upcomingPlaysCollection reloadData];
+    [UIView setAnimationsEnabled:YES];
     [self enableButtons];
 }
 
@@ -799,7 +855,7 @@
 }
 
 -(void) handleCurrentPlayTap:(UITapGestureRecognizer *)recognizer{
-    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - selected current play %@", self.currentPlay.play]];
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"GameTime - selected current play %@", self.currentPlay.play.name]];
     selectedPlaybookplay = self.currentPlay;
     if(selectedPlaybookplay){
         [self performSegueWithIdentifier:@"playbookShowPlaySegue" sender:selectedPlaybookplay];

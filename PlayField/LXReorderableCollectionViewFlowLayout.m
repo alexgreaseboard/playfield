@@ -49,6 +49,7 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
 @interface LXReorderableCollectionViewFlowLayout ()
 
 @property (strong, nonatomic) NSIndexPath *selectedItemIndexPath;
+@property BOOL shoudlRemove;
 @property (strong, nonatomic) UIView *currentView;
 @property (assign, nonatomic) CGPoint currentViewCenter;
 @property (assign, nonatomic) CGPoint panTranslationInCollectionView;
@@ -128,10 +129,15 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
     NSIndexPath *newIndexPath = [self.collectionView indexPathForItemAtPoint:self.currentView.center];
     NSIndexPath *previousIndexPath = self.selectedItemIndexPath;
     
-    if ((newIndexPath == nil) || [newIndexPath isEqual:previousIndexPath]) {
+    if (newIndexPath == nil) {
+        self.shoudlRemove = YES;
+        return;
+    }
+    if([newIndexPath isEqual:previousIndexPath]){
         return;
     }
     
+    self.shoudlRemove = NO;
     if ([self.dataSource respondsToSelector:@selector(collectionView:itemAtIndexPath:canMoveToIndexPath:)] &&
         ![self.dataSource collectionView:self.collectionView itemAtIndexPath:previousIndexPath canMoveToIndexPath:newIndexPath]) {
         return;
@@ -309,6 +315,12 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
             if (currentIndexPath) {
                 if ([self.delegate respondsToSelector:@selector(collectionView:layout:willEndDraggingItemAtIndexPath:)]) {
                     [self.delegate collectionView:self.collectionView layout:self willEndDraggingItemAtIndexPath:currentIndexPath];
+                }
+                
+                if(self.shoudlRemove){
+                    if ([self.dataSource respondsToSelector:@selector(collectionView:removeItemAtIndexPath:)]) {
+                        [self.dataSource collectionView:self.collectionView removeItemAtIndexPath:currentIndexPath];
+                    }
                 }
                 
                 self.selectedItemIndexPath = nil;
