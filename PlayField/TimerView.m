@@ -58,12 +58,19 @@
     
     // see if there are any current notifications and set the timer if so
     NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
-    if(notifications.count > 0){
-        UILocalNotification *notification = notifications[0];
-        pauseTime = 0;
-        startTime = [notification.fireDate timeIntervalSinceReferenceDate];
-        [self toggleStartStop:nil];
-        [self updateTime];
+    for(UILocalNotification *notification in notifications){
+        NSDictionary *userInfo = notification.userInfo;
+        if([[userInfo objectForKey:@"name"] isEqualToString:@"gameClock"]){
+            pauseTime = 0;
+            startTime = [notification.fireDate timeIntervalSinceReferenceDate];
+            [self toggleStartStop:nil];
+            [self updateTime];
+        } else {
+            playPauseTime = 0;
+            playStartTime = [notification.fireDate timeIntervalSinceReferenceDate];
+            [self togglePlayStartStop:nil];
+            [self updatePlayTime];
+        }
     }
 }
 
@@ -124,7 +131,8 @@
         self.resetButton.enabled = YES;
         self.startButton.enabled = YES;
         pauseTime = [NSDate timeIntervalSinceReferenceDate];
-        [[UIApplication sharedApplication] cancelAllLocalNotifications];
+        [self cancelNotification:@"gameClock"];
+        
     } else { // start the timer
         [self.startButton setTitle:@"Pause" forState:UIControlStateNormal];
         self.resetButton.enabled = NO;
@@ -139,10 +147,11 @@
             startTime = startTime + pauseElapse;
         }
         
+        [self cancelNotification:@"gameClock"];
         UILocalNotification *notification = [[UILocalNotification alloc] init];
         if(notification){
             notification.fireDate = [NSDate dateWithTimeIntervalSinceReferenceDate:startTime];
-            //NSLog(@"Firedate %@", notification.fireDate);
+            notification.userInfo = [NSDictionary dictionaryWithObject:@"gameClock" forKey:@"name"];
             notification.timeZone = [NSTimeZone defaultTimeZone];
             notification.alertBody = @"Times Up!";
             notification.alertAction = NSLocalizedString(@"Done",nil);
@@ -174,8 +183,9 @@
     UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Game Clock" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Done", nil];
     message.alertViewStyle = UIAlertViewStylePlainTextInput;
     [message textFieldAtIndex:0].clearButtonMode = UITextFieldViewModeAlways;
-    [message textFieldAtIndex:0].text = self.timerLabel.text;
+    [message textFieldAtIndex:0].text = nil;
     [[message textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeNumberPad];
+    [[message textFieldAtIndex:0] setReturnKeyType:UIReturnKeyDone];
     [message show];
 }
 
@@ -187,10 +197,16 @@
         UITextField *newTime = [alertView textFieldAtIndex:0];
         [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Timer - change time to %@", newTime.text]];
         NSString *inputText = newTime.text;
-        NSRange match = [inputText rangeOfString:@":"];
-        NSString *minutes = [inputText substringToIndex:match.location];
-        NSString *seconds = [inputText substringFromIndex:(match.location + 1)];
-        manualTime = minutes.intValue * 60 + seconds.intValue;
+        int totalTime = inputText.intValue;
+        int minutes = 0;
+        int seconds = 0;
+        if(totalTime > 100 || [inputText hasPrefix:@"00"]){
+            minutes = totalTime / 100;
+            seconds = totalTime % 100;
+        } else {
+            seconds = totalTime;
+        }
+        manualTime = minutes * 60 + seconds;
         if(timerRunning){
             [self toggleStartStop:nil];
         }
@@ -204,14 +220,8 @@
 - (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView
 {
     NSString *inputText = [[alertView textFieldAtIndex:0] text];
-    NSRange match = [inputText rangeOfString:@":"];
-    if( match.length > 0 ){
-        NSString *minutes = [inputText substringToIndex:match.location];
-        NSString *seconds = [inputText substringFromIndex:(match.location + 1)];
-        NSLog(@"%@,%@",minutes,seconds);
-        if(minutes.intValue > 0 || seconds.intValue > 0){
-            return YES;
-        }
+    if( inputText.intValue > 0 && inputText.intValue <= 9959){
+        return YES;
     }
     return NO;
 }
@@ -224,6 +234,8 @@
         self.playResetButton.enabled = YES;
         self.playStartButton.enabled = YES;
         playPauseTime = [NSDate timeIntervalSinceReferenceDate];
+        
+        [self cancelNotification:@"playClock"];
     } else { // start the timer
         [self.playStartButton setTitle:@"Pause" forState:UIControlStateNormal];
         self.playResetButton.enabled = NO;
@@ -234,6 +246,19 @@
             NSTimeInterval pauseElapse = [NSDate timeIntervalSinceReferenceDate] - playPauseTime;
             playPauseTime = 0;
             playStartTime = playStartTime + pauseElapse;
+        }
+        
+        [self cancelNotification:@"playClock"];
+        UILocalNotification *notification = [[UILocalNotification alloc] init];
+        if(notification){
+            notification.fireDate = [NSDate dateWithTimeIntervalSinceReferenceDate:playStartTime];
+            notification.userInfo = [NSDictionary dictionaryWithObject:@"playClock" forKey:@"name"];
+            notification.timeZone = [NSTimeZone defaultTimeZone];
+            notification.alertBody = @"Times Up!";
+            notification.alertAction = NSLocalizedString(@"Done",nil);
+            notification.soundName = UILocalNotificationDefaultSoundName;
+            
+            [[UIApplication sharedApplication] scheduleLocalNotification:notification];
         }
         [self updatePlayTime];
     }
@@ -317,4 +342,14 @@
         self.timerBorder.backgroundColor = [UIColor blackColor];
     }];
 }*/
+
+-(void) cancelNotification:(NSString *)type{
+    NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    for(UILocalNotification *notification in notifications){
+        NSDictionary *userInfo = notification.userInfo;
+        if([[userInfo objectForKey:@"name"] isEqualToString:type]){
+            [[UIApplication sharedApplication] cancelLocalNotification:notification];
+        }
+    }
+}
 @end

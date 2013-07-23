@@ -296,7 +296,15 @@
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
-    //NSLog(@"didReceiveLocalNotification %@", notification);
+    NSDictionary *userData = notification.userInfo;
+    NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    for(UILocalNotification *notification in notifications){
+        NSDictionary *userInfo = notification.userInfo;
+        if([[userInfo objectForKey:@"name"] isEqualToString:[userData objectForKey:@"name" ]]){
+            [[UIApplication sharedApplication] cancelLocalNotification:notification];
+        }
+    }
+    NSLog(@"didReceiveLocalNotification %@", notification);	
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"GreaseBoard Timer" message:@"Times Up!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
 }
