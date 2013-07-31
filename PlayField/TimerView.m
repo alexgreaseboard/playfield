@@ -103,24 +103,55 @@
     [self.contentView.layer insertSublayer:shineLayer above:self.contentView.layer];
     
     //move to the far right & add border
-    CALayer *layer = [self.timerBorder layer];
-    [layer setCornerRadius:5.0f];
-    [layer setBorderColor:[UIColor blackColor].CGColor];
+    CALayer *layer = [self.timerLabel layer];
+    [layer setCornerRadius:15.0f];
+    [layer setBorderColor:[UIColor clearColor].CGColor];
     [layer setBorderWidth:1.0f];
     frame = self.timerBorder.frame;
-    frame.origin.x = self.contentView.frame.size.width - self.timerBorder.frame.size.width - 10;
+    frame.origin.x = self.contentView.frame.size.width - self.timerBorder.frame.size.width -10;
     frame.origin.y = 3;
     self.timerBorder.frame = frame;
+    shineLayer = [CAGradientLayer layer];
+    shineLayer.colors = [NSArray arrayWithObjects:
+                         (id)[UIColor colorWithWhite:0 alpha:0.6].CGColor,
+                         (id)[UIColor colorWithWhite:0 alpha:0.4f].CGColor,
+                         (id)[UIColor clearColor].CGColor,
+                         nil];
+    shineLayer.locations = [NSArray arrayWithObjects:
+                            [NSNumber numberWithFloat:0.0f],
+                            [NSNumber numberWithFloat:0.5f],
+                            [NSNumber numberWithFloat:1],
+                            nil];
+    shineLayer.frame = self.timerLabel.frame;
+    [self.timerLabel.layer insertSublayer:shineLayer atIndex:0];
+    
+    self.timerLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight;
+    self.timerLabel.adjustsFontSizeToFitWidth = YES;
     
     // play timer
-    layer = [self.playContentView layer];
-    [layer setCornerRadius:5.0f];
-    [layer setBorderColor:[UIColor blackColor].CGColor];
+    layer = [self.playTimerLabel layer];
+    [layer setCornerRadius:15.0f];
+    [layer setBorderColor:[UIColor clearColor].CGColor];
     [layer setBorderWidth:1.0f];
     frame = self.playContentView.frame;
-    frame.origin.x = self.contentView.frame.size.width - self.timerBorder.frame.size.width - self.playContentView.frame.size.width - 30;
+    frame.origin.x = self.contentView.frame.size.width - self.timerBorder.frame.size.width - self.playContentView.frame.size.width - 10;
     frame.origin.y = 3;
     self.playContentView.frame = frame;
+    //self.playTimerLabel.backgroundColor = [UIColor colorWithWhite:0.2 alpha:0.65];
+    // add a shine to the background
+    shineLayer = [CAGradientLayer layer];
+    shineLayer.colors = [NSArray arrayWithObjects:
+                         (id)[UIColor colorWithWhite:0 alpha:0.6f].CGColor,
+                         (id)[UIColor colorWithWhite:0 alpha:0.4f].CGColor,
+                         (id)[UIColor clearColor].CGColor,
+                         nil];
+    shineLayer.locations = [NSArray arrayWithObjects:
+                            [NSNumber numberWithFloat:0.0f],
+                            [NSNumber numberWithFloat:0.5f],
+                            [NSNumber numberWithFloat:1],
+                            nil];
+    shineLayer.frame = self.playTimerLabel.frame;
+    [self.playTimerLabel.layer insertSublayer:shineLayer atIndex:0];
 }
 
 - (IBAction)toggleStartStop:(id)sender {
