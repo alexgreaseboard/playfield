@@ -71,6 +71,20 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+    
+    frame = CGRectMake(0, 0, 400, 40);
+    UILabel *label = [[UILabel alloc] initWithFrame:frame];
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont boldSystemFontOfSize:50.0];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = [UIColor whiteColor];
+    label.text = self.navigationItem.title;
+    //CALayer *layer = label.layer;
+    //[layer setCornerRadius:50];
+     // emboss in the same way as the native title
+    [label setShadowColor:[UIColor darkGrayColor]];
+    [label setShadowOffset:CGSizeMake(0, -0.5)];
+    self.navigationItem.titleView = label;
 }
 
 -(void) viewDidAppear:(BOOL)animated{
