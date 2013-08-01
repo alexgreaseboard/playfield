@@ -75,7 +75,7 @@
     frame = CGRectMake(0, 0, 400, 40);
     UILabel *label = [[UILabel alloc] initWithFrame:frame];
     label.backgroundColor = [UIColor clearColor];
-    label.font = [UIFont boldSystemFontOfSize:50.0];
+    label.font = [UIFont boldSystemFontOfSize:35.0];
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = [UIColor whiteColor];
     label.text = self.navigationItem.title;

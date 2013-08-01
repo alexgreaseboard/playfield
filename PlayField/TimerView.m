@@ -32,7 +32,7 @@
 }
 
 - (void)awakeFromNib
-{ 
+{
     self.contentView = [[[NSBundle mainBundle] loadNibNamed:@"TimerView" owner:self options:nil] objectAtIndex:0];
     [self addSubview:self.contentView];
     
@@ -103,55 +103,26 @@
     [self.contentView.layer insertSublayer:shineLayer above:self.contentView.layer];
     
     //move to the far right & add border
-    CALayer *layer = [self.timerLabel layer];
-    [layer setCornerRadius:15.0f];
-    [layer setBorderColor:[UIColor clearColor].CGColor];
+    CALayer *layer = [self.timerBorder layer];
+    [layer setCornerRadius:5.0f];
+    [layer setBorderColor:[UIColor blackColor].CGColor];
     [layer setBorderWidth:1.0f];
     frame = self.timerBorder.frame;
-    frame.origin.x = self.contentView.frame.size.width - self.timerBorder.frame.size.width -10;
+    frame.origin.x = self.contentView.frame.size.width - self.timerBorder.frame.size.width - 10;
     frame.origin.y = 3;
     self.timerBorder.frame = frame;
-    shineLayer = [CAGradientLayer layer];
-    shineLayer.colors = [NSArray arrayWithObjects:
-                         (id)[UIColor colorWithWhite:0 alpha:0.6].CGColor,
-                         (id)[UIColor colorWithWhite:0 alpha:0.4f].CGColor,
-                         (id)[UIColor clearColor].CGColor,
-                         nil];
-    shineLayer.locations = [NSArray arrayWithObjects:
-                            [NSNumber numberWithFloat:0.0f],
-                            [NSNumber numberWithFloat:0.5f],
-                            [NSNumber numberWithFloat:1],
-                            nil];
-    shineLayer.frame = self.timerLabel.frame;
-    [self.timerLabel.layer insertSublayer:shineLayer atIndex:0];
-    
-    self.timerLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight;
-    self.timerLabel.adjustsFontSizeToFitWidth = YES;
+    self.timerLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    self.playTimerLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     
     // play timer
-    layer = [self.playTimerLabel layer];
-    [layer setCornerRadius:15.0f];
-    [layer setBorderColor:[UIColor clearColor].CGColor];
+    layer = [self.playContentView layer];
+    [layer setCornerRadius:5.0f];
+    [layer setBorderColor:[UIColor blackColor].CGColor];
     [layer setBorderWidth:1.0f];
     frame = self.playContentView.frame;
-    frame.origin.x = self.contentView.frame.size.width - self.timerBorder.frame.size.width - self.playContentView.frame.size.width - 10;
+    frame.origin.x = self.contentView.frame.size.width - self.timerBorder.frame.size.width - self.playContentView.frame.size.width - 30;
     frame.origin.y = 3;
     self.playContentView.frame = frame;
-    //self.playTimerLabel.backgroundColor = [UIColor colorWithWhite:0.2 alpha:0.65];
-    // add a shine to the background
-    shineLayer = [CAGradientLayer layer];
-    shineLayer.colors = [NSArray arrayWithObjects:
-                         (id)[UIColor colorWithWhite:0 alpha:0.6f].CGColor,
-                         (id)[UIColor colorWithWhite:0 alpha:0.4f].CGColor,
-                         (id)[UIColor clearColor].CGColor,
-                         nil];
-    shineLayer.locations = [NSArray arrayWithObjects:
-                            [NSNumber numberWithFloat:0.0f],
-                            [NSNumber numberWithFloat:0.5f],
-                            [NSNumber numberWithFloat:1],
-                            nil];
-    shineLayer.frame = self.playTimerLabel.frame;
-    [self.playTimerLabel.layer insertSublayer:shineLayer atIndex:0];
 }
 
 - (IBAction)toggleStartStop:(id)sender {
@@ -188,7 +159,7 @@
             notification.alertAction = NSLocalizedString(@"Done",nil);
             notification.applicationIconBadgeNumber = 0;
             notification.soundName = UILocalNotificationDefaultSoundName;
-        
+            
             [[UIApplication sharedApplication] scheduleLocalNotification:notification];
         }
         [self updateTime];
@@ -210,7 +181,7 @@
 
 - (IBAction)changeTime:(id)sender {
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Timer - change time"]];
-    //[self.parent performSegueWithIdentifier:@"showTimeChanger" sender:self];    
+    //[self.parent performSegueWithIdentifier:@"showTimeChanger" sender:self];
     UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Game Clock" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Done", nil];
     message.alertViewStyle = UIAlertViewStylePlainTextInput;
     [message textFieldAtIndex:0].clearButtonMode = UITextFieldViewModeAlways;
@@ -244,7 +215,7 @@
         startTime = manualTime;
         pauseTime = 0;
         [self setTimerLabelForInterval:startTime forLabel:self.timerLabel];
-
+        
     }
 }
 
@@ -340,7 +311,7 @@
     
     // update label
     if(minutes > 0){
-        label.text = [NSString stringWithFormat:@"%02u:%02u.%u", minutes, seconds, fraction];
+        label.text = [NSString stringWithFormat:@"%02u:%02u", minutes, seconds];
     } else {
         label.text = [NSString stringWithFormat:@"%02u.%u", seconds, fraction];
     }
@@ -360,19 +331,19 @@
 }
 
 /*
--(void) tapGameTime:(UITapGestureRecognizer *)recognizer{
-    NSLog(@"Tapped");
-    originalFrame = self.timerBorder.frame;
-    CGRect newFrame = self.timerBorder.frame;
-    newFrame.size.height = 200;
-    newFrame.size.width = 500;
-    newFrame.origin.x = self.contentView.frame.size.width / 2 - newFrame.size.width / 2;
-    newFrame.origin.y = -400;
-    [UIView animateWithDuration:.4 animations: ^{
-        self.timerBorder.frame = newFrame;
-        self.timerBorder.backgroundColor = [UIColor blackColor];
-    }];
-}*/
+ -(void) tapGameTime:(UITapGestureRecognizer *)recognizer{
+ NSLog(@"Tapped");
+ originalFrame = self.timerBorder.frame;
+ CGRect newFrame = self.timerBorder.frame;
+ newFrame.size.height = 200;
+ newFrame.size.width = 500;
+ newFrame.origin.x = self.contentView.frame.size.width / 2 - newFrame.size.width / 2;
+ newFrame.origin.y = -400;
+ [UIView animateWithDuration:.4 animations: ^{
+ self.timerBorder.frame = newFrame;
+ self.timerBorder.backgroundColor = [UIColor blackColor];
+ }];
+ }*/
 
 -(void) cancelNotification:(NSString *)type{
     NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
