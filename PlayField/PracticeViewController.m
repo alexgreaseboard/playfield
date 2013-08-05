@@ -18,7 +18,7 @@
 #import "PracticesTableViewController.h"
 #import "AppDelegate.h"
 #import "PracticeOtherItemsTableViewController.h"
-#import "TimerView.h"
+#import "TimerView2.h"
 
 @interface PracticeViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, PracticeOptionsDelegate, PracticeOtherItemsDelegate>
 @property(nonatomic, weak) IBOutlet UIToolbar *toolbar;
@@ -44,7 +44,7 @@
 	PracticeItem *draggingItem;
     PracticeItem *placeholderItem; // a placeholder to expand the column when dragging
     CGRect initialDraggingFrame;
-    TimerView *timer;
+    TimerView2 *timer;
     PracticeItem *pinchingItem;
 }
 
@@ -72,7 +72,14 @@
 - (void) viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self resetViewWithPractice:self.practice];
-    
+    // add the timer
+    if(!timer){
+        timer = [[TimerView2 alloc] init];
+        [self.view addSubview:timer];
+        [timer awakeFromNib];
+    } else {
+        [self.view bringSubviewToFront:timer];
+    }
 }
 
 -(void)resetViewWithPractice:(Practice*)practice{
@@ -145,13 +152,7 @@
     [self.view addSubview:self.tableView];
     [self.view sendSubviewToBack:self.tableView];
     
-    // add the timer
-    [timer removeFromSuperview];
-    timer = [[TimerView alloc] init];
-    timer.initialStartTime = practice.practiceDuration.intValue * 60;
-    [self.view addSubview:timer];
-    [timer awakeFromNib];
-    
+    [self.view bringSubviewToFront:timer];
     [self.view reloadInputViews];
 }
 

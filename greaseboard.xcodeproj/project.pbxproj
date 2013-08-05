@@ -118,6 +118,7 @@
 		398A328F175435C400B03ED2 /* ShinyLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 398A328E175435C400B03ED2 /* ShinyLabel.m */; };
 		399B7F07170733980047244D /* TimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 399B7F06170733980047244D /* TimerView.m */; };
 		399B7F0B17073AE60047244D /* TimerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 399B7F0A17073AE60047244D /* TimerView.xib */; };
+		39C3DECA17B0611A00107906 /* TimerView2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39C3DEC917B0611A00107906 /* TimerView2.xib */; };
 		39D7A09517694AA7004E6307 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D7A09117694AA7004E6307 /* libTestFlight.a */; };
 		39D7A09617694AA7004E6307 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 39D7A09217694AA7004E6307 /* README.md */; };
 		39D7A09717694AA7004E6307 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 39D7A09317694AA7004E6307 /* release_notes.md */; };
@@ -126,6 +127,7 @@
 		39E2FFCD1731EBD50062332C /* GameTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E2FFCC1731EBD50062332C /* GameTimeViewController.m */; };
 		39E2FFD1173322320062332C /* PinchLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E2FFD0173322320062332C /* PinchLayout.m */; };
 		39E2FFD41733256A0062332C /* PlaybookPlayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E2FFD31733256A0062332C /* PlaybookPlayDataSource.m */; };
+		39F5ADA017B05D6B0030B553 /* TimerView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F5AD9F17B05D6B0030B553 /* TimerView2.m */; };
 		6D0724AD16D6A74B00DDA641 /* PlayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0724AC16D6A74B00DDA641 /* PlayCell.m */; };
 		6D148F7816C988E70069CB76 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D148F7716C988E70069CB76 /* QuartzCore.framework */; };
 		6D148F7A16C988E70069CB76 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D148F7916C988E70069CB76 /* OpenGLES.framework */; };
@@ -464,6 +466,7 @@
 		399B7F05170733980047244D /* TimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerView.h; sourceTree = "<group>"; };
 		399B7F06170733980047244D /* TimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerView.m; sourceTree = "<group>"; };
 		399B7F0A17073AE60047244D /* TimerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimerView.xib; sourceTree = "<group>"; };
+		39C3DEC917B0611A00107906 /* TimerView2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimerView2.xib; sourceTree = "<group>"; };
 		39D7A09117694AA7004E6307 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
 		39D7A09217694AA7004E6307 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		39D7A09317694AA7004E6307 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
@@ -477,6 +480,8 @@
 		39E2FFD0173322320062332C /* PinchLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinchLayout.m; sourceTree = "<group>"; };
 		39E2FFD21733256A0062332C /* PlaybookPlayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybookPlayDataSource.h; sourceTree = "<group>"; };
 		39E2FFD31733256A0062332C /* PlaybookPlayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybookPlayDataSource.m; sourceTree = "<group>"; };
+		39F5AD9E17B05D6B0030B553 /* TimerView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerView2.h; sourceTree = "<group>"; };
+		39F5AD9F17B05D6B0030B553 /* TimerView2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerView2.m; sourceTree = "<group>"; };
 		6D0724AB16D6A74B00DDA641 /* PlayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayCell.h; sourceTree = "<group>"; };
 		6D0724AC16D6A74B00DDA641 /* PlayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayCell.m; sourceTree = "<group>"; };
 		6D148F7416C988E70069CB76 /* GreaseBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GreaseBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1014,6 +1019,9 @@
 				399B7F05170733980047244D /* TimerView.h */,
 				399B7F06170733980047244D /* TimerView.m */,
 				399B7F0A17073AE60047244D /* TimerView.xib */,
+				39F5AD9E17B05D6B0030B553 /* TimerView2.h */,
+				39F5AD9F17B05D6B0030B553 /* TimerView2.m */,
+				39C3DEC917B0611A00107906 /* TimerView2.xib */,
 			);
 			name = Timer;
 			sourceTree = "<group>";
@@ -1760,6 +1768,7 @@
 				29DF6B12179307260037482D /* whiteCircle-s@2x.png in Resources */,
 				29DF6B13179307260037482D /* yellowCircle@2x.png in Resources */,
 				29DF6B14179307260037482D /* yellowCircle-s@2x.png in Resources */,
+				39C3DECA17B0611A00107906 /* TimerView2.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1930,6 +1939,7 @@
 				393DED7E178E42DC00953761 /* GameTime.m in Sources */,
 				393DED81178F95ED00953761 /* PurpleSegmentControl.m in Sources */,
 				393DED84178FAC0E00953761 /* PlaybookPinchGestureRecognizer.m in Sources */,
+				39F5ADA017B05D6B0030B553 /* TimerView2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

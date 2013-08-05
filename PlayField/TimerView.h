@@ -22,7 +22,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *playTimerLabel;
 
 
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *stepper;
 @property (strong, nonatomic) IBOutlet UIView *timerBorder;
 
 @property (nonatomic) NSTimeInterval initialStartTime;
