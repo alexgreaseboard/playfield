@@ -249,7 +249,17 @@
 - (void)configureCell:(PlayerCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.nameLabel.text = [[[[object valueForKey:@"lastName"] description] stringByAppendingString:@", "]stringByAppendingString:[[object valueForKey:@"firstName"] description]];
+    
+    NSString *tempName = @"";
+    if( [object valueForKey:@"lastName"] != nil ) {
+        tempName = [[object valueForKey:@"lastName"] description];
+        tempName = [tempName stringByAppendingString:@", "];
+    }
+    if( [object valueForKey:@"firstName"] != nil ) {
+        tempName = [tempName stringByAppendingString:[[object valueForKey:@"firstName"] description]];
+    }
+    
+    cell.nameLabel.text = tempName;
     cell.positionLabel.text = [[object valueForKey:@"position"] description];
     NSString *number = [[object valueForKey:@"number"] description];
     if( number != nil ) {
