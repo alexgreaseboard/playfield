@@ -139,6 +139,7 @@
 		6D02434217D0F1D100E30921 /* Offense-QB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D02433E17D0F1D100E30921 /* Offense-QB@2x.png */; };
 		6D02434317D0F1D100E30921 /* Offense-TB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D02433F17D0F1D100E30921 /* Offense-TB@2x.png */; };
 		6D02434417D0F1D100E30921 /* Offense-WR@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D02434017D0F1D100E30921 /* Offense-WR@2x.png */; };
+		6D02434617D0F96300E30921 /* Offense-WR.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D02434517D0F96300E30921 /* Offense-WR.png */; };
 		6D0724AD16D6A74B00DDA641 /* PlayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0724AC16D6A74B00DDA641 /* PlayCell.m */; };
 		6D148F7816C988E70069CB76 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D148F7716C988E70069CB76 /* QuartzCore.framework */; };
 		6D148F7A16C988E70069CB76 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D148F7916C988E70069CB76 /* OpenGLES.framework */; };
@@ -504,6 +505,7 @@
 		6D02433E17D0F1D100E30921 /* Offense-QB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-QB@2x.png"; sourceTree = "<group>"; };
 		6D02433F17D0F1D100E30921 /* Offense-TB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-TB@2x.png"; sourceTree = "<group>"; };
 		6D02434017D0F1D100E30921 /* Offense-WR@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-WR@2x.png"; sourceTree = "<group>"; };
+		6D02434517D0F96300E30921 /* Offense-WR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-WR.png"; sourceTree = "<group>"; };
 		6D0724AB16D6A74B00DDA641 /* PlayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayCell.h; sourceTree = "<group>"; };
 		6D0724AC16D6A74B00DDA641 /* PlayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayCell.m; sourceTree = "<group>"; };
 		6D148F7416C988E70069CB76 /* GreaseBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GreaseBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1597,6 +1599,7 @@
 				2998151C1785BDE400D230B9 /* Offense-TE.png */,
 				6D93003B1787633C00D45552 /* Offense-TE@2x.png */,
 				6D02433317D0F14B00E30921 /* Offense-WR-hd.png */,
+				6D02434517D0F96300E30921 /* Offense-WR.png */,
 				6D02434017D0F1D100E30921 /* Offense-WR@2x.png */,
 				6D80DADC176BC4100006E8C8 /* Offense-Y-hd.png */,
 				2998151D1785BDE500D230B9 /* Offense-Y.png */,
@@ -1813,6 +1816,7 @@
 				6D02434217D0F1D100E30921 /* Offense-QB@2x.png in Resources */,
 				6D02434317D0F1D100E30921 /* Offense-TB@2x.png in Resources */,
 				6D02434417D0F1D100E30921 /* Offense-WR@2x.png in Resources */,
+				6D02434617D0F96300E30921 /* Offense-WR.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
