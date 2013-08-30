@@ -135,7 +135,6 @@
 		6D02433917D0F14B00E30921 /* Offense-TB-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D02433117D0F14B00E30921 /* Offense-TB-hd.png */; };
 		6D02433A17D0F14B00E30921 /* Offense-TB.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D02433217D0F14B00E30921 /* Offense-TB.png */; };
 		6D02433B17D0F14B00E30921 /* Offense-WR-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D02433317D0F14B00E30921 /* Offense-WR-hd.png */; };
-		6D02433C17D0F14B00E30921 /* Offense-WR.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D02433417D0F14B00E30921 /* Offense-WR.png */; };
 		6D02434117D0F1D100E30921 /* Offense-FB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D02433D17D0F1D000E30921 /* Offense-FB@2x.png */; };
 		6D02434217D0F1D100E30921 /* Offense-QB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D02433E17D0F1D100E30921 /* Offense-QB@2x.png */; };
 		6D02434317D0F1D100E30921 /* Offense-TB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D02433F17D0F1D100E30921 /* Offense-TB@2x.png */; };
@@ -501,7 +500,6 @@
 		6D02433117D0F14B00E30921 /* Offense-TB-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-TB-hd.png"; sourceTree = "<group>"; };
 		6D02433217D0F14B00E30921 /* Offense-TB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-TB.png"; sourceTree = "<group>"; };
 		6D02433317D0F14B00E30921 /* Offense-WR-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-WR-hd.png"; sourceTree = "<group>"; };
-		6D02433417D0F14B00E30921 /* Offense-WR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-WR.png"; sourceTree = "<group>"; };
 		6D02433D17D0F1D000E30921 /* Offense-FB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-FB@2x.png"; sourceTree = "<group>"; };
 		6D02433E17D0F1D100E30921 /* Offense-QB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-QB@2x.png"; sourceTree = "<group>"; };
 		6D02433F17D0F1D100E30921 /* Offense-TB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-TB@2x.png"; sourceTree = "<group>"; };
@@ -1558,18 +1556,6 @@
 				6DF6E93E171081A300386229 /* field@2x.jpg */,
 				6DF6E93F171081A300386229 /* header-tile.jpg */,
 				6DF6E940171081A300386229 /* menu-bg.jpg */,
-				6D02432D17D0F14B00E30921 /* Offense-FB-hd.png */,
-				6D02432E17D0F14B00E30921 /* Offense-FB.png */,
-				6D02432F17D0F14B00E30921 /* Offense-QB-hd.png */,
-				6D02433017D0F14B00E30921 /* Offense-QB.png */,
-				6D02433117D0F14B00E30921 /* Offense-TB-hd.png */,
-				6D02433217D0F14B00E30921 /* Offense-TB.png */,
-				6D02433317D0F14B00E30921 /* Offense-WR-hd.png */,
-				6D02433417D0F14B00E30921 /* Offense-WR.png */,
-				6D02433D17D0F1D000E30921 /* Offense-FB@2x.png */,
-				6D02433E17D0F1D100E30921 /* Offense-QB@2x.png */,
-				6D02433F17D0F1D100E30921 /* Offense-TB@2x.png */,
-				6D02434017D0F1D100E30921 /* Offense-WR@2x.png */,
 				299815021785BC4B00D230B9 /* Offense-1-hd.png */,
 				299814F61785BA4300D230B9 /* Offense-1.png */,
 				6D9300321787633C00D45552 /* Offense-1@2x.png */,
@@ -1585,6 +1571,9 @@
 				6D80DAD6176BC4100006E8C8 /* Offense-C-hd.png */,
 				299815171785BDDE00D230B9 /* Offense-C.png */,
 				6D9300361787633C00D45552 /* Offense-C@2x.png */,
+				6D02432D17D0F14B00E30921 /* Offense-FB-hd.png */,
+				6D02432E17D0F14B00E30921 /* Offense-FB.png */,
+				6D02433D17D0F1D000E30921 /* Offense-FB@2x.png */,
 				6D80DADE176BC4100006E8C8 /* Offense-hd.png */,
 				6D80DAD7176BC4100006E8C8 /* Offense-LG-hd.png */,
 				299815181785BDDF00D230B9 /* Offense-LG.png */,
@@ -1592,15 +1581,23 @@
 				6D80DAD8176BC4100006E8C8 /* Offense-LT-hd.png */,
 				299815191785BDE100D230B9 /* Offense-LT.png */,
 				6D9300381787633C00D45552 /* Offense-LT@2x.png */,
+				6D02432F17D0F14B00E30921 /* Offense-QB-hd.png */,
+				6D02433017D0F14B00E30921 /* Offense-QB.png */,
+				6D02433E17D0F1D100E30921 /* Offense-QB@2x.png */,
 				6D80DAD9176BC4100006E8C8 /* Offense-RG-hd.png */,
 				2998151A1785BDE200D230B9 /* Offense-RG.png */,
 				6D9300391787633C00D45552 /* Offense-RG@2x.png */,
 				6D80DADA176BC4100006E8C8 /* Offense-RT-hd.png */,
 				2998151B1785BDE300D230B9 /* Offense-RT.png */,
 				6D93003A1787633C00D45552 /* Offense-RT@2x.png */,
+				6D02433117D0F14B00E30921 /* Offense-TB-hd.png */,
+				6D02433217D0F14B00E30921 /* Offense-TB.png */,
+				6D02433F17D0F1D100E30921 /* Offense-TB@2x.png */,
 				6D80DADB176BC4100006E8C8 /* Offense-TE-hd.png */,
 				2998151C1785BDE400D230B9 /* Offense-TE.png */,
 				6D93003B1787633C00D45552 /* Offense-TE@2x.png */,
+				6D02433317D0F14B00E30921 /* Offense-WR-hd.png */,
+				6D02434017D0F1D100E30921 /* Offense-WR@2x.png */,
 				6D80DADC176BC4100006E8C8 /* Offense-Y-hd.png */,
 				2998151D1785BDE500D230B9 /* Offense-Y.png */,
 				6D93003C1787633C00D45552 /* Offense-Y@2x.png */,
@@ -1812,7 +1809,6 @@
 				6D02433917D0F14B00E30921 /* Offense-TB-hd.png in Resources */,
 				6D02433A17D0F14B00E30921 /* Offense-TB.png in Resources */,
 				6D02433B17D0F14B00E30921 /* Offense-WR-hd.png in Resources */,
-				6D02433C17D0F14B00E30921 /* Offense-WR.png in Resources */,
 				6D02434117D0F1D100E30921 /* Offense-FB@2x.png in Resources */,
 				6D02434217D0F1D100E30921 /* Offense-QB@2x.png in Resources */,
 				6D02434317D0F1D100E30921 /* Offense-TB@2x.png in Resources */,
