@@ -52,11 +52,15 @@
     [_items addObject:[PlayDrillItem itemWithText:@"Offense-3" andWithImage:@"Offense-3.png"]];
     [_items addObject:[PlayDrillItem itemWithText:@"Offense-4" andWithImage:@"Offense-4.png"]];
     [_items addObject:[PlayDrillItem itemWithText:@"Offense-C" andWithImage:@"Offense-C.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense-FB" andWithImage:@"Offense-FB.png"]];
     [_items addObject:[PlayDrillItem itemWithText:@"Offense-LG" andWithImage:@"Offense-LG.png"]];
     [_items addObject:[PlayDrillItem itemWithText:@"Offense-LT" andWithImage:@"Offense-LT.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense-QB" andWithImage:@"Offense-QB.png"]];
     [_items addObject:[PlayDrillItem itemWithText:@"Offense-RG" andWithImage:@"Offense-RG.png"]];
     [_items addObject:[PlayDrillItem itemWithText:@"Offense-RT" andWithImage:@"Offense-RT.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense-TB" andWithImage:@"Offense-TB.png"]];
     [_items addObject:[PlayDrillItem itemWithText:@"Offense-TE" andWithImage:@"Offense-TE.png"]];
+    [_items addObject:[PlayDrillItem itemWithText:@"Offense-WR" andWithImage:@"Offense-WR.png"]];
     [_items addObject:[PlayDrillItem itemWithText:@"Offense-Y" andWithImage:@"Offense-Y.png"]];
     [_items addObject:[PlayDrillItem itemWithText:@"Offense-Z" andWithImage:@"Offense-Z.png"]];
     [_items addObject:[PlayDrillItem itemWithText:@"Offense" andWithImage:@"Offense.png"]];
