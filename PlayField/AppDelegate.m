@@ -12,6 +12,7 @@
 #import "PlayCell.h"
 #import "PlayDrillItemCell.h"
 #import "PlayerCell.h"
+#import "Flurry.h"
 
 @implementation AppDelegate
 
@@ -48,6 +49,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Flurry startSession:@"9P9G5KBF55Q3RQBF6GSV"];
+    
     [self customizeAppearance];
     // Testflight
     // !!!: Use the next line only during beta

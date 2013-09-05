@@ -57,6 +57,10 @@
 		2998152A1785BDE900D230B9 /* Offense-Z.png in Resources */ = {isa = PBXBuildFile; fileRef = 2998151E1785BDE600D230B9 /* Offense-Z.png */; };
 		2998152B1785BDE900D230B9 /* Offense.png in Resources */ = {isa = PBXBuildFile; fileRef = 2998151F1785BDE800D230B9 /* Offense.png */; };
 		2998152D1785BEB600D230B9 /* field.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2998152C1785BEB500D230B9 /* field.jpg */; };
+		29DBCC1D17D811D700AD4D31 /* libFlurry_4.2.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 29DBCC1C17D811D700AD4D31 /* libFlurry_4.2.3.a */; };
+		29DBCC1F17D8124600AD4D31 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29DBCC1E17D8124600AD4D31 /* SystemConfiguration.framework */; };
+		29DBCC2117D8126D00AD4D31 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29DBCC2017D8126D00AD4D31 /* Security.framework */; };
+		29DBCC2317D8127D00AD4D31 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29DBCC2217D8127D00AD4D31 /* AdSupport.framework */; };
 		29DF6AEA1792ED200037482D /* Bag.png in Resources */ = {isa = PBXBuildFile; fileRef = 29DF6AE91792ED200037482D /* Bag.png */; };
 		29DF6AEC1792ED2F0037482D /* Coach.png in Resources */ = {isa = PBXBuildFile; fileRef = 29DF6AEB1792ED2F0037482D /* Coach.png */; };
 		29DF6AEF1792ED540037482D /* Bag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 29DF6AED1792ED540037482D /* Bag@2x.png */; };
@@ -377,6 +381,11 @@
 		2998151E1785BDE600D230B9 /* Offense-Z.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-Z.png"; sourceTree = "<group>"; };
 		2998151F1785BDE800D230B9 /* Offense.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Offense.png; sourceTree = "<group>"; };
 		2998152C1785BEB500D230B9 /* field.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = field.jpg; sourceTree = "<group>"; };
+		29DBCC1B17D811D700AD4D31 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		29DBCC1C17D811D700AD4D31 /* libFlurry_4.2.3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.2.3.a; sourceTree = "<group>"; };
+		29DBCC1E17D8124600AD4D31 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		29DBCC2017D8126D00AD4D31 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		29DBCC2217D8127D00AD4D31 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		29DF6AE91792ED200037482D /* Bag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bag.png; sourceTree = "<group>"; };
 		29DF6AEB1792ED2F0037482D /* Coach.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Coach.png; sourceTree = "<group>"; };
 		29DF6AED1792ED540037482D /* Bag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bag@2x.png"; sourceTree = "<group>"; };
@@ -842,6 +851,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29DBCC2317D8127D00AD4D31 /* AdSupport.framework in Frameworks */,
+				29DBCC2117D8126D00AD4D31 /* Security.framework in Frameworks */,
+				29DBCC1F17D8124600AD4D31 /* SystemConfiguration.framework in Frameworks */,
 				6DEAA40917917F07008AC5E2 /* MessageUI.framework in Frameworks */,
 				39D7A09917694B3C004E6307 /* libz.dylib in Frameworks */,
 				29E2AAD416CFBE1100005AAF /* CoreData.framework in Frameworks */,
@@ -855,6 +867,7 @@
 				6D148F8616C988E70069CB76 /* CoreGraphics.framework in Frameworks */,
 				6D148F8816C988E70069CB76 /* GameKit.framework in Frameworks */,
 				39D7A09517694AA7004E6307 /* libTestFlight.a in Frameworks */,
+				29DBCC1D17D811D700AD4D31 /* libFlurry_4.2.3.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -875,6 +888,15 @@
 				298017DF16EB9EC500FF469E /* home-reference.jpg */,
 			);
 			path = "greaseboard-homepage";
+			sourceTree = "<group>";
+		};
+		29DBCC1A17D811D700AD4D31 /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				29DBCC1B17D811D700AD4D31 /* Flurry.h */,
+				29DBCC1C17D811D700AD4D31 /* libFlurry_4.2.3.a */,
+			);
+			path = Flurry;
 			sourceTree = "<group>";
 		};
 		29E2AAA416CFAEA200005AAF /* Roster */ = {
@@ -1075,6 +1097,10 @@
 		6D148F6B16C988E70069CB76 = {
 			isa = PBXGroup;
 			children = (
+				29DBCC2217D8127D00AD4D31 /* AdSupport.framework */,
+				29DBCC2017D8126D00AD4D31 /* Security.framework */,
+				29DBCC1E17D8124600AD4D31 /* SystemConfiguration.framework */,
+				29DBCC1A17D811D700AD4D31 /* Flurry */,
 				6DEAA40817917F07008AC5E2 /* MessageUI.framework */,
 				3993ACDF177E5A76002E9FF7 /* greaseboard.entitlements */,
 				39D7A09817694B3C004E6307 /* libz.dylib */,
@@ -2067,6 +2093,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlightSDK1.2.5\"",
+					"\"$(SRCROOT)/Flurry\"",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -2103,6 +2130,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlightSDK1.2.5\"",
+					"\"$(SRCROOT)/Flurry\"",
 				);
 				OTHER_LDFLAGS = (
 					"-lz",
