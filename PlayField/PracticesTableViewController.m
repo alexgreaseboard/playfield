@@ -252,7 +252,7 @@
             break;
             
         case NSFetchedResultsChangeUpdate:
-            //[self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
             
         case NSFetchedResultsChangeMove:
@@ -260,6 +260,14 @@
             [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
+}
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    Practice *practice = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    PracticeCell *pCell = (PracticeCell*)cell;
+    pCell.practiceLabel.text = practice.practiceName;
+    pCell.durationLabel.text = [NSString stringWithFormat:@"%@", practice.practiceDuration];
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller

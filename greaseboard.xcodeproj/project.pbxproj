@@ -109,7 +109,6 @@
 		393DED7E178E42DC00953761 /* GameTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 393DED7D178E42DC00953761 /* GameTime.m */; };
 		393DED81178F95ED00953761 /* PurpleSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 393DED80178F95ED00953761 /* PurpleSegmentControl.m */; };
 		393DED84178FAC0E00953761 /* PlaybookPinchGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 393DED83178FAC0E00953761 /* PlaybookPinchGestureRecognizer.m */; };
-		393DED861790D44C00953761 /* Scoreboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 393DED851790D44C00953761 /* Scoreboard.xib */; };
 		394AEDBB16FBEF030043D6E8 /* PracticeOtherItemsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 394AEDBA16FBEF030043D6E8 /* PracticeOtherItemsTableViewController.m */; };
 		394DEEC116F55C5A0047A3B7 /* PracticeEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 394DEEBF16F395C20047A3B7 /* PracticeEditViewController.m */; };
 		3989D24E1751143E00AD8372 /* LXReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3989D24D1751143E00AD8372 /* LXReorderableCollectionViewFlowLayout.m */; };
@@ -119,6 +118,7 @@
 		398A328F175435C400B03ED2 /* ShinyLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 398A328E175435C400B03ED2 /* ShinyLabel.m */; };
 		399B7F07170733980047244D /* TimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 399B7F06170733980047244D /* TimerView.m */; };
 		399B7F0B17073AE60047244D /* TimerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 399B7F0A17073AE60047244D /* TimerView.xib */; };
+		39C3DECA17B0611A00107906 /* TimerView2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39C3DEC917B0611A00107906 /* TimerView2.xib */; };
 		39D7A09517694AA7004E6307 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D7A09117694AA7004E6307 /* libTestFlight.a */; };
 		39D7A09617694AA7004E6307 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 39D7A09217694AA7004E6307 /* README.md */; };
 		39D7A09717694AA7004E6307 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 39D7A09317694AA7004E6307 /* release_notes.md */; };
@@ -127,6 +127,19 @@
 		39E2FFCD1731EBD50062332C /* GameTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E2FFCC1731EBD50062332C /* GameTimeViewController.m */; };
 		39E2FFD1173322320062332C /* PinchLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E2FFD0173322320062332C /* PinchLayout.m */; };
 		39E2FFD41733256A0062332C /* PlaybookPlayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E2FFD31733256A0062332C /* PlaybookPlayDataSource.m */; };
+		39F5ADA017B05D6B0030B553 /* TimerView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F5AD9F17B05D6B0030B553 /* TimerView2.m */; };
+		6D02433517D0F14B00E30921 /* Offense-FB-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D02432D17D0F14B00E30921 /* Offense-FB-hd.png */; };
+		6D02433617D0F14B00E30921 /* Offense-FB.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D02432E17D0F14B00E30921 /* Offense-FB.png */; };
+		6D02433717D0F14B00E30921 /* Offense-QB-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D02432F17D0F14B00E30921 /* Offense-QB-hd.png */; };
+		6D02433817D0F14B00E30921 /* Offense-QB.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D02433017D0F14B00E30921 /* Offense-QB.png */; };
+		6D02433917D0F14B00E30921 /* Offense-TB-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D02433117D0F14B00E30921 /* Offense-TB-hd.png */; };
+		6D02433A17D0F14B00E30921 /* Offense-TB.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D02433217D0F14B00E30921 /* Offense-TB.png */; };
+		6D02433B17D0F14B00E30921 /* Offense-WR-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D02433317D0F14B00E30921 /* Offense-WR-hd.png */; };
+		6D02434117D0F1D100E30921 /* Offense-FB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D02433D17D0F1D000E30921 /* Offense-FB@2x.png */; };
+		6D02434217D0F1D100E30921 /* Offense-QB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D02433E17D0F1D100E30921 /* Offense-QB@2x.png */; };
+		6D02434317D0F1D100E30921 /* Offense-TB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D02433F17D0F1D100E30921 /* Offense-TB@2x.png */; };
+		6D02434417D0F1D100E30921 /* Offense-WR@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D02434017D0F1D100E30921 /* Offense-WR@2x.png */; };
+		6D02434617D0F96300E30921 /* Offense-WR.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D02434517D0F96300E30921 /* Offense-WR.png */; };
 		6D0724AD16D6A74B00DDA641 /* PlayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0724AC16D6A74B00DDA641 /* PlayCell.m */; };
 		6D148F7816C988E70069CB76 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D148F7716C988E70069CB76 /* QuartzCore.framework */; };
 		6D148F7A16C988E70069CB76 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D148F7916C988E70069CB76 /* OpenGLES.framework */; };
@@ -447,7 +460,6 @@
 		393DED80178F95ED00953761 /* PurpleSegmentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurpleSegmentControl.m; sourceTree = "<group>"; };
 		393DED82178FAC0E00953761 /* PlaybookPinchGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybookPinchGestureRecognizer.h; sourceTree = "<group>"; };
 		393DED83178FAC0E00953761 /* PlaybookPinchGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybookPinchGestureRecognizer.m; sourceTree = "<group>"; };
-		393DED851790D44C00953761 /* Scoreboard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Scoreboard.xib; sourceTree = "<group>"; };
 		394AEDB916FBEF030043D6E8 /* PracticeOtherItemsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeOtherItemsTableViewController.h; sourceTree = "<group>"; };
 		394AEDBA16FBEF030043D6E8 /* PracticeOtherItemsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeOtherItemsTableViewController.m; sourceTree = "<group>"; };
 		394DEEBE16F395C20047A3B7 /* PracticeEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeEditViewController.h; sourceTree = "<group>"; };
@@ -466,6 +478,7 @@
 		399B7F05170733980047244D /* TimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerView.h; sourceTree = "<group>"; };
 		399B7F06170733980047244D /* TimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerView.m; sourceTree = "<group>"; };
 		399B7F0A17073AE60047244D /* TimerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimerView.xib; sourceTree = "<group>"; };
+		39C3DEC917B0611A00107906 /* TimerView2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimerView2.xib; sourceTree = "<group>"; };
 		39D7A09117694AA7004E6307 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
 		39D7A09217694AA7004E6307 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		39D7A09317694AA7004E6307 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
@@ -479,6 +492,20 @@
 		39E2FFD0173322320062332C /* PinchLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinchLayout.m; sourceTree = "<group>"; };
 		39E2FFD21733256A0062332C /* PlaybookPlayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybookPlayDataSource.h; sourceTree = "<group>"; };
 		39E2FFD31733256A0062332C /* PlaybookPlayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybookPlayDataSource.m; sourceTree = "<group>"; };
+		39F5AD9E17B05D6B0030B553 /* TimerView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerView2.h; sourceTree = "<group>"; };
+		39F5AD9F17B05D6B0030B553 /* TimerView2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerView2.m; sourceTree = "<group>"; };
+		6D02432D17D0F14B00E30921 /* Offense-FB-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-FB-hd.png"; sourceTree = "<group>"; };
+		6D02432E17D0F14B00E30921 /* Offense-FB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-FB.png"; sourceTree = "<group>"; };
+		6D02432F17D0F14B00E30921 /* Offense-QB-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-QB-hd.png"; sourceTree = "<group>"; };
+		6D02433017D0F14B00E30921 /* Offense-QB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-QB.png"; sourceTree = "<group>"; };
+		6D02433117D0F14B00E30921 /* Offense-TB-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-TB-hd.png"; sourceTree = "<group>"; };
+		6D02433217D0F14B00E30921 /* Offense-TB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-TB.png"; sourceTree = "<group>"; };
+		6D02433317D0F14B00E30921 /* Offense-WR-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-WR-hd.png"; sourceTree = "<group>"; };
+		6D02433D17D0F1D000E30921 /* Offense-FB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-FB@2x.png"; sourceTree = "<group>"; };
+		6D02433E17D0F1D100E30921 /* Offense-QB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-QB@2x.png"; sourceTree = "<group>"; };
+		6D02433F17D0F1D100E30921 /* Offense-TB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-TB@2x.png"; sourceTree = "<group>"; };
+		6D02434017D0F1D100E30921 /* Offense-WR@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-WR@2x.png"; sourceTree = "<group>"; };
+		6D02434517D0F96300E30921 /* Offense-WR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offense-WR.png"; sourceTree = "<group>"; };
 		6D0724AB16D6A74B00DDA641 /* PlayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayCell.h; sourceTree = "<group>"; };
 		6D0724AC16D6A74B00DDA641 /* PlayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayCell.m; sourceTree = "<group>"; };
 		6D148F7416C988E70069CB76 /* GreaseBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GreaseBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -866,6 +893,7 @@
 		29E2AAA516CFAEA700005AAF /* PlayCreation */ = {
 			isa = PBXGroup;
 			children = (
+				29E9360F16E82EBE00B439C1 /* Playbook */,
 				29E2AAB116CFAEFB00005AAF /* PlayCreationPlaysTableViewController.h */,
 				29E2AAB216CFAEFB00005AAF /* PlayCreationPlaysTableViewController.m */,
 				29E2AAB316CFAEFB00005AAF /* PlayCreationItemsTableViewController.h */,
@@ -1015,7 +1043,9 @@
 				399B7F05170733980047244D /* TimerView.h */,
 				399B7F06170733980047244D /* TimerView.m */,
 				399B7F0A17073AE60047244D /* TimerView.xib */,
-				393DED851790D44C00953761 /* Scoreboard.xib */,
+				39F5AD9E17B05D6B0030B553 /* TimerView2.h */,
+				39F5AD9F17B05D6B0030B553 /* TimerView2.m */,
+				39C3DEC917B0611A00107906 /* TimerView2.xib */,
 			);
 			name = Timer;
 			sourceTree = "<group>";
@@ -1086,7 +1116,6 @@
 				39E2FFCE1731EBDA0062332C /* GameTime */,
 				29E2AAA416CFAEA200005AAF /* Roster */,
 				29E2AAA516CFAEA700005AAF /* PlayCreation */,
-				29E9360F16E82EBE00B439C1 /* Playbook */,
 				392CD7DC16EBA18C008194B7 /* Practice */,
 				29E2AAA716CFAEB600005AAF /* TableCell */,
 				399B7F04170729700047244D /* Timer */,
@@ -1544,6 +1573,9 @@
 				6D80DAD6176BC4100006E8C8 /* Offense-C-hd.png */,
 				299815171785BDDE00D230B9 /* Offense-C.png */,
 				6D9300361787633C00D45552 /* Offense-C@2x.png */,
+				6D02432D17D0F14B00E30921 /* Offense-FB-hd.png */,
+				6D02432E17D0F14B00E30921 /* Offense-FB.png */,
+				6D02433D17D0F1D000E30921 /* Offense-FB@2x.png */,
 				6D80DADE176BC4100006E8C8 /* Offense-hd.png */,
 				6D80DAD7176BC4100006E8C8 /* Offense-LG-hd.png */,
 				299815181785BDDF00D230B9 /* Offense-LG.png */,
@@ -1551,15 +1583,24 @@
 				6D80DAD8176BC4100006E8C8 /* Offense-LT-hd.png */,
 				299815191785BDE100D230B9 /* Offense-LT.png */,
 				6D9300381787633C00D45552 /* Offense-LT@2x.png */,
+				6D02432F17D0F14B00E30921 /* Offense-QB-hd.png */,
+				6D02433017D0F14B00E30921 /* Offense-QB.png */,
+				6D02433E17D0F1D100E30921 /* Offense-QB@2x.png */,
 				6D80DAD9176BC4100006E8C8 /* Offense-RG-hd.png */,
 				2998151A1785BDE200D230B9 /* Offense-RG.png */,
 				6D9300391787633C00D45552 /* Offense-RG@2x.png */,
 				6D80DADA176BC4100006E8C8 /* Offense-RT-hd.png */,
 				2998151B1785BDE300D230B9 /* Offense-RT.png */,
 				6D93003A1787633C00D45552 /* Offense-RT@2x.png */,
+				6D02433117D0F14B00E30921 /* Offense-TB-hd.png */,
+				6D02433217D0F14B00E30921 /* Offense-TB.png */,
+				6D02433F17D0F1D100E30921 /* Offense-TB@2x.png */,
 				6D80DADB176BC4100006E8C8 /* Offense-TE-hd.png */,
 				2998151C1785BDE400D230B9 /* Offense-TE.png */,
 				6D93003B1787633C00D45552 /* Offense-TE@2x.png */,
+				6D02433317D0F14B00E30921 /* Offense-WR-hd.png */,
+				6D02434517D0F96300E30921 /* Offense-WR.png */,
+				6D02434017D0F1D100E30921 /* Offense-WR@2x.png */,
 				6D80DADC176BC4100006E8C8 /* Offense-Y-hd.png */,
 				2998151D1785BDE500D230B9 /* Offense-Y.png */,
 				6D93003C1787633C00D45552 /* Offense-Y@2x.png */,
@@ -1741,7 +1782,6 @@
 				6D9300521787633C00D45552 /* Offense@2x.png in Resources */,
 				6D930054178763C300D45552 /* Defense-LB@2x.png in Resources */,
 				6D930056178764BF00D45552 /* trash@2x.png in Resources */,
-				393DED861790D44C00953761 /* Scoreboard.xib in Resources */,
 				29DF6AEA1792ED200037482D /* Bag.png in Resources */,
 				29DF6AEC1792ED2F0037482D /* Coach.png in Resources */,
 				29DF6AEF1792ED540037482D /* Bag@2x.png in Resources */,
@@ -1764,6 +1804,19 @@
 				29DF6B12179307260037482D /* whiteCircle-s@2x.png in Resources */,
 				29DF6B13179307260037482D /* yellowCircle@2x.png in Resources */,
 				29DF6B14179307260037482D /* yellowCircle-s@2x.png in Resources */,
+				39C3DECA17B0611A00107906 /* TimerView2.xib in Resources */,
+				6D02433517D0F14B00E30921 /* Offense-FB-hd.png in Resources */,
+				6D02433617D0F14B00E30921 /* Offense-FB.png in Resources */,
+				6D02433717D0F14B00E30921 /* Offense-QB-hd.png in Resources */,
+				6D02433817D0F14B00E30921 /* Offense-QB.png in Resources */,
+				6D02433917D0F14B00E30921 /* Offense-TB-hd.png in Resources */,
+				6D02433A17D0F14B00E30921 /* Offense-TB.png in Resources */,
+				6D02433B17D0F14B00E30921 /* Offense-WR-hd.png in Resources */,
+				6D02434117D0F1D100E30921 /* Offense-FB@2x.png in Resources */,
+				6D02434217D0F1D100E30921 /* Offense-QB@2x.png in Resources */,
+				6D02434317D0F1D100E30921 /* Offense-TB@2x.png in Resources */,
+				6D02434417D0F1D100E30921 /* Offense-WR@2x.png in Resources */,
+				6D02434617D0F96300E30921 /* Offense-WR.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1934,6 +1987,7 @@
 				393DED7E178E42DC00953761 /* GameTime.m in Sources */,
 				393DED81178F95ED00953761 /* PurpleSegmentControl.m in Sources */,
 				393DED84178FAC0E00953761 /* PlaybookPinchGestureRecognizer.m in Sources */,
+				39F5ADA017B05D6B0030B553 /* TimerView2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

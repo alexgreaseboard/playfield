@@ -15,9 +15,10 @@
 #import "PracticeItemEditController.h"
 #import "PracticeOptionsController.h"
 #import "PracticeColumnEditController.h"
+#import "PracticesTableViewController.h"
 #import "AppDelegate.h"
 #import "PracticeOtherItemsTableViewController.h"
-#import "TimerView.h"
+#import "TimerView2.h"
 
 @interface PracticeViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, PracticeOptionsDelegate, PracticeOtherItemsDelegate>
 @property(nonatomic, weak) IBOutlet UIToolbar *toolbar;
@@ -43,7 +44,8 @@
 	PracticeItem *draggingItem;
     PracticeItem *placeholderItem; // a placeholder to expand the column when dragging
     CGRect initialDraggingFrame;
-    UIView *timer;
+    TimerView2 *timer;
+    PracticeItem *pinchingItem;
 }
 
 - (void)viewDidLoad
@@ -53,22 +55,31 @@
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
-    self.view.backgroundColor = [UIColor colorWithRed:(18.0 / 255.0) green:(50.0 / 255.0) blue:(33.0 / 255.0) alpha: 1];
+    self.view.backgroundColor = [UIColor colorWithRed:(18.0 / 255.0) green:(50.0 / 255.0) blue:(33.0 / 255.0) alpha: 0.8f];
     
     // available colors for the items
     self.availableColors = [[NSMutableArray alloc] initWithCapacity:20];
-    [self.availableColors addObject:[UIColor colorWithRed:.17 green:.26 blue:.32 alpha:0.95]];// blue
-    [self.availableColors addObject:[UIColor colorWithRed:.66 green:.15 blue:.18 alpha:0.85]];// red
-    [self.availableColors addObject:[UIColor colorWithRed:.31 green:.41 blue:.18 alpha:0.95]];// green
-    [self.availableColors addObject:[UIColor colorWithRed:.20 green:.15 blue:.33 alpha:0.95]];// purple
+    [self.availableColors addObject:[UIColor colorWithRed:(34.0 / 255.0) green:(93.0 / 255.0) blue:(90.0 / 255.0) alpha: .8]];// bluegreen
     
+    [self.availableColors addObject:[UIColor colorWithRed:.66 green:.15 blue:.18 alpha:0.8]];// red
+    [self.availableColors addObject:[UIColor colorWithRed:.31 green:.41 blue:.18 alpha:0.9]];// green
+    [self.availableColors addObject:[UIColor colorWithRed:.20 green:.15 blue:.33 alpha:0.9]];// purple
+    [self.availableColors addObject:[UIColor colorWithRed:(182 / 255.0) green:(67 / 255.0) blue:(131 / 255.0) alpha: 0.95]];// pink
+    [self.availableColors addObject:[UIColor colorWithRed:(34.0 / 255.0) green:(37.0 / 255.0) blue:(93.0 / 255.0) alpha: 0.9]];// blue
     self.colorItemMap = [[NSMutableDictionary alloc] initWithCapacity:20];
 }
 
 - (void) viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self resetViewWithPractice:self.practice];
-    
+    // add the timer
+    if(!timer){
+        timer = [[TimerView2 alloc] init];
+        [self.view addSubview:timer];
+        [timer awakeFromNib];
+    } else {
+        [self.view bringSubviewToFront:timer];
+    }
 }
 
 -(void)resetViewWithPractice:(Practice*)practice{
@@ -92,6 +103,7 @@
     }
     // generate the time labels
     for(PracticeColumn* column in practice.practiceColumns){
+        NSLog(@"-------- %@", column.columnName);
         [self generateTimeItemsForColumn:column];
     }
     
@@ -135,17 +147,12 @@
     self.tableView.rowHeight = 5 * self.pixelRatio; // 5 minute intervals
     self.tableView.backgroundColor = [UIColor clearColor];
     
-    self.tableView.separatorColor = [UIColor blackColor];
+    self.tableView.separatorColor = [UIColor whiteColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.view addSubview:self.tableView];
     [self.view sendSubviewToBack:self.tableView];
     
-    // add the timer
-    [timer removeFromSuperview];
-    timer = [[TimerView alloc] init];
-    [self.view addSubview:timer];
-    [timer awakeFromNib];
-    
+    [self.view bringSubviewToFront:timer];
     [self.view reloadInputViews];
 }
 
@@ -180,7 +187,7 @@
     PracticeItem *practiceItem = [self findItemAtIndex:indexPath.item];
     PracticeItemCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"PracticeCell" forIndexPath:indexPath];
     cell.hidden = NO;
-    //NSLog(@"Configuring cell for item %@ and cell %@", practiceItem, cell);
+    //NSLog(@"Configuring cell for item %@ and cell %@", practiceItem.itemType, practiceItem.itemName);
     if([practiceItem.itemType isEqualToString:@"item"] && practiceItem.backgroundColor == nil){
         [self setColorForItem:practiceItem];
     }
@@ -216,7 +223,6 @@
     NSInteger count = 0;
     int columnNumber = 0;
     for(PracticeColumn *practiceColumn in self.practice.practiceColumns){
-        
         NSInteger initialCount = count;
         count += practiceColumn.timePracticeItems.count;
         if(index < count){
@@ -632,6 +638,8 @@
 }
 - (void)practiceColumnEditController:(PracticeColumnEditController *)controller didFinishEditingColumn:(PracticeColumn *)column{
     //NSLog(@"Column name %@", column.columnName);
+    PracticeItem *item = column.practiceItems[0];
+    item.itemName = column.columnName;
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
@@ -690,7 +698,8 @@
 - (void) handlePinching:(UIPinchGestureRecognizer *)sender{
     // Get the pinch points.
     [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Practice - handlePinching. Touchpoints: %i", sender.numberOfTouches]];
-    if(sender.numberOfTouches > 1){
+    // get the current item
+    if(sender.numberOfTouches > 1 && !pinchingItem){
         CGPoint p1 = [sender locationOfTouch:0 inView:[self collectionView]];
         CGPoint p2 = [sender locationOfTouch:1 inView:[self collectionView]];
         NSIndexPath *newPinchedIndexPath1 = [self.collectionView indexPathForItemAtPoint:p1];
@@ -698,15 +707,18 @@
     
         PracticeItem *item1 = [self findItemAtIndex:newPinchedIndexPath1.item];
         PracticeItem *item2 = [self findItemAtIndex:newPinchedIndexPath2.item];
-    
-        //NSLog(@"Pinching %@, %@", item1.itemName, item2.itemName);
-        if(sender.state == UIGestureRecognizerStateChanged && item1 == item2 && [item1.itemType isEqualToString:@"item"]){
-            [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Practice - pinching %@", item1.itemName]];
+        if(item1 == item2 && [item1.itemType isEqualToString:@"item"]){
+            pinchingItem = item1;
+        }
+    }
+    // if we have a pinching item
+    if((sender.state == UIGestureRecognizerStateBegan || sender.state == UIGestureRecognizerStateChanged) && pinchingItem){
+            [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"Practice - pinching %@", pinchingItem.itemName]];
             //increment by 5 minutes
-            CGFloat newMinutes = [item1.numberOfMinutes floatValue] * sender.scale;
+            CGFloat newMinutes = [pinchingItem.numberOfMinutes floatValue] * sender.scale * 1.1;
             NSInteger newMinutesInt = round(newMinutes);
             if(newMinutes > 0 && newMinutesInt % 5 == 0){
-                item1.numberOfMinutes = [NSNumber numberWithInt:newMinutesInt];
+                pinchingItem.numberOfMinutes = [NSNumber numberWithInt:newMinutesInt];
                 sender.scale = 1; // reset the scale
                 NSError *error = nil;
                 if (![self.managedObjectContext save:&error]) {
@@ -719,7 +731,8 @@
             [UIView setAnimationsEnabled:NO];
             [self.collectionView reloadData];
             [UIView setAnimationsEnabled:animationsEnabled];
-        }
+    } else if(sender.state == UIGestureRecognizerStateEnded){
+        pinchingItem = nil;
     }
 }
 

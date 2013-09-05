@@ -24,6 +24,7 @@
 #pragma mark - UICollectionView Datasource
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
+    _fetchedResultsController = nil;
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
     //NSLog(@"Number of items in section %d", [sectionInfo numberOfObjects]);
     return [sectionInfo numberOfObjects];
@@ -39,15 +40,9 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"PlaybookPlayCell" forIndexPath:indexPath];
-    
     PlaybookPlayCell *playbookCell = (PlaybookPlayCell *) cell;
     PlaybookPlay *playbookPlay = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    playbookCell = [playbookCell initWithFrame:playbookCell.frame playbookPlay:playbookPlay];
-    if([playbookPlay.status isEqualToString:@"Dragging"]){
-        [playbookCell highlightCell];
-    } else {
-        [playbookCell unhighlightCell];
-    }
+    [playbookCell configureCell:playbookPlay];
     return playbookCell;
 }
 
@@ -82,7 +77,7 @@
     [fetchRequest setFetchBatchSize:20];
     
     // Predicates
-    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlaybookPlayDS - fetching type: %@, playbook: %@", self.offenseOrDefense, self.playbook.name]];
+    //[TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlaybookPlayDS - fetching type: %@, playbook: %@", self.offenseOrDefense, self.playbook.name]];
     if(self.offenseOrDefense && self.playbook){
         NSPredicate *predicate = [NSPredicate predicateWithFormat:
                                   @"(play.type == %@) && (playbook == %@) && playbook != nil", self.offenseOrDefense, self.playbook];
@@ -109,7 +104,6 @@
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     aFetchedResultsController.delegate = self;
     _fetchedResultsController = aFetchedResultsController;
-    NSLog(@"Count: %i", [aFetchedResultsController.fetchedObjects count]);
     
 	NSError *error = nil;
 	if (![self.fetchedResultsController performFetch:&error]) {
@@ -140,7 +134,9 @@
     NSMutableArray *mutableArray = [[NSMutableArray alloc] initWithArray:self.fetchedResultsController.fetchedObjects];
     id object = [mutableArray objectAtIndex:fromIndexPath.item];
     [mutableArray removeObjectAtIndex:fromIndexPath.item];
-    [mutableArray insertObject:object atIndex:toIndexPath.item];
+    if(toIndexPath.item > 0){
+        [mutableArray insertObject:object atIndex:toIndexPath.item];
+    }
     
     for(int i=0; i<mutableArray.count; i++){
         PlaybookPlay *playbookPlay = (PlaybookPlay*)mutableArray[i];
@@ -152,5 +148,18 @@
         [self fatalCoreDataError:error];
         return;
     }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView removeItemAtIndexPath:(NSIndexPath *)fromIndexPath{
+    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PlaybookPlayDataSource - Removing play..."]];
+    NSMutableArray *mutableArray = [[NSMutableArray alloc] initWithArray:self.fetchedResultsController.fetchedObjects];
+    PlaybookPlay *pp = [mutableArray objectAtIndex:fromIndexPath.item];
+    [self.managedObjectContext deleteObject:pp];
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        [self fatalCoreDataError:error];
+        return;
+    }
+    [collectionView reloadData];
 }
 @end

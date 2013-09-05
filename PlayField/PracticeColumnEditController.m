@@ -55,7 +55,7 @@
 // listen for characters changing in the text field and enable the button if it has characters
 - (BOOL)textField:(UITextField *)theTextField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    [TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PracticeColumnEdit - shouldChangeCharactersInRange"]];
+    //[TestFlight passCheckpoint:[NSMutableString stringWithFormat:@"PracticeColumnEdit - shouldChangeCharactersInRange"]];
     NSString *newText = [theTextField.text stringByReplacingCharactersInRange:range withString:string];
     if([theTextField.restorationIdentifier isEqualToString:@"praticeColumnText"]){
         if(newText.length == 0){

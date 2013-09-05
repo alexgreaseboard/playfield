@@ -41,7 +41,15 @@
     // Update the user interface for the detail item.
 
     if (self.detailItem) {
-        self.name.text = [[[[self.detailItem valueForKey:@"firstName"] description] stringByAppendingString:@" "] stringByAppendingString:[[self.detailItem valueForKey:@"lastName"] description]];
+        NSString *tempName = @"";
+        if( [self.detailItem valueForKey:@"firstName"] != nil ) {
+            tempName = [[self.detailItem valueForKey:@"firstName"] description];
+            tempName = [ tempName stringByAppendingString:@" " ];
+        }
+        if( [self.detailItem valueForKey:@"lastName"] != nil ) {
+            tempName = [tempName stringByAppendingString:[[self.detailItem valueForKey:@"lastName"] description]];
+        }
+        self.name.text = tempName;
         self.position.text = [[self.detailItem valueForKey:@"position"] description];
         self.backupPosition.text = [[self.detailItem valueForKey:@"backupPosition"] description];
         NSString *address = @"";
